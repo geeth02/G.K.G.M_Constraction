@@ -7,13 +7,19 @@ package com.work_order;
 
 import static com.work_order.End_Job.txtCustomer;
 import static com.work_order.Paymets.tb1;
+import static com.work_order.Paymets.txtAmount;
+import static com.work_order.Paymets.txtCustomerPayment;
+import static com.work_order.Paymets.txtOrderId;
+import static com.work_order.Paymets.txtPaymentId;
 import static com.work_order.Paymets.txtSearch;
 import common.CommonM;
 import common.DB;
+import java.awt.Color;
 import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.text.DecimalFormat;
 import java.util.Vector;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -54,11 +60,9 @@ public class Job_Selection_Payment extends javax.swing.JFrame {
 
         ReForm.setBackground(new java.awt.Color(255, 255, 255));
         ReForm.setOpaque(true);
-        ReForm.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lbFirstName.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
         lbFirstName.setText("Select Job Vehicle");
-        ReForm.add(lbFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, -1, 42));
 
         jLabel5.setBackground(new java.awt.Color(204, 0, 51));
         jLabel5.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 48)); // NOI18N
@@ -66,7 +70,6 @@ public class Job_Selection_Payment extends javax.swing.JFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Job Selection");
         jLabel5.setOpaque(true);
-        ReForm.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 708, 69));
 
         btnRegister.setBackground(new java.awt.Color(0, 102, 204));
         btnRegister.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 36)); // NOI18N
@@ -85,10 +88,42 @@ public class Job_Selection_Payment extends javax.swing.JFrame {
                 btnRegisterActionPerformed(evt);
             }
         });
-        ReForm.add(btnRegister, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 210, 204, -1));
 
         jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        ReForm.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 110, 390, 50));
+
+        ReForm.setLayer(lbFirstName, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        ReForm.setLayer(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        ReForm.setLayer(btnRegister, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        ReForm.setLayer(jComboBox1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout ReFormLayout = new javax.swing.GroupLayout(ReForm);
+        ReForm.setLayout(ReFormLayout);
+        ReFormLayout.setHorizontalGroup(
+            ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ReFormLayout.createSequentialGroup()
+                .addGroup(ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(ReFormLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(lbFirstName)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(ReFormLayout.createSequentialGroup()
+                        .addGap(470, 470, 470)
+                        .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        ReFormLayout.setVerticalGroup(
+            ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ReFormLayout.createSequentialGroup()
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
+                .addGroup(ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50)
+                .addComponent(btnRegister))
+        );
 
         jLayeredPane1.add(ReForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 710, 290));
 
@@ -178,15 +213,17 @@ public class Job_Selection_Payment extends javax.swing.JFrame {
        if(Paymets.comboSearch.getSelectedItem().equals("NIC Number")){
         try {
              String search=Paymets.jList1.getSelectedValue().split("-")[0];
-            ResultSet search1 = DB.search("SELECT * FROM work_order WHERE customer_id='"+search+"' AND status=1");
+            ResultSet search1 = DB.search("SELECT * FROM work_order WHERE customer_id='"+search+"'");
              while(search1.next()){
                  ResultSet search2 = DB.search("SELECT * FROM vehicle WHERE vehicle_id='"+search1.getString("vehicle_id")+"'");
                  while(search2.next()){
-                  jComboBox1.addItem(search1.getString("order_id")+"- "+search2.getString("registration_number"));
+                     String date=search1.getString("data_time").split("-")[0]+"-"+search1.getString("data_time").split("-")[1]+"-"+search1.getString("data_time").split("-")[2]+")";
+                  jComboBox1.addItem(search1.getString("order_id")+"-"+search2.getString("registration_number")+" (Date:"+date);
                  }
             
              }
         } catch (Exception e) {
+            e.printStackTrace();
         }
        }
     }
@@ -194,7 +231,7 @@ public class Job_Selection_Payment extends javax.swing.JFrame {
      private void searchNic() {
                 try {
                     String search=jComboBox1.getSelectedItem().toString().split("-")[0];
-                    ResultSet search3 = DB.search("SELECT * FROM work_order where order_id='"+search+"' AND status=1");
+                    ResultSet search3 = DB.search("SELECT * FROM work_order where order_id='"+search+"'");
                   if(search3.next()){
                   Paymets.txtOrderId.setText(search3.getString("order_id"));
                   ResultSet search4 = DB.search("SELECT * FROM vehicle where vehicle_id='"+search3.getString("vehicle_id")+"' AND status=1");
@@ -218,6 +255,7 @@ public class Job_Selection_Payment extends javax.swing.JFrame {
                     dtm.addRow(v);
                     }
                     calculate();
+                    avPayment();
                       Paymets.txtAmount.grabFocus();
                   Paymets.jScrollPane1.setVisible(false);
                   this.dispose();
@@ -243,5 +281,33 @@ public class Job_Selection_Payment extends javax.swing.JFrame {
             BigDecimal bd = new BigDecimal( setValue ) ;
             DecimalFormat formatterBd = new DecimalFormat( "##.00" );
             Paymets.txtCustomerPayment.setText(formatterBd.format( bd ) );
+    }
+      
+      
+    private void avPayment() {
+                  try {
+              ResultSet search = DB.search("SELECT * FROM end_job WHERE order_id='"+txtOrderId.getText()+"'");
+              if(search.next()){
+              double fullPayment = search.getDouble("total_amount");
+              double customerPayment = Double.parseDouble(Paymets.txtCustomerPayment.getText());
+              Paymets.txtNetAmount.setText(String.valueOf(fullPayment-customerPayment));
+              if(fullPayment==customerPayment){
+                Paymets.txtAmount.setEditable(false);
+                Paymets.txtPayment.setEditable(false);
+                Paymets.btnClear.setVisible(true);
+                Paymets.btnPay.setEnabled(false);
+                txtPaymentId.setText("Complete Payment");
+                txtPaymentId.setForeground(Color.red);
+                JOptionPane.showMessageDialog(this,"All payments are Seccessful. View only Report");  
+              }else{
+               JOptionPane.showMessageDialog(this,"Total bill amount is Rs."+fullPayment);
+              }
+              }else{
+              Paymets.txtNetAmount.setText("Panding Payments...........");
+              }
+
+          } catch (Exception e) {
+              e.printStackTrace();
+          }
     }
 }

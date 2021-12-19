@@ -611,8 +611,8 @@ public class Paymets extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLayeredPane ReForm;
-    private javax.swing.JButton btnClear;
-    private javax.swing.JButton btnPay;
+    public static javax.swing.JButton btnClear;
+    public static javax.swing.JButton btnPay;
     private javax.swing.JButton btnRegister3;
     public static javax.swing.JComboBox<String> comboSearch;
     private javax.swing.JLabel jLabel10;
@@ -636,9 +636,9 @@ public class Paymets extends javax.swing.JFrame {
     public static javax.swing.JTextField txtAmount;
     public static javax.swing.JTextField txtCustomer;
     public static javax.swing.JTextField txtCustomerPayment;
-    private javax.swing.JTextField txtNetAmount;
+    public static javax.swing.JTextField txtNetAmount;
     public static javax.swing.JTextField txtOrderId;
-    private javax.swing.JTextField txtPayment;
+    public static javax.swing.JTextField txtPayment;
     public static javax.swing.JTextField txtPaymentId;
     public static javax.swing.JTextField txtSearch;
     public static javax.swing.JTextField txtVehicleNumber;

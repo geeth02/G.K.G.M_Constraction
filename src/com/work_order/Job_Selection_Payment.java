@@ -5,13 +5,7 @@
  */
 package com.work_order;
 
-import static com.work_order.End_Job.txtCustomer;
-import static com.work_order.Paymets.tb1;
-import static com.work_order.Paymets.txtAmount;
-import static com.work_order.Paymets.txtCustomerPayment;
 import static com.work_order.Paymets.txtOrderId;
-import static com.work_order.Paymets.txtPaymentId;
-import static com.work_order.Paymets.txtSearch;
 import common.CommonM;
 import common.DB;
 import java.awt.Color;
@@ -296,8 +290,14 @@ public class Job_Selection_Payment extends javax.swing.JFrame {
                 Paymets.txtPayment.setEditable(false);
                 Paymets.btnClear.setVisible(true);
                 Paymets.btnPay.setEnabled(false);
-                txtPaymentId.setText("Complete Payment");
-                txtPaymentId.setForeground(Color.red);
+                Paymets.txtPaymentId.setText("Complete Payment");
+                Paymets.txtPaymentId.setForeground(Color.red);
+                Paymets.txtbalance.setEditable(false);
+                Paymets.txtSearch.setEditable(false);
+                
+                Paymets.txtAmount.grabFocus();
+                  Paymets.jScrollPane1.setVisible(false);
+                  this.dispose();
                 JOptionPane.showMessageDialog(this,"All payments are Seccessful. View only Report");  
               }else{
                JOptionPane.showMessageDialog(this,"Total bill amount is Rs."+fullPayment);

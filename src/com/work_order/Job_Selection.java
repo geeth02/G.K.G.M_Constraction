@@ -6,7 +6,7 @@
 package com.work_order;
 
 import static com.work_order.End_Job.txtCustomer;
-import static com.work_order.Payment.txtCustomerPayment;
+import static com.work_order.Driver_Salery.txtCustomerPayment;
 import common.CommonM;
 import common.DB;
 import java.math.BigDecimal;

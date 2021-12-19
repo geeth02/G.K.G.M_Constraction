@@ -4,12 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/geeth/OneDrive/Documents/NetBeansProjects/SAD/src/com/work_order/Paymets.java</file>
-            <file>file:/C:/Users/geeth/OneDrive/Documents/NetBeansProjects/SAD/src/com/work_order/End_Job.java</file>
-            <file>file:/C:/Users/geeth/OneDrive/Documents/NetBeansProjects/SAD/src/com/vehicle_management/Delete_Vehicle.java</file>
-            <file>file:/C:/Users/geeth/OneDrive/Documents/NetBeansProjects/SAD/src/com/work_order/Start_Job.java</file>
-            <file>file:/C:/Users/geeth/OneDrive/Documents/NetBeansProjects/SAD/src/com/work_order/Job_Selection.java</file>
-            <file>file:/C:/Users/geeth/OneDrive/Documents/NetBeansProjects/SAD/src/com/employee_management/Add_Delete_Employee.java</file>
-            <file>file:/C:/Users/geeth/OneDrive/Documents/NetBeansProjects/SAD/src/com/main/Main_Menu.java</file>
+            <file>file:/C:/Users/geeth/OneDrive/Documents/NetBeansProjects/SAD/src/com/work_order/Work_Order.java</file>
+            <file>file:/C:/Users/geeth/OneDrive/Documents/NetBeansProjects/SAD/src/com/work_order/Driver_Salery.java</file>
         </group>
     </open-files>
 </project-private>

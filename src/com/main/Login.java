@@ -1,4 +1,3 @@
-
 package com.main;
 
 import common.SystemData;
@@ -10,10 +9,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+
 public class Login extends javax.swing.JFrame {
+
     public Login() {
         initComponents();
-                 new Thread(new Runnable() {
+        new Thread(new Runnable() {
             @Override
             public void run() {
                 load();
@@ -22,7 +23,7 @@ public class Login extends javax.swing.JFrame {
         txtUserName.grabFocus();
         jProgressBar1.setVisible(false);
     }
-    
+
     void load() {
         for (float f = 0; f <= 10; f++) {
             float f1 = f / 10;
@@ -34,6 +35,7 @@ public class Login extends javax.swing.JFrame {
             }
         }
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -164,27 +166,27 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLoginMouseEntered
 
     private void btnLoginMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseExited
-      common.CommonM.setDefaultColor(btnLogin);
+        common.CommonM.setDefaultColor(btnLogin);
     }//GEN-LAST:event_btnLoginMouseExited
 
     private void btnExitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseEntered
-        btnExit.setBackground(new Color(204,0,51));
+        btnExit.setBackground(new Color(204, 0, 51));
     }//GEN-LAST:event_btnExitMouseEntered
 
     private void btnExitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseExited
-        btnExit.setBackground(new Color(0,102,204));
+        btnExit.setBackground(new Color(0, 102, 204));
     }//GEN-LAST:event_btnExitMouseExited
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-     System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void txtUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserNameActionPerformed
-       txtPassword.grabFocus();
+        txtPassword.grabFocus();
     }//GEN-LAST:event_txtUserNameActionPerformed
 
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
-     loginProcess();
+        loginProcess();
     }//GEN-LAST:event_txtPasswordActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
@@ -192,23 +194,22 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void txtUserNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUserNameKeyPressed
-      
-              
+
+
     }//GEN-LAST:event_txtUserNameKeyPressed
     public static void main(String args[]) {
         try {
-          UIManager.setLookAndFeel(new WindowsClassicLookAndFeel());
+            UIManager.setLookAndFeel(new WindowsClassicLookAndFeel());
         } catch (Exception e) {
         }
-        
+
         java.awt.EventQueue.invokeLater(new Runnable() {
-            
+
             public void run() {
                 new Login().setVisible(true);
             }
         });
-        
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -225,72 +226,72 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JTextField txtUserName;
     // End of variables declaration//GEN-END:variables
 
-        private void loginProcess() {
-       try {
+    private void loginProcess() {
+        try {
             String userName = txtUserName.getText();
-             String password = new String(txtPassword.getPassword());
-             
-            String sql ="SELECT * FROM user_account WHERE user_name=? and password=?";
+            String password = new String(txtPassword.getPassword());
+
+            String sql = "SELECT * FROM user_account WHERE user_name=? and password=?";
             Connection con = DB.getNewConnection();
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, userName);
-            ps.setString(2,MD5.getMd5(password));
-             ResultSet serch=ps.executeQuery();
-            if(serch.next()){
-            boolean isActive = serch.getBoolean("status");
-            if(isActive){
-           SystemData.setCurrentUser(userName);
-           SystemData.setUEmployee(serch.getString("employee_id"));
-           SystemData.setAccountCode(serch.getString("account_code"));
-            loadingProgressBar();
-            }else{
-                JOptionPane.showMessageDialog(this, "This user inActive");
-             txtUserName.setText(null);
-             txtPassword.setText(null);
-             txtUserName.grabFocus();
+            ps.setString(2, MD5.getMd5(password));
+            ResultSet serch = ps.executeQuery();
+            if (serch.next()) {
+                boolean isActive = serch.getBoolean("status");
+                if (isActive) {
+                    SystemData.setCurrentUser(userName);
+                    SystemData.setUEmployee(serch.getString("employee_id"));
+                    SystemData.setAccountCode(serch.getString("account_code"));
+                    loadingProgressBar();
+                } else {
+                    JOptionPane.showMessageDialog(this, "This user inActive");
+                    txtUserName.setText(null);
+                    txtPassword.setText(null);
+                    txtUserName.grabFocus();
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Invalid user name or password");
+                txtUserName.setText(null);
+                txtPassword.setText(null);
+                txtUserName.grabFocus();
             }
-            }else{
-             JOptionPane.showMessageDialog(this, "Invalid user name or password");
-             txtUserName.setText(null);
-             txtPassword.setText(null);
-             txtUserName.grabFocus();
-            }
-       } catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-        
-     private void loadingProgressBar() {
-         jProgressBar1.setVisible(true);
+
+    private void loadingProgressBar() {
+        jProgressBar1.setVisible(true);
         Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
-                try{
-        for (int i = 0; i <= 100; i++) {
-            jProgressBar1.setValue(i);
-            if(i==5){
-            msg.setText("Database Chexking...!");
-            Connection newConnection = DB.getNewConnection();
-            if(newConnection == null){
-            break;
-            }
-            }
-            if(i>=20 && i<= 30){
-            msg.setText("DB Connected");
-            Thread.sleep(100);
-            continue;
-            }
-            if(i==100){
-           new  Main_Menu().setVisible(true);
-            dispose();
-            }
-            Thread.sleep(20);
-        }
-                } catch(Exception e){}
+                try {
+                    for (int i = 0; i <= 100; i++) {
+                        jProgressBar1.setValue(i);
+                        if (i == 5) {
+                            msg.setText("Database Chexking...!");
+                            Connection newConnection = DB.getNewConnection();
+                            if (newConnection == null) {
+                                break;
+                            }
+                        }
+                        if (i >= 20 && i <= 30) {
+                            msg.setText("DB Connected");
+                            Thread.sleep(100);
+                            continue;
+                        }
+                        if (i == 100) {
+                            new Main_Menu().setVisible(true);
+                            dispose();
+                        }
+                        Thread.sleep(20);
+                    }
+                } catch (Exception e) {
+                }
             }
         });
-       t.start();
+        t.start();
     }
-    
 
 }

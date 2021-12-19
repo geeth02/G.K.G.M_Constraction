@@ -6,14 +6,25 @@
 package com.work_order;
 
 import com.main.Main_Menu;
+import static com.work_order.End_Job.comboSearch;
+import static com.work_order.End_Job.jList1;
+import static com.work_order.End_Job.jScrollPane1;
+import static com.work_order.End_Job.tb1;
+import static com.work_order.End_Job.txtCustomer;
+import static com.work_order.End_Job.txtOrderId;
+import static com.work_order.End_Job.txtVehicleNumber;
 import common.CommonM;
+import common.DB;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.TextField;
+import java.sql.ResultSet;
+import java.util.Vector;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -27,7 +38,7 @@ public class Driver_Salery extends javax.swing.JFrame {
     public Driver_Salery() {
         initComponents();
         CommonM.setFullScreen(this);
-        CommonM.tableSettings(tb3);
+//        CommonM.tableSettings(tb3);
     }
 
     /**
@@ -48,19 +59,22 @@ public class Driver_Salery extends javax.swing.JFrame {
         btnDashboard1 = new javax.swing.JButton();
         ReForm = new javax.swing.JLayeredPane();
         jLabel5 = new javax.swing.JLabel();
+        btnRegister3 = new javax.swing.JButton();
         lbFirstName = new javax.swing.JLabel();
-        txtPhoneNumber2 = new javax.swing.JTextField();
-        lbFirstName1 = new javax.swing.JLabel();
-        txtPhoneNumber3 = new javax.swing.JTextField();
-        lbFirstName2 = new javax.swing.JLabel();
-        txtPhoneNumber4 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        lbFirstName3 = new javax.swing.JLabel();
-        txtPhoneNumber5 = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tb3 = new javax.swing.JTable();
+        txtSearch = new javax.swing.JTextField();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        tb1 = new javax.swing.JTable();
+        btnRegister4 = new javax.swing.JButton();
+        comboSearch = new javax.swing.JComboBox<>();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        txtNetAmount = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        txtCustomerPayment = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        txtNetAmount1 = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        txtNetAmount2 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -182,119 +196,261 @@ public class Driver_Salery extends javax.swing.JFrame {
 
         ReForm.setBackground(new java.awt.Color(255, 255, 255));
         ReForm.setOpaque(true);
-        ReForm.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setBackground(new java.awt.Color(204, 0, 51));
         jLabel5.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 48)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Payments");
+        jLabel5.setText("Driver Salery");
         jLabel5.setOpaque(true);
-        ReForm.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1520, 69));
+
+        btnRegister3.setBackground(new java.awt.Color(0, 102, 204));
+        btnRegister3.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 30)); // NOI18N
+        btnRegister3.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegister3.setText("End");
+        btnRegister3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnRegister3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnRegister3MouseExited(evt);
+            }
+        });
+        btnRegister3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegister3ActionPerformed(evt);
+            }
+        });
 
         lbFirstName.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
-        lbFirstName.setText("Search by");
-        ReForm.add(lbFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 103, 115, 42));
+        lbFirstName.setText("Search By");
 
-        txtPhoneNumber2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtPhoneNumber2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        txtPhoneNumber2.addActionListener(new java.awt.event.ActionListener() {
+        txtSearch.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtSearch.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPhoneNumber2ActionPerformed(evt);
+                txtSearchActionPerformed(evt);
             }
         });
-        txtPhoneNumber2.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearchKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtPhoneNumber2KeyTyped(evt);
+                txtSearchKeyTyped(evt);
             }
         });
-        ReForm.add(txtPhoneNumber2, new org.netbeans.lib.awtextra.AbsoluteConstraints(347, 103, 299, 43));
 
-        lbFirstName1.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
-        lbFirstName1.setText("Amount");
-        ReForm.add(lbFirstName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 533, 106, 42));
-
-        txtPhoneNumber3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtPhoneNumber3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        txtPhoneNumber3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPhoneNumber3ActionPerformed(evt);
-            }
-        });
-        txtPhoneNumber3.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtPhoneNumber3KeyTyped(evt);
-            }
-        });
-        ReForm.add(txtPhoneNumber3, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 536, 402, 43));
-
-        lbFirstName2.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
-        lbFirstName2.setText("Discount");
-        ReForm.add(lbFirstName2, new org.netbeans.lib.awtextra.AbsoluteConstraints(648, 533, 118, 42));
-
-        txtPhoneNumber4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtPhoneNumber4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        txtPhoneNumber4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPhoneNumber4ActionPerformed(evt);
-            }
-        });
-        txtPhoneNumber4.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtPhoneNumber4KeyTyped(evt);
-            }
-        });
-        ReForm.add(txtPhoneNumber4, new org.netbeans.lib.awtextra.AbsoluteConstraints(771, 536, 402, 43));
-
-        jComboBox1.setFont(new java.awt.Font("Yu Gothic Light", 0, 24)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Type Of Cost", "Driver Salery", "Gas Cost", "Repair Cost", "other Cost", " " }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
-        ReForm.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(195, 103, 140, 43));
-
-        lbFirstName3.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
-        lbFirstName3.setText("Payment");
-        ReForm.add(lbFirstName3, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 598, 106, 42));
-
-        txtPhoneNumber5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtPhoneNumber5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        txtPhoneNumber5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPhoneNumber5ActionPerformed(evt);
-            }
-        });
-        txtPhoneNumber5.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtPhoneNumber5KeyTyped(evt);
-            }
-        });
-        ReForm.add(txtPhoneNumber5, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 601, 402, 43));
-
-        jScrollPane1.setViewportView(jList1);
-
-        ReForm.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(347, 145, 299, 120));
-
-        tb3.setModel(new javax.swing.table.DefaultTableModel(
+        tb1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Type", "Details"
+                "Order Id", "Vehicle", "Salery", "Title 4"
             }
         ));
-        tb3.addMouseListener(new java.awt.event.MouseAdapter() {
+        tb1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                tb3MousePressed(evt);
+                tb1MousePressed(evt);
             }
         });
-        jScrollPane2.setViewportView(tb3);
+        jScrollPane7.setViewportView(tb1);
 
-        ReForm.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 187, 1293, 300));
+        btnRegister4.setBackground(new java.awt.Color(0, 102, 204));
+        btnRegister4.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 30)); // NOI18N
+        btnRegister4.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegister4.setText("Pay");
+        btnRegister4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnRegister4MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnRegister4MouseExited(evt);
+            }
+        });
+        btnRegister4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegister4ActionPerformed(evt);
+            }
+        });
 
-        jLayeredPane1.add(ReForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, 1520, 830));
+        comboSearch.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        comboSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Id", "NIC Number", "Name", " " }));
+
+        jLabel15.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
+        jLabel15.setText("Daily Work");
+
+        jLabel6.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
+        jLabel6.setText("Availble Payments");
+
+        txtNetAmount.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtNetAmount.setForeground(new java.awt.Color(204, 0, 0));
+        txtNetAmount.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtNetAmount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNetAmountActionPerformed(evt);
+            }
+        });
+        txtNetAmount.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNetAmountKeyTyped(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
+        jLabel7.setText("Total Paid Amount");
+
+        txtCustomerPayment.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtCustomerPayment.setForeground(new java.awt.Color(0, 204, 0));
+        txtCustomerPayment.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtCustomerPayment.setVerifyInputWhenFocusTarget(false);
+        txtCustomerPayment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCustomerPaymentActionPerformed(evt);
+            }
+        });
+        txtCustomerPayment.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCustomerPaymentKeyTyped(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
+        jLabel8.setText("Payment");
+
+        txtNetAmount1.setBackground(new java.awt.Color(255, 255, 102));
+        txtNetAmount1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtNetAmount1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtNetAmount1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNetAmount1ActionPerformed(evt);
+            }
+        });
+        txtNetAmount1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNetAmount1KeyTyped(evt);
+            }
+        });
+
+        jLabel13.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
+        jLabel13.setText("Balance");
+
+        txtNetAmount2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtNetAmount2.setForeground(new java.awt.Color(204, 0, 0));
+        txtNetAmount2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtNetAmount2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNetAmount2ActionPerformed(evt);
+            }
+        });
+        txtNetAmount2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNetAmount2KeyTyped(evt);
+            }
+        });
+
+        ReForm.setLayer(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        ReForm.setLayer(btnRegister3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        ReForm.setLayer(lbFirstName, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        ReForm.setLayer(txtSearch, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        ReForm.setLayer(jScrollPane7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        ReForm.setLayer(btnRegister4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        ReForm.setLayer(comboSearch, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        ReForm.setLayer(jLabel15, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        ReForm.setLayer(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        ReForm.setLayer(txtNetAmount, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        ReForm.setLayer(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        ReForm.setLayer(txtCustomerPayment, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        ReForm.setLayer(jLabel8, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        ReForm.setLayer(txtNetAmount1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        ReForm.setLayer(jLabel13, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        ReForm.setLayer(txtNetAmount2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout ReFormLayout = new javax.swing.GroupLayout(ReForm);
+        ReForm.setLayout(ReFormLayout);
+        ReFormLayout.setHorizontalGroup(
+            ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 1430, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(ReFormLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(lbFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(comboSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17)
+                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(ReFormLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addGap(23, 23, 23)
+                .addGroup(ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCustomerPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(ReFormLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(txtNetAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(ReFormLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtNetAmount1, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNetAmount2, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(461, 461, 461)
+                .addComponent(btnRegister3, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(ReFormLayout.createSequentialGroup()
+                .addGap(520, 520, 520)
+                .addComponent(btnRegister4, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        ReFormLayout.setVerticalGroup(
+            ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ReFormLayout.createSequentialGroup()
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
+                .addGroup(ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ReFormLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ReFormLayout.createSequentialGroup()
+                        .addGap(200, 200, 200)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ReFormLayout.createSequentialGroup()
+                        .addGap(199, 199, 199)
+                        .addComponent(txtCustomerPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(25, 25, 25)
+                .addGroup(ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNetAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
+                .addGroup(ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ReFormLayout.createSequentialGroup()
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ReFormLayout.createSequentialGroup()
+                        .addComponent(txtNetAmount1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17)
+                        .addComponent(txtNetAmount2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ReFormLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(btnRegister3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(77, 77, 77)
+                .addComponent(btnRegister4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jLayeredPane1.add(ReForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, 1430, 870));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -343,14 +499,6 @@ public class Driver_Salery extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnDashboardActionPerformed
 
-    private void txtPhoneNumber2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhoneNumber2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPhoneNumber2ActionPerformed
-
-    private void txtPhoneNumber2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPhoneNumber2KeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPhoneNumber2KeyTyped
-
     private void btnDashboard1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboard1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnDashboard1ActionPerformed
@@ -363,39 +511,83 @@ public class Driver_Salery extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnDashboard1MouseEntered
 
-    private void txtPhoneNumber3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhoneNumber3ActionPerformed
+    private void btnRegister3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegister3MouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPhoneNumber3ActionPerformed
+    }//GEN-LAST:event_btnRegister3MouseEntered
 
-    private void txtPhoneNumber3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPhoneNumber3KeyTyped
+    private void btnRegister3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegister3MouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPhoneNumber3KeyTyped
+    }//GEN-LAST:event_btnRegister3MouseExited
 
-    private void txtPhoneNumber4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhoneNumber4ActionPerformed
+    private void btnRegister3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegister3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPhoneNumber4ActionPerformed
+    }//GEN-LAST:event_btnRegister3ActionPerformed
 
-    private void txtPhoneNumber4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPhoneNumber4KeyTyped
+    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPhoneNumber4KeyTyped
+    }//GEN-LAST:event_txtSearchActionPerformed
 
-    private void txtPhoneNumber5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhoneNumber5ActionPerformed
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+        searchOrder();
+        System.out.println(evt.getKeyCode());
+        if(evt.getKeyCode()==40){
+            jList1.setSelectedIndex(0);
+            jList1.grabFocus();
+        }
+
+    }//GEN-LAST:event_txtSearchKeyReleased
+
+    private void txtSearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPhoneNumber5ActionPerformed
+    }//GEN-LAST:event_txtSearchKeyTyped
 
-    private void txtPhoneNumber5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPhoneNumber5KeyTyped
+    private void tb1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb1MousePressed
+
+    }//GEN-LAST:event_tb1MousePressed
+
+    private void btnRegister4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegister4MouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPhoneNumber5KeyTyped
+    }//GEN-LAST:event_btnRegister4MouseEntered
 
-    private void tb3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb3MousePressed
-        try{
-
-        }catch(Exception e){}
-    }//GEN-LAST:event_tb3MousePressed
-
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void btnRegister4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegister4MouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_btnRegister4MouseExited
+
+    private void btnRegister4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegister4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRegister4ActionPerformed
+
+    private void txtNetAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNetAmountActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNetAmountActionPerformed
+
+    private void txtNetAmountKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNetAmountKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNetAmountKeyTyped
+
+    private void txtCustomerPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCustomerPaymentActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCustomerPaymentActionPerformed
+
+    private void txtCustomerPaymentKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCustomerPaymentKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCustomerPaymentKeyTyped
+
+    private void txtNetAmount1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNetAmount1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNetAmount1ActionPerformed
+
+    private void txtNetAmount1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNetAmount1KeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNetAmount1KeyTyped
+
+    private void txtNetAmount2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNetAmount2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNetAmount2ActionPerformed
+
+    private void txtNetAmount2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNetAmount2KeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNetAmount2KeyTyped
 
     /**
      * @param args the command line arguments
@@ -452,24 +644,69 @@ public class Driver_Salery extends javax.swing.JFrame {
     private javax.swing.JLayeredPane ReForm;
     private javax.swing.JButton btnDashboard;
     private javax.swing.JButton btnDashboard1;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton btnRegister3;
+    private javax.swing.JButton btnRegister4;
+    public static javax.swing.JComboBox<String> comboSearch;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLayeredPane jLayeredPane1;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JLabel lbCons;
     private javax.swing.JLabel lbFirstName;
-    private javax.swing.JLabel lbFirstName1;
-    private javax.swing.JLabel lbFirstName2;
-    private javax.swing.JLabel lbFirstName3;
     private javax.swing.JLabel lbGKG;
-    private javax.swing.JTable tb3;
-    private javax.swing.JTextField txtPhoneNumber2;
-    private javax.swing.JTextField txtPhoneNumber3;
-    private javax.swing.JTextField txtPhoneNumber4;
-    private javax.swing.JTextField txtPhoneNumber5;
+    public static javax.swing.JTable tb1;
+    public static javax.swing.JTextField txtCustomerPayment;
+    private javax.swing.JTextField txtNetAmount;
+    private javax.swing.JTextField txtNetAmount1;
+    private javax.swing.JTextField txtNetAmount2;
+    public static javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
+
+       private void searchOrder() {
+         try {
+            if(!txtOrderId.getText().trim().equals("")){
+            if(comboSearch.getSelectedItem().equals("NIC Number")){
+                ResultSet rs=  DB.search("SELECT * FROM customer WHERE status=1 AND nic_number LIKE '"+txtOrderId.getText().toUpperCase()+"%'");
+                Vector v = new Vector();
+                       jScrollPane1.setVisible(false);
+                while(rs.next()){
+                     jScrollPane1.setVisible(true);
+                        v.add(rs.getString("customer_id")+"-"+rs.getString("first_name")+" "+rs.getString("last_name"));
+                          jList1.setListData(v);   
+                }
+            }else if(comboSearch.getSelectedItem().equals(("Vehicle Number"))){
+                ResultSet rs=  DB.search("SELECT * FROM vehicle WHERE status=1 AND registration_number LIKE '"+txtOrderId.getText().toUpperCase()+"%'");
+                Vector v = new Vector();
+                 jScrollPane1.setVisible(false);
+                while(rs.next()){
+                    jScrollPane1.setVisible(true);
+                     v.add(rs.getString("vehicle_id")+"-"+rs.getString("model")+" "+rs.getString("registration_number")); 
+                }
+                jList1.setListData(v);
+            }else if(comboSearch.getSelectedItem().equals("Driver")){
+             ResultSet rs=  DB.search("SELECT * FROM employee WHERE status=1 AND first_name LIKE '"+txtOrderId.getText().toUpperCase()+"%'");
+                Vector v = new Vector();
+                 jScrollPane1.setVisible(false);
+                while(rs.next()){
+                    jScrollPane1.setVisible(true);
+                     v.add(rs.getString("employee_id")+"-"+rs.getString("first_name")+" "+rs.getString("last_name")); 
+                }
+                jList1.setListData(v);
+            
+            }
+            }else{
+             jScrollPane1.setVisible(false);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }

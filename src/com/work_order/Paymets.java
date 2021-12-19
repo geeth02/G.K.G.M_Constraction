@@ -472,12 +472,19 @@ public class Paymets extends javax.swing.JFrame {
     private void btnPayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPayActionPerformed
        if(!txtOrderId.getText().equals("")){ 
            if(!txtAmount.getText().equals("")){
-            pay();
+               if(!txtPayment.getText().equals("")){
+                pay();
+               }else{
+                JOptionPane.showMessageDialog(this, "Please Enter Payment", "Error",JOptionPane.ERROR_MESSAGE); 
+                txtPayment.grabFocus();
+               }
            }else{
-            JOptionPane.showMessageDialog(this, "Please search job", "Error",JOptionPane.ERROR_MESSAGE); 
+            JOptionPane.showMessageDialog(this, "Please Enter Amount", "Error",JOptionPane.ERROR_MESSAGE); 
+            txtAmount.grabFocus();
            }
        }else{
        JOptionPane.showMessageDialog(this, "Please search job", "Error",JOptionPane.ERROR_MESSAGE); 
+       txtSearch.grabFocus();
        }
 
     }//GEN-LAST:event_btnPayActionPerformed

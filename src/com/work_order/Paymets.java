@@ -8,6 +8,7 @@ package com.work_order;
 import common.CommonM;
 import common.DB;
 import common.SystemData;
+import java.awt.Color;
 import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.text.DecimalFormat;
@@ -37,9 +38,10 @@ public class Paymets extends javax.swing.JFrame {
         txtVehicleNumber.setEditable(false);
         txtCustomerPayment.setText("0.00");
         txtCustomerPayment.setEditable(false);
-       
+        txtOrderId.setEditable(false);
         txtNetAmount.setEditable(false);
         txtNetAmount.setText("0.00");
+        btnClear.setVisible(false);
 
         
     }
@@ -81,9 +83,10 @@ public class Paymets extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         txtAmount = new javax.swing.JTextField();
         txtPayment = new javax.swing.JTextField();
-        btnRegister4 = new javax.swing.JButton();
+        btnPay = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
         txtbalance = new javax.swing.JTextField();
+        btnClear = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -312,21 +315,21 @@ public class Paymets extends javax.swing.JFrame {
             }
         });
 
-        btnRegister4.setBackground(new java.awt.Color(0, 102, 204));
-        btnRegister4.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 30)); // NOI18N
-        btnRegister4.setForeground(new java.awt.Color(255, 255, 255));
-        btnRegister4.setText("Pay");
-        btnRegister4.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnPay.setBackground(new java.awt.Color(0, 102, 204));
+        btnPay.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 30)); // NOI18N
+        btnPay.setForeground(new java.awt.Color(255, 255, 255));
+        btnPay.setText("Pay");
+        btnPay.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnRegister4MouseEntered(evt);
+                btnPayMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnRegister4MouseExited(evt);
+                btnPayMouseExited(evt);
             }
         });
-        btnRegister4.addActionListener(new java.awt.event.ActionListener() {
+        btnPay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegister4ActionPerformed(evt);
+                btnPayActionPerformed(evt);
             }
         });
 
@@ -347,6 +350,24 @@ public class Paymets extends javax.swing.JFrame {
             }
         });
 
+        btnClear.setBackground(new java.awt.Color(0, 102, 204));
+        btnClear.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 30)); // NOI18N
+        btnClear.setForeground(new java.awt.Color(255, 255, 255));
+        btnClear.setText("Clear");
+        btnClear.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnClearMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnClearMouseExited(evt);
+            }
+        });
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -354,7 +375,10 @@ public class Paymets extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnRegister4, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41)
+                        .addComponent(btnPay, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -386,8 +410,10 @@ public class Paymets extends javax.swing.JFrame {
                     .addComponent(txtbalance, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(btnRegister4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPay, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         jLayeredPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 630, 780, 280));
@@ -435,17 +461,17 @@ public class Paymets extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSearchKeyTyped
 
-    private void btnRegister4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegister4MouseEntered
+    private void btnPayMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPayMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnRegister4MouseEntered
+    }//GEN-LAST:event_btnPayMouseEntered
 
-    private void btnRegister4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegister4MouseExited
+    private void btnPayMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPayMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnRegister4MouseExited
+    }//GEN-LAST:event_btnPayMouseExited
 
-    private void btnRegister4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegister4ActionPerformed
+    private void btnPayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPayActionPerformed
         pay();
-    }//GEN-LAST:event_btnRegister4ActionPerformed
+    }//GEN-LAST:event_btnPayActionPerformed
 
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
         searchOrder();
@@ -534,6 +560,18 @@ public class Paymets extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtbalanceKeyTyped
 
+    private void btnClearMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClearMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnClearMouseEntered
+
+    private void btnClearMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClearMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnClearMouseExited
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnClearActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -573,8 +611,9 @@ public class Paymets extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLayeredPane ReForm;
+    private javax.swing.JButton btnClear;
+    private javax.swing.JButton btnPay;
     private javax.swing.JButton btnRegister3;
-    private javax.swing.JButton btnRegister4;
     public static javax.swing.JComboBox<String> comboSearch;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -749,7 +788,7 @@ public class Paymets extends javax.swing.JFrame {
                   txtNetAmount.setText("0.00");
                   }  
                  if(Double.parseDouble(txtCustomerPayment.getText())==Double.parseDouble(txtNetAmount.getText())){
-                  JOptionPane.showMessageDialog(this,"Complite all payments.");
+                  JOptionPane.showMessageDialog(this,"Complite all payments.");                 
                  }else if(Double.parseDouble(txtCustomerPayment.getText())<Double.parseDouble(txtNetAmount.getText())){
                      double customerP= Double.parseDouble(txtCustomerPayment.getText());
                      double avPayment = Double.parseDouble(txtNetAmount.getText());
@@ -772,11 +811,18 @@ public class Paymets extends javax.swing.JFrame {
               if(search.next()){
               double fullPayment = search.getDouble("total_amount");
               double customerPayment = Double.parseDouble(txtCustomerPayment.getText());
-              
-              
-              
-              JOptionPane.showMessageDialog(this,"Total bill amount is Rs."+fullPayment);
               txtNetAmount.setText(String.valueOf(fullPayment-customerPayment));
+              if(fullPayment==customerPayment){
+                txtAmount.setEditable(false);
+                txtPayment.setEditable(false);
+                btnClear.setVisible(true);
+                btnPay.setEnabled(false);
+                txtPaymentId.setText("Complete Payment");
+                txtPaymentId.setForeground(Color.red);
+                JOptionPane.showMessageDialog(this,"All payments are Seccessful. View only Report");  
+              }else{
+               JOptionPane.showMessageDialog(this,"Total bill amount is Rs."+fullPayment);
+              }
               }else{
               txtNetAmount.setText("Panding Payments...........");
               }

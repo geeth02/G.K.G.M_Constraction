@@ -470,7 +470,16 @@ public class Paymets extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPayMouseExited
 
     private void btnPayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPayActionPerformed
-        pay();
+       if(!txtOrderId.getText().equals("")){ 
+           if(!txtAmount.getText().equals("")){
+            pay();
+           }else{
+            JOptionPane.showMessageDialog(this, "Please search job", "Error",JOptionPane.ERROR_MESSAGE); 
+           }
+       }else{
+       JOptionPane.showMessageDialog(this, "Please search job", "Error",JOptionPane.ERROR_MESSAGE); 
+       }
+
     }//GEN-LAST:event_btnPayActionPerformed
 
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
@@ -569,7 +578,7 @@ public class Paymets extends javax.swing.JFrame {
     }//GEN-LAST:event_btnClearMouseExited
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
-        // TODO add your handling code here:
+      clearViewOnly();
     }//GEN-LAST:event_btnClearActionPerformed
 
     /**
@@ -642,7 +651,7 @@ public class Paymets extends javax.swing.JFrame {
     public static javax.swing.JTextField txtPaymentId;
     public static javax.swing.JTextField txtSearch;
     public static javax.swing.JTextField txtVehicleNumber;
-    private javax.swing.JTextField txtbalance;
+    public static javax.swing.JTextField txtbalance;
     // End of variables declaration//GEN-END:variables
 
     private void searchOrder() {
@@ -802,7 +811,24 @@ public class Paymets extends javax.swing.JFrame {
     }
 
     private void clearTextFeald() {
-       
+      txtSearch.grabFocus();
+      txtCustomerPayment.setText("0.00");
+      txtNetAmount.setText("0.00");
+      txtPaymentId.setText(null);
+      txtOrderId.setText(null);
+      txtVehicleNumber.setText(null);
+      txtCustomer.setText(null);
+      txtAmount.setText(null);
+      txtbalance.setText(null);
+      txtPayment.setText(null);
+      txtSearch.setText(null);
+      DefaultTableModel dtm1 =(DefaultTableModel) tb1.getModel();
+      dtm1.setRowCount(0);
+      generatePId();
+
+        
+        
+        
     }
 
     private void avPayment() {
@@ -819,6 +845,8 @@ public class Paymets extends javax.swing.JFrame {
                 btnPay.setEnabled(false);
                 txtPaymentId.setText("Complete Payment");
                 txtPaymentId.setForeground(Color.red);
+                txtbalance.setEditable(false);
+                txtSearch.setEditable(false);
                 JOptionPane.showMessageDialog(this,"All payments are Seccessful. View only Report");  
               }else{
                JOptionPane.showMessageDialog(this,"Total bill amount is Rs."+fullPayment);
@@ -830,6 +858,17 @@ public class Paymets extends javax.swing.JFrame {
           } catch (Exception e) {
               e.printStackTrace();
           }
+    }
+
+    private void clearViewOnly() {
+     clearTextFeald();
+      txtPaymentId.setForeground(Color.BLACK);
+             txtAmount.setEditable(true);
+                txtPayment.setEditable(true);
+                btnClear.setVisible(false);
+                btnPay.setEnabled(true);
+                txtbalance.setEditable(true);
+                txtSearch.setEditable(true);
     }
 
 

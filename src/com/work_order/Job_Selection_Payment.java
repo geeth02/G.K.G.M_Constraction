@@ -137,7 +137,7 @@ public class Job_Selection_Payment extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
-    searchNic();
+        searchNic();
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void btnRegisterMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegisterMouseExited
@@ -186,11 +186,10 @@ public class Job_Selection_Payment extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Job_Selection_Payment().setVisible(true);
-           
+
             }
         });
     }
-    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -204,110 +203,107 @@ public class Job_Selection_Payment extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void addJob() {
-       if(Paymets.comboSearch.getSelectedItem().equals("NIC Number")){
-        try {
-             String search=Paymets.jList1.getSelectedValue().split("-")[0];
-            ResultSet search1 = DB.search("SELECT * FROM work_order WHERE customer_id='"+search+"'");
-             while(search1.next()){
-                 ResultSet search2 = DB.search("SELECT * FROM vehicle WHERE vehicle_id='"+search1.getString("vehicle_id")+"'");
-                 while(search2.next()){
-                     String date=search1.getString("data_time").split("-")[0]+"-"+search1.getString("data_time").split("-")[1]+"-"+search1.getString("data_time").split("-")[2]+")";
-                  jComboBox1.addItem(search1.getString("order_id")+"-"+search2.getString("registration_number")+" (Date:"+date);
-                 }
-            
-             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (Paymets.comboSearch.getSelectedItem().equals("NIC Number")) {
+            try {
+                String search = Paymets.jList1.getSelectedValue().split("-")[0];
+                ResultSet search1 = DB.search("SELECT * FROM work_order WHERE customer_id='" + search + "'");
+                while (search1.next()) {
+                    ResultSet search2 = DB.search("SELECT * FROM vehicle WHERE vehicle_id='" + search1.getString("vehicle_id") + "'");
+                    while (search2.next()) {
+                        String date = search1.getString("data_time").split("-")[0] + "-" + search1.getString("data_time").split("-")[1] + "-" + search1.getString("data_time").split("-")[2] + ")";
+                        jComboBox1.addItem(search1.getString("order_id") + "-" + search2.getString("registration_number") + " (Date:" + date);
+                    }
+
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-       }
     }
-    
-     private void searchNic() {
-                try {
-                    String search=jComboBox1.getSelectedItem().toString().split("-")[0];
-                    ResultSet search3 = DB.search("SELECT * FROM work_order where order_id='"+search+"'");
-                  if(search3.next()){
-                  Paymets.txtOrderId.setText(search3.getString("order_id"));
-                  ResultSet search4 = DB.search("SELECT * FROM vehicle where vehicle_id='"+search3.getString("vehicle_id")+"' AND status=1");
-                  if(search4.next()){
-                  Paymets.txtVehicleNumber.setText(search4.getString("province")+" "+search4.getString("registration_number"));
-                  }
-                    ResultSet search7 = DB.search("SELECT * FROM customer where customer_id='"+search3.getString("customer_id")+"' AND status=1");
-                       if(search7.next()){
-                          Paymets.txtSearch.setText(search7.getString("nic_number"));
-                       Paymets.txtCustomer.setText(search7.getString("customer_id")+"-"+search7.getString("first_name")+" "+search7.getString("last_name"));
-                       }
-                    ResultSet search5 = DB.search("SELECT * FROM payment where order_id='"+search3.getString("order_id")+"' AND status=1");
-                    DefaultTableModel dtm =(DefaultTableModel) Paymets.tb1.getModel();
-                    dtm.setRowCount(0);
-                    while(search5.next()){
+
+    private void searchNic() {
+        try {
+            String search = jComboBox1.getSelectedItem().toString().split("-")[0];
+            ResultSet search3 = DB.search("SELECT * FROM work_order where order_id='" + search + "'");
+            if (search3.next()) {
+                Paymets.txtOrderId.setText(search3.getString("order_id"));
+                ResultSet search4 = DB.search("SELECT * FROM vehicle where vehicle_id='" + search3.getString("vehicle_id") + "' AND status=1");
+                if (search4.next()) {
+                    Paymets.txtVehicleNumber.setText(search4.getString("province") + " " + search4.getString("registration_number"));
+                }
+                ResultSet search7 = DB.search("SELECT * FROM customer where customer_id='" + search3.getString("customer_id") + "' AND status=1");
+                if (search7.next()) {
+                    Paymets.txtSearch.setText(search7.getString("nic_number"));
+                    Paymets.txtCustomer.setText(search7.getString("customer_id") + "-" + search7.getString("first_name") + " " + search7.getString("last_name"));
+                }
+                ResultSet search5 = DB.search("SELECT * FROM payment where order_id='" + search3.getString("order_id") + "' AND status=1");
+                DefaultTableModel dtm = (DefaultTableModel) Paymets.tb1.getModel();
+                dtm.setRowCount(0);
+                while (search5.next()) {
                     Vector v = new Vector();
-                    
+
                     v.add(search5.getString("payment_id"));
                     v.add(search5.getString("amount"));
                     v.add(search5.getString("data_time"));
                     dtm.addRow(v);
-                    }
-                    calculate();
-                    avPayment();
-                      Paymets.txtAmount.grabFocus();
-                  Paymets.jScrollPane1.setVisible(false);
-                  this.dispose();
-                  }
-                  
-                 
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
-    }
-     
-      private  void calculate() {
-        double pAmount=0;
-     for(int row =0; row < Paymets.tb1.getRowCount();row++){
-            String pAmount1=Paymets.tb1.getValueAt(row, 1).toString().trim();
-            double pAmount2=Double.parseDouble(pAmount1);
-            pAmount=pAmount+pAmount2;
-            
-            
-            System.out.println(pAmount);
-           }
-             String setValue=String.valueOf(pAmount);
-            BigDecimal bd = new BigDecimal( setValue ) ;
-            DecimalFormat formatterBd = new DecimalFormat( "##.00" );
-            Paymets.txtCustomerPayment.setText(formatterBd.format( bd ) );
-    }
-      
-      
-    private void avPayment() {
-                  try {
-              ResultSet search = DB.search("SELECT * FROM end_job WHERE order_id='"+txtOrderId.getText()+"'");
-              if(search.next()){
-              double fullPayment = search.getDouble("total_amount");
-              double customerPayment = Double.parseDouble(Paymets.txtCustomerPayment.getText());
-              Paymets.txtNetAmount.setText(String.valueOf(fullPayment-customerPayment));
-              if(fullPayment==customerPayment){
-                Paymets.txtAmount.setEditable(false);
-                Paymets.txtPayment.setEditable(false);
-                Paymets.btnClear.setVisible(true);
-                Paymets.btnPay.setEnabled(false);
-                Paymets.txtPaymentId.setText("Complete Payment");
-                Paymets.txtPaymentId.setForeground(Color.red);
-                Paymets.txtbalance.setEditable(false);
-                Paymets.txtSearch.setEditable(false);
-                
+                calculate();
+                avPayment();
                 Paymets.txtAmount.grabFocus();
-                  Paymets.jScrollPane1.setVisible(false);
-                  this.dispose();
-                JOptionPane.showMessageDialog(this,"All payments are Seccessful. View only Report");  
-              }else{
-               JOptionPane.showMessageDialog(this,"Total bill amount is Rs."+fullPayment);
-              }
-              }else{
-              Paymets.txtNetAmount.setText("Panding Payments...........");
-              }
+                Paymets.jScrollPane1.setVisible(false);
+                this.dispose();
+            }
 
-          } catch (Exception e) {
-              e.printStackTrace();
-          }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void calculate() {
+        double pAmount = 0;
+        for (int row = 0; row < Paymets.tb1.getRowCount(); row++) {
+            String pAmount1 = Paymets.tb1.getValueAt(row, 1).toString().trim();
+            double pAmount2 = Double.parseDouble(pAmount1);
+            pAmount = pAmount + pAmount2;
+
+            System.out.println(pAmount);
+        }
+        String setValue = String.valueOf(pAmount);
+        BigDecimal bd = new BigDecimal(setValue);
+        DecimalFormat formatterBd = new DecimalFormat("##.00");
+        Paymets.txtCustomerPayment.setText(formatterBd.format(bd));
+    }
+
+    private void avPayment() {
+        try {
+            ResultSet search = DB.search("SELECT * FROM end_job WHERE order_id='" + txtOrderId.getText() + "'");
+            if (search.next()) {
+                double fullPayment = search.getDouble("total_amount");
+                double customerPayment = Double.parseDouble(Paymets.txtCustomerPayment.getText());
+                Paymets.txtNetAmount.setText(String.valueOf(fullPayment - customerPayment));
+                if (fullPayment == customerPayment) {
+                    Paymets.txtAmount.setEditable(false);
+                    Paymets.txtPayment.setEditable(false);
+                    Paymets.btnClear.setVisible(true);
+                    Paymets.btnPay.setEnabled(false);
+                    Paymets.txtPaymentId.setText("Complete Payment");
+                    Paymets.txtPaymentId.setForeground(Color.red);
+                    Paymets.txtbalance.setEditable(false);
+                    Paymets.txtSearch.setEditable(false);
+
+                    Paymets.txtAmount.grabFocus();
+                    Paymets.jScrollPane1.setVisible(false);
+                    this.dispose();
+                    JOptionPane.showMessageDialog(this, "All payments are Seccessful. View only Report");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Total bill amount is Rs." + fullPayment);
+                }
+            } else {
+                Paymets.txtNetAmount.setText("Panding Payments...........");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

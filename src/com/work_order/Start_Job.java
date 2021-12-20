@@ -653,9 +653,8 @@ public class Start_Job extends javax.swing.JFrame {
             for(int row =0; row < tb3.getRowCount();row++){
             String employeeId=tb3.getValueAt(row, 0).toString().trim();
             
-            String invitemSQL="insert into employee_job (order_id,employee_id,data_time,status) values('"+txtOrderId.getText().toUpperCase()+"','"+employeeId+"','"+date+"','"+1+"')";
+            String invitemSQL="insert into employee_job (order_id,employee_id,data_time,status,payment) values('"+txtOrderId.getText().toUpperCase()+"','"+employeeId+"','"+date+"','"+1+"','"+1+"')";
             DB.iud(invitemSQL);
-
            }
               clearFeald();
                     JOptionPane.showMessageDialog(this," successfull");

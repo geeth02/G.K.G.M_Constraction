@@ -38,14 +38,15 @@ public class End_Job extends javax.swing.JFrame {
         txtVehicleNumber.setEditable(false);
         txtCustomerPayment.setText("0.00");
         txtTotalCost.setText("0.00");
-        txtNetAmount.setText("0.00");        
+        txtNetAmount.setText("0.00");
         txtCustomerPayment.setEditable(false);
         txtTotalCost.setEditable(false);
         txtNetAmount.setEditable(false);
 
         txtIncome.setText("Enter Total Bill Amount");
-        
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -417,7 +418,7 @@ public class End_Job extends javax.swing.JFrame {
     private void txtAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAmountActionPerformed
         dataAdd();
         costCalculate();
-       
+
     }//GEN-LAST:event_txtAmountActionPerformed
 
     private void txtAmountKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAmountKeyTyped
@@ -466,20 +467,20 @@ public class End_Job extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegister4MouseExited
 
     private void btnRegister4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegister4ActionPerformed
-      endOrder();
+        endOrder();
     }//GEN-LAST:event_btnRegister4ActionPerformed
 
     private void txtOrderIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOrderIdKeyReleased
         searchOrder();
-        if(evt.getKeyCode()==40){
-        jList1.setSelectedIndex(0);
-        jList1.grabFocus();
+        if (evt.getKeyCode() == 40) {
+            jList1.setSelectedIndex(0);
+            jList1.grabFocus();
         }
-      
+
     }//GEN-LAST:event_txtOrderIdKeyReleased
 
     private void txtTotalCostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalCostActionPerformed
-    
+
     }//GEN-LAST:event_txtTotalCostActionPerformed
 
     private void txtTotalCostKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTotalCostKeyTyped
@@ -487,47 +488,47 @@ public class End_Job extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTotalCostKeyTyped
 
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
-        try{
-        if(evt.getClickCount()==2){
-            jScrollPane1.setVisible(false);
-            ResultSet search = DB.search("SELECT * FROM work_order WHERE status= 1 AND customer_id='"+jList1.getSelectedValue().split("-")[0]+"'");
-            if(search.next()){
-            searchDetails();
-            txtCostName.grabFocus();
-            }else{
-            JOptionPane.showMessageDialog(this, "This customer have not active job");
-            txtOrderId.setText("");
-            }            
-        }  
-        }catch(Exception e){
-        e.printStackTrace();
+        try {
+            if (evt.getClickCount() == 2) {
+                jScrollPane1.setVisible(false);
+                ResultSet search = DB.search("SELECT * FROM work_order WHERE status= 1 AND customer_id='" + jList1.getSelectedValue().split("-")[0] + "'");
+                if (search.next()) {
+                    searchDetails();
+                    txtCostName.grabFocus();
+                } else {
+                    JOptionPane.showMessageDialog(this, "This customer have not active job");
+                    txtOrderId.setText("");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }//GEN-LAST:event_jList1MouseClicked
 
     private void jList1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jList1KeyPressed
-        if(evt.getKeyCode()==10){
-                      try{
-            jScrollPane1.setVisible(false);
-            
-            ResultSet search = DB.search("SELECT * FROM work_order WHERE status= 1 AND customer_id='"+jList1.getSelectedValue().split("-")[0]+"' or vehicle_id='"+jList1.getSelectedValue().split("-")[0]+"'");
-            if(search.next()){
-            searchDetails();
-            txtCostName.grabFocus();
-            }else{
-             if(comboSearch.getSelectedItem().equals("NIC Number")){   
-            JOptionPane.showMessageDialog(this, "This customer have not active job");
-            txtOrderId.setText("");
-            txtOrderId.grabFocus();
-            }else{
-            JOptionPane.showMessageDialog(this, "This vehicle have not active job");
-            txtOrderId.setText("");
-            txtOrderId.grabFocus();
-             }
+        if (evt.getKeyCode() == 10) {
+            try {
+                jScrollPane1.setVisible(false);
+
+                ResultSet search = DB.search("SELECT * FROM work_order WHERE status= 1 AND customer_id='" + jList1.getSelectedValue().split("-")[0] + "' or vehicle_id='" + jList1.getSelectedValue().split("-")[0] + "'");
+                if (search.next()) {
+                    searchDetails();
+                    txtCostName.grabFocus();
+                } else {
+                    if (comboSearch.getSelectedItem().equals("NIC Number")) {
+                        JOptionPane.showMessageDialog(this, "This customer have not active job");
+                        txtOrderId.setText("");
+                        txtOrderId.grabFocus();
+                    } else {
+                        JOptionPane.showMessageDialog(this, "This vehicle have not active job");
+                        txtOrderId.setText("");
+                        txtOrderId.grabFocus();
+                    }
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-         
-        }catch(Exception e){
-        e.printStackTrace();
-        }
         }
     }//GEN-LAST:event_jList1KeyPressed
 
@@ -536,7 +537,7 @@ public class End_Job extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCustomerActionPerformed
 
     private void txtCostNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCostNameActionPerformed
-      txtAmount.grabFocus();
+        txtAmount.grabFocus();
     }//GEN-LAST:event_txtCostNameActionPerformed
 
     private void txtCostNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCostNameKeyReleased
@@ -556,15 +557,15 @@ public class End_Job extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNetAmountKeyTyped
 
     private void tb4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tb4KeyReleased
-        if(evt.getKeyCode()==127){
-           int row= tb4.getSelectedRow();
+        if (evt.getKeyCode() == 127) {
+            int row = tb4.getSelectedRow();
             System.out.println(row);
-          DefaultTableModel dtm =(DefaultTableModel) tb4.getModel();
-          dtm.removeRow(row);
-          costCalculate();
-          txtCostName.grabFocus();
-     
-        }      
+            DefaultTableModel dtm = (DefaultTableModel) tb4.getModel();
+            dtm.removeRow(row);
+            costCalculate();
+            txtCostName.grabFocus();
+
+        }
     }//GEN-LAST:event_tb4KeyReleased
 
     private void txtCustomerPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCustomerPaymentActionPerformed
@@ -576,10 +577,10 @@ public class End_Job extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCustomerPaymentKeyTyped
 
     private void txtIncomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtIncomeMouseClicked
-     if(txtIncome.getText().equals("Enter Total Bill Amount")){
-             txtIncome.setText(null);
-     }
-        
+        if (txtIncome.getText().equals("Enter Total Bill Amount")) {
+            txtIncome.setText(null);
+        }
+
 
     }//GEN-LAST:event_txtIncomeMouseClicked
 
@@ -617,7 +618,7 @@ public class End_Job extends javax.swing.JFrame {
             }
         });
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLayeredPane ReForm;
@@ -654,39 +655,39 @@ public class End_Job extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void searchOrder() {
-         try {
-            if(!txtOrderId.getText().trim().equals("")){
-            if(comboSearch.getSelectedItem().equals("NIC Number")){
-                ResultSet rs=  DB.search("SELECT * FROM customer WHERE status=1 AND nic_number LIKE '"+txtOrderId.getText().toUpperCase()+"%'");
-                Vector v = new Vector();
-                       jScrollPane1.setVisible(false);
-                while(rs.next()){
-                     jScrollPane1.setVisible(true);
-                        v.add(rs.getString("customer_id")+"-"+rs.getString("first_name")+" "+rs.getString("last_name"));
-                          jList1.setListData(v);   
+        try {
+            if (!txtOrderId.getText().trim().equals("")) {
+                if (comboSearch.getSelectedItem().equals("NIC Number")) {
+                    ResultSet rs = DB.search("SELECT * FROM customer WHERE status=1 AND nic_number LIKE '" + txtOrderId.getText().toUpperCase() + "%'");
+                    Vector v = new Vector();
+                    jScrollPane1.setVisible(false);
+                    while (rs.next()) {
+                        jScrollPane1.setVisible(true);
+                        v.add(rs.getString("customer_id") + "-" + rs.getString("first_name") + " " + rs.getString("last_name"));
+                        jList1.setListData(v);
+                    }
+                } else if (comboSearch.getSelectedItem().equals(("Vehicle Number"))) {
+                    ResultSet rs = DB.search("SELECT * FROM vehicle WHERE status=1 AND registration_number LIKE '" + txtOrderId.getText().toUpperCase() + "%'");
+                    Vector v = new Vector();
+                    jScrollPane1.setVisible(false);
+                    while (rs.next()) {
+                        jScrollPane1.setVisible(true);
+                        v.add(rs.getString("vehicle_id") + "-" + rs.getString("model") + " " + rs.getString("registration_number"));
+                    }
+                    jList1.setListData(v);
+                } else if (comboSearch.getSelectedItem().equals("Driver")) {
+                    ResultSet rs = DB.search("SELECT * FROM employee WHERE status=1 AND first_name LIKE '" + txtOrderId.getText().toUpperCase() + "%'");
+                    Vector v = new Vector();
+                    jScrollPane1.setVisible(false);
+                    while (rs.next()) {
+                        jScrollPane1.setVisible(true);
+                        v.add(rs.getString("employee_id") + "-" + rs.getString("first_name") + " " + rs.getString("last_name"));
+                    }
+                    jList1.setListData(v);
+
                 }
-            }else if(comboSearch.getSelectedItem().equals(("Vehicle Number"))){
-                ResultSet rs=  DB.search("SELECT * FROM vehicle WHERE status=1 AND registration_number LIKE '"+txtOrderId.getText().toUpperCase()+"%'");
-                Vector v = new Vector();
-                 jScrollPane1.setVisible(false);
-                while(rs.next()){
-                    jScrollPane1.setVisible(true);
-                     v.add(rs.getString("vehicle_id")+"-"+rs.getString("model")+" "+rs.getString("registration_number")); 
-                }
-                jList1.setListData(v);
-            }else if(comboSearch.getSelectedItem().equals("Driver")){
-             ResultSet rs=  DB.search("SELECT * FROM employee WHERE status=1 AND first_name LIKE '"+txtOrderId.getText().toUpperCase()+"%'");
-                Vector v = new Vector();
-                 jScrollPane1.setVisible(false);
-                while(rs.next()){
-                    jScrollPane1.setVisible(true);
-                     v.add(rs.getString("employee_id")+"-"+rs.getString("first_name")+" "+rs.getString("last_name")); 
-                }
-                jList1.setListData(v);
-            
-            }
-            }else{
-             jScrollPane1.setVisible(false);
+            } else {
+                jScrollPane1.setVisible(false);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -694,104 +695,102 @@ public class End_Job extends javax.swing.JFrame {
     }
 
     private void searchDetails() {
-    
-            if(comboSearch.getSelectedItem().equals("NIC Number")){
-                searchNic();
-            }else if(comboSearch.getSelectedItem().equals("Vehicle Number")){
-                searchVehicleN();
-                loadPayments();
-            }
-           // jScrollPane2.setVisible(false);
-            
 
-        }    
+        if (comboSearch.getSelectedItem().equals("NIC Number")) {
+            searchNic();
+        } else if (comboSearch.getSelectedItem().equals("Vehicle Number")) {
+            searchVehicleN();
+            loadPayments();
+        }
+        // jScrollPane2.setVisible(false);
+
+    }
 
     private void searchNic() {
-                try {
-                    String search=jList1.getSelectedValue().split("-")[0];
-                    int i=0;
-                    ResultSet search1 = DB.search("SELECT * FROM work_order where customer_id='"+search+"' AND status=1");
-                  while(search1.next()){ 
-                  i++;
-                  }
-                  if(i==1){
-                 
-                    ResultSet search3 = DB.search("SELECT * FROM work_order where customer_id='"+search+"' AND status=1");
-                  if(search3.next()){
-                  txtOrderId.setText(search3.getString("order_id"));
-                  ResultSet search4 = DB.search("SELECT * FROM vehicle where vehicle_id='"+search3.getString("vehicle_id")+"' AND status=1");
-                  if(search4.next()){
-                  txtVehicleNumber.setText(search4.getString("province")+" "+search4.getString("registration_number"));
-                  }
-                       ResultSet search7 = DB.search("SELECT * FROM customer where customer_id='"+search3.getString("customer_id")+"' AND status=1");
-                       if(search7.next()){
-                       txtCustomer.setText(search7.getString("customer_id")+"-"+search7.getString("first_name")+" "+search7.getString("last_name"));
-                       }
-                  
-                    ResultSet search5 = DB.search("SELECT * FROM employee_job where order_id='"+search3.getString("order_id")+"' AND status=1");
-                    DefaultTableModel dtm =(DefaultTableModel) tb1.getModel();
+        try {
+            String search = jList1.getSelectedValue().split("-")[0];
+            int i = 0;
+            ResultSet search1 = DB.search("SELECT * FROM work_order where customer_id='" + search + "' AND status=1");
+            while (search1.next()) {
+                i++;
+            }
+            if (i == 1) {
+
+                ResultSet search3 = DB.search("SELECT * FROM work_order where customer_id='" + search + "' AND status=1");
+                if (search3.next()) {
+                    txtOrderId.setText(search3.getString("order_id"));
+                    ResultSet search4 = DB.search("SELECT * FROM vehicle where vehicle_id='" + search3.getString("vehicle_id") + "' AND status=1");
+                    if (search4.next()) {
+                        txtVehicleNumber.setText(search4.getString("province") + " " + search4.getString("registration_number"));
+                    }
+                    ResultSet search7 = DB.search("SELECT * FROM customer where customer_id='" + search3.getString("customer_id") + "' AND status=1");
+                    if (search7.next()) {
+                        txtCustomer.setText(search7.getString("customer_id") + "-" + search7.getString("first_name") + " " + search7.getString("last_name"));
+                    }
+
+                    ResultSet search5 = DB.search("SELECT * FROM employee_job where order_id='" + search3.getString("order_id") + "' AND status=1");
+                    DefaultTableModel dtm = (DefaultTableModel) tb1.getModel();
                     dtm.setRowCount(0);
-                    while(search5.next()){
-                    Vector v = new Vector();
-                     ResultSet search6 = DB.search("SELECT * FROM employee where employee_id='"+search5.getString("employee_id")+"'");
-                    while(search6.next()){
-                    v.add(search6.getString("employee_id"));
-                    v.add(search6.getString("nic_number"));
-                    v.add(search6.getString("first_name")+" "+search6.getString("last_name"));
-                    dtm.addRow(v);
+                    while (search5.next()) {
+                        Vector v = new Vector();
+                        ResultSet search6 = DB.search("SELECT * FROM employee where employee_id='" + search5.getString("employee_id") + "'");
+                        while (search6.next()) {
+                            v.add(search6.getString("employee_id"));
+                            v.add(search6.getString("nic_number"));
+                            v.add(search6.getString("first_name") + " " + search6.getString("last_name"));
+                            dtm.addRow(v);
+                        }
                     }
-                    }
-                  jScrollPane1.setVisible(false);
-                  }
-                    loadPayments();
-                  }else if(i>1){
-                    new Job_Selection().setVisible(true);
-                  }
-                  
-                } catch (Exception e) {
-                    e.printStackTrace();
+                    jScrollPane1.setVisible(false);
                 }
+                loadPayments();
+            } else if (i > 1) {
+                new Job_Selection().setVisible(true);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void searchVehicleN() {
         try {
-            String id=jList1.getSelectedValue().split("-")[0];
-            ResultSet search2 = DB.search("SELECT * FROM work_order WHERE vehicle_id='"+id+"'");
-                    ResultSet search3 = DB.search("SELECT * FROM work_order where vehicle_id='"+id+"' AND status=1");
-                  if(search3.next()){
-                  txtOrderId.setText(search3.getString("order_id"));
-                  ResultSet search4 = DB.search("SELECT * FROM vehicle where vehicle_id='"+search3.getString("vehicle_id")+"' AND status=1");
-                  if(search4.next()){
-                  txtVehicleNumber.setText(search4.getString("province")+" "+search4.getString("registration_number"));
-                  }
-                      ResultSet search7 = DB.search("SELECT * FROM customer where customer_id='"+search3.getString("customer_id")+"' AND status=1");
-                       if(search7.next()){
-                       txtCustomer.setText(search7.getString("customer_id")+"-"+search7.getString("first_name")+" "+search7.getString("last_name"));
-                       }
-                  
-                    ResultSet search5 = DB.search("SELECT * FROM employee_job where order_id='"+search3.getString("order_id")+"' AND status=1");
-                    DefaultTableModel dtm =(DefaultTableModel) tb1.getModel();
-                    dtm.setRowCount(0);
-                    while(search5.next()){
-                    Vector v = new Vector();
-                     ResultSet search6 = DB.search("SELECT * FROM employee where employee_id='"+search5.getString("employee_id")+"'");
-                    while(search6.next()){
-                    v.add(search6.getString("employee_id"));
-                    v.add(search6.getString("nic_number"));
-                    v.add(search6.getString("first_name")+" "+search6.getString("last_name"));
-                    dtm.addRow(v);
-                    }
-                    }
-                  jScrollPane1.setVisible(false);
-                  }
+            String id = jList1.getSelectedValue().split("-")[0];
+            ResultSet search2 = DB.search("SELECT * FROM work_order WHERE vehicle_id='" + id + "'");
+            ResultSet search3 = DB.search("SELECT * FROM work_order where vehicle_id='" + id + "' AND status=1");
+            if (search3.next()) {
+                txtOrderId.setText(search3.getString("order_id"));
+                ResultSet search4 = DB.search("SELECT * FROM vehicle where vehicle_id='" + search3.getString("vehicle_id") + "' AND status=1");
+                if (search4.next()) {
+                    txtVehicleNumber.setText(search4.getString("province") + " " + search4.getString("registration_number"));
+                }
+                ResultSet search7 = DB.search("SELECT * FROM customer where customer_id='" + search3.getString("customer_id") + "' AND status=1");
+                if (search7.next()) {
+                    txtCustomer.setText(search7.getString("customer_id") + "-" + search7.getString("first_name") + " " + search7.getString("last_name"));
+                }
 
-            
+                ResultSet search5 = DB.search("SELECT * FROM employee_job where order_id='" + search3.getString("order_id") + "' AND status=1");
+                DefaultTableModel dtm = (DefaultTableModel) tb1.getModel();
+                dtm.setRowCount(0);
+                while (search5.next()) {
+                    Vector v = new Vector();
+                    ResultSet search6 = DB.search("SELECT * FROM employee where employee_id='" + search5.getString("employee_id") + "'");
+                    while (search6.next()) {
+                        v.add(search6.getString("employee_id"));
+                        v.add(search6.getString("nic_number"));
+                        v.add(search6.getString("first_name") + " " + search6.getString("last_name"));
+                        dtm.addRow(v);
+                    }
+                }
+                jScrollPane1.setVisible(false);
+            }
+
         } catch (Exception e) {
         }
     }
-    
-       private void dataAdd() {
-        DefaultTableModel dtm =(DefaultTableModel) tb4.getModel();
+
+    private void dataAdd() {
+        DefaultTableModel dtm = (DefaultTableModel) tb4.getModel();
         Vector v = new Vector();
         v.add(txtCostName.getText().toUpperCase());
         v.add(txtAmount.getText());
@@ -800,43 +799,42 @@ public class End_Job extends javax.swing.JFrame {
     }
 
     private void clearCostFeald() {
-       txtAmount.setText(null);
-       txtCostName.setText(null);
-       txtCostName.grabFocus();
-       
+        txtAmount.setText(null);
+        txtCostName.setText(null);
+        txtCostName.grabFocus();
+
     }
 
     private void costCalculate() {
-        double amount=0;
-     for(int row =0; row < tb4.getRowCount();row++){
-            String amount1=tb4.getValueAt(row, 1).toString().trim();
-            double amount2=Double.parseDouble(amount1);
-            amount=amount+amount2;
-            
-            
+        double amount = 0;
+        for (int row = 0; row < tb4.getRowCount(); row++) {
+            String amount1 = tb4.getValueAt(row, 1).toString().trim();
+            double amount2 = Double.parseDouble(amount1);
+            amount = amount + amount2;
+
             System.out.println(amount);
-           }
-             String setValue=String.valueOf(amount);
-            BigDecimal bd = new BigDecimal( setValue ) ;
-            DecimalFormat formatterBd = new DecimalFormat( "##.00" );
-            txtTotalCost.setText(formatterBd.format( bd ) );
+        }
+        String setValue = String.valueOf(amount);
+        BigDecimal bd = new BigDecimal(setValue);
+        DecimalFormat formatterBd = new DecimalFormat("##.00");
+        txtTotalCost.setText(formatterBd.format(bd));
     }
 
     private void loadPayments() {
         try {
-            Double payment=0.00;
-            ResultSet search = DB.search("SELECT * FROM payment WHERE order_id='"+txtOrderId.getText().toUpperCase()+"'");
-            while(search.next()){
-            payment=payment+search.getDouble("amount");
-                System.out.println(payment);  
+            Double payment = 0.00;
+            ResultSet search = DB.search("SELECT * FROM payment WHERE order_id='" + txtOrderId.getText().toUpperCase() + "'");
+            while (search.next()) {
+                payment = payment + search.getDouble("amount");
+                System.out.println(payment);
             }
-             String setValue=String.valueOf(payment);
-            BigDecimal bd = new BigDecimal( setValue ) ;
-            DecimalFormat formatterBd = new DecimalFormat( "##.00" );
-            if(payment==0.00){
-            txtCustomerPayment.setText("0.00");
-            }else{
-            txtCustomerPayment.setText(formatterBd.format( bd ) );
+            String setValue = String.valueOf(payment);
+            BigDecimal bd = new BigDecimal(setValue);
+            DecimalFormat formatterBd = new DecimalFormat("##.00");
+            if (payment == 0.00) {
+                txtCustomerPayment.setText("0.00");
+            } else {
+                txtCustomerPayment.setText(formatterBd.format(bd));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -844,87 +842,87 @@ public class End_Job extends javax.swing.JFrame {
     }
 
     private void calculateNAmount() {
-       double customerPayment=Double.parseDouble(txtCustomerPayment.getText());
-       double fullAmount=Double.parseDouble(txtIncome.getText());
-       double netAmount=fullAmount-customerPayment;
-       String setValue=String.valueOf(netAmount);
-            BigDecimal bd = new BigDecimal( setValue ) ;
-            DecimalFormat formatterBd = new DecimalFormat( "##.00" );
-            if(netAmount==0.00){
+        double customerPayment = Double.parseDouble(txtCustomerPayment.getText());
+        double fullAmount = Double.parseDouble(txtIncome.getText());
+        double netAmount = fullAmount - customerPayment;
+        String setValue = String.valueOf(netAmount);
+        BigDecimal bd = new BigDecimal(setValue);
+        DecimalFormat formatterBd = new DecimalFormat("##.00");
+        if (netAmount == 0.00) {
             txtNetAmount.setText("0.00");
             txtNetAmount.grabFocus();
-            }else{
-            txtNetAmount.setText(formatterBd.format( bd ) );
+        } else {
+            txtNetAmount.setText(formatterBd.format(bd));
             txtNetAmount.grabFocus();
-            }
+        }
     }
 
     private void endOrder() {
-        if(!txtOrderId.getText().equals("")){
-            if(tb4.getRowCount()!=0){
-         try{
-          DB.getNewConnection().setAutoCommit(false);
-          Savepoint savepoint= DB.getNewConnection().setSavepoint();
-        try {
-             String date = new SimpleDateFormat("yyyy-MM-dd- HH:mm:ss").format(new Date());
-             String invitemSQL="insert into end_job (order_id,total_amount,data_time,employee_id,status) values('"+txtOrderId.getText().toUpperCase()+"','"+txtIncome.getText()+"','"+date+"','"+SystemData.getemployee()+"','"+1+"')";
-             DB.iud(invitemSQL);
-              DB.iud("update work_order set status='"+"0"+"' where order_id='"+txtOrderId.getText()+"'");
-             for(int row =0; row < tb4.getRowCount();row++){
-            String costName=tb4.getValueAt(row, 0).toString().trim();
-            String amount=tb4.getValueAt(row, 1).toString().trim();
-            String invitemSQL1="insert into job_cost (order_id,cost_type,amount,data_time,status) values('"+txtOrderId.getText().toUpperCase()+"','"+costName+"','"+amount+"','"+date+"','"+1+"')";
-            DB.iud(invitemSQL1);
-           }
-             double customerPayment=Double.parseDouble(txtCustomerPayment.getText());
-             double income=Double.parseDouble(txtIncome.getText());
-             
-             System.out.println(customerPayment);
-             System.out.println(income);
-            if(txtCustomerPayment.getText().equals("0.00")){
-             JOptionPane.showMessageDialog(this, "Successful End Order And Rs."+txtIncome.getText()+" Get Payments");
-            }else if(customerPayment==income){
-            JOptionPane.showMessageDialog(this, "Successful End Order");
-            }else if(customerPayment<income){
-                double val = income-customerPayment;
-            JOptionPane.showMessageDialog(this, "Successful End Order And Rs."+val +" Get Payments");  
-            }else if(customerPayment>income){
-                 double val = customerPayment-income;
-            JOptionPane.showMessageDialog(this, "Successful End Order And Rs."+val +" Return Payments");
+        if (!txtOrderId.getText().equals("")) {
+            if (tb4.getRowCount() != 0) {
+                try {
+                    DB.getNewConnection().setAutoCommit(false);
+                    Savepoint savepoint = DB.getNewConnection().setSavepoint();
+                    try {
+                        String date = new SimpleDateFormat("yyyy-MM-dd- HH:mm:ss").format(new Date());
+                        String invitemSQL = "insert into end_job (order_id,total_amount,data_time,employee_id,status) values('" + txtOrderId.getText().toUpperCase() + "','" + txtIncome.getText() + "','" + date + "','" + SystemData.getemployee() + "','" + 1 + "')";
+                        DB.iud(invitemSQL);
+                        DB.iud("update work_order set status='" + "0" + "' where order_id='" + txtOrderId.getText() + "'");
+                        for (int row = 0; row < tb4.getRowCount(); row++) {
+                            String costName = tb4.getValueAt(row, 0).toString().trim();
+                            String amount = tb4.getValueAt(row, 1).toString().trim();
+                            String invitemSQL1 = "insert into job_cost (order_id,cost_type,amount,data_time,status) values('" + txtOrderId.getText().toUpperCase() + "','" + costName + "','" + amount + "','" + date + "','" + 1 + "')";
+                            DB.iud(invitemSQL1);
+                        }
+                        double customerPayment = Double.parseDouble(txtCustomerPayment.getText());
+                        double income = Double.parseDouble(txtIncome.getText());
+
+                        System.out.println(customerPayment);
+                        System.out.println(income);
+                        if (txtCustomerPayment.getText().equals("0.00")) {
+                            JOptionPane.showMessageDialog(this, "Successful End Order And Rs." + txtIncome.getText() + " Get Payments");
+                        } else if (customerPayment == income) {
+                            JOptionPane.showMessageDialog(this, "Successful End Order");
+                        } else if (customerPayment < income) {
+                            double val = income - customerPayment;
+                            JOptionPane.showMessageDialog(this, "Successful End Order And Rs." + val + " Get Payments");
+                        } else if (customerPayment > income) {
+                            double val = customerPayment - income;
+                            JOptionPane.showMessageDialog(this, "Successful End Order And Rs." + val + " Return Payments");
+                        }
+                        clearFeald();
+                    } catch (Exception e) {
+                        DB.getNewConnection().rollback(savepoint);
+                        System.out.println(e);
+                    }
+                    DB.getNewConnection().commit();
+                    DB.getNewConnection().setAutoCommit(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Please enter cost for job", "Error", JOptionPane.ERROR_MESSAGE);
             }
-            clearFeald();
-        } catch (Exception e) {
-            DB.getNewConnection().rollback(savepoint);
-            System.out.println(e);
+        } else {
+            JOptionPane.showMessageDialog(this, "Please search job", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        DB.getNewConnection().commit();
-        DB.getNewConnection().setAutoCommit(true);
-      }catch(Exception e){
-      e.printStackTrace();
-      }   
-        }else{
-             JOptionPane.showMessageDialog(this, "Please enter cost for job", "Error",JOptionPane.ERROR_MESSAGE); 
-            }
-    }else{
-        JOptionPane.showMessageDialog(this, "Please search job", "Error",JOptionPane.ERROR_MESSAGE); 
-        }
-}
+    }
 
     private void clearFeald() {
         txtCustomerPayment.setText("0.00");
         txtTotalCost.setText("0.00");
-        txtNetAmount.setText("0.00");  
+        txtNetAmount.setText("0.00");
         txtCostName.setText(null);
         txtCustomer.setText(null);
         txtIncome.setText("Enter Total Bill Amount");
         txtVehicleNumber.setText(null);
         txtAmount.setText(null);
-        txtOrderId.setText(null);        
-         DefaultTableModel dtm =(DefaultTableModel) tb1.getModel();
-       dtm.setRowCount(0);
-                DefaultTableModel dtm1 =(DefaultTableModel) tb4.getModel();
-       dtm1.setRowCount(0);
-                txtOrderId.grabFocus();
-        
+        txtOrderId.setText(null);
+        DefaultTableModel dtm = (DefaultTableModel) tb1.getModel();
+        dtm.setRowCount(0);
+        DefaultTableModel dtm1 = (DefaultTableModel) tb4.getModel();
+        dtm1.setRowCount(0);
+        txtOrderId.grabFocus();
+
     }
 }

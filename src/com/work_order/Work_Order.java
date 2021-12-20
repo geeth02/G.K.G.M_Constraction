@@ -481,7 +481,8 @@ public class Work_Order extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDashboard2MouseExited
 
     private void btnDashboard2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboard2ActionPerformed
-        // TODO add your handling code here:
+      new Driver_Salery().setVisible(true);
+      this.dispose();
     }//GEN-LAST:event_btnDashboard2ActionPerformed
 
     /**

@@ -48,7 +48,8 @@ public class Vehicle_Management extends javax.swing.JFrame {
         btnStartJob1 = new javax.swing.JButton();
         btnStartJob2 = new javax.swing.JButton();
         btnStartJob3 = new javax.swing.JButton();
-        btnStartJob4 = new javax.swing.JButton();
+        btnStartJob5 = new javax.swing.JButton();
+        btnStartJob6 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tb1 = new javax.swing.JTable();
         memberTitle = new javax.swing.JLabel();
@@ -156,7 +157,7 @@ public class Vehicle_Management extends javax.swing.JFrame {
         btnStartJob2.setBackground(new java.awt.Color(0, 102, 204));
         btnStartJob2.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 27)); // NOI18N
         btnStartJob2.setForeground(new java.awt.Color(255, 255, 255));
-        btnStartJob2.setText("Remove Vehicle");
+        btnStartJob2.setText("Repair Vehicle");
         btnStartJob2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnStartJob2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -191,22 +192,41 @@ public class Vehicle_Management extends javax.swing.JFrame {
             }
         });
 
-        btnStartJob4.setBackground(new java.awt.Color(0, 102, 204));
-        btnStartJob4.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 27)); // NOI18N
-        btnStartJob4.setForeground(new java.awt.Color(255, 255, 255));
-        btnStartJob4.setText("Searvice Details");
-        btnStartJob4.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btnStartJob4.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnStartJob5.setBackground(new java.awt.Color(0, 102, 204));
+        btnStartJob5.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 27)); // NOI18N
+        btnStartJob5.setForeground(new java.awt.Color(255, 255, 255));
+        btnStartJob5.setText("Vehicle Service");
+        btnStartJob5.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btnStartJob5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnStartJob4MouseEntered(evt);
+                btnStartJob5MouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnStartJob4MouseExited(evt);
+                btnStartJob5MouseExited(evt);
             }
         });
-        btnStartJob4.addActionListener(new java.awt.event.ActionListener() {
+        btnStartJob5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnStartJob4ActionPerformed(evt);
+                btnStartJob5ActionPerformed(evt);
+            }
+        });
+
+        btnStartJob6.setBackground(new java.awt.Color(0, 102, 204));
+        btnStartJob6.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 27)); // NOI18N
+        btnStartJob6.setForeground(new java.awt.Color(255, 255, 255));
+        btnStartJob6.setText("Remove Vehicle");
+        btnStartJob6.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btnStartJob6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnStartJob6MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnStartJob6MouseExited(evt);
+            }
+        });
+        btnStartJob6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStartJob6ActionPerformed(evt);
             }
         });
 
@@ -217,9 +237,10 @@ public class Vehicle_Management extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnStartJob, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnStartJob1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnStartJob2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnStartJob3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnStartJob4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnStartJob5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnStartJob6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnStartJob2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -228,15 +249,17 @@ public class Vehicle_Management extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addComponent(btnStartJob1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addComponent(btnStartJob5, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnStartJob2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnStartJob6, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnStartJob3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnStartJob4, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnStartJob, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(522, Short.MAX_VALUE))
+                .addContainerGap(449, Short.MAX_VALUE))
         );
 
         jLayeredPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 1080));
@@ -421,17 +444,29 @@ public class Vehicle_Management extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_list1MouseClicked
 
-    private void btnStartJob4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnStartJob4MouseEntered
+    private void btnStartJob5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnStartJob5MouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnStartJob4MouseEntered
+    }//GEN-LAST:event_btnStartJob5MouseEntered
 
-    private void btnStartJob4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnStartJob4MouseExited
+    private void btnStartJob5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnStartJob5MouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnStartJob4MouseExited
+    }//GEN-LAST:event_btnStartJob5MouseExited
 
-    private void btnStartJob4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartJob4ActionPerformed
+    private void btnStartJob5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartJob5ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnStartJob4ActionPerformed
+    }//GEN-LAST:event_btnStartJob5ActionPerformed
+
+    private void btnStartJob6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnStartJob6MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnStartJob6MouseEntered
+
+    private void btnStartJob6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnStartJob6MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnStartJob6MouseExited
+
+    private void btnStartJob6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartJob6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnStartJob6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -473,7 +508,8 @@ public class Vehicle_Management extends javax.swing.JFrame {
     private javax.swing.JButton btnStartJob1;
     private javax.swing.JButton btnStartJob2;
     private javax.swing.JButton btnStartJob3;
-    private javax.swing.JButton btnStartJob4;
+    private javax.swing.JButton btnStartJob5;
+    private javax.swing.JButton btnStartJob6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;

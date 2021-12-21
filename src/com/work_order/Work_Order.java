@@ -541,7 +541,7 @@ public class Work_Order extends javax.swing.JFrame {
     private javax.swing.JLabel lbGKG;
     private javax.swing.JList<String> list1;
     private javax.swing.JLabel memberTitle;
-    private javax.swing.JTable tb1;
+    public static javax.swing.JTable tb1;
     private javax.swing.JTextField txtSearchDash;
     // End of variables declaration//GEN-END:variables
 

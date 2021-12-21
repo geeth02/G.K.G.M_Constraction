@@ -5,9 +5,11 @@
  */
 package com.work_order;
 
+import com.main.Main_Menu;
 import common.CommonM;
 import common.DB;
 import common.SystemData;
+import java.awt.Color;
 import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.Savepoint;
@@ -15,6 +17,7 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Vector;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -29,24 +32,13 @@ public class End_Job extends javax.swing.JFrame {
      */
     public End_Job() {
         initComponents();
-        txtOrderId.grabFocus();
-        CommonM.tableSettingSm(tb1);
-        CommonM.tableSettingSm(tb4);
-        jScrollPane1.setVisible(false);
-        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        txtCustomer.setEditable(false);
-        txtVehicleNumber.setEditable(false);
-        txtCustomerPayment.setText("0.00");
-        txtTotalCost.setText("0.00");
-        txtNetAmount.setText("0.00");
-        txtCustomerPayment.setEditable(false);
-        txtTotalCost.setEditable(false);
-        txtNetAmount.setEditable(false);
-
-        txtIncome.setText("Enter Total Bill Amount");
+        frameSetting();
+        CommonM.setFullScreen(this);
+        
+       
 
     }
-
+    int row;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -58,45 +50,70 @@ public class End_Job extends javax.swing.JFrame {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
         ReForm = new javax.swing.JLayeredPane();
+        jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
-        jLabel5 = new javax.swing.JLabel();
-        btnRegister3 = new javax.swing.JButton();
-        txtIncome = new javax.swing.JTextField();
-        txtVehicleNumber = new javax.swing.JTextField();
-        lbFirstName = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        txtOrderId = new javax.swing.JTextField();
-        txtAmount = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        tb1 = new javax.swing.JTable();
-        jLabel14 = new javax.swing.JLabel();
-        jScrollPane8 = new javax.swing.JScrollPane();
-        tb4 = new javax.swing.JTable();
-        btnRegister4 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        txtTotalCost = new javax.swing.JTextField();
         comboSearch = new javax.swing.JComboBox<>();
+        txtOrderId = new javax.swing.JTextField();
+        lbFirstName = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        txtVehicleNumber = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         txtCustomer = new javax.swing.JTextField();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        txtCostName = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        txtNetAmount = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txtCustomerPayment = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        txtEndMeter = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        txtWpoint = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel18 = new javax.swing.JLabel();
+        txtEmployeeId = new javax.swing.JTextField();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        tb1 = new javax.swing.JTable();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        txtDAmount = new javax.swing.JTextField();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
+        txtCostName = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        txtAmount = new javax.swing.JTextField();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        tb4 = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
+        txtTotalCost = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        txtIncome = new javax.swing.JTextField();
+        txtNetAmount = new javax.swing.JTextField();
+        btnRegister4 = new javax.swing.JButton();
+        jLabel23 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        lbGKG = new javax.swing.JLabel();
+        lbCons = new javax.swing.JLabel();
+        btnDashboard = new javax.swing.JButton();
+        btnDashboard1 = new javax.swing.JButton();
+        memberTitle = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1920, 1080));
         setResizable(false);
 
-        jLayeredPane1.setPreferredSize(new java.awt.Dimension(1920, 1080));
+        jLayeredPane1.setMinimumSize(new java.awt.Dimension(1920, 1080));
         jLayeredPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        ReForm.setBackground(new java.awt.Color(255, 255, 255));
+        ReForm.setBackground(new java.awt.Color(240, 240, 240));
         ReForm.setOpaque(true);
         ReForm.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jList1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jList1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -111,71 +128,11 @@ public class End_Job extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jList1);
 
-        ReForm.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 120, 300, 120));
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 120, 310, 120));
 
-        jLabel5.setBackground(new java.awt.Color(204, 0, 51));
-        jLabel5.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 48)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("End work order");
-        jLabel5.setOpaque(true);
-        ReForm.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 69));
-
-        btnRegister3.setBackground(new java.awt.Color(0, 102, 204));
-        btnRegister3.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 30)); // NOI18N
-        btnRegister3.setForeground(new java.awt.Color(255, 255, 255));
-        btnRegister3.setText("End");
-        btnRegister3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnRegister3MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnRegister3MouseExited(evt);
-            }
-        });
-        btnRegister3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegister3ActionPerformed(evt);
-            }
-        });
-        ReForm.add(btnRegister3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1181, 671, 210, 60));
-
-        txtIncome.setBackground(new java.awt.Color(255, 255, 102));
-        txtIncome.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        txtIncome.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        txtIncome.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtIncomeMouseClicked(evt);
-            }
-        });
-        txtIncome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIncomeActionPerformed(evt);
-            }
-        });
-        txtIncome.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtIncomeKeyTyped(evt);
-            }
-        });
-        ReForm.add(txtIncome, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 632, 480, 43));
-
-        txtVehicleNumber.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtVehicleNumber.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        txtVehicleNumber.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtVehicleNumberActionPerformed(evt);
-            }
-        });
-        ReForm.add(txtVehicleNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(242, 130, 480, 40));
-
-        lbFirstName.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
-        lbFirstName.setText("Search By");
-        ReForm.add(lbFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 170, 42));
-
-        jLabel3.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
-        jLabel3.setText("Total Bill Amount");
-        ReForm.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 632, 190, 40));
+        comboSearch.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        comboSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NIC Number", "Vehicle Number" }));
+        jPanel3.add(comboSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 78, -1, 40));
 
         txtOrderId.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtOrderId.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -192,7 +149,214 @@ public class End_Job extends javax.swing.JFrame {
                 txtOrderIdKeyTyped(evt);
             }
         });
-        ReForm.add(txtOrderId, new org.netbeans.lib.awtextra.AbsoluteConstraints(422, 80, 300, 43));
+        jPanel3.add(txtOrderId, new org.netbeans.lib.awtextra.AbsoluteConstraints(421, 78, 308, 43));
+
+        lbFirstName.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
+        lbFirstName.setText("Search By");
+        jPanel3.add(lbFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 78, 170, 42));
+
+        jLabel9.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
+        jLabel9.setText("Vehicle Number");
+        jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 132, 175, 42));
+
+        txtVehicleNumber.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtVehicleNumber.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtVehicleNumber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtVehicleNumberActionPerformed(evt);
+            }
+        });
+        jPanel3.add(txtVehicleNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(249, 132, 480, 40));
+
+        jLabel10.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
+        jLabel10.setText("Customer");
+        jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 185, 175, 42));
+
+        txtCustomer.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtCustomer.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCustomerActionPerformed(evt);
+            }
+        });
+        jPanel3.add(txtCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(249, 185, 480, 40));
+
+        jLabel7.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
+        jLabel7.setText("Customer Payment");
+        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 239, -1, 40));
+
+        txtCustomerPayment.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtCustomerPayment.setForeground(new java.awt.Color(0, 204, 0));
+        txtCustomerPayment.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtCustomerPayment.setVerifyInputWhenFocusTarget(false);
+        txtCustomerPayment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCustomerPaymentActionPerformed(evt);
+            }
+        });
+        txtCustomerPayment.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCustomerPaymentKeyTyped(evt);
+            }
+        });
+        jPanel3.add(txtCustomerPayment, new org.netbeans.lib.awtextra.AbsoluteConstraints(249, 238, 480, 43));
+
+        jLabel11.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
+        jLabel11.setText("End Meter");
+        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 295, 175, 42));
+
+        txtEndMeter.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtEndMeter.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtEndMeter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEndMeterActionPerformed(evt);
+            }
+        });
+        txtEndMeter.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtEndMeterKeyPressed(evt);
+            }
+        });
+        jPanel3.add(txtEndMeter, new org.netbeans.lib.awtextra.AbsoluteConstraints(249, 299, 480, 40));
+
+        jLabel14.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
+        jLabel14.setText("Working Point");
+        jPanel3.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 350, 170, 40));
+
+        txtWpoint.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtWpoint.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtWpoint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtWpointActionPerformed(evt);
+            }
+        });
+        jPanel3.add(txtWpoint, new org.netbeans.lib.awtextra.AbsoluteConstraints(249, 350, 480, 40));
+
+        jLabel19.setBackground(new java.awt.Color(204, 0, 51));
+        jLabel19.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel19.setText("Order Details");
+        jLabel19.setOpaque(true);
+        jPanel3.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 50));
+
+        ReForm.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 760, 420));
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setPreferredSize(new java.awt.Dimension(780, 390));
+
+        jLabel18.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
+        jLabel18.setText("Employee Id");
+
+        txtEmployeeId.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtEmployeeId.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtEmployeeId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmployeeIdActionPerformed(evt);
+            }
+        });
+
+        tb1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Employee Id", "NIC Number", "Name", "Salary"
+            }
+        ));
+        tb1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb1MouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tb1MousePressed(evt);
+            }
+        });
+        jScrollPane7.setViewportView(tb1);
+
+        jLabel15.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
+        jLabel15.setText("Drivers");
+
+        jLabel20.setBackground(new java.awt.Color(204, 0, 51));
+        jLabel20.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel20.setText("Driver Salery");
+        jLabel20.setOpaque(true);
+
+        jLabel21.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
+        jLabel21.setText("Amount");
+
+        txtDAmount.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtDAmount.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtDAmount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDAmountActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(txtDAmount, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtEmployeeId, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 502, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(70, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEmployeeId, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(70, Short.MAX_VALUE))
+        );
+
+        ReForm.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 20, 780, 420));
+
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel16.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
+        jLabel16.setText("Cost Name");
+
+        txtCostName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtCostName.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtCostName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCostNameActionPerformed(evt);
+            }
+        });
+        txtCostName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCostNameKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCostNameKeyTyped(evt);
+            }
+        });
+
+        jLabel17.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
+        jLabel17.setText("Amount");
 
         txtAmount.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtAmount.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -209,32 +373,6 @@ public class End_Job extends javax.swing.JFrame {
                 txtAmountKeyTyped(evt);
             }
         });
-        ReForm.add(txtAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 385, 190, 43));
-
-        jLabel9.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
-        jLabel9.setText("Vehicle Number");
-        ReForm.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 175, 42));
-
-        tb1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Employee Id", "NIC Number", "Name"
-            }
-        ));
-        tb1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                tb1MousePressed(evt);
-            }
-        });
-        jScrollPane7.setViewportView(tb1);
-
-        ReForm.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, 480, 120));
-
-        jLabel14.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
-        jLabel14.setText("Amount");
-        ReForm.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(425, 383, 101, 40));
 
         tb4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -256,7 +394,115 @@ public class End_Job extends javax.swing.JFrame {
         });
         jScrollPane8.setViewportView(tb4);
 
-        ReForm.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 444, 480, 120));
+        jLabel4.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
+        jLabel4.setText("Total Cost");
+
+        txtTotalCost.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtTotalCost.setForeground(new java.awt.Color(204, 0, 0));
+        txtTotalCost.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtTotalCost.setVerifyInputWhenFocusTarget(false);
+        txtTotalCost.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTotalCostActionPerformed(evt);
+            }
+        });
+        txtTotalCost.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTotalCostKeyTyped(evt);
+            }
+        });
+
+        jLabel22.setBackground(new java.awt.Color(204, 0, 51));
+        jLabel22.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel22.setText("Cost");
+        jLabel22.setOpaque(true);
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 760, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtCostName)
+                    .addComponent(txtAmount)
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
+                    .addComponent(txtTotalCost))
+                .addGap(38, 38, 38))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCostName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtTotalCost, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
+
+        ReForm.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, 760, 390));
+
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel3.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
+        jLabel3.setText("Total Bill Amount");
+
+        jLabel6.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
+        jLabel6.setText("Net Amount");
+
+        txtIncome.setBackground(new java.awt.Color(255, 255, 102));
+        txtIncome.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtIncome.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtIncome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtIncomeMouseClicked(evt);
+            }
+        });
+        txtIncome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIncomeActionPerformed(evt);
+            }
+        });
+        txtIncome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIncomeKeyTyped(evt);
+            }
+        });
+
+        txtNetAmount.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtNetAmount.setForeground(new java.awt.Color(204, 0, 0));
+        txtNetAmount.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtNetAmount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNetAmountActionPerformed(evt);
+            }
+        });
+        txtNetAmount.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNetAmountKeyTyped(evt);
+            }
+        });
 
         btnRegister4.setBackground(new java.awt.Color(0, 102, 204));
         btnRegister4.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 30)); // NOI18N
@@ -275,124 +521,188 @@ public class End_Job extends javax.swing.JFrame {
                 btnRegister4ActionPerformed(evt);
             }
         });
-        ReForm.add(btnRegister4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 770, 210, 60));
 
-        jLabel4.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
-        jLabel4.setText("Total Cost");
-        ReForm.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 576, -1, 40));
+        jLabel23.setBackground(new java.awt.Color(204, 0, 51));
+        jLabel23.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel23.setText("Bill Details");
+        jLabel23.setOpaque(true);
 
-        txtTotalCost.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        txtTotalCost.setForeground(new java.awt.Color(204, 0, 0));
-        txtTotalCost.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        txtTotalCost.setVerifyInputWhenFocusTarget(false);
-        txtTotalCost.addActionListener(new java.awt.event.ActionListener() {
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnRegister4, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtNetAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtIncome, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20)))
+                .addContainerGap(58, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(txtIncome, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNetAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+                .addComponent(btnRegister4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(87, 87, 87))
+        );
+
+        ReForm.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 450, 780, 390));
+
+        jLayeredPane1.add(ReForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 100, 1660, 980));
+
+        jPanel1.setBackground(new java.awt.Color(0, 102, 204));
+
+        jPanel2.setBackground(new java.awt.Color(204, 0, 51));
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        lbGKG.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
+        lbGKG.setForeground(new java.awt.Color(255, 255, 255));
+        lbGKG.setText("G.KG.M");
+        lbGKG.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lbGKGMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lbGKGMouseExited(evt);
+            }
+        });
+
+        lbCons.setFont(new java.awt.Font("Tahoma", 1, 40)); // NOI18N
+        lbCons.setForeground(new java.awt.Color(255, 255, 255));
+        lbCons.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbCons.setText("Construction");
+        lbCons.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lbConsMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lbConsMouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(lbGKG, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(lbCons, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(lbGKG, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lbCons, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        btnDashboard.setBackground(new java.awt.Color(0, 102, 204));
+        btnDashboard.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 27)); // NOI18N
+        btnDashboard.setForeground(new java.awt.Color(255, 255, 255));
+        btnDashboard.setText("Back");
+        btnDashboard.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btnDashboard.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnDashboardMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnDashboardMouseExited(evt);
+            }
+        });
+        btnDashboard.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTotalCostActionPerformed(evt);
+                btnDashboardActionPerformed(evt);
             }
         });
-        txtTotalCost.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtTotalCostKeyTyped(evt);
+
+        btnDashboard1.setBackground(new java.awt.Color(0, 102, 204));
+        btnDashboard1.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 27)); // NOI18N
+        btnDashboard1.setForeground(new java.awt.Color(255, 255, 255));
+        btnDashboard1.setText("End Job");
+        btnDashboard1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btnDashboard1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnDashboard1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnDashboard1MouseExited(evt);
             }
         });
-        ReForm.add(txtTotalCost, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 578, 180, 43));
-
-        comboSearch.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        comboSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NIC Number", "Vehicle Number" }));
-        ReForm.add(comboSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, -1, 40));
-
-        jLabel10.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
-        jLabel10.setText("Customer");
-        ReForm.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 175, 42));
-
-        txtCustomer.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtCustomer.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        txtCustomer.addActionListener(new java.awt.event.ActionListener() {
+        btnDashboard1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCustomerActionPerformed(evt);
+                btnDashboard1ActionPerformed(evt);
             }
         });
-        ReForm.add(txtCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, 480, 40));
 
-        jLabel15.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
-        jLabel15.setText("Drivers");
-        ReForm.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 101, 43));
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnDashboard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnDashboard1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(btnDashboard1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(761, Short.MAX_VALUE))
+        );
 
-        jLabel16.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
-        jLabel16.setText("Work Cost");
-        ReForm.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 381, 200, 45));
+        jLayeredPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 1080));
 
-        txtCostName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtCostName.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        txtCostName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCostNameActionPerformed(evt);
-            }
-        });
-        txtCostName.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtCostNameKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCostNameKeyTyped(evt);
-            }
-        });
-        ReForm.add(txtCostName, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 385, 180, 43));
-
-        jLabel6.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
-        jLabel6.setText("Net Amount");
-        ReForm.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 690, 190, 40));
-
-        txtNetAmount.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        txtNetAmount.setForeground(new java.awt.Color(204, 0, 0));
-        txtNetAmount.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        txtNetAmount.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNetAmountActionPerformed(evt);
-            }
-        });
-        txtNetAmount.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtNetAmountKeyTyped(evt);
-            }
-        });
-        ReForm.add(txtNetAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 690, 480, 43));
-
-        jLabel7.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
-        jLabel7.setText("Customer Payment");
-        ReForm.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 576, -1, 40));
-
-        txtCustomerPayment.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        txtCustomerPayment.setForeground(new java.awt.Color(0, 204, 0));
-        txtCustomerPayment.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        txtCustomerPayment.setVerifyInputWhenFocusTarget(false);
-        txtCustomerPayment.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCustomerPaymentActionPerformed(evt);
-            }
-        });
-        txtCustomerPayment.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCustomerPaymentKeyTyped(evt);
-            }
-        });
-        ReForm.add(txtCustomerPayment, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 578, 180, 43));
-
-        jLayeredPane1.add(ReForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 780, 870));
+        memberTitle.setBackground(new java.awt.Color(0, 102, 204));
+        memberTitle.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 60)); // NOI18N
+        memberTitle.setForeground(new java.awt.Color(255, 255, 255));
+        memberTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        memberTitle.setText("End Work Order");
+        memberTitle.setOpaque(true);
+        jLayeredPane1.add(memberTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(321, 0, 1660, 100));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 859, Short.MAX_VALUE)
+                .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 941, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -402,18 +712,6 @@ public class End_Job extends javax.swing.JFrame {
     private void txtVehicleNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVehicleNumberActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtVehicleNumberActionPerformed
-
-    private void btnRegister3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegister3MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnRegister3MouseEntered
-
-    private void btnRegister3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegister3MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnRegister3MouseExited
-
-    private void btnRegister3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegister3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnRegister3ActionPerformed
 
     private void txtAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAmountActionPerformed
         dataAdd();
@@ -494,7 +792,7 @@ public class End_Job extends javax.swing.JFrame {
                 ResultSet search = DB.search("SELECT * FROM work_order WHERE status= 1 AND customer_id='" + jList1.getSelectedValue().split("-")[0] + "'");
                 if (search.next()) {
                     searchDetails();
-                    txtCostName.grabFocus();
+                    txtEndMeter.grabFocus();
                 } else {
                     JOptionPane.showMessageDialog(this, "This customer have not active job");
                     txtOrderId.setText("");
@@ -513,7 +811,7 @@ public class End_Job extends javax.swing.JFrame {
                 ResultSet search = DB.search("SELECT * FROM work_order WHERE status= 1 AND customer_id='" + jList1.getSelectedValue().split("-")[0] + "' or vehicle_id='" + jList1.getSelectedValue().split("-")[0] + "'");
                 if (search.next()) {
                     searchDetails();
-                    txtCostName.grabFocus();
+                    txtEndMeter.grabFocus();
                 } else {
                     if (comboSearch.getSelectedItem().equals("NIC Number")) {
                         JOptionPane.showMessageDialog(this, "This customer have not active job");
@@ -584,6 +882,94 @@ public class End_Job extends javax.swing.JFrame {
 
     }//GEN-LAST:event_txtIncomeMouseClicked
 
+    private void txtEndMeterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEndMeterActionPerformed
+        try {
+            ResultSet search = DB.search("SELECT * FROM work_order WHERE order_id='"+txtOrderId.getText()+"'");
+              if(search.next()){
+             int sMeter =search.getInt("start_meter");
+             int endMeter=Integer.parseInt(txtEndMeter.getText());
+             if(endMeter>sMeter){
+             txtWpoint.setText(String.valueOf(endMeter-sMeter));
+             txtDAmount.grabFocus();
+              }else{
+               JOptionPane.showMessageDialog(this, "Start meter is "+sMeter+" Please enter correct value", "Error", JOptionPane.ERROR_MESSAGE);
+               txtEndMeter.grabFocus();
+             }
+              }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+      
+       
+    }//GEN-LAST:event_txtEndMeterActionPerformed
+
+    private void lbGKGMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbGKGMouseEntered
+        lbGKG.setForeground(Color.YELLOW);
+        lbCons.setForeground(Color.YELLOW);
+    }//GEN-LAST:event_lbGKGMouseEntered
+
+    private void lbGKGMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbGKGMouseExited
+        lbGKG.setForeground(Color.WHITE);
+        lbCons.setForeground(Color.WHITE);
+    }//GEN-LAST:event_lbGKGMouseExited
+
+    private void lbConsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbConsMouseEntered
+        lbGKG.setForeground(Color.YELLOW);
+        lbCons.setForeground(Color.YELLOW);
+    }//GEN-LAST:event_lbConsMouseEntered
+
+    private void lbConsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbConsMouseExited
+        lbGKG.setForeground(Color.WHITE);
+        lbCons.setForeground(Color.WHITE);
+    }//GEN-LAST:event_lbConsMouseExited
+
+    private void btnDashboardMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDashboardMouseEntered
+        CommonM.setBlue(btnDashboard);
+    }//GEN-LAST:event_btnDashboardMouseEntered
+
+    private void btnDashboardMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDashboardMouseExited
+        CommonM.setDefaultColor(btnDashboard);
+    }//GEN-LAST:event_btnDashboardMouseExited
+
+    private void btnDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboardActionPerformed
+        new Main_Menu().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnDashboardActionPerformed
+
+    private void btnDashboard1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDashboard1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDashboard1MouseEntered
+
+    private void btnDashboard1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDashboard1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDashboard1MouseExited
+
+    private void btnDashboard1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboard1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDashboard1ActionPerformed
+
+    private void txtWpointActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtWpointActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtWpointActionPerformed
+
+    private void txtEmployeeIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmployeeIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmployeeIdActionPerformed
+
+    private void txtDAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDAmountActionPerformed
+      salary();
+    }//GEN-LAST:event_txtDAmountActionPerformed
+
+    private void txtEndMeterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEndMeterKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEndMeterKeyPressed
+
+    private void tb1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb1MouseClicked
+       txtEmployeeId.setText(tb1.getValueAt(tb1.getSelectedRow(), 0).toString());
+       txtDAmount.grabFocus();
+      row= tb1.getSelectedRow();
+    }//GEN-LAST:event_tb1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -622,36 +1008,57 @@ public class End_Job extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLayeredPane ReForm;
-    private javax.swing.JButton btnRegister3;
+    private javax.swing.JButton btnDashboard;
+    private javax.swing.JButton btnDashboard1;
     private javax.swing.JButton btnRegister4;
     public static javax.swing.JComboBox<String> comboSearch;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPane1;
     public static javax.swing.JList<String> jList1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     public static javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JLabel lbCons;
     private javax.swing.JLabel lbFirstName;
+    private javax.swing.JLabel lbGKG;
+    private javax.swing.JLabel memberTitle;
     public static javax.swing.JTable tb1;
     private javax.swing.JTable tb4;
     private javax.swing.JTextField txtAmount;
     private javax.swing.JTextField txtCostName;
     public static javax.swing.JTextField txtCustomer;
     public static javax.swing.JTextField txtCustomerPayment;
+    public static javax.swing.JTextField txtDAmount;
+    public static javax.swing.JTextField txtEmployeeId;
+    public static javax.swing.JTextField txtEndMeter;
     private javax.swing.JTextField txtIncome;
     private javax.swing.JTextField txtNetAmount;
     public static javax.swing.JTextField txtOrderId;
     private javax.swing.JTextField txtTotalCost;
     public static javax.swing.JTextField txtVehicleNumber;
+    public static javax.swing.JTextField txtWpoint;
     // End of variables declaration//GEN-END:variables
 
     private void searchOrder() {
@@ -738,6 +1145,7 @@ public class End_Job extends javax.swing.JFrame {
                             v.add(search6.getString("employee_id"));
                             v.add(search6.getString("nic_number"));
                             v.add(search6.getString("first_name") + " " + search6.getString("last_name"));
+                            v.add("Pending");
                             dtm.addRow(v);
                         }
                     }
@@ -779,6 +1187,7 @@ public class End_Job extends javax.swing.JFrame {
                         v.add(search6.getString("employee_id"));
                         v.add(search6.getString("nic_number"));
                         v.add(search6.getString("first_name") + " " + search6.getString("last_name"));
+                        v.add("Pending");
                         dtm.addRow(v);
                     }
                 }
@@ -924,5 +1333,57 @@ public class End_Job extends javax.swing.JFrame {
         dtm1.setRowCount(0);
         txtOrderId.grabFocus();
 
+    }
+
+    private void frameSetting() {
+        txtOrderId.grabFocus();
+        CommonM.tableSettingSm(tb1);
+        CommonM.tableSettingSm(tb4);
+        jScrollPane1.setVisible(false);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        txtCustomer.setEditable(false);
+        txtVehicleNumber.setEditable(false);
+        txtCustomerPayment.setText("0.00");
+        txtTotalCost.setText("0.00");
+        txtNetAmount.setText("0.00");
+        txtCustomerPayment.setEditable(false);
+        txtTotalCost.setEditable(false);
+        txtNetAmount.setEditable(false);
+        txtEmployeeId.setEditable(false);
+        txtIncome.setText("Enter Total Bill Amount");
+    }
+
+    private void salary() {
+        try {
+          DefaultTableModel dtm = (DefaultTableModel) tb1.getModel();
+          dtm.setValueAt(txtDAmount.getText(), row, 3);
+          
+            DefaultTableModel dtm1 = (DefaultTableModel) tb4.getModel();
+            dtm1.setRowCount(0);
+            Vector v = new Vector();
+            v.add("Driver Salary");
+            v.add(saleryCost());
+            dtm1.addRow(v);
+            txtDAmount.setText(null);
+            txtDAmount.grabFocus();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+    
+     private double saleryCost() {
+        double amount = 0;
+        for (int row = 0; row < tb1.getRowCount(); row++) {
+            if(!tb1.getValueAt(row, 3).toString().trim().equals("Pending")){
+            String amount1 = tb1.getValueAt(row, 3).toString().trim();
+            double amount2 = Double.parseDouble(amount1);
+            amount = amount + amount2;
+
+            System.out.println(amount);
+        }
+        }
+        
+        return amount;
     }
 }

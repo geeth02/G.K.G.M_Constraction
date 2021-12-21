@@ -211,6 +211,7 @@ public class Job_Selection extends javax.swing.JFrame {
                     v.add(search6.getString("employee_id"));
                     v.add(search6.getString("nic_number"));
                     v.add(search6.getString("first_name")+" "+search6.getString("last_name"));
+                    v.add("Pending");
                     dtm.addRow(v);
                     }
                     }

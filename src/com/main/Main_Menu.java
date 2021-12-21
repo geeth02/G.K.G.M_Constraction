@@ -22,6 +22,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 /**
  *
@@ -40,6 +41,7 @@ public class Main_Menu extends javax.swing.JFrame {
         clock();
         CommonM.tableSettings(jTable1);
         tbData();
+        tableBackGround();
     }
     int hours = 0, minutes = 0, seconds = 0;
     String timeString = "";
@@ -62,6 +64,9 @@ public class Main_Menu extends javax.swing.JFrame {
         btnLogOut = new javax.swing.JButton();
         btnCustomerM = new javax.swing.JButton();
         btnWorkOrder = new javax.swing.JButton();
+        btnWorkOrder1 = new javax.swing.JButton();
+        btnWorkOrder2 = new javax.swing.JButton();
+        btnEmployeeM1 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -82,7 +87,6 @@ public class Main_Menu extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1920, 1080));
         setResizable(false);
 
         jLayeredPane1.setPreferredSize(new java.awt.Dimension(1920, 1080));
@@ -143,12 +147,12 @@ public class Main_Menu extends javax.swing.JFrame {
                 btnVehicleMActionPerformed(evt);
             }
         });
-        jPanel1.add(btnVehicleM, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 320, 71));
+        jPanel1.add(btnVehicleM, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 510, 320, 71));
 
         btnEmployeeM.setBackground(new java.awt.Color(0, 102, 204));
         btnEmployeeM.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 27)); // NOI18N
         btnEmployeeM.setForeground(new java.awt.Color(255, 255, 255));
-        btnEmployeeM.setText("Employee Management");
+        btnEmployeeM.setText("Payment");
         btnEmployeeM.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnEmployeeM.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -183,7 +187,7 @@ public class Main_Menu extends javax.swing.JFrame {
                 btnLogOutActionPerformed(evt);
             }
         });
-        jPanel1.add(btnLogOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, 320, 71));
+        jPanel1.add(btnLogOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 650, 320, 71));
 
         btnCustomerM.setBackground(new java.awt.Color(0, 102, 204));
         btnCustomerM.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 27)); // NOI18N
@@ -203,12 +207,12 @@ public class Main_Menu extends javax.swing.JFrame {
                 btnCustomerMActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCustomerM, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 320, 71));
+        jPanel1.add(btnCustomerM, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, 320, 71));
 
         btnWorkOrder.setBackground(new java.awt.Color(0, 102, 204));
         btnWorkOrder.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 27)); // NOI18N
         btnWorkOrder.setForeground(new java.awt.Color(255, 255, 255));
-        btnWorkOrder.setText("Work Order");
+        btnWorkOrder.setText("Delevery Item");
         btnWorkOrder.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnWorkOrder.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -223,7 +227,67 @@ public class Main_Menu extends javax.swing.JFrame {
                 btnWorkOrderActionPerformed(evt);
             }
         });
-        jPanel1.add(btnWorkOrder, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 320, 71));
+        jPanel1.add(btnWorkOrder, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 320, 71));
+
+        btnWorkOrder1.setBackground(new java.awt.Color(0, 102, 204));
+        btnWorkOrder1.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 27)); // NOI18N
+        btnWorkOrder1.setForeground(new java.awt.Color(255, 255, 255));
+        btnWorkOrder1.setText("Work Order");
+        btnWorkOrder1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btnWorkOrder1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnWorkOrder1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnWorkOrder1MouseExited(evt);
+            }
+        });
+        btnWorkOrder1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnWorkOrder1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnWorkOrder1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 320, 71));
+
+        btnWorkOrder2.setBackground(new java.awt.Color(0, 102, 204));
+        btnWorkOrder2.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 27)); // NOI18N
+        btnWorkOrder2.setForeground(new java.awt.Color(255, 255, 255));
+        btnWorkOrder2.setText("Rent Item");
+        btnWorkOrder2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btnWorkOrder2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnWorkOrder2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnWorkOrder2MouseExited(evt);
+            }
+        });
+        btnWorkOrder2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnWorkOrder2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnWorkOrder2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 320, 71));
+
+        btnEmployeeM1.setBackground(new java.awt.Color(0, 102, 204));
+        btnEmployeeM1.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 27)); // NOI18N
+        btnEmployeeM1.setForeground(new java.awt.Color(255, 255, 255));
+        btnEmployeeM1.setText("Employee Management");
+        btnEmployeeM1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btnEmployeeM1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEmployeeM1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEmployeeM1MouseExited(evt);
+            }
+        });
+        btnEmployeeM1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEmployeeM1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnEmployeeM1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 580, 320, 71));
 
         jLayeredPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 1080));
 
@@ -488,6 +552,42 @@ public class Main_Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_lbGKG1MouseExited
 
+    private void btnWorkOrder1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnWorkOrder1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnWorkOrder1MouseEntered
+
+    private void btnWorkOrder1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnWorkOrder1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnWorkOrder1MouseExited
+
+    private void btnWorkOrder1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWorkOrder1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnWorkOrder1ActionPerformed
+
+    private void btnWorkOrder2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnWorkOrder2MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnWorkOrder2MouseEntered
+
+    private void btnWorkOrder2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnWorkOrder2MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnWorkOrder2MouseExited
+
+    private void btnWorkOrder2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWorkOrder2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnWorkOrder2ActionPerformed
+
+    private void btnEmployeeM1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEmployeeM1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEmployeeM1MouseEntered
+
+    private void btnEmployeeM1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEmployeeM1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEmployeeM1MouseExited
+
+    private void btnEmployeeM1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeeM1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEmployeeM1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -530,9 +630,12 @@ public class Main_Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCustomerM;
     private javax.swing.JButton btnEmployeeM;
+    private javax.swing.JButton btnEmployeeM1;
     private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnVehicleM;
     private javax.swing.JButton btnWorkOrder;
+    private javax.swing.JButton btnWorkOrder1;
+    private javax.swing.JButton btnWorkOrder2;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLayeredPane jLayeredPane1;
@@ -649,4 +752,9 @@ t.start();
             e.printStackTrace();
         }
     } 
+
+    private void tableBackGround() {
+      JTableHeader header = jTable1.getTableHeader();
+      header.setBackground(Color.cyan);
+    }
 }

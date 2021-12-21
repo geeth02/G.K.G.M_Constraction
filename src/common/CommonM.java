@@ -11,9 +11,11 @@ import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableCellRenderer;
 
 /**
  *
@@ -43,6 +45,8 @@ public class CommonM {
     tb1.setBackground(new Color(253,253,253));
     tb1.setRowHeight(50);
     tb1.setFont(new Font ("Arial",Font.BOLD,15));
+    hederCenter(tb1);
+    dataCenter(tb1);
 } 
      public static void tableSettingSm(JTable tb1){
     tb1.getTableHeader().setFont(new Font("Tahoma",Font.BOLD,17));
@@ -52,6 +56,10 @@ public class CommonM {
     tb1.setBackground(new Color(253,253,253));
     tb1.setRowHeight(30);
     tb1.setFont(new Font ("Arial",Font.BOLD,15));
+    hederCenter(tb1);
+    dataCenter(tb1);
+    
+    
 }
      
          public static void checkNull(JTextField text,String name,JTextField grab) {
@@ -63,6 +71,22 @@ public class CommonM {
             text.setBorder(BorderFactory.createLineBorder(Color.decode("#FF0000")));
         }
      }
+
+    private static void hederCenter(JTable tb1) {
+                
+        TableCellRenderer rendererFromHeader = tb1.getTableHeader().getDefaultRenderer();
+        JLabel headerLabel = (JLabel) rendererFromHeader;
+        headerLabel.setHorizontalAlignment(JLabel.CENTER);
+    }
+
+
+    private static void dataCenter(JTable tb1) {
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        for (int x = 0; x < tb1.getColumnCount(); x++) {
+            tb1.getColumnModel().getColumn(x).setCellRenderer(centerRenderer);
+        }
+    }
 }
 
 

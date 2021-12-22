@@ -5,10 +5,17 @@
  */
 package com.rent_item;
 
+import static com.work_order.End_Job.tb1;
+import static com.work_order.End_Job.txtOrderId;
+import static com.work_order.End_Job.txtWpoint;
 import common.DB;
 import common.CommonM;
+import common.SystemData;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Vector;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -346,7 +353,8 @@ public class Rent_Item extends javax.swing.JFrame {
     }//GEN-LAST:event_btnStartMouseExited
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
-      
+
+        startOrder();
     }//GEN-LAST:event_btnStartActionPerformed
 
     private void customerListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customerListMouseClicked
@@ -368,10 +376,26 @@ public class Rent_Item extends javax.swing.JFrame {
     private void ItemListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ItemListMouseClicked
         if (evt.getClickCount() == 2) {
             try {
-                    txtItemId.setText(ItemList.getSelectedValue().split(":")[0]);
+                boolean b = true;
+                ResultSet search = DB.search("SELECT * FROM rent_order_item WHERE item_id='"+ItemList.getSelectedValue().split("-")[0].split(":")[0].trim()+"' AND status=1");
+                while(search.next()){
+                 JOptionPane.showMessageDialog(this, "This item alredy rent", "Error", JOptionPane.ERROR_MESSAGE);
+                 txtItemId.setText(null);
+                 txtItemId.grabFocus();
+                 jScrollPane3.setVisible(false); 
+                 b=false;
+                }
+                if(b){
+                   txtItemId.setText(ItemList.getSelectedValue().split(":")[0]);
                    searchDetails();
                    txtDiscription.grabFocus();
-                    jScrollPane3.setVisible(false);
+                    jScrollPane3.setVisible(false);     
+               
+                }else{
+                b=true;
+                }
+                
+
                 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -609,6 +633,30 @@ public class Rent_Item extends javax.swing.JFrame {
        txtProductNumber.setText(null);
        txtDiscription.setText(null);
        
+    }
+
+    private void startOrder() {
+        try {
+             String dataTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+            DB.iud("INSERT INTO rent_order VALUES('"+txtOrderId.getText().toUpperCase()+"','"+txtCustomerId.getText().toUpperCase()+"','"+txtDiscription.getText()+"','"+dataTime+"','"+SystemData.getemployee()+"','"+1+"')");
+              for (int row = 0; row < tb3.getRowCount(); row++) {
+                            String itemId = tb3.getValueAt(row, 0).toString().trim();
+                            String invitemSQL2 = "insert into rent_order_item (order_id,item_id,status) values('" +txtOrderId.getText() + "','" + itemId + "','" + 1 + "')";
+                            DB.iud(invitemSQL2);
+                            clearFealds();
+                            claerTable();
+                        }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void claerTable() {
+          DefaultTableModel dtm1 = (DefaultTableModel) tb3.getModel();
+          dtm1.setRowCount(0);
+          txtCustomerId.setText(null);
+          txtOrderId.setText(null);
+          generateOrId();
     }
 
    

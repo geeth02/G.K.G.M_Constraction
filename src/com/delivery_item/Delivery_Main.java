@@ -152,7 +152,7 @@ public class Delivery_Main extends javax.swing.JFrame {
         btnStartJob.setBackground(new java.awt.Color(0, 102, 204));
         btnStartJob.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 27)); // NOI18N
         btnStartJob.setForeground(new java.awt.Color(255, 255, 255));
-        btnStartJob.setText("Start Order");
+        btnStartJob.setText("Get Orders");
         btnStartJob.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnStartJob.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {

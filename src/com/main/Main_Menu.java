@@ -9,6 +9,8 @@ import com.work_order.Work_Order;
 import com.vehicle_management.Vehicle_Management;
 import com.employee_management.Employee_Management;
 import com.customer_management.Customer_Management;
+import com.delivery_item.Delivery_Main;
+import com.rent_item.Rent_Main;
 import common.CommonM;
 import common.DB;
 import common.SystemData;
@@ -152,7 +154,7 @@ public class Main_Menu extends javax.swing.JFrame {
         btnEmployeeM.setBackground(new java.awt.Color(0, 102, 204));
         btnEmployeeM.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 27)); // NOI18N
         btnEmployeeM.setForeground(new java.awt.Color(255, 255, 255));
-        btnEmployeeM.setText("Payment");
+        btnEmployeeM.setText("Employee Management");
         btnEmployeeM.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnEmployeeM.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -212,7 +214,7 @@ public class Main_Menu extends javax.swing.JFrame {
         btnWorkOrder.setBackground(new java.awt.Color(0, 102, 204));
         btnWorkOrder.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 27)); // NOI18N
         btnWorkOrder.setForeground(new java.awt.Color(255, 255, 255));
-        btnWorkOrder.setText("Delevery Item");
+        btnWorkOrder.setText("Work Order");
         btnWorkOrder.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnWorkOrder.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -232,7 +234,7 @@ public class Main_Menu extends javax.swing.JFrame {
         btnWorkOrder1.setBackground(new java.awt.Color(0, 102, 204));
         btnWorkOrder1.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 27)); // NOI18N
         btnWorkOrder1.setForeground(new java.awt.Color(255, 255, 255));
-        btnWorkOrder1.setText("Work Order");
+        btnWorkOrder1.setText("Delivery Item");
         btnWorkOrder1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnWorkOrder1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -272,7 +274,7 @@ public class Main_Menu extends javax.swing.JFrame {
         btnEmployeeM1.setBackground(new java.awt.Color(0, 102, 204));
         btnEmployeeM1.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 27)); // NOI18N
         btnEmployeeM1.setForeground(new java.awt.Color(255, 255, 255));
-        btnEmployeeM1.setText("Employee Management");
+        btnEmployeeM1.setText("Payment");
         btnEmployeeM1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnEmployeeM1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -561,7 +563,8 @@ public class Main_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnWorkOrder1MouseExited
 
     private void btnWorkOrder1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWorkOrder1ActionPerformed
-        // TODO add your handling code here:
+       new Delivery_Main().setVisible(true);
+       this.dispose();
     }//GEN-LAST:event_btnWorkOrder1ActionPerformed
 
     private void btnWorkOrder2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnWorkOrder2MouseEntered
@@ -573,7 +576,8 @@ public class Main_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnWorkOrder2MouseExited
 
     private void btnWorkOrder2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWorkOrder2ActionPerformed
-        // TODO add your handling code here:
+        new Rent_Main().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnWorkOrder2ActionPerformed
 
     private void btnEmployeeM1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEmployeeM1MouseEntered

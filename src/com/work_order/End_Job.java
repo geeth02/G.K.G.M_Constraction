@@ -98,7 +98,6 @@ public class End_Job extends javax.swing.JFrame {
         lbGKG = new javax.swing.JLabel();
         lbCons = new javax.swing.JLabel();
         btnDashboard = new javax.swing.JButton();
-        btnDashboard1 = new javax.swing.JButton();
         memberTitle = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -611,7 +610,7 @@ public class End_Job extends javax.swing.JFrame {
                 .addComponent(lbGKG, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(lbCons, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
+                .addComponent(lbCons, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -643,43 +642,21 @@ public class End_Job extends javax.swing.JFrame {
             }
         });
 
-        btnDashboard1.setBackground(new java.awt.Color(0, 102, 204));
-        btnDashboard1.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 27)); // NOI18N
-        btnDashboard1.setForeground(new java.awt.Color(255, 255, 255));
-        btnDashboard1.setText("End Job");
-        btnDashboard1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btnDashboard1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnDashboard1MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnDashboard1MouseExited(evt);
-            }
-        });
-        btnDashboard1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDashboard1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnDashboard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnDashboard1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(btnDashboard1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(27, 27, 27)
                 .addComponent(btnDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(761, Short.MAX_VALUE))
+                .addContainerGap(838, Short.MAX_VALUE))
         );
 
         jLayeredPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 1080));
@@ -932,21 +909,9 @@ public class End_Job extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDashboardMouseExited
 
     private void btnDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboardActionPerformed
-        new Main_Menu().setVisible(true);
+        new Work_Order().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnDashboardActionPerformed
-
-    private void btnDashboard1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDashboard1MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnDashboard1MouseEntered
-
-    private void btnDashboard1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDashboard1MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnDashboard1MouseExited
-
-    private void btnDashboard1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboard1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnDashboard1ActionPerformed
 
     private void txtWpointActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtWpointActionPerformed
         // TODO add your handling code here:
@@ -958,6 +923,7 @@ public class End_Job extends javax.swing.JFrame {
 
     private void txtDAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDAmountActionPerformed
       salary();
+      txtEmployeeId.setText(null);
     }//GEN-LAST:event_txtDAmountActionPerformed
 
     private void txtEndMeterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEndMeterKeyPressed
@@ -1009,7 +975,6 @@ public class End_Job extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLayeredPane ReForm;
     private javax.swing.JButton btnDashboard;
-    private javax.swing.JButton btnDashboard1;
     private javax.swing.JButton btnRegister4;
     public static javax.swing.JComboBox<String> comboSearch;
     private javax.swing.JLabel jLabel10;
@@ -1283,6 +1248,17 @@ public class End_Job extends javax.swing.JFrame {
                             String invitemSQL1 = "insert into job_cost (order_id,cost_type,amount,data_time,status) values('" + txtOrderId.getText().toUpperCase() + "','" + costName + "','" + amount + "','" + date + "','" + 1 + "')";
                             DB.iud(invitemSQL1);
                         }
+                        ResultSet search = DB.search("SELECT * FROM work_order WHERE order_id='"+txtOrderId.getText()+"'");
+                        String orderDate=null;
+                        if(search.next()){
+                        orderDate=search.getString("data_time");
+                        }
+                         for (int row = 0; row < tb1.getRowCount(); row++) {
+                            String employeeId = tb1.getValueAt(row, 0).toString().trim();
+                            String amount = tb1.getValueAt(row, 3).toString().trim();
+                            String invitemSQL2 = "insert into work_salary (employee_id,order_id,working_point,amount,order_date,data_time,add_employee,status) values('" + employeeId + "','" + txtOrderId.getText() + "','" + txtWpoint.getText() + "','" + amount + "','" + orderDate + "','"+date+"','"+SystemData.getemployee()+"','"+1+"')";
+                            DB.iud(invitemSQL2);
+                        }
                         double customerPayment = Double.parseDouble(txtCustomerPayment.getText());
                         double income = Double.parseDouble(txtIncome.getText());
 
@@ -1327,6 +1303,8 @@ public class End_Job extends javax.swing.JFrame {
         txtVehicleNumber.setText(null);
         txtAmount.setText(null);
         txtOrderId.setText(null);
+        txtEndMeter.setText(null);
+        txtWpoint.setText(null);
         DefaultTableModel dtm = (DefaultTableModel) tb1.getModel();
         dtm.setRowCount(0);
         DefaultTableModel dtm1 = (DefaultTableModel) tb4.getModel();

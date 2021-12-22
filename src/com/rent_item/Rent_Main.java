@@ -58,6 +58,7 @@ public class Rent_Main extends javax.swing.JFrame {
         btnDashboard1 = new javax.swing.JButton();
         btnDashboard2 = new javax.swing.JButton();
         btnEndJob1 = new javax.swing.JButton();
+        btnDashboard3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txtSearchDash = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -148,7 +149,7 @@ public class Rent_Main extends javax.swing.JFrame {
                 btnDashboardActionPerformed(evt);
             }
         });
-        jPanel1.add(btnDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 500, 320, 71));
+        jPanel1.add(btnDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 570, 320, 71));
 
         btnStartJob.setBackground(new java.awt.Color(0, 102, 204));
         btnStartJob.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 27)); // NOI18N
@@ -193,7 +194,7 @@ public class Rent_Main extends javax.swing.JFrame {
         btnDashboard1.setBackground(new java.awt.Color(0, 102, 204));
         btnDashboard1.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 27)); // NOI18N
         btnDashboard1.setForeground(new java.awt.Color(255, 255, 255));
-        btnDashboard1.setText("Payment");
+        btnDashboard1.setText("Register Item");
         btnDashboard1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnDashboard1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -208,7 +209,7 @@ public class Rent_Main extends javax.swing.JFrame {
                 btnDashboard1ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnDashboard1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, 320, 71));
+        jPanel1.add(btnDashboard1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 500, 320, 71));
 
         btnDashboard2.setBackground(new java.awt.Color(0, 102, 204));
         btnDashboard2.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 27)); // NOI18N
@@ -249,6 +250,26 @@ public class Rent_Main extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnEndJob1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 221, 320, 71));
+
+        btnDashboard3.setBackground(new java.awt.Color(0, 102, 204));
+        btnDashboard3.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 27)); // NOI18N
+        btnDashboard3.setForeground(new java.awt.Color(255, 255, 255));
+        btnDashboard3.setText("Payment");
+        btnDashboard3.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btnDashboard3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnDashboard3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnDashboard3MouseExited(evt);
+            }
+        });
+        btnDashboard3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDashboard3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnDashboard3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, 320, 71));
 
         jLayeredPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 1080));
 
@@ -459,7 +480,7 @@ public class Rent_Main extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDashboard1MouseExited
 
     private void btnDashboard1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboard1ActionPerformed
-       new Paymets().setVisible(true);
+      
     }//GEN-LAST:event_btnDashboard1ActionPerformed
 
     private void btnDashboard2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDashboard2MouseEntered
@@ -486,6 +507,18 @@ public class Rent_Main extends javax.swing.JFrame {
     private void btnEndJob1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEndJob1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEndJob1ActionPerformed
+
+    private void btnDashboard3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDashboard3MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDashboard3MouseEntered
+
+    private void btnDashboard3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDashboard3MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDashboard3MouseExited
+
+    private void btnDashboard3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboard3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDashboard3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -533,6 +566,7 @@ public class Rent_Main extends javax.swing.JFrame {
     private javax.swing.JButton btnDashboard;
     private javax.swing.JButton btnDashboard1;
     private javax.swing.JButton btnDashboard2;
+    private javax.swing.JButton btnDashboard3;
     private javax.swing.JButton btnEndJob;
     private javax.swing.JButton btnEndJob1;
     private javax.swing.JButton btnStartJob;

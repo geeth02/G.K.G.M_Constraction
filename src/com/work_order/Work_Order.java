@@ -56,6 +56,7 @@ public class Work_Order extends javax.swing.JFrame {
         btnEndJob2 = new javax.swing.JButton();
         btnDashboard1 = new javax.swing.JButton();
         btnDashboard2 = new javax.swing.JButton();
+        BtnEditeJobDetails = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txtSearchDash = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -146,7 +147,7 @@ public class Work_Order extends javax.swing.JFrame {
                 btnDashboardActionPerformed(evt);
             }
         });
-        jPanel1.add(btnDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 500, 320, 71));
+        jPanel1.add(btnDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 570, 320, 71));
 
         btnStartJob.setBackground(new java.awt.Color(0, 102, 204));
         btnStartJob.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 27)); // NOI18N
@@ -186,7 +187,7 @@ public class Work_Order extends javax.swing.JFrame {
                 btnEndJobActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEndJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 221, 320, 71));
+        jPanel1.add(btnEndJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 320, 71));
 
         btnEndJob2.setBackground(new java.awt.Color(0, 102, 204));
         btnEndJob2.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 27)); // NOI18N
@@ -206,7 +207,7 @@ public class Work_Order extends javax.swing.JFrame {
                 btnEndJob2ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEndJob2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, 320, 71));
+        jPanel1.add(btnEndJob2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 500, 320, 71));
 
         btnDashboard1.setBackground(new java.awt.Color(0, 102, 204));
         btnDashboard1.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 27)); // NOI18N
@@ -226,12 +227,12 @@ public class Work_Order extends javax.swing.JFrame {
                 btnDashboard1ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnDashboard1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 360, 320, 71));
+        jPanel1.add(btnDashboard1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, 320, 71));
 
         btnDashboard2.setBackground(new java.awt.Color(0, 102, 204));
         btnDashboard2.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 27)); // NOI18N
         btnDashboard2.setForeground(new java.awt.Color(255, 255, 255));
-        btnDashboard2.setText("Driver Salery");
+        btnDashboard2.setText("List Order");
         btnDashboard2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnDashboard2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -246,7 +247,27 @@ public class Work_Order extends javax.swing.JFrame {
                 btnDashboard2ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnDashboard2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 320, 71));
+        jPanel1.add(btnDashboard2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 360, 320, 71));
+
+        BtnEditeJobDetails.setBackground(new java.awt.Color(0, 102, 204));
+        BtnEditeJobDetails.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 27)); // NOI18N
+        BtnEditeJobDetails.setForeground(new java.awt.Color(255, 255, 255));
+        BtnEditeJobDetails.setText("Edite Job Details");
+        BtnEditeJobDetails.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        BtnEditeJobDetails.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                BtnEditeJobDetailsMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                BtnEditeJobDetailsMouseExited(evt);
+            }
+        });
+        BtnEditeJobDetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEditeJobDetailsActionPerformed(evt);
+            }
+        });
+        jPanel1.add(BtnEditeJobDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 320, 71));
 
         jLayeredPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 1080));
 
@@ -457,7 +478,7 @@ public class Work_Order extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEndJob2MouseExited
 
     private void btnEndJob2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEndJob2ActionPerformed
-        // TODO add your handling code here:
+        new Delete_Order().setVisible(true);
     }//GEN-LAST:event_btnEndJob2ActionPerformed
 
     private void btnDashboard1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDashboard1MouseEntered
@@ -484,6 +505,18 @@ public class Work_Order extends javax.swing.JFrame {
       new Driver_Salery().setVisible(true);
       this.dispose();
     }//GEN-LAST:event_btnDashboard2ActionPerformed
+
+    private void BtnEditeJobDetailsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnEditeJobDetailsMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnEditeJobDetailsMouseEntered
+
+    private void BtnEditeJobDetailsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnEditeJobDetailsMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnEditeJobDetailsMouseExited
+
+    private void BtnEditeJobDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditeJobDetailsActionPerformed
+      new Edite_Order().setVisible(true);
+    }//GEN-LAST:event_BtnEditeJobDetailsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -522,6 +555,7 @@ public class Work_Order extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnEditeJobDetails;
     private javax.swing.JButton btnDashboard;
     private javax.swing.JButton btnDashboard1;
     private javax.swing.JButton btnDashboard2;

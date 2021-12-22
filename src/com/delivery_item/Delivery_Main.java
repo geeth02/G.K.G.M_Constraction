@@ -434,7 +434,7 @@ public class Delivery_Main extends javax.swing.JFrame {
     }//GEN-LAST:event_btnStartJobMouseExited
 
     private void btnStartJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartJobActionPerformed
-        new Start_Job().setVisible(true);
+       
     }//GEN-LAST:event_btnStartJobActionPerformed
 
     private void btnEndJobMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEndJobMouseEntered
@@ -446,7 +446,7 @@ public class Delivery_Main extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEndJobMouseExited
 
     private void btnEndJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEndJobActionPerformed
-        new End_Job().setVisible(true);
+     
     }//GEN-LAST:event_btnEndJobActionPerformed
 
     private void btnDashboard1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDashboard1MouseEntered
@@ -458,7 +458,7 @@ public class Delivery_Main extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDashboard1MouseExited
 
     private void btnDashboard1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboard1ActionPerformed
-       new Paymets().setVisible(true);
+
     }//GEN-LAST:event_btnDashboard1ActionPerformed
 
     private void btnDashboard2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDashboard2MouseEntered
@@ -470,8 +470,7 @@ public class Delivery_Main extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDashboard2MouseExited
 
     private void btnDashboard2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboard2ActionPerformed
-      new Driver_Salery().setVisible(true);
-      this.dispose();
+
     }//GEN-LAST:event_btnDashboard2ActionPerformed
 
     private void btnEndJob1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEndJob1MouseEntered

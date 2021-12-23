@@ -456,7 +456,7 @@ public class Rent_Main extends javax.swing.JFrame {
     }//GEN-LAST:event_btnStartJobMouseExited
 
     private void btnStartJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartJobActionPerformed
-        new Start_Job().setVisible(true);
+        new Rent_Item().setVisible(true);
     }//GEN-LAST:event_btnStartJobActionPerformed
 
     private void btnEndJobMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEndJobMouseEntered

@@ -59,18 +59,9 @@ public class Get_order extends javax.swing.JFrame {
         jScrollPane7 = new javax.swing.JScrollPane();
         tb3 = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
-<<<<<<< Updated upstream
-        jLabel6 = new javax.swing.JLabel();
-        txtLocation1 = new javax.swing.JTextField();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
-=======
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jLabel6 = new javax.swing.JLabel();
         txtLocation1 = new javax.swing.JTextField();
-<<<<<<< HEAD
-=======
->>>>>>> Stashed changes
->>>>>>> febefd64e8d9d0bc0f7dd468dd679c2e85936ae6
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -209,14 +200,7 @@ public class Get_order extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
         jLabel4.setText("Delivery Date");
         ReForm.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 190, 43));
-<<<<<<< HEAD
         ReForm.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, 450, 40));
-=======
-<<<<<<< Updated upstream
-=======
-        ReForm.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, 450, 40));
->>>>>>> Stashed changes
->>>>>>> febefd64e8d9d0bc0f7dd468dd679c2e85936ae6
 
         jLabel6.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
         jLabel6.setText("Price");
@@ -230,13 +214,6 @@ public class Get_order extends javax.swing.JFrame {
             }
         });
         ReForm.add(txtLocation1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, 450, 43));
-<<<<<<< HEAD
-=======
-<<<<<<< Updated upstream
-        ReForm.add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, 450, 40));
-=======
->>>>>>> Stashed changes
->>>>>>> febefd64e8d9d0bc0f7dd468dd679c2e85936ae6
 
         jLayeredPane2.add(ReForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 750, 840));
 
@@ -354,6 +331,8 @@ public class Get_order extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -367,7 +346,7 @@ public class Get_order extends javax.swing.JFrame {
     private javax.swing.JLayeredPane ReForm;
     private javax.swing.JButton btnRegister3;
     private javax.swing.JList<String> customerList;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

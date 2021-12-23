@@ -67,7 +67,10 @@ public class Get_order extends javax.swing.JFrame {
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jLabel6 = new javax.swing.JLabel();
         txtLocation1 = new javax.swing.JTextField();
+<<<<<<< HEAD
+=======
 >>>>>>> Stashed changes
+>>>>>>> febefd64e8d9d0bc0f7dd468dd679c2e85936ae6
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -206,10 +209,14 @@ public class Get_order extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
         jLabel4.setText("Delivery Date");
         ReForm.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 190, 43));
+<<<<<<< HEAD
+        ReForm.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, 450, 40));
+=======
 <<<<<<< Updated upstream
 =======
         ReForm.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, 450, 40));
 >>>>>>> Stashed changes
+>>>>>>> febefd64e8d9d0bc0f7dd468dd679c2e85936ae6
 
         jLabel6.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
         jLabel6.setText("Price");
@@ -223,10 +230,13 @@ public class Get_order extends javax.swing.JFrame {
             }
         });
         ReForm.add(txtLocation1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, 450, 43));
+<<<<<<< HEAD
+=======
 <<<<<<< Updated upstream
         ReForm.add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, 450, 40));
 =======
 >>>>>>> Stashed changes
+>>>>>>> febefd64e8d9d0bc0f7dd468dd679c2e85936ae6
 
         jLayeredPane2.add(ReForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 750, 840));
 

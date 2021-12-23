@@ -72,13 +72,13 @@ public class Add_Delete_Employee extends javax.swing.JFrame {
         lbLastName = new javax.swing.JLabel();
         btnUpdte = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        txtBirthDay = new com.toedter.calendar.JDateChooser();
         jLabel14 = new javax.swing.JLabel();
         txtAddressLine2 = new javax.swing.JTextField();
         txtCity = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         txtNicNumber = new javax.swing.JTextField();
+        txtBirthDay = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -252,22 +252,6 @@ public class Add_Delete_Employee extends javax.swing.JFrame {
         jLabel6.setText("Birthday");
         ReForm.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 417, 148, 43));
 
-        txtBirthDay.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtBirthDay.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtBirthDayMouseClicked(evt);
-            }
-        });
-        txtBirthDay.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtBirthDayKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtBirthDayKeyReleased(evt);
-            }
-        });
-        ReForm.add(txtBirthDay, new org.netbeans.lib.awtextra.AbsoluteConstraints(268, 417, 440, 43));
-
         jLabel14.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
         jLabel14.setText("Address Line 02");
         ReForm.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 526, 175, 42));
@@ -321,6 +305,7 @@ public class Add_Delete_Employee extends javax.swing.JFrame {
             }
         });
         ReForm.add(txtNicNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(268, 211, 440, 43));
+        ReForm.add(txtBirthDay, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 420, 440, 40));
 
         jLayeredPane1.add(ReForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 780, 780));
 

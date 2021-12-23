@@ -43,7 +43,6 @@ public class Main_Menu extends javax.swing.JFrame {
         clock();
         CommonM.tableSettings(jTable1);
         tbData();
-        tableBackGround();
     }
     int hours = 0, minutes = 0, seconds = 0;
     String timeString = "";
@@ -756,9 +755,4 @@ t.start();
             e.printStackTrace();
         }
     } 
-
-    private void tableBackGround() {
-      JTableHeader header = jTable1.getTableHeader();
-      header.setBackground(Color.cyan);
-    }
 }

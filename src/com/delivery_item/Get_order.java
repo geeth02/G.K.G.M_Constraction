@@ -53,9 +53,6 @@ public class Get_order extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txtLocation = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtDiscription = new javax.swing.JTextArea();
         btnRegister3 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         txtLastMeter = new javax.swing.JTextField();
@@ -63,6 +60,8 @@ public class Get_order extends javax.swing.JFrame {
         tb3 = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jLabel6 = new javax.swing.JLabel();
+        txtLocation1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -138,22 +137,11 @@ public class Get_order extends javax.swing.JFrame {
                 txtLocationActionPerformed(evt);
             }
         });
-        ReForm.add(txtLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 300, 450, 43));
+        ReForm.add(txtLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, 450, 43));
 
         jLabel2.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
         jLabel2.setText("Material Name");
-        ReForm.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 190, 43));
-
-        jLabel10.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
-        jLabel10.setText("discreption");
-        ReForm.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 540, 175, 42));
-
-        txtDiscription.setColumns(20);
-        txtDiscription.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
-        txtDiscription.setRows(5);
-        jScrollPane1.setViewportView(txtDiscription);
-
-        ReForm.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 540, 450, 150));
+        ReForm.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 190, 43));
 
         btnRegister3.setBackground(new java.awt.Color(0, 102, 204));
         btnRegister3.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 30)); // NOI18N
@@ -176,7 +164,7 @@ public class Get_order extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
         jLabel3.setText("Quntity");
-        ReForm.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 175, 43));
+        ReForm.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 175, 43));
 
         txtLastMeter.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtLastMeter.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -190,14 +178,14 @@ public class Get_order extends javax.swing.JFrame {
                 txtLastMeterKeyTyped(evt);
             }
         });
-        ReForm.add(txtLastMeter, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, 450, 43));
+        ReForm.add(txtLastMeter, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 450, 43));
 
         tb3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Material Name", "QTY"
+                "Material Name", "QTY", "Price"
             }
         ));
         tb3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -207,12 +195,25 @@ public class Get_order extends javax.swing.JFrame {
         });
         jScrollPane7.setViewportView(tb3);
 
-        ReForm.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 350, 450, 170));
+        ReForm.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 400, 450, 160));
 
         jLabel4.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
         jLabel4.setText("Delivery Date");
-        ReForm.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 190, 43));
-        ReForm.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 200, 450, 40));
+        ReForm.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 190, 43));
+        ReForm.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, 450, 40));
+
+        jLabel6.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
+        jLabel6.setText("Price");
+        ReForm.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 175, 43));
+
+        txtLocation1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtLocation1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtLocation1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtLocation1ActionPerformed(evt);
+            }
+        });
+        ReForm.add(txtLocation1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, 450, 43));
 
         jLayeredPane2.add(ReForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 750, 840));
 
@@ -299,6 +300,10 @@ public class Get_order extends javax.swing.JFrame {
 
     }//GEN-LAST:event_tb3MousePressed
 
+    private void txtLocation1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLocation1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtLocation1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -341,21 +346,20 @@ public class Get_order extends javax.swing.JFrame {
     private javax.swing.JList<String> customerList;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLayeredPane jLayeredPane2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JLabel lbFirstName;
     private javax.swing.JTable tb3;
     public static javax.swing.JTextField txtCustomerId;
-    private javax.swing.JTextArea txtDiscription;
     private javax.swing.JTextField txtLastMeter;
     private javax.swing.JTextField txtLocation;
+    private javax.swing.JTextField txtLocation1;
     private javax.swing.JTextField txtOrderId;
     // End of variables declaration//GEN-END:variables
  private void generateOrId() {

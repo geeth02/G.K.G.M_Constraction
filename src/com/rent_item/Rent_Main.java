@@ -277,7 +277,7 @@ public class Rent_Main extends javax.swing.JFrame {
         jLabel1.setText("Search");
         jLayeredPane1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1490, 140, -1, -1));
 
-        txtSearchDash.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtSearchDash.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtSearchDash.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtSearchDashMouseClicked(evt);

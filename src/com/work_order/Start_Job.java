@@ -16,12 +16,9 @@ import java.sql.Savepoint;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Vector;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 
 /**

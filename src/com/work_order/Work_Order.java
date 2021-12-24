@@ -7,6 +7,7 @@ package com.work_order;
 
 import common.DB;
 import com.main.Main_Menu;
+import static com.work_order.End_Job.tb1;
 import common.CommonM;
 import common.SystemData;
 import java.awt.Color;
@@ -29,11 +30,11 @@ public class Work_Order extends javax.swing.JFrame {
      */
     public Work_Order() {
         initComponents();
-       CommonM.setFullScreen(this);
-       CommonM.tableSettings(tb1);
-       tbData();
-       jScrollPane1.setVisible(false);
-       
+        CommonM.setFullScreen(this);
+        CommonM.tableSettings(tb1);
+        tbData();
+        jScrollPane1.setVisible(false);
+
     }
 
     /**
@@ -45,6 +46,7 @@ public class Work_Order extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -58,15 +60,16 @@ public class Work_Order extends javax.swing.JFrame {
         btnDashboard2 = new javax.swing.JButton();
         BtnEditeJobDetails = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        txtSearchDash = new javax.swing.JTextField();
+        txtSearch = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         list1 = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         tb1 = new javax.swing.JTable();
         memberTitle = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
+        redioPending = new javax.swing.JRadioButton();
+        redioComplite = new javax.swing.JRadioButton();
+        comboSearch = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -272,30 +275,34 @@ public class Work_Order extends javax.swing.JFrame {
         jLayeredPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 1080));
 
         jLabel1.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
-        jLabel1.setText("Search");
-        jLayeredPane1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1490, 140, -1, -1));
+        jLabel1.setText("Search By");
+        jLayeredPane1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1340, 140, -1, -1));
 
-        txtSearchDash.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        txtSearchDash.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtSearch.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtSearch.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtSearchDashMouseClicked(evt);
+                txtSearchMouseClicked(evt);
             }
         });
-        txtSearchDash.addActionListener(new java.awt.event.ActionListener() {
+        txtSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSearchDashActionPerformed(evt);
+                txtSearchActionPerformed(evt);
             }
         });
-        txtSearchDash.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtSearchDashKeyPressed(evt);
+                txtSearchKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtSearchDashKeyReleased(evt);
+                txtSearchKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtSearchKeyTyped(evt);
             }
         });
-        jLayeredPane1.add(txtSearchDash, new org.netbeans.lib.awtextra.AbsoluteConstraints(1570, 140, 340, 40));
+        jLayeredPane1.add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(1620, 140, 290, 40));
 
+        list1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         list1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { " " };
             public int getSize() { return strings.length; }
@@ -306,19 +313,30 @@ public class Work_Order extends javax.swing.JFrame {
                 list1MouseClicked(evt);
             }
         });
+        list1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                list1KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                list1KeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(list1);
 
-        jLayeredPane1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1570, 180, 340, 160));
+        jLayeredPane1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1620, 180, 290, 160));
 
         tb1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Order Id", "Customer", "Vehicle", "Location", "Description", "Date", "Added By"
+                "Order Id", "Customer", "Vehicle", "Start Meter", "Location", "Description", "Date", "Added By"
             }
         ));
         tb1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb1MouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 tb1MousePressed(evt);
             }
@@ -333,26 +351,42 @@ public class Work_Order extends javax.swing.JFrame {
         memberTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         memberTitle.setText("Work Order");
         memberTitle.setOpaque(true);
-        jLayeredPane1.add(memberTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(321, 0, 1660, 120));
+        jLayeredPane1.add(memberTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(321, 0, 1620, 120));
 
         jLabel13.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
-        jLabel13.setText("Category");
+        jLabel13.setText("Status");
         jLayeredPane1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 140, 207, 43));
 
-        jRadioButton3.setFont(new java.awt.Font("Yu Gothic Light", 0, 24)); // NOI18N
-        jRadioButton3.setSelected(true);
-        jRadioButton3.setText("Pending");
-        jLayeredPane1.add(jRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 140, 125, 41));
+        buttonGroup1.add(redioPending);
+        redioPending.setFont(new java.awt.Font("Yu Gothic Light", 0, 24)); // NOI18N
+        redioPending.setSelected(true);
+        redioPending.setText("Pending");
+        redioPending.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                redioPendingActionPerformed(evt);
+            }
+        });
+        jLayeredPane1.add(redioPending, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 140, 125, 41));
 
-        jRadioButton4.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
-        jRadioButton4.setText("Complite");
-        jLayeredPane1.add(jRadioButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 140, 133, -1));
+        buttonGroup1.add(redioComplite);
+        redioComplite.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
+        redioComplite.setText("Complite");
+        redioComplite.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                redioCompliteActionPerformed(evt);
+            }
+        });
+        jLayeredPane1.add(redioComplite, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 140, 133, -1));
+
+        comboSearch.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        comboSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NIC Number", "Order Id", "Customer Name" }));
+        jLayeredPane1.add(comboSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(1460, 140, 150, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 2240, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -383,11 +417,11 @@ public class Work_Order extends javax.swing.JFrame {
     }//GEN-LAST:event_lbConsMouseExited
 
     private void btnDashboardMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDashboardMouseEntered
-      CommonM.setBlue(btnDashboard);
+        CommonM.setBlue(btnDashboard);
     }//GEN-LAST:event_btnDashboardMouseEntered
 
     private void btnDashboardMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDashboardMouseExited
-      CommonM.setDefaultColor(btnDashboard);
+        CommonM.setDefaultColor(btnDashboard);
     }//GEN-LAST:event_btnDashboardMouseExited
 
     private void btnDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboardActionPerformed
@@ -395,54 +429,50 @@ public class Work_Order extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnDashboardActionPerformed
 
-    private void txtSearchDashMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSearchDashMouseClicked
+    private void txtSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSearchMouseClicked
+        txtSearch.setEditable(true);
+    }//GEN-LAST:event_txtSearchMouseClicked
 
-    }//GEN-LAST:event_txtSearchDashMouseClicked
-
-    private void txtSearchDashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchDashActionPerformed
+    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtSearchDashActionPerformed
+    }//GEN-LAST:event_txtSearchActionPerformed
 
-    private void txtSearchDashKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchDashKeyPressed
+    private void txtSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyPressed
 
-    }//GEN-LAST:event_txtSearchDashKeyPressed
+    }//GEN-LAST:event_txtSearchKeyPressed
 
-    private void txtSearchDashKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchDashKeyReleased
-        try {
-            if(txtSearchDash.getText().toUpperCase().contains("BN")){
-                jScrollPane1.setVisible(true);
-                ResultSet rs=  DB.search("select * from book_tb where book_id  like '"+txtSearchDash.getText().toUpperCase()+"%'");
-                Vector v = new Vector();
-                while(rs.next()){
-                    v.add(rs.getString("book_id")+"-"+rs.getString("book_name"));
-                }
-                list1.setListData(v);
-            }else{
-                jScrollPane1.setVisible(true);
-                ResultSet rs=  DB.search("select * from book_tb where book_name like '"+txtSearchDash.getText().toUpperCase()+"%'");
-                Vector v = new Vector();
-                while(rs.next()){
-                    v.add(rs.getString("book_id")+"-"+rs.getString("book_name"));
-                }
-                list1.setListData(v);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+        searchPro();
+        if (evt.getKeyCode() == 40) {
+            list1.setSelectedIndex(0);
+            list1.grabFocus();
         }
-    }//GEN-LAST:event_txtSearchDashKeyReleased
+
+        if (comboSearch.getSelectedItem().equals("NIC Number")) {
+            if (txtSearch.getText().length() == 9) {
+                txtSearch.setText(txtSearch.getText().concat("V"));
+            } else if (txtSearch.getText().contains("V") || txtSearch.getText().length() != 10) {
+                txtSearch.setText(txtSearch.getText().replace("V", ""));
+            }
+            if (txtSearch.getText().length() == 12) {
+                txtSearch.setEditable(false);
+            }
+        }
+    }//GEN-LAST:event_txtSearchKeyReleased
 
     private void list1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_list1MouseClicked
-        if(evt.getClickCount()==2){
-            txtSearchDash.setText(list1.getSelectedValue().split("-")[0]);
+        if (evt.getClickCount() == 2) {
+            txtSearch.setText(list1.getSelectedValue().split("-")[0]);
             jScrollPane1.setVisible(false);
-
+            searchDetails();
         }
     }//GEN-LAST:event_list1MouseClicked
 
     private void tb1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb1MousePressed
-        try{
+        try {
 
-        }catch(Exception e){}
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_tb1MousePressed
 
     private void btnStartJobMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnStartJobMouseEntered
@@ -490,7 +520,7 @@ public class Work_Order extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDashboard1MouseExited
 
     private void btnDashboard1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboard1ActionPerformed
-       new Paymets().setVisible(true);
+        new Paymets().setVisible(true);
     }//GEN-LAST:event_btnDashboard1ActionPerformed
 
     private void btnDashboard2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDashboard2MouseEntered
@@ -502,8 +532,8 @@ public class Work_Order extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDashboard2MouseExited
 
     private void btnDashboard2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboard2ActionPerformed
-      new Driver_Salery().setVisible(true);
-      this.dispose();
+        new Driver_Salery().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnDashboard2ActionPerformed
 
     private void BtnEditeJobDetailsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnEditeJobDetailsMouseEntered
@@ -515,8 +545,48 @@ public class Work_Order extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnEditeJobDetailsMouseExited
 
     private void BtnEditeJobDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditeJobDetailsActionPerformed
-      new Edite_Order().setVisible(true);
+        new Edite_Order().setVisible(true);
     }//GEN-LAST:event_BtnEditeJobDetailsActionPerformed
+
+    private void redioCompliteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redioCompliteActionPerformed
+        if (redioComplite.isSelected()) {
+            tbData();
+        }
+    }//GEN-LAST:event_redioCompliteActionPerformed
+
+    private void redioPendingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redioPendingActionPerformed
+        if (redioPending.isSelected()) {
+            tbData();
+        }
+    }//GEN-LAST:event_redioPendingActionPerformed
+
+    private void tb1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb1MouseClicked
+        new Order_Details(tb1.getValueAt(tb1.getSelectedRow(), 0).toString()).setVisible(true);
+        System.out.println(tb1.getValueAt(tb1.getSelectedRow(), 0).toString());
+
+
+    }//GEN-LAST:event_tb1MouseClicked
+
+    private void txtSearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyTyped
+        if (comboSearch.getSelectedItem().equals("NIC Number")) {
+            if (!Character.isDigit(evt.getKeyChar())) {
+                evt.consume();
+            }
+
+        }
+    }//GEN-LAST:event_txtSearchKeyTyped
+
+    private void list1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_list1KeyReleased
+
+    }//GEN-LAST:event_list1KeyReleased
+
+    private void list1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_list1KeyPressed
+        if (evt.getKeyCode() == 10) {
+            txtSearch.setText(list1.getSelectedValue().split("-")[0]);
+            jScrollPane1.setVisible(false);
+            searchDetails();
+        }
+    }//GEN-LAST:event_list1KeyPressed
 
     /**
      * @param args the command line arguments
@@ -562,78 +632,397 @@ public class Work_Order extends javax.swing.JFrame {
     private javax.swing.JButton btnEndJob;
     private javax.swing.JButton btnEndJob2;
     private javax.swing.JButton btnStartJob;
+    private javax.swing.ButtonGroup buttonGroup1;
+    public static javax.swing.JComboBox<String> comboSearch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lbCons;
     private javax.swing.JLabel lbGKG;
     private javax.swing.JList<String> list1;
     private javax.swing.JLabel memberTitle;
+    private javax.swing.JRadioButton redioComplite;
+    private javax.swing.JRadioButton redioPending;
     public static javax.swing.JTable tb1;
-    private javax.swing.JTextField txtSearchDash;
+    private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 
     private void tbData() {
         try {
-            System.out.println(SystemData.getAccountCode());
-            DefaultTableModel dtm =(DefaultTableModel) tb1.getModel();
-           ResultSet search = DB.search("SELECT * FROM work_order WHERE status=1");
-           dtm.setRowCount(0);
-           while(search.next()){
-               Vector v = new Vector();
-               v.add(search.getString("order_id"));
-                ResultSet search1 = DB.search("SELECT * FROM customer WHERE customer_id='"+search.getString("customer_id")+"'");
-                if(search1.next()){
-                v.add(search1.getString("customer_id")+"-"+search1.getString("first_name")+" "+search1.getString("last_name"));
+            if (redioPending.isSelected()) {
+                DefaultTableModel dtm = (DefaultTableModel) tb1.getModel();
+                ResultSet search = DB.search("SELECT * FROM work_order WHERE status=1");
+                dtm.setRowCount(0);
+                while (search.next()) {
+                    Vector v = new Vector();
+                    v.add(search.getString("order_id"));
+                    ResultSet search1 = DB.search("SELECT * FROM customer WHERE customer_id='" + search.getString("customer_id") + "'");
+                    if (search1.next()) {
+                        v.add(search1.getString("customer_id") + "-" + search1.getString("first_name") + " " + search1.getString("last_name"));
+                    }
+                    ResultSet search2 = DB.search("SELECT * FROM vehicle WHERE vehicle_id='" + search.getString("vehicle_id") + "'");
+                    if (search2.next()) {
+                        v.add(search2.getString("vehicle_id") + "-" + search2.getString("registration_number"));
+                    }
+                    v.add(search.getString("start_meter"));
+                    v.add(search.getString("location"));
+                    v.add(search.getString("discription"));
+                    v.add(search.getString("data_time"));
+                    if (SystemData.getAccountCode().equals("ADM")) {
+                        ResultSet search3 = DB.search("SELECT * FROM employee WHERE employee_id='" + search.getString("adding_employee") + "'");
+                        if (search3.next()) {
+                            v.add(search.getString("adding_employee") + "-" + search3.getString("first_name") + " " + search3.getString("last_name"));
+                        }
+                    } else {
+                        TableColumn col = tb1.getColumnModel().getColumn(6);
+                        col.setCellRenderer(new MyRenderer(Color.WHITE, Color.RED));
+                        v.add("ADMIN ONLY");
+                    }
+                    dtm.addRow(v);
                 }
-                ResultSet search2 = DB.search("SELECT * FROM vehicle WHERE vehicle_id='"+search.getString("vehicle_id")+"'");
-               if(search2.next()){
-               v.add(search2.getString("vehicle_id")+"-"+search2.getString("registration_number"));
-               }
-               v.add(search.getString("location"));
-               v.add(search.getString("discription"));
-               v.add(search.getString("data_time"));
-               if(SystemData.getAccountCode().equals("ADM")){
-                   ResultSet search3 = DB.search("SELECT * FROM employee WHERE employee_id='"+search.getString("adding_employee")+"'");
-                   if(search3.next()){
-                  v.add(search.getString("adding_employee")+"-"+search3.getString("first_name")+" "+search3.getString("last_name"));
-                   }
-               }else{
-              TableColumn col = tb1.getColumnModel().getColumn(6);
-             col.setCellRenderer(new MyRenderer(Color.WHITE, Color.RED));
-               v.add("ADMIN ONLY");
-               }
-               dtm.addRow(v);
-               }
-            
+            } else if (redioComplite.isSelected()) {
+                DefaultTableModel dtm = (DefaultTableModel) tb1.getModel();
+                ResultSet search = DB.search("SELECT * FROM work_order WHERE status=0");
+                dtm.setRowCount(0);
+                while (search.next()) {
+                    Vector v = new Vector();
+                    v.add(search.getString("order_id"));
+                    ResultSet search1 = DB.search("SELECT * FROM customer WHERE customer_id='" + search.getString("customer_id") + "'");
+                    if (search1.next()) {
+                        v.add(search1.getString("customer_id") + "-" + search1.getString("first_name") + " " + search1.getString("last_name"));
+                    }
+                    ResultSet search2 = DB.search("SELECT * FROM vehicle WHERE vehicle_id='" + search.getString("vehicle_id") + "'");
+                    if (search2.next()) {
+                        v.add(search2.getString("vehicle_id") + "-" + search2.getString("registration_number"));
+                    }
+                    v.add(search.getString("start_meter"));
+                    v.add(search.getString("location"));
+                    v.add(search.getString("discription"));
+                    v.add(search.getString("data_time"));
+                    if (SystemData.getAccountCode().equals("ADM")) {
+                        ResultSet search3 = DB.search("SELECT * FROM employee WHERE employee_id='" + search.getString("adding_employee") + "'");
+                        if (search3.next()) {
+                            v.add(search.getString("adding_employee") + "-" + search3.getString("first_name") + " " + search3.getString("last_name"));
+                        }
+                    } else {
+                        TableColumn col = tb1.getColumnModel().getColumn(6);
+                        col.setCellRenderer(new MyRenderer(Color.WHITE, Color.RED));
+                        v.add("ADMIN ONLY");
+                    }
+                    dtm.addRow(v);
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+    private void searchPro() {
+        try {
+            if (!txtSearch.getText().trim().equals("")) {
+                if (redioPending.isSelected()) {
+                    if (comboSearch.getSelectedItem().equals("NIC Number")) {
+                        ResultSet rs = DB.search("SELECT * FROM customer WHERE status=1 AND nic_number LIKE '" + txtSearch.getText().toUpperCase() + "%'");
+                        Vector v = new Vector();
+                        jScrollPane1.setVisible(false);
+                        while (rs.next()) {
+                            jScrollPane1.setVisible(true);
+                            v.add(rs.getString("customer_id") + "-" + rs.getString("first_name") + " " + rs.getString("last_name"));
+                            list1.setListData(v);
+                        }
+                    } else if (comboSearch.getSelectedItem().equals(("Order Id"))) {
+                        ResultSet rs = DB.search("SELECT * FROM work_order WHERE status=1 AND order_id LIKE '" + txtSearch.getText().toUpperCase() + "%'");
+                        Vector v = new Vector();
+                        jScrollPane1.setVisible(false);
+                        while (rs.next()) {
+                            jScrollPane1.setVisible(true);
+                            v.add(rs.getString("order_id") + "-" + rs.getString("customer_id"));
+                        }
+                        list1.setListData(v);
+                    } else if (comboSearch.getSelectedItem().equals("Customer Name")) {
+                        ResultSet rs = DB.search("SELECT * FROM customer WHERE status=1 AND first_name LIKE '" + txtSearch.getText().toUpperCase() + "%'");
+                        Vector v = new Vector();
+                        jScrollPane1.setVisible(false);
+                        while (rs.next()) {
+                            jScrollPane1.setVisible(true);
+                            v.add(rs.getString("customer_id") + "-" + rs.getString("first_name") + " " + rs.getString("last_name"));
+                        }
+                        list1.setListData(v);
+
+                    }
+                } else {
+                    if (comboSearch.getSelectedItem().equals("NIC Number")) {
+                        ResultSet rs = DB.search("SELECT * FROM customer WHERE status=1 AND nic_number LIKE '" + txtSearch.getText().toUpperCase() + "%'");
+                        Vector v = new Vector();
+                        jScrollPane1.setVisible(false);
+                        while (rs.next()) {
+                            jScrollPane1.setVisible(true);
+                            v.add(rs.getString("customer_id") + "-" + rs.getString("first_name") + " " + rs.getString("last_name"));
+                            list1.setListData(v);
+                        }
+                    } else if (comboSearch.getSelectedItem().equals(("Order Id"))) {
+                        ResultSet rs = DB.search("SELECT * FROM work_order WHERE status=0 AND order_id LIKE '" + txtSearch.getText().toUpperCase() + "%'");
+                        Vector v = new Vector();
+                        jScrollPane1.setVisible(false);
+                        while (rs.next()) {
+                            jScrollPane1.setVisible(true);
+                            v.add(rs.getString("order_id") + "-" + rs.getString("customer_id"));
+                        }
+                        list1.setListData(v);
+                    } else if (comboSearch.getSelectedItem().equals("Customer Name")) {
+                        ResultSet rs = DB.search("SELECT * FROM customer WHERE status=1 AND first_name LIKE '" + txtSearch.getText().toUpperCase() + "%'");
+                        Vector v = new Vector();
+                        jScrollPane1.setVisible(false);
+                        while (rs.next()) {
+                            jScrollPane1.setVisible(true);
+                            v.add(rs.getString("customer_id") + "-" + rs.getString("first_name") + " " + rs.getString("last_name"));
+                        }
+                        list1.setListData(v);
+
+                    }
+
+                }
+            } else {
+                jScrollPane1.setVisible(false);
+                tbData();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void searchDetails() {
+        try {
+            if (redioPending.isSelected()) {
+                if (comboSearch.getSelectedItem().equals("NIC Number")) {
+                    ResultSet search = DB.search("SELECT * FROM work_order WHERE status=1 AND customer_id='" + list1.getSelectedValue().split("-")[0] + "'");
+                    DefaultTableModel dtm = (DefaultTableModel) tb1.getModel();
+                    dtm.setRowCount(0);
+                    while (search.next()) {
+                        Vector v = new Vector();
+                        v.add(search.getString("order_id"));
+                        ResultSet search1 = DB.search("SELECT * FROM customer WHERE customer_id='" + search.getString("customer_id") + "'");
+                        if (search1.next()) {
+                            v.add(search1.getString("customer_id") + "-" + search1.getString("first_name") + " " + search1.getString("last_name"));
+                        }
+                        ResultSet search2 = DB.search("SELECT * FROM vehicle WHERE vehicle_id='" + search.getString("vehicle_id") + "'");
+                        if (search2.next()) {
+                            v.add(search2.getString("vehicle_id") + "-" + search2.getString("registration_number"));
+                        }
+                        v.add(search.getString("start_meter"));
+                        v.add(search.getString("location"));
+                        v.add(search.getString("discription"));
+                        v.add(search.getString("data_time"));
+                        if (SystemData.getAccountCode().equals("ADM")) {
+                            ResultSet search3 = DB.search("SELECT * FROM employee WHERE employee_id='" + search.getString("adding_employee") + "'");
+                            if (search3.next()) {
+                                v.add(search.getString("adding_employee") + "-" + search3.getString("first_name") + " " + search3.getString("last_name"));
+                            }
+                        } else {
+                            TableColumn col = tb1.getColumnModel().getColumn(6);
+                            col.setCellRenderer(new MyRenderer(Color.WHITE, Color.RED));
+                            v.add("ADMIN ONLY");
+                        }
+                        dtm.addRow(v);
+
+                    }
+                } else if (comboSearch.getSelectedItem().equals("Order Id")) {
+                    ResultSet search = DB.search("SELECT * FROM work_order WHERE status=1 AND customer_id='" + list1.getSelectedValue().split("-")[1] + "'");
+                    DefaultTableModel dtm = (DefaultTableModel) tb1.getModel();
+                    dtm.setRowCount(0);
+                    while (search.next()) {
+                        Vector v = new Vector();
+                        v.add(search.getString("order_id"));
+                        ResultSet search1 = DB.search("SELECT * FROM customer WHERE customer_id='" + search.getString("customer_id") + "'");
+                        if (search1.next()) {
+                            v.add(search1.getString("customer_id") + "-" + search1.getString("first_name") + " " + search1.getString("last_name"));
+                        }
+                        ResultSet search2 = DB.search("SELECT * FROM vehicle WHERE vehicle_id='" + search.getString("vehicle_id") + "'");
+                        if (search2.next()) {
+                            v.add(search2.getString("vehicle_id") + "-" + search2.getString("registration_number"));
+                        }
+                        v.add(search.getString("start_meter"));
+                        v.add(search.getString("location"));
+                        v.add(search.getString("discription"));
+                        v.add(search.getString("data_time"));
+                        if (SystemData.getAccountCode().equals("ADM")) {
+                            ResultSet search3 = DB.search("SELECT * FROM employee WHERE employee_id='" + search.getString("adding_employee") + "'");
+                            if (search3.next()) {
+                                v.add(search.getString("adding_employee") + "-" + search3.getString("first_name") + " " + search3.getString("last_name"));
+                            }
+                        } else {
+                            TableColumn col = tb1.getColumnModel().getColumn(6);
+                            col.setCellRenderer(new com.work_order.MyRenderer(Color.WHITE, Color.RED));
+                            v.add("ADMIN ONLY");
+                        }
+                        dtm.addRow(v);
+
+                    }
+                } else if (comboSearch.getSelectedItem().equals("Customer Name")) {
+                    ResultSet search = DB.search("SELECT * FROM work_order WHERE status=1 AND customer_id='" + list1.getSelectedValue().split("-")[0] + "'");
+                    DefaultTableModel dtm = (DefaultTableModel) tb1.getModel();
+                    dtm.setRowCount(0);
+                    while (search.next()) {
+                        Vector v = new Vector();
+                        v.add(search.getString("order_id"));
+                        ResultSet search1 = DB.search("SELECT * FROM customer WHERE customer_id='" + search.getString("customer_id") + "'");
+                        if (search1.next()) {
+                            v.add(search1.getString("customer_id") + "-" + search1.getString("first_name") + " " + search1.getString("last_name"));
+                        }
+                        ResultSet search2 = DB.search("SELECT * FROM vehicle WHERE vehicle_id='" + search.getString("vehicle_id") + "'");
+                        if (search2.next()) {
+                            v.add(search2.getString("vehicle_id") + "-" + search2.getString("registration_number"));
+                        }
+                        v.add(search.getString("start_meter"));
+                        v.add(search.getString("location"));
+                        v.add(search.getString("discription"));
+                        v.add(search.getString("data_time"));
+                        if (SystemData.getAccountCode().equals("ADM")) {
+                            ResultSet search3 = DB.search("SELECT * FROM employee WHERE employee_id='" + search.getString("adding_employee") + "'");
+                            if (search3.next()) {
+                                v.add(search.getString("adding_employee") + "-" + search3.getString("first_name") + " " + search3.getString("last_name"));
+                            }
+                        } else {
+                            TableColumn col = tb1.getColumnModel().getColumn(6);
+                            col.setCellRenderer(new com.work_order.MyRenderer(Color.WHITE, Color.RED));
+                            v.add("ADMIN ONLY");
+                        }
+                        dtm.addRow(v);
+
+                    }
+                }
+            } else if (redioComplite.isSelected()) {
+                search();
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void search() {
+        try {
+            if (comboSearch.getSelectedItem().equals("NIC Number")) {
+                ResultSet search = DB.search("SELECT * FROM work_order WHERE status=0 AND customer_id='" + list1.getSelectedValue().split("-")[0] + "'");
+                DefaultTableModel dtm = (DefaultTableModel) tb1.getModel();
+                dtm.setRowCount(0);
+                while (search.next()) {
+                    Vector v = new Vector();
+                    v.add(search.getString("order_id"));
+                    ResultSet search1 = DB.search("SELECT * FROM customer WHERE customer_id='" + search.getString("customer_id") + "'");
+                    if (search1.next()) {
+                        v.add(search1.getString("customer_id") + "-" + search1.getString("first_name") + " " + search1.getString("last_name"));
+                    }
+                    ResultSet search2 = DB.search("SELECT * FROM vehicle WHERE vehicle_id='" + search.getString("vehicle_id") + "'");
+                    if (search2.next()) {
+                        v.add(search2.getString("vehicle_id") + "-" + search2.getString("registration_number"));
+                    }
+                    v.add(search.getString("start_meter"));
+                    v.add(search.getString("location"));
+                    v.add(search.getString("discription"));
+                    v.add(search.getString("data_time"));
+                    if (SystemData.getAccountCode().equals("ADM")) {
+                        ResultSet search3 = DB.search("SELECT * FROM employee WHERE employee_id='" + search.getString("adding_employee") + "'");
+                        if (search3.next()) {
+                            v.add(search.getString("adding_employee") + "-" + search3.getString("first_name") + " " + search3.getString("last_name"));
+                        }
+                    } else {
+                        TableColumn col = tb1.getColumnModel().getColumn(6);
+                        col.setCellRenderer(new com.work_order.MyRenderer(Color.WHITE, Color.RED));
+                        v.add("ADMIN ONLY");
+                    }
+                    dtm.addRow(v);
+
+                }
+            } else if (comboSearch.getSelectedItem().equals("Order Id")) {
+                ResultSet search = DB.search("SELECT * FROM work_order WHERE status=0 AND customer_id='" + list1.getSelectedValue().split("-")[1] + "'");
+                DefaultTableModel dtm = (DefaultTableModel) tb1.getModel();
+                dtm.setRowCount(0);
+                while (search.next()) {
+                    Vector v = new Vector();
+                    v.add(search.getString("order_id"));
+                    ResultSet search1 = DB.search("SELECT * FROM customer WHERE customer_id='" + search.getString("customer_id") + "'");
+                    if (search1.next()) {
+                        v.add(search1.getString("customer_id") + "-" + search1.getString("first_name") + " " + search1.getString("last_name"));
+                    }
+                    ResultSet search2 = DB.search("SELECT * FROM vehicle WHERE vehicle_id='" + search.getString("vehicle_id") + "'");
+                    if (search2.next()) {
+                        v.add(search2.getString("vehicle_id") + "-" + search2.getString("registration_number"));
+                    }
+                    v.add(search.getString("start_meter"));
+                    v.add(search.getString("location"));
+                    v.add(search.getString("discription"));
+                    v.add(search.getString("data_time"));
+                    if (SystemData.getAccountCode().equals("ADM")) {
+                        ResultSet search3 = DB.search("SELECT * FROM employee WHERE employee_id='" + search.getString("adding_employee") + "'");
+                        if (search3.next()) {
+                            v.add(search.getString("adding_employee") + "-" + search3.getString("first_name") + " " + search3.getString("last_name"));
+                        }
+                    } else {
+                        TableColumn col = tb1.getColumnModel().getColumn(6);
+                        col.setCellRenderer(new com.work_order.MyRenderer(Color.WHITE, Color.RED));
+                        v.add("ADMIN ONLY");
+                    }
+                    dtm.addRow(v);
+
+                }
+            } else if (comboSearch.getSelectedItem().equals("Customer Name")) {
+                ResultSet search = DB.search("SELECT * FROM work_order WHERE status=0 AND customer_id='" + list1.getSelectedValue().split("-")[0] + "'");
+                DefaultTableModel dtm = (DefaultTableModel) tb1.getModel();
+                dtm.setRowCount(0);
+                while (search.next()) {
+                    Vector v = new Vector();
+                    v.add(search.getString("order_id"));
+                    ResultSet search1 = DB.search("SELECT * FROM customer WHERE customer_id='" + search.getString("customer_id") + "'");
+                    if (search1.next()) {
+                        v.add(search1.getString("customer_id") + "-" + search1.getString("first_name") + " " + search1.getString("last_name"));
+                    }
+                    ResultSet search2 = DB.search("SELECT * FROM vehicle WHERE vehicle_id='" + search.getString("vehicle_id") + "'");
+                    if (search2.next()) {
+                        v.add(search2.getString("vehicle_id") + "-" + search2.getString("registration_number"));
+                    }
+                    v.add(search.getString("start_meter"));
+                    v.add(search.getString("location"));
+                    v.add(search.getString("discription"));
+                    v.add(search.getString("data_time"));
+                    if (SystemData.getAccountCode().equals("ADM")) {
+                        ResultSet search3 = DB.search("SELECT * FROM employee WHERE employee_id='" + search.getString("adding_employee") + "'");
+                        if (search3.next()) {
+                            v.add(search.getString("adding_employee") + "-" + search3.getString("first_name") + " " + search3.getString("last_name"));
+                        }
+                    } else {
+                        TableColumn col = tb1.getColumnModel().getColumn(6);
+                        col.setCellRenderer(new com.work_order.MyRenderer(Color.WHITE, Color.RED));
+                        v.add("ADMIN ONLY");
+                    }
+                    dtm.addRow(v);
+
+                }
+            }
+        } catch (Exception e) {
+        }
+    }
 }
 
+class MyRenderer extends DefaultTableCellRenderer {
 
+    Color bg, fg;
 
- class MyRenderer extends DefaultTableCellRenderer {
-   Color bg, fg;
-   public MyRenderer(Color bg, Color fg) {
-      super();
-      this.bg = bg;
-      this.fg = fg;
-   }
-   public Component getTableCellRendererComponent(JTable table, Object 
-   value, boolean isSelected, boolean hasFocus, int row, int column) 
-   {
-      Component cell = super.getTableCellRendererComponent(table, value, 
-      isSelected, hasFocus, row, column);
-      cell.setBackground(bg);
-      cell.setForeground(fg);
-      return cell;
-   }
+    public MyRenderer(Color bg, Color fg) {
+        super();
+        this.bg = bg;
+        this.fg = fg;
+    }
+
+    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+        Component cell = super.getTableCellRendererComponent(table, value,
+                isSelected, hasFocus, row, column);
+        cell.setBackground(bg);
+        cell.setForeground(fg);
+        return cell;
+    }
 }

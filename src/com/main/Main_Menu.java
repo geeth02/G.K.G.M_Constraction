@@ -168,7 +168,7 @@ public class Main_Menu extends javax.swing.JFrame {
                 btnEmployeeMActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEmployeeM, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 320, 71));
+        jPanel1.add(btnEmployeeM, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, 320, 71));
 
         btnLogOut.setBackground(new java.awt.Color(0, 102, 204));
         btnLogOut.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 27)); // NOI18N
@@ -208,7 +208,7 @@ public class Main_Menu extends javax.swing.JFrame {
                 btnCustomerMActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCustomerM, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, 320, 71));
+        jPanel1.add(btnCustomerM, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 320, 71));
 
         btnWorkOrder.setBackground(new java.awt.Color(0, 102, 204));
         btnWorkOrder.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 27)); // NOI18N
@@ -228,7 +228,7 @@ public class Main_Menu extends javax.swing.JFrame {
                 btnWorkOrderActionPerformed(evt);
             }
         });
-        jPanel1.add(btnWorkOrder, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 320, 71));
+        jPanel1.add(btnWorkOrder, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 320, 71));
 
         btnWorkOrder1.setBackground(new java.awt.Color(0, 102, 204));
         btnWorkOrder1.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 27)); // NOI18N
@@ -248,7 +248,7 @@ public class Main_Menu extends javax.swing.JFrame {
                 btnWorkOrder1ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnWorkOrder1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 320, 71));
+        jPanel1.add(btnWorkOrder1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 320, 71));
 
         btnWorkOrder2.setBackground(new java.awt.Color(0, 102, 204));
         btnWorkOrder2.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 27)); // NOI18N

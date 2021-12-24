@@ -5,9 +5,6 @@
  */
 package com.rent_item;
 
-import static com.work_order.End_Job.tb1;
-import static com.work_order.End_Job.txtOrderId;
-import static com.work_order.End_Job.txtWpoint;
 import common.DB;
 import common.CommonM;
 import common.SystemData;
@@ -505,23 +502,23 @@ public class Rent_Item extends javax.swing.JFrame {
  private void generateOrId() {
         try {
             txtOrderId.setEditable(false);
-            ResultSet rs = DB.search("select count(order_id) as x from work_order");
+            ResultSet rs = DB.search("select count(order_id) as x from rent_order");
             if (rs.next()) {
                 String counts = rs.getString("x");
                 int count = Integer.parseInt(counts);
                 ++count;
                 if (count < 10) {
-                    txtOrderId.setText("IN00000" + count);
+                    txtOrderId.setText("RN00000" + count);
                 } else if (count < 100) {
-                    txtOrderId.setText("IN0000" + count);
+                    txtOrderId.setText("RN0000" + count);
                 } else if (count < 1000) {
-                    txtOrderId.setText("IN000" + count);
+                    txtOrderId.setText("RN000" + count);
                 } else if (count < 10000) {
-                    txtOrderId.setText("IN00" + count);
+                    txtOrderId.setText("RN00" + count);
                 } else if (count < 100000) {
-                    txtOrderId.setText("IN0" + count);
+                    txtOrderId.setText("RN0" + count);
                 } else if (count < 1000000) {
-                    txtOrderId.setText("IN" + count);
+                    txtOrderId.setText("RN" + count);
                 }
             }
         } catch (Exception e) {

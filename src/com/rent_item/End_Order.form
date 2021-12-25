@@ -222,7 +222,7 @@
               </AuxValues>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="420" y="70" width="310" height="110"/>
+                  <AbsoluteConstraints x="420" y="70" width="310" height="150"/>
                 </Constraint>
               </Constraints>
 
@@ -613,7 +613,7 @@
                         <Column editable="true" title="Item Id" type="java.lang.Object"/>
                         <Column editable="true" title="Model" type="java.lang.Object"/>
                         <Column editable="true" title="Product Number" type="java.lang.Object"/>
-                        <Column editable="true" title="Day" type="java.lang.Object"/>
+                        <Column editable="true" title="Days" type="java.lang.Object"/>
                         <Column editable="true" title="Status" type="java.lang.Object"/>
                       </Table>
                     </Property>
@@ -622,6 +622,7 @@
                     </Property>
                   </Properties>
                   <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tb4MouseClicked"/>
                     <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tb4MousePressed"/>
                   </Events>
                 </Component>
@@ -653,7 +654,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel16" min="-2" pref="175" max="-2" attributes="0"/>
                                   <EmptySpace min="45" pref="45" max="-2" attributes="0"/>
-                                  <Component id="txtCustomer6" min="-2" pref="480" max="-2" attributes="0"/>
+                                  <Component id="txtItemId" min="-2" pref="480" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel17" min="-2" pref="175" max="-2" attributes="0"/>
@@ -663,12 +664,12 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel18" min="-2" pref="175" max="-2" attributes="0"/>
                                   <EmptySpace min="45" pref="45" max="-2" attributes="0"/>
-                                  <Component id="txtCustomer8" min="-2" pref="480" max="-2" attributes="0"/>
+                                  <Component id="txtAmount" min="-2" pref="480" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel19" min="-2" pref="175" max="-2" attributes="0"/>
                                   <EmptySpace min="45" pref="45" max="-2" attributes="0"/>
-                                  <Component id="txtCustomer9" min="-2" pref="480" max="-2" attributes="0"/>
+                                  <Component id="txtDiscount" min="-2" pref="480" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -681,7 +682,7 @@
                           <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel16" alignment="0" min="-2" pref="42" max="-2" attributes="0"/>
-                              <Component id="txtCustomer6" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="txtItemId" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -691,12 +692,12 @@
                           <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel18" alignment="0" min="-2" pref="42" max="-2" attributes="0"/>
-                              <Component id="txtCustomer8" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="txtAmount" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel19" alignment="0" min="-2" pref="42" max="-2" attributes="0"/>
-                              <Component id="txtCustomer9" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="txtDiscount" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="25" max="32767" attributes="0"/>
                       </Group>
@@ -704,7 +705,7 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JTextField" name="txtCustomer6">
+                <Component class="javax.swing.JTextField" name="txtItemId">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="18" style="0"/>
@@ -716,7 +717,7 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCustomer6ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtItemIdActionPerformed"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -756,7 +757,7 @@
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txtCustomer8">
+                <Component class="javax.swing.JTextField" name="txtAmount">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="18" style="0"/>
@@ -768,7 +769,7 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCustomer8ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtAmountActionPerformed"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -790,7 +791,7 @@
                     <Property name="text" type="java.lang.String" value="Discount"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txtCustomer9">
+                <Component class="javax.swing.JTextField" name="txtDiscount">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="18" style="0"/>
@@ -802,7 +803,7 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCustomer9ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDiscountActionPerformed"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>

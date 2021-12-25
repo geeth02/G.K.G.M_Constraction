@@ -203,7 +203,7 @@ public class Job_Selection_Payment extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void addJob() {
-        if (Paymets.comboSearch.getSelectedItem().equals("NIC Number")) {
+      //  if (Paymets.comboSearch.getSelectedItem().equals("NIC Number")) {
             try {
                 String search = Paymets.jList1.getSelectedValue().split("-")[0];
                 ResultSet search1 = DB.search("SELECT * FROM work_order WHERE customer_id='" + search + "'");
@@ -213,12 +213,11 @@ public class Job_Selection_Payment extends javax.swing.JFrame {
                         String date = search1.getString("data_time").split("-")[0] + "-" + search1.getString("data_time").split("-")[1] + "-" + search1.getString("data_time").split("-")[2] + ")";
                         jComboBox1.addItem(search1.getString("order_id") + "-" + search2.getString("registration_number") + " (Date:" + date);
                     }
-
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
+       // }
     }
 
     private void searchNic() {
@@ -261,6 +260,7 @@ public class Job_Selection_Payment extends javax.swing.JFrame {
 
     private void calculate() {
         double pAmount = 0;
+        if(Paymets.tb1.getRowCount()!=0){
         for (int row = 0; row < Paymets.tb1.getRowCount(); row++) {
             String pAmount1 = Paymets.tb1.getValueAt(row, 1).toString().trim();
             double pAmount2 = Double.parseDouble(pAmount1);
@@ -272,6 +272,9 @@ public class Job_Selection_Payment extends javax.swing.JFrame {
         BigDecimal bd = new BigDecimal(setValue);
         DecimalFormat formatterBd = new DecimalFormat("##.00");
         Paymets.txtCustomerPayment.setText(formatterBd.format(bd));
+    }else{
+    Paymets.txtCustomerPayment.setText("0.00");
+}
     }
 
     private void avPayment() {

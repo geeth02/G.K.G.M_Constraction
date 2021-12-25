@@ -496,6 +496,10 @@ public class Paymets extends javax.swing.JFrame {
         jList1.setSelectedIndex(0);
         jList1.grabFocus();
         }
+        
+        if(txtSearch.getText().equals("")){
+        clearTextFeald();
+        }
       
     }//GEN-LAST:event_txtSearchKeyReleased
 
@@ -545,7 +549,24 @@ public class Paymets extends javax.swing.JFrame {
     }//GEN-LAST:event_txtOrderIdActionPerformed
 
     private void txtAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAmountActionPerformed
-        txtPayment.grabFocus();
+      if(!txtNetAmount.getText().equals("Panding Payments...........")){
+         double amount = Double.parseDouble(txtAmount.getText());
+          System.out.println(amount);
+          double netAmount=Double.parseDouble(txtNetAmount.getText());
+          System.out.println(netAmount);
+         
+      if(amount<=netAmount){
+         txtPayment.grabFocus();
+      
+      }else{
+        JOptionPane.showMessageDialog(this, "Please Enter Corect Amount", "Error", JOptionPane.ERROR_MESSAGE);
+        txtAmount.setText("");
+        txtAmount.grabFocus();
+      }
+      }else{
+      txtPayment.grabFocus();
+      }
+     
     }//GEN-LAST:event_txtAmountActionPerformed
 
     private void txtAmountKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAmountKeyTyped
@@ -559,8 +580,11 @@ public class Paymets extends javax.swing.JFrame {
              String setValue=String.valueOf(balance);
             BigDecimal bd = new BigDecimal( setValue ) ;
             DecimalFormat formatterBd = new DecimalFormat( "##.00" );
+            if(!formatterBd.format( bd ).equals("")){
             txtbalance.setText(formatterBd.format( bd ) );
-            
+            }else{
+            txtbalance.setText("0.00");
+            }
             
     }//GEN-LAST:event_txtPaymentActionPerformed
 
@@ -727,8 +751,8 @@ public class Paymets extends javax.swing.JFrame {
         }
     }
     
-     private void searchNic() {
-                try {
+     private void searchNic() {      
+         try {
                     String search=jList1.getSelectedValue().split("-")[0];
                     int i=0;
                     ResultSet search1 = DB.search("SELECT * FROM work_order where customer_id='"+search+"'");
@@ -773,6 +797,7 @@ public class Paymets extends javax.swing.JFrame {
      
       private  void calculate() {
         double pAmount=0;
+        if(tb1.getRowCount()!=0){
         for(int row =0; row < tb1.getRowCount();row++){
             String pAmount1=tb1.getValueAt(row, 1).toString().trim();
             double pAmount2=Double.parseDouble(pAmount1);
@@ -783,6 +808,9 @@ public class Paymets extends javax.swing.JFrame {
             BigDecimal bd = new BigDecimal( setValue ) ;
             DecimalFormat formatterBd = new DecimalFormat( "##.00" );
             txtCustomerPayment.setText(formatterBd.format( bd ) );
+        }else{
+        txtCustomerPayment.setText("0.00");
+        }
    }
 
     private void pay() {
@@ -808,8 +836,8 @@ public class Paymets extends javax.swing.JFrame {
                  }else if(Double.parseDouble(txtCustomerPayment.getText())<Double.parseDouble(txtNetAmount.getText())){
                      double customerP= Double.parseDouble(txtCustomerPayment.getText());
                      double avPayment = Double.parseDouble(txtNetAmount.getText());
-                 JOptionPane.showMessageDialog(this,"Seccessful");
                  }
+                 JOptionPane.showMessageDialog(this,"Seccessful");
                  clearTextFeald();
                
         } catch (Exception e) {

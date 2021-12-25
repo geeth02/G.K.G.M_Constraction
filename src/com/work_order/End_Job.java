@@ -66,14 +66,12 @@ public class End_Job extends javax.swing.JFrame {
         txtEndMeter = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         txtWpoint = new javax.swing.JTextField();
-        jLabel19 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         txtEmployeeId = new javax.swing.JTextField();
         jScrollPane7 = new javax.swing.JScrollPane();
         tb1 = new javax.swing.JTable();
         jLabel15 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         txtDAmount = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
@@ -85,14 +83,12 @@ public class End_Job extends javax.swing.JFrame {
         tb4 = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         txtTotalCost = new javax.swing.JTextField();
-        jLabel22 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtIncome = new javax.swing.JTextField();
         txtNetAmount = new javax.swing.JTextField();
         btnRegister4 = new javax.swing.JButton();
-        jLabel23 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         lbGKG = new javax.swing.JLabel();
@@ -112,6 +108,7 @@ public class End_Job extends javax.swing.JFrame {
         ReForm.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jList1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
@@ -127,11 +124,11 @@ public class End_Job extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jList1);
 
-        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 120, 310, 120));
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 90, 310, 120));
 
         comboSearch.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        comboSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NIC Number", "Vehicle Number" }));
-        jPanel3.add(comboSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 78, -1, 40));
+        comboSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NIC Number", "Customer Name" }));
+        jPanel3.add(comboSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, -1, 40));
 
         txtOrderId.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtOrderId.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -148,15 +145,15 @@ public class End_Job extends javax.swing.JFrame {
                 txtOrderIdKeyTyped(evt);
             }
         });
-        jPanel3.add(txtOrderId, new org.netbeans.lib.awtextra.AbsoluteConstraints(421, 78, 308, 43));
+        jPanel3.add(txtOrderId, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 308, 43));
 
         lbFirstName.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
         lbFirstName.setText("Search By");
-        jPanel3.add(lbFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 78, 170, 42));
+        jPanel3.add(lbFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 170, 42));
 
         jLabel9.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
         jLabel9.setText("Vehicle Number");
-        jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 132, 175, 42));
+        jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 175, 42));
 
         txtVehicleNumber.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtVehicleNumber.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -165,11 +162,11 @@ public class End_Job extends javax.swing.JFrame {
                 txtVehicleNumberActionPerformed(evt);
             }
         });
-        jPanel3.add(txtVehicleNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(249, 132, 480, 40));
+        jPanel3.add(txtVehicleNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 480, 40));
 
         jLabel10.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
         jLabel10.setText("Customer");
-        jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 185, 175, 42));
+        jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 175, 42));
 
         txtCustomer.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtCustomer.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -178,11 +175,11 @@ public class End_Job extends javax.swing.JFrame {
                 txtCustomerActionPerformed(evt);
             }
         });
-        jPanel3.add(txtCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(249, 185, 480, 40));
+        jPanel3.add(txtCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 160, 480, 40));
 
         jLabel7.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
         jLabel7.setText("Customer Payment");
-        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 239, -1, 40));
+        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, 40));
 
         txtCustomerPayment.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         txtCustomerPayment.setForeground(new java.awt.Color(0, 204, 0));
@@ -198,11 +195,11 @@ public class End_Job extends javax.swing.JFrame {
                 txtCustomerPaymentKeyTyped(evt);
             }
         });
-        jPanel3.add(txtCustomerPayment, new org.netbeans.lib.awtextra.AbsoluteConstraints(249, 238, 480, 43));
+        jPanel3.add(txtCustomerPayment, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 210, 480, 43));
 
         jLabel11.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
         jLabel11.setText("End Meter");
-        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 295, 175, 42));
+        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 175, 42));
 
         txtEndMeter.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtEndMeter.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -216,11 +213,11 @@ public class End_Job extends javax.swing.JFrame {
                 txtEndMeterKeyPressed(evt);
             }
         });
-        jPanel3.add(txtEndMeter, new org.netbeans.lib.awtextra.AbsoluteConstraints(249, 299, 480, 40));
+        jPanel3.add(txtEndMeter, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 270, 480, 40));
 
         jLabel14.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
         jLabel14.setText("Working Point");
-        jPanel3.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 350, 170, 40));
+        jPanel3.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 170, 40));
 
         txtWpoint.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtWpoint.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -229,19 +226,12 @@ public class End_Job extends javax.swing.JFrame {
                 txtWpointActionPerformed(evt);
             }
         });
-        jPanel3.add(txtWpoint, new org.netbeans.lib.awtextra.AbsoluteConstraints(249, 350, 480, 40));
-
-        jLabel19.setBackground(new java.awt.Color(204, 0, 51));
-        jLabel19.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel19.setText("Order Details");
-        jLabel19.setOpaque(true);
-        jPanel3.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 50));
+        jPanel3.add(txtWpoint, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, 480, 40));
 
         ReForm.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 760, 420));
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel4.setPreferredSize(new java.awt.Dimension(780, 390));
 
         jLabel18.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
@@ -276,13 +266,6 @@ public class End_Job extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
         jLabel15.setText("Drivers");
 
-        jLabel20.setBackground(new java.awt.Color(204, 0, 51));
-        jLabel20.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel20.setText("Driver Salery");
-        jLabel20.setOpaque(true);
-
         jLabel21.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
         jLabel21.setText("Amount");
 
@@ -298,9 +281,8 @@ public class End_Job extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(30, 30, 30)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -310,13 +292,12 @@ public class End_Job extends javax.swing.JFrame {
                     .addComponent(txtDAmount, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtEmployeeId, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 502, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(41, 41, 41)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtEmployeeId, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -328,12 +309,13 @@ public class End_Job extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
 
         ReForm.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 20, 780, 420));
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel16.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
         jLabel16.setText("Cost Name");
@@ -411,39 +393,28 @@ public class End_Job extends javax.swing.JFrame {
             }
         });
 
-        jLabel22.setBackground(new java.awt.Color(204, 0, 51));
-        jLabel22.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel22.setText("Cost");
-        jLabel22.setOpaque(true);
-
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 760, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addGap(39, 39, 39)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtCostName)
                     .addComponent(txtAmount)
-                    .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
-                    .addComponent(txtTotalCost))
-                .addGap(38, 38, 38))
+                    .addComponent(jScrollPane8)
+                    .addComponent(txtTotalCost, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(39, 39, 39)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCostName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -457,12 +428,13 @@ public class End_Job extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTotalCost, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         ReForm.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, 760, 390));
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel3.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
         jLabel3.setText("Total Bill Amount");
@@ -521,18 +493,10 @@ public class End_Job extends javax.swing.JFrame {
             }
         });
 
-        jLabel23.setBackground(new java.awt.Color(204, 0, 51));
-        jLabel23.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel23.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel23.setText("Bill Details");
-        jLabel23.setOpaque(true);
-
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -546,13 +510,12 @@ public class End_Job extends javax.swing.JFrame {
                             .addComponent(txtNetAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtIncome, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(20, 20, 20)))
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
+                .addGap(61, 61, 61)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -562,12 +525,12 @@ public class End_Job extends javax.swing.JFrame {
                         .addComponent(txtIncome, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtNetAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                 .addComponent(btnRegister4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(87, 87, 87))
         );
 
-        ReForm.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 450, 780, 390));
+        ReForm.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 450, 780, 390));
 
         jLayeredPane1.add(ReForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 100, 1660, 980));
 
@@ -751,6 +714,10 @@ public class End_Job extends javax.swing.JFrame {
             jList1.setSelectedIndex(0);
             jList1.grabFocus();
         }
+        if(txtOrderId.getText().equals("")){
+        clearCostFeald();
+        clearFeald();
+        }
 
     }//GEN-LAST:event_txtOrderIdKeyReleased
 
@@ -766,6 +733,7 @@ public class End_Job extends javax.swing.JFrame {
         try {
             if (evt.getClickCount() == 2) {
                 jScrollPane1.setVisible(false);
+                
                 ResultSet search = DB.search("SELECT * FROM work_order WHERE status= 1 AND customer_id='" + jList1.getSelectedValue().split("-")[0] + "'");
                 if (search.next()) {
                     searchDetails();
@@ -984,11 +952,7 @@ public class End_Job extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
@@ -1038,25 +1002,15 @@ public class End_Job extends javax.swing.JFrame {
                         v.add(rs.getString("customer_id") + "-" + rs.getString("first_name") + " " + rs.getString("last_name"));
                         jList1.setListData(v);
                     }
-                } else if (comboSearch.getSelectedItem().equals(("Vehicle Number"))) {
-                    ResultSet rs = DB.search("SELECT * FROM vehicle WHERE status=1 AND registration_number LIKE '" + txtOrderId.getText().toUpperCase() + "%'");
+                } else if (comboSearch.getSelectedItem().equals(("Customer Name"))) {
+                    ResultSet rs = DB.search("SELECT * FROM customer WHERE status=1 AND first_name LIKE '" + txtOrderId.getText().toUpperCase() + "%'");
                     Vector v = new Vector();
                     jScrollPane1.setVisible(false);
                     while (rs.next()) {
                         jScrollPane1.setVisible(true);
-                        v.add(rs.getString("vehicle_id") + "-" + rs.getString("model") + " " + rs.getString("registration_number"));
+                        v.add(rs.getString("customer_id") + "-" + rs.getString("first_name") + " " + rs.getString("last_name"));
                     }
                     jList1.setListData(v);
-                } else if (comboSearch.getSelectedItem().equals("Driver")) {
-                    ResultSet rs = DB.search("SELECT * FROM employee WHERE status=1 AND first_name LIKE '" + txtOrderId.getText().toUpperCase() + "%'");
-                    Vector v = new Vector();
-                    jScrollPane1.setVisible(false);
-                    while (rs.next()) {
-                        jScrollPane1.setVisible(true);
-                        v.add(rs.getString("employee_id") + "-" + rs.getString("first_name") + " " + rs.getString("last_name"));
-                    }
-                    jList1.setListData(v);
-
                 }
             } else {
                 jScrollPane1.setVisible(false);
@@ -1239,7 +1193,7 @@ public class End_Job extends javax.swing.JFrame {
                     Savepoint savepoint = DB.getNewConnection().setSavepoint();
                     try {
                         String date = new SimpleDateFormat("yyyy-MM-dd- HH:mm:ss").format(new Date());
-                        String invitemSQL = "insert into end_job (order_id,total_amount,data_time,employee_id,status) values('" + txtOrderId.getText().toUpperCase() + "','" + txtIncome.getText() + "','" + date + "','" + SystemData.getemployee() + "','" + 1 + "')";
+                        String invitemSQL = "insert into end_job (order_id,total_amount,end_meter,data_time,employee_id,status) values('" + txtOrderId.getText().toUpperCase() + "','" + txtIncome.getText() + "','"+txtEndMeter.getText()+"','" + date + "','" + SystemData.getemployee() + "','" + 1 + "')";
                         DB.iud(invitemSQL);
                         DB.iud("update work_order set status='" + "0" + "' where order_id='" + txtOrderId.getText() + "'");
                         for (int row = 0; row < tb4.getRowCount(); row++) {

@@ -8,11 +8,14 @@ package com.work_order;
 import com.customer_management.Add_Customer_Befor_Start;
 import common.DB;
 import common.CommonM;
+import static common.CommonM.checkNull;
 import common.SystemData;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.Savepoint;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Vector;
@@ -43,6 +46,7 @@ public class Start_Job extends javax.swing.JFrame {
         jScrollPane3.setVisible(false);
         jScrollPane5.setVisible(false);
         tableSize();
+        txtLastMeter.setEditable(false);
     }
 
     /**
@@ -98,6 +102,11 @@ public class Start_Job extends javax.swing.JFrame {
                 customerListMouseClicked(evt);
             }
         });
+        customerList.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                customerListKeyPressed(evt);
+            }
+        });
         jScrollPane2.setViewportView(customerList);
 
         ReForm.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 450, 130));
@@ -109,6 +118,11 @@ public class Start_Job extends javax.swing.JFrame {
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 vehicleListMouseEntered(evt);
+            }
+        });
+        vehicleList.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                vehicleListKeyPressed(evt);
             }
         });
         jScrollPane3.setViewportView(vehicleList);
@@ -130,18 +144,34 @@ public class Start_Job extends javax.swing.JFrame {
                 jList1MouseClicked(evt);
             }
         });
+        jList1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jList1KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jList1KeyReleased(evt);
+            }
+        });
         jScrollPane5.setViewportView(jList1);
 
         ReForm.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 540, 450, -1));
 
         txtVehicleNumber.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtVehicleNumber.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtVehicleNumber.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                txtVehicleNumberMouseReleased(evt);
+            }
+        });
         txtVehicleNumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtVehicleNumberActionPerformed(evt);
             }
         });
         txtVehicleNumber.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtVehicleNumberKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtVehicleNumberKeyReleased(evt);
             }
@@ -153,12 +183,20 @@ public class Start_Job extends javax.swing.JFrame {
 
         txtDirvers.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtDirvers.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtDirvers.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                txtDirversMouseReleased(evt);
+            }
+        });
         txtDirvers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDirversActionPerformed(evt);
             }
         });
         txtDirvers.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtDirversKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtDirversKeyReleased(evt);
             }
@@ -194,6 +232,9 @@ public class Start_Job extends javax.swing.JFrame {
             }
         });
         txtCustomerId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCustomerIdKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtCustomerIdKeyReleased(evt);
             }
@@ -217,6 +258,11 @@ public class Start_Job extends javax.swing.JFrame {
 
         txtLocation.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtLocation.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtLocation.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                txtLocationMouseReleased(evt);
+            }
+        });
         txtLocation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtLocationActionPerformed(evt);
@@ -239,6 +285,16 @@ public class Start_Job extends javax.swing.JFrame {
         txtDiscription.setColumns(20);
         txtDiscription.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
         txtDiscription.setRows(5);
+        txtDiscription.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                txtDiscriptionMouseReleased(evt);
+            }
+        });
+        txtDiscription.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtDiscriptionKeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(txtDiscription);
 
         ReForm.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, 450, 150));
@@ -285,6 +341,11 @@ public class Start_Job extends javax.swing.JFrame {
 
         txtLastMeter.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtLastMeter.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtLastMeter.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                txtLastMeterMouseReleased(evt);
+            }
+        });
         txtLastMeter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtLastMeterActionPerformed(evt);
@@ -319,7 +380,20 @@ public class Start_Job extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtVehicleNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVehicleNumberActionPerformed
-
+          checkNull(txtVehicleNumber,"Vehicle Number",txtLocation);
+          try {
+              ResultSet search = DB.search("SELECT * FROM vehicle WHERE vehicle_id='"+txtVehicleNumber.getText()+"'");
+               if(search.next()){
+               }else{
+               JOptionPane.showMessageDialog(this, "Invalid Vehicle Id", "Error", JOptionPane.ERROR_MESSAGE);
+                 txtVehicleNumber.setText(null);
+                 txtVehicleNumber.grabFocus();
+               }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+       
+          
     }//GEN-LAST:event_txtVehicleNumberActionPerformed
 
     private void txtVehicleNumberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtVehicleNumberKeyTyped
@@ -343,11 +417,27 @@ public class Start_Job extends javax.swing.JFrame {
     }//GEN-LAST:event_txtOrderIdKeyTyped
 
     private void txtCustomerIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCustomerIdActionPerformed
-        txtOrderId.grabFocus();
+         checkNull(txtCustomerId,"Customer Id",txtVehicleNumber);
+                     try {
+                ResultSet search = DB.search("SELECT * FROM customer WHERE customer_id='"+txtCustomerId.getText()+"'");
+                if(search.next()){
+                
+                }else{
+                 JOptionPane.showMessageDialog(this, "Invalid Customer Id", "Error", JOptionPane.ERROR_MESSAGE);
+                 txtCustomerId.setText(null);
+                 txtCustomerId.grabFocus();
+                
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
     }//GEN-LAST:event_txtCustomerIdActionPerformed
 
     private void txtLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLocationActionPerformed
-        // TODO add your handling code here:
+         checkNull(txtLocation,"Location",txtLocation);
+         if(!txtLocation.getText().equals("")){
+         txtDiscription.grabFocus();
+         }
     }//GEN-LAST:event_txtLocationActionPerformed
 
     private void txtCustomerIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCustomerIdKeyReleased
@@ -355,8 +445,8 @@ public class Start_Job extends javax.swing.JFrame {
             txtCustomerId.setText("");
             new Add_Customer_Befor_Start().setVisible(true);
             this.dispose();
-
         }
+
         searchPro();
     }//GEN-LAST:event_txtCustomerIdKeyReleased
 
@@ -377,23 +467,55 @@ public class Start_Job extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegister3MouseExited
 
     private void btnRegister3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegister3ActionPerformed
-        startJob();
+       if(!txtCustomerId.getText().equals("")){
+           if(!txtVehicleNumber.getText().equals("")){
+           if(!txtLocation.getText().equals("")){
+            if(tb3.getRowCount()!=0){
+            if(!txtLastMeter.getText().equals("")){
+                startJob();
+            }else{
+             JOptionPane.showMessageDialog(this, "Enter Start Meter", "Error", JOptionPane.ERROR_MESSAGE);
+             txtLastMeter.grabFocus();
+            }
+            }else{
+             JOptionPane.showMessageDialog(this, "Please Add Drivers", "Error", JOptionPane.ERROR_MESSAGE);
+             txtDirvers.grabFocus();
+            }
+           }else{
+            JOptionPane.showMessageDialog(this, "Enter Location", "Error", JOptionPane.ERROR_MESSAGE);
+            txtLocation.grabFocus();
+           }
+           }else{
+             JOptionPane.showMessageDialog(this, "Enter Vehicle Id", "Error", JOptionPane.ERROR_MESSAGE);
+        txtVehicleNumber.grabFocus();
+           }
+       }else{
+        JOptionPane.showMessageDialog(this, "Enter Customer Id", "Error", JOptionPane.ERROR_MESSAGE);
+        txtCustomerId.grabFocus();
+       }
+        
+    
     }//GEN-LAST:event_btnRegister3ActionPerformed
 
     private void customerListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customerListMouseClicked
         if (evt.getClickCount() == 2) {
             txtCustomerId.setText(customerList.getSelectedValue().split("-")[0]);
             jScrollPane2.setVisible(false);
+            txtVehicleNumber.grabFocus();
+              checkNull(txtCustomerId,"Customer Id",txtVehicleNumber);
 
         }
     }//GEN-LAST:event_customerListMouseClicked
 
     private void jLabel9KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabel9KeyPressed
-
+       
     }//GEN-LAST:event_jLabel9KeyPressed
 
     private void txtVehicleNumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtVehicleNumberKeyReleased
         searchVehicle();
+          if(txtVehicleNumber.getText().equals("")){
+                txtLastMeter.setText(null);
+                }
     }//GEN-LAST:event_txtVehicleNumberKeyReleased
 
     private void vehicleListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vehicleListMouseClicked
@@ -404,11 +526,30 @@ public class Start_Job extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "This vehicle have active job", "Error", JOptionPane.ERROR_MESSAGE);
                     txtVehicleNumber.setText(null);
                     txtVehicleNumber.grabFocus();
+                    txtLastMeter.setText(null);
                     jScrollPane3.setVisible(false);
                 } else {
                     txtVehicleNumber.setText(vehicleList.getSelectedValue().split("-")[0].split(":")[0]);
                     jScrollPane3.setVisible(false);
+                    txtLastMeter.grabFocus();
+                    ResultSet search1 = DB.search("SELECT * FROM work_order WHERE vehicle_id='"+vehicleList.getSelectedValue().split("-")[0].split(":")[0]+"'");
+                    String orderId=null;
+                    while(search1.next()){
+                        orderId=search1.getString("order_id");
+                        System.out.println(orderId);
+                    }
+                    ResultSet search2 = DB.search("SELECT * FROM end_job WHERE order_id='"+orderId+"'");
+                    if(search2.next()){
+                    txtLastMeter.setEditable(false);
+                    txtLastMeter.setText(search2.getString("end_meter"));
+                    txtLocation.grabFocus();
+                    }else{
+                       txtLastMeter.setEditable(true);
+                       txtLastMeter.grabFocus();
+                    }
                 }
+                checkNull(txtVehicleNumber,"Vehicle Number",txtLocation);
+                
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -430,6 +571,7 @@ public class Start_Job extends javax.swing.JFrame {
             txtDirvers.setText(jList1.getSelectedValue().split("-")[0]);
             jScrollPane5.setVisible(false);
             txtDirvers.grabFocus();
+             addTb();
 
         }
     }//GEN-LAST:event_jList1MouseClicked
@@ -439,7 +581,7 @@ public class Start_Job extends javax.swing.JFrame {
     }//GEN-LAST:event_vehicleListMouseEntered
 
     private void txtLastMeterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLastMeterActionPerformed
-        // TODO add your handling code here:
+        checkNull(txtLastMeter,"Last Meter",txtLocation);
     }//GEN-LAST:event_txtLastMeterActionPerformed
 
     private void txtLastMeterKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLastMeterKeyTyped
@@ -447,6 +589,151 @@ public class Start_Job extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_txtLastMeterKeyTyped
+
+    private void customerListKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_customerListKeyPressed
+              if (evt.getKeyCode() == 10) {
+            txtCustomerId.setText(customerList.getSelectedValue().split("-")[0]);
+            jScrollPane2.setVisible(false);
+            txtVehicleNumber.grabFocus();
+              }
+                checkNull(txtCustomerId,"Customer Id",txtVehicleNumber);
+    }//GEN-LAST:event_customerListKeyPressed
+
+    private void vehicleListKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_vehicleListKeyPressed
+        if (evt.getKeyCode() == 10) {
+              try {
+                ResultSet search = DB.search("SELECT * FROM work_order WHERE status=1 AND vehicle_id='" + vehicleList.getSelectedValue().split("-")[0].split(":")[0] + "'");
+                if (search.next()) {
+                    JOptionPane.showMessageDialog(this, "This vehicle have active job", "Error", JOptionPane.ERROR_MESSAGE);
+                    txtVehicleNumber.setText(null);
+                    txtVehicleNumber.grabFocus();
+                    txtLastMeter.setText(null);
+                    jScrollPane3.setVisible(false);
+                } else {
+                    txtVehicleNumber.setText(vehicleList.getSelectedValue().split("-")[0].split(":")[0]);
+                    jScrollPane3.setVisible(false);
+                    txtLastMeter.grabFocus();
+                    ResultSet search1 = DB.search("SELECT * FROM work_order WHERE vehicle_id='"+vehicleList.getSelectedValue().split("-")[0].split(":")[0]+"'");
+                    String orderId=null;
+                    while(search1.next()){
+                        orderId=search1.getString("order_id");
+                        System.out.println(orderId);
+                    }
+                    ResultSet search2 = DB.search("SELECT * FROM end_job WHERE order_id='"+orderId+"'");
+                    if(search2.next()){
+                    txtLastMeter.setEditable(false);
+                    txtLastMeter.setText(search2.getString("end_meter"));
+                    txtLocation.grabFocus();
+                    }else{
+                       txtLastMeter.setEditable(true);
+                       txtLastMeter.grabFocus();
+                    }
+                }
+                if(txtVehicleNumber.getText().equals("")){
+                  checkNull(txtVehicleNumber,"Vehicle Number",txtLocation);
+                }
+              
+                
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+    }//GEN-LAST:event_vehicleListKeyPressed
+
+    private void txtCustomerIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCustomerIdKeyPressed
+                  if (evt.getKeyCode() == 40) {
+              customerList.grabFocus();
+            customerList.setSelectedIndex(0);
+          
+        }
+    }//GEN-LAST:event_txtCustomerIdKeyPressed
+
+    private void txtVehicleNumberKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtVehicleNumberKeyPressed
+                if (evt.getKeyCode() == 40) {
+            vehicleList.setSelectedIndex(0);
+            vehicleList.grabFocus();
+        }
+              
+    }//GEN-LAST:event_txtVehicleNumberKeyPressed
+
+    private void txtVehicleNumberMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtVehicleNumberMouseReleased
+      if(txtCustomerId.getText().equals("")){
+      txtCustomerId.grabFocus();
+      }
+    }//GEN-LAST:event_txtVehicleNumberMouseReleased
+
+    private void txtLastMeterMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtLastMeterMouseReleased
+     if(txtCustomerId.getText().equals("")){
+      txtCustomerId.grabFocus();
+      }else if(txtVehicleNumber.getText().equals("")){
+      txtVehicleNumber.grabFocus();
+      }
+    }//GEN-LAST:event_txtLastMeterMouseReleased
+
+    private void txtLocationMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtLocationMouseReleased
+      if(txtCustomerId.getText().equals("")){
+      txtCustomerId.grabFocus();
+      }else if(txtVehicleNumber.getText().equals("")){
+      txtVehicleNumber.grabFocus();
+      }else if(txtLastMeter.getText().equals("")){
+      txtLastMeter.grabFocus();
+      }
+    }//GEN-LAST:event_txtLocationMouseReleased
+
+    private void txtDiscriptionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDiscriptionKeyReleased
+
+    }//GEN-LAST:event_txtDiscriptionKeyReleased
+
+    private void txtDirversMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDirversMouseReleased
+
+       
+             if(txtCustomerId.getText().equals("")){
+      txtCustomerId.grabFocus();
+      }else if(txtVehicleNumber.getText().equals("")){
+      txtVehicleNumber.grabFocus();
+      }else if(txtLastMeter.getText().equals("")){
+          txtLastMeter.grabFocus();
+      }else if(txtLocation.getText().equals("")){
+      txtLocation.grabFocus();
+      }  else if(txtDiscription.getText().equals("")){
+       txtDiscription.setText("NONE");
+       }
+    }//GEN-LAST:event_txtDirversMouseReleased
+
+    private void txtDiscriptionMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDiscriptionMouseReleased
+         
+             if(txtCustomerId.getText().equals("")){
+      txtCustomerId.grabFocus();
+      }else if(txtVehicleNumber.getText().equals("")){
+      txtVehicleNumber.grabFocus();
+      }else if(txtLastMeter.getText().equals("")){
+          txtLastMeter.grabFocus();
+      }else if(txtLocation.getText().equals("")){
+      txtLocation.grabFocus();
+      }
+    }//GEN-LAST:event_txtDiscriptionMouseReleased
+
+    private void jList1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jList1KeyPressed
+           if(evt.getKeyCode()==10){
+              txtDirvers.setText(jList1.getSelectedValue().split("-")[0]);
+            jScrollPane5.setVisible(false);
+            txtDirvers.grabFocus();
+             addTb();
+     }
+    }//GEN-LAST:event_jList1KeyPressed
+
+    private void txtDirversKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDirversKeyPressed
+                   if (evt.getKeyCode() == 40) {
+              jList1.grabFocus();
+            jList1.setSelectedIndex(0);
+          
+        }       
+    }//GEN-LAST:event_txtDirversKeyPressed
+
+    private void jList1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jList1KeyReleased
+
+    }//GEN-LAST:event_jList1KeyReleased
 
     /**
      * @param args the command line arguments
@@ -631,8 +918,35 @@ public class Start_Job extends javax.swing.JFrame {
 
     private void addTb() {
         try {
-
-            DefaultTableModel dtm = (DefaultTableModel) tb3.getModel();
+              DefaultTableModel dtm = (DefaultTableModel) tb3.getModel();
+            if(dtm.getRowCount()!=0){
+                int round=0;
+                  for (int row = 0; row < tb3.getRowCount(); row++) {
+                      round++;
+                       String employeeId = tb3.getValueAt(row, 0).toString().trim();
+                       if(txtDirvers.getText().toUpperCase().equals(employeeId)){
+                       txtDirvers.setText(null);
+                          JOptionPane.showMessageDialog(this, "Duplicate Driver Id", "Error", JOptionPane.ERROR_MESSAGE);
+                       }
+                       if(round==tb3.getRowCount()){
+                                   ResultSet search = DB.search("SELECT * FROM employee WHERE status=1 AND employee_id='" + txtDirvers.getText().toUpperCase() + "'");
+            while (search.next()) {
+                Vector v = new Vector();
+                v.add(search.getString("employee_id"));
+                v.add(search.getString("nic_number"));
+                v.add(search.getString("first_name") + " " + search.getString("last_name"));
+                v.add(search.getString("phone_number"));
+                ResultSet search1 = DB.search("SELECT * FROM employee_type WHERE type_code='" + search.getString("type_code") + "'");
+                if (search1.next()) {
+                    v.add(search1.getString("type"));
+                }
+                dtm.addRow(v);
+            }
+            txtDirvers.setText(null);
+            txtDirvers.grabFocus();
+                       }
+             }   
+            }else{
             ResultSet search = DB.search("SELECT * FROM employee WHERE status=1 AND employee_id='" + txtDirvers.getText().toUpperCase() + "'");
             while (search.next()) {
                 Vector v = new Vector();
@@ -648,6 +962,7 @@ public class Start_Job extends javax.swing.JFrame {
             }
             txtDirvers.setText(null);
             txtDirvers.grabFocus();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -693,6 +1008,7 @@ public class Start_Job extends javax.swing.JFrame {
         txtLocation.setText(null);
         txtOrderId.setText(null);
         txtLastMeter.setEditable(false);
+        txtLastMeter.setText(null);
         txtVehicleNumber.setText(null);
         DefaultTableModel dtm = (DefaultTableModel) tb3.getModel();
         dtm.setRowCount(0);

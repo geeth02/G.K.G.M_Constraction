@@ -637,7 +637,7 @@ public class Rent_Item extends javax.swing.JFrame {
              String dataTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
             DB.iud("INSERT INTO rent_order VALUES('"+txtOrderId.getText().toUpperCase()+"','"+txtCustomerId.getText().toUpperCase()+"','"+txtDiscription.getText()+"','"+dataTime+"','"+SystemData.getemployee()+"','"+1+"')");
               for (int row = 0; row < tb3.getRowCount(); row++) {
-                            String itemId = tb3.getValueAt(row, 0).toString().trim();
+                            String itemId = tb3.getValueAt(row, 0).toString().trim().split("-")[0];
                             String invitemSQL2 = "insert into rent_order_item (order_id,item_id,status) values('" +txtOrderId.getText() + "','" + itemId + "','" + 1 + "')";
                             DB.iud(invitemSQL2);
                             clearFealds();

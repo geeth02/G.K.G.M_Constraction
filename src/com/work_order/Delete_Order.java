@@ -5,25 +5,6 @@
  */
 package com.work_order;
 
-import com.customer_management.Add_Customer_Befor_Start;
-import common.DB;
-import common.CommonM;
-import common.SystemData;
-import java.awt.Color;
-import java.awt.event.KeyEvent;
-import java.sql.ResultSet;
-import java.sql.Savepoint;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Vector;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableColumn;
-
 /**
  *
  * @author geeth
@@ -35,6 +16,7 @@ public class Delete_Order extends javax.swing.JFrame {
      */
     public Delete_Order() {
         initComponents();
+        textFeald();
 
     }
 
@@ -123,6 +105,9 @@ public class Delete_Order extends javax.swing.JFrame {
             }
         });
         txtOrderId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtOrderIdKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtOrderIdKeyTyped(evt);
             }
@@ -331,6 +316,10 @@ public class Delete_Order extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtLastMeterKeyTyped
 
+    private void txtOrderIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOrderIdKeyReleased
+       
+    }//GEN-LAST:event_txtOrderIdKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -394,6 +383,15 @@ public class Delete_Order extends javax.swing.JFrame {
     private javax.swing.JTextField txtOrderId;
     public static javax.swing.JTextField txtVehicleNumber;
     // End of variables declaration//GEN-END:variables
+
+    private void textFeald() {
+       txtCustomerId.setEditable(false);
+       txtDiscription.setEditable(false);
+       txtLastMeter.setEditable(false);
+       txtLocation.setEditable(false);
+       txtVehicleNumber.setEditable(false);
+       jScrollPane4.setVisible(false);
+    }
 
     
 

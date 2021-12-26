@@ -8,20 +8,20 @@ package com.work_order;
 import com.customer_management.Add_Customer_Befor_Start;
 import common.DB;
 import common.CommonM;
+import static common.CommonM.checkNull;
 import common.SystemData;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.Savepoint;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Vector;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 
 /**
@@ -38,15 +38,20 @@ public class Edite_Order extends javax.swing.JFrame {
 //        jScrollPane4.setVisible(false);
 //        jScrollPane3.setVisible(false);
 //        jScrollPane2.setVisible(false);
-        txtCustomerId.grabFocus();
+        txtCustomerId.setEditable(false);
+        txtOrderId.setEditable(false);
+        txtSearch.grabFocus();
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         CommonM.tableSettings(tb3);
-        generateOrId();
+       
         jScrollPane2.setVisible(false);
         jScrollPane3.setVisible(false);
         jScrollPane5.setVisible(false);
+        jScrollPane4.setVisible(false);
         tableSize();
+        txtLastMeter.setEditable(false);
     }
+    int row;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -71,7 +76,7 @@ public class Edite_Order extends javax.swing.JFrame {
         txtVehicleNumber = new javax.swing.JTextField();
         txtDirvers = new javax.swing.JTextField();
         lbFirstName = new javax.swing.JLabel();
-        txtOrderId = new javax.swing.JTextField();
+        txtSearch = new javax.swing.JTextField();
         txtCustomerId = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -86,7 +91,9 @@ public class Edite_Order extends javax.swing.JFrame {
         tb3 = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         txtLastMeter = new javax.swing.JTextField();
+        lbFirstName1 = new javax.swing.JLabel();
         comboSearch = new javax.swing.JComboBox<>();
+        txtOrderId = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -98,6 +105,17 @@ public class Edite_Order extends javax.swing.JFrame {
         ReForm.setOpaque(true);
         ReForm.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jList2.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jList2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList2MouseClicked(evt);
+            }
+        });
+        jList2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jList2KeyPressed(evt);
+            }
+        });
         jScrollPane4.setViewportView(jList2);
 
         ReForm.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 130, 280, -1));
@@ -108,9 +126,14 @@ public class Edite_Order extends javax.swing.JFrame {
                 customerListMouseClicked(evt);
             }
         });
+        customerList.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                customerListKeyPressed(evt);
+            }
+        });
         jScrollPane2.setViewportView(customerList);
 
-        ReForm.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 450, 130));
+        ReForm.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, 450, 130));
 
         vehicleList.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         vehicleList.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -121,9 +144,14 @@ public class Edite_Order extends javax.swing.JFrame {
                 vehicleListMouseEntered(evt);
             }
         });
+        vehicleList.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                vehicleListKeyPressed(evt);
+            }
+        });
         jScrollPane3.setViewportView(vehicleList);
 
-        ReForm.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, 450, 130));
+        ReForm.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 280, 450, 130));
 
         jLabel9.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
         jLabel9.setText("Vehicle Number");
@@ -132,7 +160,7 @@ public class Edite_Order extends javax.swing.JFrame {
                 jLabel9KeyPressed(evt);
             }
         });
-        ReForm.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 175, 42));
+        ReForm.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 175, 42));
 
         jList1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jList1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -140,18 +168,34 @@ public class Edite_Order extends javax.swing.JFrame {
                 jList1MouseClicked(evt);
             }
         });
+        jList1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jList1KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jList1KeyReleased(evt);
+            }
+        });
         jScrollPane5.setViewportView(jList1);
 
-        ReForm.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 540, 450, -1));
+        ReForm.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 590, 450, -1));
 
         txtVehicleNumber.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtVehicleNumber.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtVehicleNumber.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                txtVehicleNumberMouseReleased(evt);
+            }
+        });
         txtVehicleNumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtVehicleNumberActionPerformed(evt);
             }
         });
         txtVehicleNumber.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtVehicleNumberKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtVehicleNumberKeyReleased(evt);
             }
@@ -159,16 +203,24 @@ public class Edite_Order extends javax.swing.JFrame {
                 txtVehicleNumberKeyTyped(evt);
             }
         });
-        ReForm.add(txtVehicleNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, 450, 43));
+        ReForm.add(txtVehicleNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 450, 43));
 
         txtDirvers.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtDirvers.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtDirvers.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                txtDirversMouseReleased(evt);
+            }
+        });
         txtDirvers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDirversActionPerformed(evt);
             }
         });
         txtDirvers.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtDirversKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtDirversKeyReleased(evt);
             }
@@ -176,25 +228,31 @@ public class Edite_Order extends javax.swing.JFrame {
                 txtDirversKeyTyped(evt);
             }
         });
-        ReForm.add(txtDirvers, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 500, 450, 43));
+        ReForm.add(txtDirvers, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 550, 450, 43));
 
         lbFirstName.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
         lbFirstName.setText("Search By");
         ReForm.add(lbFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 175, 42));
 
-        txtOrderId.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtOrderId.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        txtOrderId.addActionListener(new java.awt.event.ActionListener() {
+        txtSearch.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtSearch.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtOrderIdActionPerformed(evt);
+                txtSearchActionPerformed(evt);
             }
         });
-        txtOrderId.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSearchKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearchKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtOrderIdKeyTyped(evt);
+                txtSearchKeyTyped(evt);
             }
         });
-        ReForm.add(txtOrderId, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 90, 280, 43));
+        ReForm.add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 90, 280, 43));
 
         txtCustomerId.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtCustomerId.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -204,6 +262,9 @@ public class Edite_Order extends javax.swing.JFrame {
             }
         });
         txtCustomerId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCustomerIdKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtCustomerIdKeyReleased(evt);
             }
@@ -211,52 +272,67 @@ public class Edite_Order extends javax.swing.JFrame {
                 txtCustomerIdKeyTyped(evt);
             }
         });
-        ReForm.add(txtCustomerId, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 450, 43));
+        ReForm.add(txtCustomerId, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, 450, 43));
 
         jLabel1.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
         jLabel1.setText("Customer Id/Name");
-        ReForm.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 200, 43));
+        ReForm.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 200, 43));
 
         jLabel5.setBackground(new java.awt.Color(204, 0, 51));
         jLabel5.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 48)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Edite Order");
+        jLabel5.setText("Edite Work Order");
         jLabel5.setOpaque(true);
         ReForm.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 69));
 
         txtLocation.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtLocation.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtLocation.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                txtLocationMouseReleased(evt);
+            }
+        });
         txtLocation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtLocationActionPerformed(evt);
             }
         });
-        ReForm.add(txtLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, 450, 43));
+        ReForm.add(txtLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, 450, 43));
 
         jLabel2.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
         jLabel2.setText("Start Meter");
-        ReForm.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 190, 43));
+        ReForm.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 190, 43));
 
         jLabel14.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
         jLabel14.setText("Drivers");
-        ReForm.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 500, 175, 43));
+        ReForm.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 550, 175, 43));
 
         jLabel10.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
         jLabel10.setText("discreption");
-        ReForm.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 175, 42));
+        ReForm.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, 175, 42));
 
         txtDiscription.setColumns(20);
         txtDiscription.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
         txtDiscription.setRows(5);
+        txtDiscription.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                txtDiscriptionMouseReleased(evt);
+            }
+        });
+        txtDiscription.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtDiscriptionKeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(txtDiscription);
 
-        ReForm.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, 450, 150));
+        ReForm.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 390, 450, 150));
 
         btnRegister3.setBackground(new java.awt.Color(0, 102, 204));
         btnRegister3.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 30)); // NOI18N
         btnRegister3.setForeground(new java.awt.Color(255, 255, 255));
-        btnRegister3.setText("Edite");
+        btnRegister3.setText("Update");
         btnRegister3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnRegister3MouseEntered(evt);
@@ -270,7 +346,7 @@ public class Edite_Order extends javax.swing.JFrame {
                 btnRegister3ActionPerformed(evt);
             }
         });
-        ReForm.add(btnRegister3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 740, 210, 60));
+        ReForm.add(btnRegister3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 770, 210, 60));
 
         tb3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -281,20 +357,33 @@ public class Edite_Order extends javax.swing.JFrame {
             }
         ));
         tb3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb3MouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 tb3MousePressed(evt);
             }
         });
+        tb3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tb3KeyReleased(evt);
+            }
+        });
         jScrollPane7.setViewportView(tb3);
 
-        ReForm.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 560, 660, 150));
+        ReForm.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 610, 660, 150));
 
         jLabel3.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
         jLabel3.setText("Location");
-        ReForm.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 175, 43));
+        ReForm.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 175, 43));
 
         txtLastMeter.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtLastMeter.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtLastMeter.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                txtLastMeterMouseReleased(evt);
+            }
+        });
         txtLastMeter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtLastMeterActionPerformed(evt);
@@ -305,13 +394,37 @@ public class Edite_Order extends javax.swing.JFrame {
                 txtLastMeterKeyTyped(evt);
             }
         });
-        ReForm.add(txtLastMeter, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 450, 43));
+        ReForm.add(txtLastMeter, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, 450, 43));
+
+        lbFirstName1.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
+        lbFirstName1.setText("Order Id");
+        ReForm.add(lbFirstName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 175, 42));
 
         comboSearch.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        comboSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NIC Number", "Customer Name", "Order Id" }));
+        comboSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NIC Number", "Customer Name" }));
         ReForm.add(comboSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, -1, 40));
 
-        jLayeredPane2.add(ReForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 750, 840));
+        txtOrderId.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtOrderId.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtOrderId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtOrderIdActionPerformed(evt);
+            }
+        });
+        txtOrderId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtOrderIdKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtOrderIdKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtOrderIdKeyTyped(evt);
+            }
+        });
+        ReForm.add(txtOrderId, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 450, 43));
+
+        jLayeredPane2.add(ReForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 750, 870));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -323,9 +436,7 @@ public class Edite_Order extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 881, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1, Short.MAX_VALUE))
+            .addComponent(jLayeredPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 910, Short.MAX_VALUE)
         );
 
         pack();
@@ -333,7 +444,21 @@ public class Edite_Order extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtVehicleNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVehicleNumberActionPerformed
-
+    
+          try {
+              ResultSet search = DB.search("SELECT * FROM vehicle WHERE vehicle_id='"+txtVehicleNumber.getText()+"'");
+               if(search.next()){
+               }else{
+               JOptionPane.showMessageDialog(this, "Invalid Vehicle Id", "Error", JOptionPane.ERROR_MESSAGE);
+                 txtVehicleNumber.setText(null);
+                 txtVehicleNumber.grabFocus();
+               }
+                     checkNull(txtVehicleNumber,"Vehicle Number",txtLocation);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+       
+          
     }//GEN-LAST:event_txtVehicleNumberActionPerformed
 
     private void txtVehicleNumberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtVehicleNumberKeyTyped
@@ -348,20 +473,36 @@ public class Edite_Order extends javax.swing.JFrame {
 
     }//GEN-LAST:event_txtDirversKeyTyped
 
-    private void txtOrderIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOrderIdActionPerformed
+    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
         txtDirvers.grabFocus();
-    }//GEN-LAST:event_txtOrderIdActionPerformed
+    }//GEN-LAST:event_txtSearchActionPerformed
 
-    private void txtOrderIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOrderIdKeyTyped
+    private void txtSearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyTyped
 
-    }//GEN-LAST:event_txtOrderIdKeyTyped
+    }//GEN-LAST:event_txtSearchKeyTyped
 
     private void txtCustomerIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCustomerIdActionPerformed
-        txtOrderId.grabFocus();
+         checkNull(txtCustomerId,"Customer Id",txtVehicleNumber);
+                     try {
+                ResultSet search = DB.search("SELECT * FROM customer WHERE customer_id='"+txtCustomerId.getText()+"'");
+                if(search.next()){
+                
+                }else{
+                 JOptionPane.showMessageDialog(this, "Invalid Customer Id", "Error", JOptionPane.ERROR_MESSAGE);
+                 txtCustomerId.setText(null);
+                 txtCustomerId.grabFocus();
+                
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
     }//GEN-LAST:event_txtCustomerIdActionPerformed
 
     private void txtLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLocationActionPerformed
-        // TODO add your handling code here:
+         checkNull(txtLocation,"Location",txtLocation);
+         if(!txtLocation.getText().equals("")){
+         txtDiscription.grabFocus();
+         }
     }//GEN-LAST:event_txtLocationActionPerformed
 
     private void txtCustomerIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCustomerIdKeyReleased
@@ -369,8 +510,8 @@ public class Edite_Order extends javax.swing.JFrame {
             txtCustomerId.setText("");
             new Add_Customer_Befor_Start().setVisible(true);
             this.dispose();
-
         }
+
         searchPro();
     }//GEN-LAST:event_txtCustomerIdKeyReleased
 
@@ -391,16 +532,94 @@ public class Edite_Order extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegister3MouseExited
 
     private void btnRegister3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegister3ActionPerformed
-        startJob();
+             if(!txtCustomerId.getText().equals("")){
+           if(!txtVehicleNumber.getText().equals("")){
+           if(!txtLocation.getText().equals("")){
+            if(tb3.getRowCount()!=0){
+            if(!txtLastMeter.getText().equals("")){
+                editeJob();
+            }else{
+             JOptionPane.showMessageDialog(this, "Enter Start Meter", "Error", JOptionPane.ERROR_MESSAGE);
+             txtLastMeter.grabFocus();
+            }
+            }else{
+             JOptionPane.showMessageDialog(this, "Please Add Drivers", "Error", JOptionPane.ERROR_MESSAGE);
+             txtDirvers.grabFocus();
+            }
+           }else{
+            JOptionPane.showMessageDialog(this, "Enter Location", "Error", JOptionPane.ERROR_MESSAGE);
+            txtLocation.grabFocus();
+           }
+           }else{
+             JOptionPane.showMessageDialog(this, "Enter Vehicle Id", "Error", JOptionPane.ERROR_MESSAGE);
+        txtVehicleNumber.grabFocus();
+           }
+       }else{
+        JOptionPane.showMessageDialog(this, "Enter Customer Id", "Error", JOptionPane.ERROR_MESSAGE);
+        txtCustomerId.grabFocus();
+       }    
+    
     }//GEN-LAST:event_btnRegister3ActionPerformed
 
-    private void jLabel9KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabel9KeyPressed
+    private void customerListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customerListMouseClicked
+        if (evt.getClickCount() == 2) {
+            txtCustomerId.setText(customerList.getSelectedValue().split("-")[0]);
+            jScrollPane2.setVisible(false);
+            txtVehicleNumber.grabFocus();
+              checkNull(txtCustomerId,"Customer Id",txtVehicleNumber);
 
+        }
+    }//GEN-LAST:event_customerListMouseClicked
+
+    private void jLabel9KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabel9KeyPressed
+       
     }//GEN-LAST:event_jLabel9KeyPressed
 
     private void txtVehicleNumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtVehicleNumberKeyReleased
         searchVehicle();
+          if(txtVehicleNumber.getText().equals("")){
+                txtLastMeter.setText(null);
+                }
     }//GEN-LAST:event_txtVehicleNumberKeyReleased
+
+    private void vehicleListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vehicleListMouseClicked
+        if (evt.getClickCount() == 2) {
+            try {
+                ResultSet search = DB.search("SELECT * FROM work_order WHERE status=1 AND vehicle_id='" + vehicleList.getSelectedValue().split("-")[0].split(":")[0] + "'");
+                if (search.next()) {
+                    JOptionPane.showMessageDialog(this, "This vehicle have active job", "Error", JOptionPane.ERROR_MESSAGE);
+                    txtVehicleNumber.setText(null);
+                    txtVehicleNumber.grabFocus();
+                    txtLastMeter.setText(null);
+                    jScrollPane3.setVisible(false);
+                } else {
+                    txtVehicleNumber.setText(vehicleList.getSelectedValue().split("-")[0].split(":")[0]);
+                    jScrollPane3.setVisible(false);
+                    txtLastMeter.grabFocus();
+                    ResultSet search1 = DB.search("SELECT * FROM work_order WHERE vehicle_id='"+vehicleList.getSelectedValue().split("-")[0].split(":")[0]+"'");
+                    String orderId=null;
+                    while(search1.next()){
+                        orderId=search1.getString("order_id");
+                        System.out.println(orderId);
+                    }
+                    ResultSet search2 = DB.search("SELECT * FROM end_job WHERE order_id='"+orderId+"'");
+                    if(search2.next()){
+                    txtLastMeter.setEditable(false);
+                    txtLastMeter.setText(search2.getString("end_meter"));
+                    txtLocation.grabFocus();
+                    }else{
+                       txtLastMeter.setEditable(true);
+                       txtLastMeter.grabFocus();
+                    }
+                }
+                checkNull(txtVehicleNumber,"Vehicle Number",txtLocation);
+                
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+    }//GEN-LAST:event_vehicleListMouseClicked
 
     private void txtDirversKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDirversKeyReleased
         if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
@@ -416,12 +635,17 @@ public class Edite_Order extends javax.swing.JFrame {
             txtDirvers.setText(jList1.getSelectedValue().split("-")[0]);
             jScrollPane5.setVisible(false);
             txtDirvers.grabFocus();
+             addTb();
 
         }
     }//GEN-LAST:event_jList1MouseClicked
 
-    private void txtLastMeterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLastMeterActionPerformed
+    private void vehicleListMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vehicleListMouseEntered
         // TODO add your handling code here:
+    }//GEN-LAST:event_vehicleListMouseEntered
+
+    private void txtLastMeterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLastMeterActionPerformed
+        checkNull(txtLastMeter,"Last Meter",txtLocation);
     }//GEN-LAST:event_txtLastMeterActionPerformed
 
     private void txtLastMeterKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLastMeterKeyTyped
@@ -430,37 +654,213 @@ public class Edite_Order extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtLastMeterKeyTyped
 
-    private void vehicleListMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vehicleListMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_vehicleListMouseEntered
+    private void customerListKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_customerListKeyPressed
+              if (evt.getKeyCode() == 10) {
+            txtCustomerId.setText(customerList.getSelectedValue().split("-")[0]);
+            jScrollPane2.setVisible(false);
+            txtVehicleNumber.grabFocus();
+              }
+                checkNull(txtCustomerId,"Customer Id",txtVehicleNumber);
+    }//GEN-LAST:event_customerListKeyPressed
 
-    private void vehicleListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vehicleListMouseClicked
-        if (evt.getClickCount() == 2) {
-            try {
+    private void vehicleListKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_vehicleListKeyPressed
+        if (evt.getKeyCode() == 10) {
+              try {
                 ResultSet search = DB.search("SELECT * FROM work_order WHERE status=1 AND vehicle_id='" + vehicleList.getSelectedValue().split("-")[0].split(":")[0] + "'");
                 if (search.next()) {
                     JOptionPane.showMessageDialog(this, "This vehicle have active job", "Error", JOptionPane.ERROR_MESSAGE);
                     txtVehicleNumber.setText(null);
                     txtVehicleNumber.grabFocus();
+                    txtLastMeter.setText(null);
                     jScrollPane3.setVisible(false);
                 } else {
                     txtVehicleNumber.setText(vehicleList.getSelectedValue().split("-")[0].split(":")[0]);
                     jScrollPane3.setVisible(false);
+                    txtLastMeter.grabFocus();
+                    ResultSet search1 = DB.search("SELECT * FROM work_order WHERE vehicle_id='"+vehicleList.getSelectedValue().split("-")[0].split(":")[0]+"'");
+                    String orderId=null;
+                    while(search1.next()){
+                        orderId=search1.getString("order_id");
+                        System.out.println(orderId);
+                    }
+                    ResultSet search2 = DB.search("SELECT * FROM end_job WHERE order_id='"+orderId+"'");
+                    if(search2.next()){
+                    txtLastMeter.setEditable(false);
+                    txtLastMeter.setText(search2.getString("end_meter"));
+                    txtLocation.grabFocus();
+                    }else{
+                       txtLastMeter.setEditable(true);
+                       txtLastMeter.grabFocus();
+                    }
                 }
+                if(txtVehicleNumber.getText().equals("")){
+                  checkNull(txtVehicleNumber,"Vehicle Number",txtLocation);
+                }
+              
+                
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
         }
-    }//GEN-LAST:event_vehicleListMouseClicked
+    }//GEN-LAST:event_vehicleListKeyPressed
 
-    private void customerListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customerListMouseClicked
+    private void txtCustomerIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCustomerIdKeyPressed
+                  if (evt.getKeyCode() == 40) {
+              customerList.grabFocus();
+            customerList.setSelectedIndex(0);
+          
+        }
+    }//GEN-LAST:event_txtCustomerIdKeyPressed
+
+    private void txtVehicleNumberKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtVehicleNumberKeyPressed
+                if (evt.getKeyCode() == 40) {
+            vehicleList.setSelectedIndex(0);
+            vehicleList.grabFocus();
+        }
+              
+    }//GEN-LAST:event_txtVehicleNumberKeyPressed
+
+    private void txtVehicleNumberMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtVehicleNumberMouseReleased
+      if(txtCustomerId.getText().equals("")){
+      txtCustomerId.grabFocus();
+      }
+    }//GEN-LAST:event_txtVehicleNumberMouseReleased
+
+    private void txtLastMeterMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtLastMeterMouseReleased
+     if(txtCustomerId.getText().equals("")){
+      txtCustomerId.grabFocus();
+      }else if(txtVehicleNumber.getText().equals("")){
+      txtVehicleNumber.grabFocus();
+      }
+    }//GEN-LAST:event_txtLastMeterMouseReleased
+
+    private void txtLocationMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtLocationMouseReleased
+      if(txtCustomerId.getText().equals("")){
+      txtCustomerId.grabFocus();
+      }else if(txtVehicleNumber.getText().equals("")){
+      txtVehicleNumber.grabFocus();
+      }else if(txtLastMeter.getText().equals("")){
+      txtLastMeter.grabFocus();
+      }
+    }//GEN-LAST:event_txtLocationMouseReleased
+
+    private void txtDiscriptionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDiscriptionKeyReleased
+
+    }//GEN-LAST:event_txtDiscriptionKeyReleased
+
+    private void txtDirversMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDirversMouseReleased
+
+       
+             if(txtCustomerId.getText().equals("")){
+      txtCustomerId.grabFocus();
+      }else if(txtVehicleNumber.getText().equals("")){
+      txtVehicleNumber.grabFocus();
+      }else if(txtLastMeter.getText().equals("")){
+          txtLastMeter.grabFocus();
+      }else if(txtLocation.getText().equals("")){
+      txtLocation.grabFocus();
+      }  else if(txtDiscription.getText().equals("")){
+       txtDiscription.setText("NONE");
+       }
+    }//GEN-LAST:event_txtDirversMouseReleased
+
+    private void txtDiscriptionMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDiscriptionMouseReleased
+         
+             if(txtCustomerId.getText().equals("")){
+      txtCustomerId.grabFocus();
+      }else if(txtVehicleNumber.getText().equals("")){
+      txtVehicleNumber.grabFocus();
+      }else if(txtLastMeter.getText().equals("")){
+          txtLastMeter.grabFocus();
+      }else if(txtLocation.getText().equals("")){
+      txtLocation.grabFocus();
+      }
+    }//GEN-LAST:event_txtDiscriptionMouseReleased
+
+    private void jList1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jList1KeyPressed
+           if(evt.getKeyCode()==10){
+              txtDirvers.setText(jList1.getSelectedValue().split("-")[0]);
+            jScrollPane5.setVisible(false);
+            txtDirvers.grabFocus();
+             addTb();
+     }
+    }//GEN-LAST:event_jList1KeyPressed
+
+    private void txtDirversKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDirversKeyPressed
+                   if (evt.getKeyCode() == 40) {
+              jList1.grabFocus();
+            jList1.setSelectedIndex(0);
+          
+        }       
+    }//GEN-LAST:event_txtDirversKeyPressed
+
+    private void jList1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jList1KeyReleased
+
+    }//GEN-LAST:event_jList1KeyReleased
+
+    private void txtOrderIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOrderIdActionPerformed
+
+    }//GEN-LAST:event_txtOrderIdActionPerformed
+
+    private void txtOrderIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOrderIdKeyPressed
+       
+    }//GEN-LAST:event_txtOrderIdKeyPressed
+
+    private void txtOrderIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOrderIdKeyReleased
+    
+    }//GEN-LAST:event_txtOrderIdKeyReleased
+
+    private void txtOrderIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOrderIdKeyTyped
+
+    }//GEN-LAST:event_txtOrderIdKeyTyped
+
+    private void jList2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList2MouseClicked
         if (evt.getClickCount() == 2) {
-            txtCustomerId.setText(customerList.getSelectedValue().split("-")[0]);
-            jScrollPane2.setVisible(false);
+            String customerId = jList2.getSelectedValue().split("-")[0];
+            searchDetails(customerId);
+            jScrollPane4.setVisible(false);
+        }
+    }//GEN-LAST:event_jList2MouseClicked
+
+    private void jList2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jList2KeyPressed
+        if (evt.getKeyCode() == 10) {
+            String customerId = jList2.getSelectedValue().split("-")[0];
+            searchDetails(customerId);
+        }
+    }//GEN-LAST:event_jList2KeyPressed
+
+    private void txtSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyPressed
+       if (evt.getKeyCode() == 40) {
+            jList2.grabFocus();
+            jList2.setSelectedIndex(0);
 
         }
-    }//GEN-LAST:event_customerListMouseClicked
+    }//GEN-LAST:event_txtSearchKeyPressed
+
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+           searchOrder();
+        if(txtSearch.getText().equals("")){
+            clearFeald();
+        }
+    }//GEN-LAST:event_txtSearchKeyReleased
+
+    private void tb3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb3MouseClicked
+              txtDirvers.setText(tb3.getValueAt(tb3.getSelectedRow(), 0).toString());
+                          int row = tb3.getSelectedRow();
+            DefaultTableModel dtm = (DefaultTableModel) tb3.getModel();
+            dtm.removeRow(row);
+              txtDirvers.grabFocus();
+    }//GEN-LAST:event_tb3MouseClicked
+
+    private void tb3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tb3KeyReleased
+              if (evt.getKeyCode() == 127) {
+            int row = tb3.getSelectedRow();
+            DefaultTableModel dtm = (DefaultTableModel) tb3.getModel();
+            dtm.removeRow(row);
+
+        }
+    }//GEN-LAST:event_tb3KeyReleased
 
     /**
      * @param args the command line arguments
@@ -520,42 +920,19 @@ public class Edite_Order extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JLabel lbFirstName;
+    private javax.swing.JLabel lbFirstName1;
     private javax.swing.JTable tb3;
     public static javax.swing.JTextField txtCustomerId;
     private javax.swing.JTextField txtDirvers;
     private javax.swing.JTextArea txtDiscription;
     private javax.swing.JTextField txtLastMeter;
     private javax.swing.JTextField txtLocation;
-    private javax.swing.JTextField txtOrderId;
+    public static javax.swing.JTextField txtOrderId;
+    private javax.swing.JTextField txtSearch;
     public static javax.swing.JTextField txtVehicleNumber;
     private javax.swing.JList<String> vehicleList;
     // End of variables declaration//GEN-END:variables
- private void generateOrId() {
-        try {
-            txtOrderId.setEditable(false);
-            ResultSet rs = DB.search("select count(order_id) as x from work_order");
-            if (rs.next()) {
-                String counts = rs.getString("x");
-                int count = Integer.parseInt(counts);
-                ++count;
-                if (count < 10) {
-                    txtOrderId.setText("IN00000" + count);
-                } else if (count < 100) {
-                    txtOrderId.setText("IN0000" + count);
-                } else if (count < 1000) {
-                    txtOrderId.setText("IN000" + count);
-                } else if (count < 10000) {
-                    txtOrderId.setText("IN00" + count);
-                } else if (count < 100000) {
-                    txtOrderId.setText("IN0" + count);
-                } else if (count < 1000000) {
-                    txtOrderId.setText("IN" + count);
-                }
-            }
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
+ 
 
     private void searchPro() {
         try {
@@ -649,8 +1026,35 @@ public class Edite_Order extends javax.swing.JFrame {
 
     private void addTb() {
         try {
-
-            DefaultTableModel dtm = (DefaultTableModel) tb3.getModel();
+              DefaultTableModel dtm = (DefaultTableModel) tb3.getModel();
+            if(dtm.getRowCount()!=0){
+                int round=0;
+                  for (int row = 0; row < tb3.getRowCount(); row++) {
+                      round++;
+                       String employeeId = tb3.getValueAt(row, 0).toString().trim();
+                       if(txtDirvers.getText().toUpperCase().equals(employeeId)){
+                       txtDirvers.setText(null);
+                          JOptionPane.showMessageDialog(this, "Duplicate Driver Id", "Error", JOptionPane.ERROR_MESSAGE);
+                       }
+                       if(round==tb3.getRowCount()){
+                                   ResultSet search = DB.search("SELECT * FROM employee WHERE status=1 AND employee_id='" + txtDirvers.getText().toUpperCase() + "'");
+            while (search.next()) {
+                Vector v = new Vector();
+                v.add(search.getString("employee_id"));
+                v.add(search.getString("nic_number"));
+                v.add(search.getString("first_name") + " " + search.getString("last_name"));
+                v.add(search.getString("phone_number"));
+                ResultSet search1 = DB.search("SELECT * FROM employee_type WHERE type_code='" + search.getString("type_code") + "'");
+                if (search1.next()) {
+                    v.add(search1.getString("type"));
+                }
+                dtm.addRow(v);
+            }
+            txtDirvers.setText(null);
+            txtDirvers.grabFocus();
+                       }
+             }   
+            }else{
             ResultSet search = DB.search("SELECT * FROM employee WHERE status=1 AND employee_id='" + txtDirvers.getText().toUpperCase() + "'");
             while (search.next()) {
                 Vector v = new Vector();
@@ -666,55 +1070,27 @@ public class Edite_Order extends javax.swing.JFrame {
             }
             txtDirvers.setText(null);
             txtDirvers.grabFocus();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private void startJob() {
-        try {
-            DB.getNewConnection().setAutoCommit(false);
-            Savepoint savepoint = DB.getNewConnection().setSavepoint();
-            try {
-                ResultSet search = DB.search("SELECT * FROM work_order WHERE status=1 AND vehicle_id='" + txtVehicleNumber.getText() + "'");
-                if (search.next()) {
-                    JOptionPane.showMessageDialog(this, "This vehicle have active job", "Error", JOptionPane.ERROR_MESSAGE);
-                } else {
-                    String date = new SimpleDateFormat("yyyy-MM-dd- HH:mm:ss").format(new Date());
-                    String inSql = "insert into work_order values('" + txtOrderId.getText().toUpperCase() + "','" + txtCustomerId.getText().toUpperCase() + "','" + txtVehicleNumber.getText().toUpperCase() + "','" + txtLocation.getText().toUpperCase() + "','" + txtDiscription.getText() + "','" + date + "','" + SystemData.getemployee() + "','"+txtLastMeter.getText()+"','" + 1 + "')";
-                    DB.iud(inSql);
-                    for (int row = 0; row < tb3.getRowCount(); row++) {
-                        String employeeId = tb3.getValueAt(row, 0).toString().trim();
-
-                        String invitemSQL = "insert into employee_job (order_id,employee_id,data_time,status,payment) values('" + txtOrderId.getText().toUpperCase() + "','" + employeeId + "','" + date + "','" + 1 + "','" + 1 + "')";
-                        DB.iud(invitemSQL);
-                    }
-                    clearFeald();
-                    JOptionPane.showMessageDialog(this, " successfull");
-                    loadTb();
-                }
-            } catch (Exception e) {
-                DB.getNewConnection().rollback(savepoint);
-                System.out.println(e);
-            }
-            DB.getNewConnection().commit();
-            DB.getNewConnection().setAutoCommit(true);
-        } catch (Exception e) {
-
-        }
-    }
+  
 
     private void clearFeald() {
         txtCustomerId.setText(null);
         txtDirvers.setText(null);
         txtDiscription.setText(null);
         txtLocation.setText(null);
-        txtOrderId.setText(null);
+        txtSearch.setText(null);
         txtLastMeter.setEditable(false);
+        txtLastMeter.setText(null);
         txtVehicleNumber.setText(null);
+        txtOrderId.setText(null);
         DefaultTableModel dtm = (DefaultTableModel) tb3.getModel();
         dtm.setRowCount(0);
-        generateOrId();
+      
     }
 
     private void tableSize() {
@@ -763,5 +1139,122 @@ public class Edite_Order extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
+    
+    private void searchDetails(String customerId) {
+        try {
+            int i = 0;
+            ResultSet search = DB.search("SELECT * FROM work_order WHERE status=1 AND customer_id='" + customerId + "'");
+            while (search.next()) {
+                i++;
+            }
+            if (i == 1) {
+                ResultSet search1 = DB.search("SELECT * FROM work_order WHERE status=1 AND customer_id='" + customerId + "'");
+                if(search1.next()){
+                    txtOrderId.setText(search1.getString("order_id"));
+                    txtSearch.setText(null);
+                  ResultSet search2 = DB.search("SELECT * FROM customer WHERE status=1 AND customer_id='" + customerId + "'");
+                  if(search2.next()){
+                   txtCustomerId.setText(customerId+"-"+search2.getString("first_name")+" "+search2.getString("last_name"));
+                  }
+                  ResultSet search3 = DB.search("SELECT * FROM vehicle WHERE status=1 AND vehicle_id='" + search1.getString("vehicle_id") + "'");
+                  if(search3.next()){
+                  txtVehicleNumber.setText(search3.getString("vehicle_id")+"-"+search3.getString("model")+" ("+search3.getString("registration_number")+")");
+                  }
+                  txtLastMeter.setText(search1.getString("start_meter"));
+                  txtLocation.setText(search1.getString("location"));
+                  txtDiscription.setText(search1.getString("discription"));
+                      driverData(search1.getString("order_id"));
+                }
+                
+              
+                jScrollPane4.setVisible(false);
+
+            } else if (i > 1) {
+                new Job_Selection_delete(customerId).setVisible(true);
+                jScrollPane4.setVisible(false);
+            }
+
+        } catch (Exception e) {
+        }
+    }
+        
+         private void driverData(String ordrId) {
+        try {
+            ResultSet search = DB.search("SELECT * FROM employee_job WHERE status=1 AND order_id='"+ordrId+"'");
+                DefaultTableModel dtm = (DefaultTableModel) tb3.getModel();
+                dtm.setRowCount(0);
+            while(search.next()){
+                Vector v = new Vector();
+                v.add(search.getString("employee_id"));
+                ResultSet search1 = DB.search("SELECT * FROM employee WHERE employee_id='"+search.getString("employee_id")+"'");
+                if(search1.next()){
+                v.add(search1.getString("nic_number"));
+                v.add(search1.getString("first_name")+" "+search1.getString("last_name"));
+                v.add(search1.getString("phone_number"));
+                    ResultSet search2 = DB.search("SELECT * FROM employee_type WHERE type_code='"+search1.getString("type_code")+"'");
+                    if(search2.next()){
+                    v.add(search2.getString("type"));
+                    }
+                
+                }
+            dtm.addRow(v);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void searchOrder() {
+        try {
+            if (!txtSearch.getText().trim().equals("")) {
+                if (comboSearch.getSelectedItem().equals("NIC Number")) {
+                    ResultSet rs = DB.search("SELECT * FROM customer WHERE status=1 AND nic_number LIKE '" + txtSearch.getText().toUpperCase() + "%'");
+                    Vector v = new Vector();
+                    jScrollPane4.setVisible(false);
+                    while (rs.next()) {
+                        jScrollPane4.setVisible(true);
+                        v.add(rs.getString("customer_id") + "-" + rs.getString("first_name") + " " + rs.getString("last_name"));
+                        jList2.setListData(v);
+                    }
+                } else if (comboSearch.getSelectedItem().equals(("Customer Name"))) {
+                    ResultSet rs = DB.search("SELECT * FROM customer WHERE status=1 AND first_name LIKE '" + txtSearch.getText().toUpperCase() + "%'");
+                    Vector v = new Vector();
+                    jScrollPane4.setVisible(false);
+                    while (rs.next()) {
+                        jScrollPane4.setVisible(true);
+                        v.add(rs.getString("customer_id") + "-" + rs.getString("first_name") + " " + rs.getString("last_name"));
+                    }
+                    jList2.setListData(v);
+                }
+            } else {
+                jScrollPane4.setVisible(false);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void editeJob() {
+        try {
+             String date = new SimpleDateFormat("yyyy-MM-dd- HH:mm:ss").format(new Date());
+            DB.iud("UPDATE work_order SET vehicle_id='"+txtVehicleNumber.getText().toUpperCase().split("-")[0]+"',"
+                    + "location='"+txtLocation.getText().toUpperCase()+"',discription='"+txtDiscription.getText()+"',"
+                            + "adding_employee='"+SystemData.getemployee()+"',start_meter='"+txtLastMeter.getText()+"' WHERE order_id='"+txtOrderId.getText()+"'");
+            
+            DB.iud("UPDATE employee_job SET status=2 WHERE order_id='"+txtOrderId.getText()+"'");
+                  for (int row = 0; row < tb3.getRowCount(); row++) {
+                        String employeeId = tb3.getValueAt(row, 0).toString().trim();
+                        String invitemSQL = "insert into employee_job (order_id,employee_id,data_time,status,payment) values('" + txtOrderId.getText().toUpperCase() + "','" + employeeId + "','" + date + "','" + 1 + "','" + 1 + "')";
+                        DB.iud(invitemSQL);
+                    }
+                  clearFeald();
+                   JOptionPane.showMessageDialog(this, " successfull");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    
 
 }

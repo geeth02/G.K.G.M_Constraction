@@ -7,6 +7,7 @@ package com.rent_item;
 
 import common.DB;
 import common.CommonM;
+import static common.CommonM.checkNull;
 import common.SystemData;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
@@ -86,6 +87,14 @@ public class Rent_Item extends javax.swing.JFrame {
                 customerListMouseClicked(evt);
             }
         });
+        customerList.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                customerListKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                customerListKeyReleased(evt);
+            }
+        });
         jScrollPane2.setViewportView(customerList);
 
         ReForm.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 450, 110));
@@ -155,6 +164,9 @@ public class Rent_Item extends javax.swing.JFrame {
             }
         });
         txtCustomerId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCustomerIdKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtCustomerIdKeyReleased(evt);
             }
@@ -316,7 +328,7 @@ public class Rent_Item extends javax.swing.JFrame {
     }//GEN-LAST:event_txtOrderIdKeyTyped
 
     private void txtCustomerIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCustomerIdActionPerformed
-        txtOrderId.grabFocus();
+           checkNull(txtCustomerId,"Customer Id",txtOrderId);
     }//GEN-LAST:event_txtCustomerIdActionPerformed
 
     private void txtProductNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProductNumberActionPerformed
@@ -436,6 +448,26 @@ public class Rent_Item extends javax.swing.JFrame {
         
        
     }//GEN-LAST:event_btnAddItemActionPerformed
+
+    private void txtCustomerIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCustomerIdKeyPressed
+              if (evt.getKeyCode() == 40) {
+              customerList.grabFocus();
+            customerList.setSelectedIndex(0);
+        }
+    }//GEN-LAST:event_txtCustomerIdKeyPressed
+
+    private void customerListKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_customerListKeyReleased
+      
+    }//GEN-LAST:event_customerListKeyReleased
+
+    private void customerListKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_customerListKeyPressed
+         if (evt.getKeyCode() == 10) {
+            txtCustomerId.setText(customerList.getSelectedValue().split("-")[0]);
+            jScrollPane2.setVisible(false);
+            txtItemId.grabFocus();
+              }
+                checkNull(txtCustomerId,"Customer Id",txtItemId);
+    }//GEN-LAST:event_customerListKeyPressed
 
     /**
      * @param args the command line arguments

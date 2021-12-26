@@ -5,6 +5,7 @@
  */
 package com.rent_item;
 
+import static common.CommonM.checkNull;
 import common.DB;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
@@ -80,6 +81,11 @@ public class Register_Rent_Item extends javax.swing.JFrame {
 
         txtModel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtModel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtModel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                txtModelMouseReleased(evt);
+            }
+        });
         txtModel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtModelActionPerformed(evt);
@@ -115,6 +121,11 @@ public class Register_Rent_Item extends javax.swing.JFrame {
 
         txtItemName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtItemName.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtItemName.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                txtItemNameMouseReleased(evt);
+            }
+        });
         txtItemName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtItemNameActionPerformed(evt);
@@ -144,6 +155,11 @@ public class Register_Rent_Item extends javax.swing.JFrame {
 
         txtProductNumber.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtProductNumber.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtProductNumber.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                txtProductNumberMouseReleased(evt);
+            }
+        });
         txtProductNumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtProductNumberActionPerformed(evt);
@@ -162,6 +178,11 @@ public class Register_Rent_Item extends javax.swing.JFrame {
         txtDiscription.setColumns(20);
         txtDiscription.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
         txtDiscription.setRows(5);
+        txtDiscription.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                txtDiscriptionMouseReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(txtDiscription);
 
         ReForm.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, 450, 150));
@@ -191,12 +212,20 @@ public class Register_Rent_Item extends javax.swing.JFrame {
 
         txtCompany.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtCompany.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtCompany.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                txtCompanyMouseReleased(evt);
+            }
+        });
         txtCompany.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCompanyActionPerformed(evt);
             }
         });
         txtCompany.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCompanyKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCompanyKeyTyped(evt);
             }
@@ -223,7 +252,7 @@ public class Register_Rent_Item extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtModelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtModelActionPerformed
-
+  checkNull(txtModel,"Model",txtCompany);
     }//GEN-LAST:event_txtModelActionPerformed
 
     private void txtModelKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtModelKeyTyped
@@ -239,11 +268,14 @@ public class Register_Rent_Item extends javax.swing.JFrame {
     }//GEN-LAST:event_txtItemIdKeyTyped
 
     private void txtItemNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtItemNameActionPerformed
-
+  checkNull(txtItemName,"Item Name",txtModel);
     }//GEN-LAST:event_txtItemNameActionPerformed
 
     private void txtProductNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProductNumberActionPerformed
-        // TODO add your handling code here:
+       txtDiscription.grabFocus();
+       if(txtProductNumber.getText().equals("")){
+       txtProductNumber.setText("None");
+       }
     }//GEN-LAST:event_txtProductNumberActionPerformed
 
     private void txtItemNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtItemNameKeyReleased
@@ -263,7 +295,26 @@ public class Register_Rent_Item extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegister3MouseExited
 
     private void btnRegister3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegister3ActionPerformed
+       if(!txtItemName.getText().equals("")){
+       if(txtModel.getText().equals("")){
+       if(txtCompany.getText().equals("")){
         registerItem();
+       }else{
+       JOptionPane.showMessageDialog(this, "Enter Company Name", "Error", JOptionPane.ERROR_MESSAGE);
+             txtCompany.grabFocus();
+       }
+       }else{
+              JOptionPane.showMessageDialog(this, "Enter Item Model", "Error", JOptionPane.ERROR_MESSAGE);
+             txtModel.grabFocus();
+       }
+       }else{
+          JOptionPane.showMessageDialog(this, "Enter Item Name", "Error", JOptionPane.ERROR_MESSAGE);
+             txtItemName.grabFocus();
+       }
+        
+        
+        
+       
     }//GEN-LAST:event_btnRegister3ActionPerformed
 
     private void jLabel9KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabel9KeyPressed
@@ -275,12 +326,63 @@ public class Register_Rent_Item extends javax.swing.JFrame {
     }//GEN-LAST:event_txtModelKeyReleased
 
     private void txtCompanyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCompanyActionPerformed
-        // TODO add your handling code here:
+       checkNull(txtCompany,"Item Name",txtProductNumber);
     }//GEN-LAST:event_txtCompanyActionPerformed
 
     private void txtCompanyKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCompanyKeyTyped
      
     }//GEN-LAST:event_txtCompanyKeyTyped
+
+    private void txtCompanyKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCompanyKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCompanyKeyReleased
+
+    private void txtCompanyMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCompanyMouseReleased
+         if(txtItemName.getText().equals("")){
+      txtItemName.grabFocus();
+      }else if(txtModel.getText().equals("")){
+      txtModel.grabFocus();
+      }else if(txtCompany.getText().equals("")){
+      txtCompany.grabFocus();
+      }
+    }//GEN-LAST:event_txtCompanyMouseReleased
+
+    private void txtModelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtModelMouseReleased
+         if(txtItemName.getText().equals("")){
+      txtItemName.grabFocus();
+      }else if(txtModel.getText().equals("")){
+      txtModel.grabFocus();
+      }
+    }//GEN-LAST:event_txtModelMouseReleased
+
+    private void txtItemNameMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtItemNameMouseReleased
+          if(txtItemName.getText().equals("")){
+      txtItemName.grabFocus();
+      }
+    }//GEN-LAST:event_txtItemNameMouseReleased
+
+    private void txtProductNumberMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtProductNumberMouseReleased
+          if(txtItemName.getText().equals("")){
+      txtItemName.grabFocus();
+      }else if(txtModel.getText().equals("")){
+      txtModel.grabFocus();
+      }else if(txtCompany.getText().equals("")){
+      txtCompany.grabFocus();
+      }
+    }//GEN-LAST:event_txtProductNumberMouseReleased
+
+    private void txtDiscriptionMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDiscriptionMouseReleased
+            if(txtItemName.getText().equals("")){
+      txtItemName.grabFocus();
+      }else if(txtModel.getText().equals("")){
+      txtModel.grabFocus();
+      }else if(txtCompany.getText().equals("")){
+      txtCompany.grabFocus();
+      }
+            if(txtProductNumber.getText().equals("")){
+            txtProductNumber.setText("None");
+            }
+    }//GEN-LAST:event_txtDiscriptionMouseReleased
 
     /**
      * @param args the command line arguments

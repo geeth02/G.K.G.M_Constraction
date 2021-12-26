@@ -5,6 +5,13 @@
  */
 package com.work_order;
 
+import common.CommonM;
+import common.DB;
+import java.sql.ResultSet;
+import java.util.Vector;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author geeth
@@ -17,6 +24,9 @@ public class Delete_Order extends javax.swing.JFrame {
     public Delete_Order() {
         initComponents();
         textFeald();
+        txtOrderId.grabFocus();
+        CommonM.tableSettings(tb3);
+        tb3.setEnabled(false);
 
     }
 
@@ -63,6 +73,17 @@ public class Delete_Order extends javax.swing.JFrame {
         ReForm.setOpaque(true);
         ReForm.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jList2.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jList2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList2MouseClicked(evt);
+            }
+        });
+        jList2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jList2KeyPressed(evt);
+            }
+        });
         jScrollPane4.setViewportView(jList2);
 
         ReForm.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 130, 280, -1));
@@ -105,6 +126,9 @@ public class Delete_Order extends javax.swing.JFrame {
             }
         });
         txtOrderId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtOrderIdKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtOrderIdKeyReleased(evt);
             }
@@ -139,7 +163,7 @@ public class Delete_Order extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 48)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Edite Order");
+        jLabel5.setText("Delete Order");
         jLabel5.setOpaque(true);
         ReForm.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 69));
 
@@ -226,7 +250,7 @@ public class Delete_Order extends javax.swing.JFrame {
         ReForm.add(txtLastMeter, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 450, 43));
 
         comboSearch.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        comboSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NIC Number", "Customer Name", "Order Id" }));
+        comboSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NIC Number", "Customer Name" }));
         ReForm.add(comboSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, -1, 40));
 
         jLayeredPane2.add(ReForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 750, 840));
@@ -295,7 +319,27 @@ public class Delete_Order extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegister3MouseExited
 
     private void btnRegister3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegister3ActionPerformed
+        try {
 
+         if(!txtOrderId.getText().equals("")){
+             if(!txtCustomerId.getText().equals("")){
+        DB.iud("update work_order set status='"+"2"+"' where order_id='"+txtOrderId.getText()+"'");
+         DB.iud("update employee_job set status='"+"2"+"' where order_id='"+txtOrderId.getText()+"'");
+        JOptionPane.showMessageDialog(this, "Delete "+ txtOrderId.getText()+" order");
+        clearFeald();
+             }else{
+               JOptionPane.showMessageDialog(this, "Invalid Order Id", "Error",JOptionPane.ERROR_MESSAGE); 
+               txtOrderId.grabFocus();
+             }
+         }else{
+             JOptionPane.showMessageDialog(this, "Error Try Again", "Error",JOptionPane.ERROR_MESSAGE);
+             txtOrderId.grabFocus();
+         }
+        } catch (Exception e) {
+           JOptionPane.showMessageDialog(this, "Error Try Again", "Error",JOptionPane.ERROR_MESSAGE); 
+           txtOrderId.grabFocus();
+        }
+    
     }//GEN-LAST:event_btnRegister3ActionPerformed
 
     private void jLabel9KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabel9KeyPressed
@@ -317,8 +361,34 @@ public class Delete_Order extends javax.swing.JFrame {
     }//GEN-LAST:event_txtLastMeterKeyTyped
 
     private void txtOrderIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOrderIdKeyReleased
-       
+        searchOrder();
+        if(txtOrderId.getText().equals("")){
+        clearFeald();
+        }
     }//GEN-LAST:event_txtOrderIdKeyReleased
+
+    private void txtOrderIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOrderIdKeyPressed
+        if (evt.getKeyCode() == 40) {
+            jList2.grabFocus();
+            jList2.setSelectedIndex(0);
+
+        }
+    }//GEN-LAST:event_txtOrderIdKeyPressed
+
+    private void jList2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList2MouseClicked
+        if (evt.getClickCount() == 2) {
+            String customerId = jList2.getSelectedValue().split("-")[0];
+            searchDetails(customerId);
+            jScrollPane4.setVisible(false);
+        }
+    }//GEN-LAST:event_jList2MouseClicked
+
+    private void jList2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jList2KeyPressed
+        if (evt.getKeyCode() == 10) {
+            String customerId = jList2.getSelectedValue().split("-")[0];
+            searchDetails(customerId);
+        }
+    }//GEN-LAST:event_jList2KeyPressed
 
     /**
      * @param args the command line arguments
@@ -375,26 +445,127 @@ public class Delete_Order extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JLabel lbFirstName;
-    private javax.swing.JTable tb3;
+    public static javax.swing.JTable tb3;
     public static javax.swing.JTextField txtCustomerId;
-    private javax.swing.JTextArea txtDiscription;
-    private javax.swing.JTextField txtLastMeter;
-    private javax.swing.JTextField txtLocation;
-    private javax.swing.JTextField txtOrderId;
+    public static javax.swing.JTextArea txtDiscription;
+    public static javax.swing.JTextField txtLastMeter;
+    public static javax.swing.JTextField txtLocation;
+    public static javax.swing.JTextField txtOrderId;
     public static javax.swing.JTextField txtVehicleNumber;
     // End of variables declaration//GEN-END:variables
 
     private void textFeald() {
-       txtCustomerId.setEditable(false);
-       txtDiscription.setEditable(false);
-       txtLastMeter.setEditable(false);
-       txtLocation.setEditable(false);
-       txtVehicleNumber.setEditable(false);
-       jScrollPane4.setVisible(false);
+        txtCustomerId.setEditable(false);
+        txtDiscription.setEditable(false);
+        txtLastMeter.setEditable(false);
+        txtLocation.setEditable(false);
+        txtVehicleNumber.setEditable(false);
+        jScrollPane4.setVisible(false);
     }
 
-    
+    private void searchOrder() {
+        try {
+            if (!txtOrderId.getText().trim().equals("")) {
+                if (comboSearch.getSelectedItem().equals("NIC Number")) {
+                    ResultSet rs = DB.search("SELECT * FROM customer WHERE status=1 AND nic_number LIKE '" + txtOrderId.getText().toUpperCase() + "%'");
+                    Vector v = new Vector();
+                    jScrollPane4.setVisible(false);
+                    while (rs.next()) {
+                        jScrollPane4.setVisible(true);
+                        v.add(rs.getString("customer_id") + "-" + rs.getString("first_name") + " " + rs.getString("last_name"));
+                        jList2.setListData(v);
+                    }
+                } else if (comboSearch.getSelectedItem().equals(("Customer Name"))) {
+                    ResultSet rs = DB.search("SELECT * FROM customer WHERE status=1 AND first_name LIKE '" + txtOrderId.getText().toUpperCase() + "%'");
+                    Vector v = new Vector();
+                    jScrollPane4.setVisible(false);
+                    while (rs.next()) {
+                        jScrollPane4.setVisible(true);
+                        v.add(rs.getString("customer_id") + "-" + rs.getString("first_name") + " " + rs.getString("last_name"));
+                    }
+                    jList2.setListData(v);
+                }
+            } else {
+                jScrollPane4.setVisible(false);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
+    private void searchDetails(String customerId) {
+        try {
+            int i = 0;
+            ResultSet search = DB.search("SELECT * FROM work_order WHERE status=1 AND customer_id='" + customerId + "'");
+            while (search.next()) {
+                i++;
+            }
+            if (i == 1) {
+                ResultSet search1 = DB.search("SELECT * FROM work_order WHERE status=1 AND customer_id='" + customerId + "'");
+                if(search1.next()){
+                    txtOrderId.setText(search1.getString("order_id"));
+                  ResultSet search2 = DB.search("SELECT * FROM customer WHERE status=1 AND customer_id='" + customerId + "'");
+                  if(search2.next()){
+                   txtCustomerId.setText(customerId+"-"+search2.getString("first_name")+" "+search2.getString("last_name"));
+                  }
+                  ResultSet search3 = DB.search("SELECT * FROM vehicle WHERE status=1 AND vehicle_id='" + search1.getString("vehicle_id") + "'");
+                  if(search3.next()){
+                  txtVehicleNumber.setText(search3.getString("vehicle_id")+"-"+search3.getString("model")+" ("+search3.getString("registration_number")+")");
+                  }
+                  txtLastMeter.setText(search1.getString("start_meter"));
+                  txtLocation.setText(search1.getString("location"));
+                  txtDiscription.setText(search1.getString("discription"));
+                      driverData(search1.getString("order_id"));
+                }
+                
+              
+                jScrollPane4.setVisible(false);
 
+            } else if (i > 1) {
+                new Job_Selection_delete(customerId).setVisible(true);
+                jScrollPane4.setVisible(false);
+            }
 
+        } catch (Exception e) {
+        }
+
+    }
+
+    private void driverData(String ordrId) {
+        try {
+            ResultSet search = DB.search("SELECT * FROM employee_job WHERE status=1 AND order_id='"+ordrId+"'");
+                DefaultTableModel dtm = (DefaultTableModel) tb3.getModel();
+                dtm.setRowCount(0);
+            while(search.next()){
+                Vector v = new Vector();
+                v.add(search.getString("employee_id"));
+                ResultSet search1 = DB.search("SELECT * FROM employee WHERE employee_id='"+search.getString("employee_id")+"'");
+                if(search1.next()){
+                v.add(search1.getString("nic_number"));
+                v.add(search1.getString("first_name")+" "+search1.getString("last_name"));
+                v.add(search1.getString("phone_number"));
+                    ResultSet search2 = DB.search("SELECT * FROM employee_type WHERE type_code='"+search1.getString("type_code")+"'");
+                    if(search2.next()){
+                    v.add(search2.getString("type"));
+                    }
+                
+                }
+            dtm.addRow(v);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void clearFeald() {
+        txtCustomerId.setText(null);
+        txtDiscription.setText(null);
+        txtLastMeter.setText(null);
+        txtLocation.setText(null);
+        txtOrderId.setText(null);
+        txtVehicleNumber.setText(null);
+        txtOrderId.grabFocus();
+        DefaultTableModel dtm = (DefaultTableModel) tb3.getModel();
+        dtm.setRowCount(0);
+    }
 }

@@ -128,6 +128,16 @@ public class End_Job extends javax.swing.JFrame {
 
         comboSearch.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         comboSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NIC Number", "Customer Name" }));
+        comboSearch.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                comboSearchMouseClicked(evt);
+            }
+        });
+        comboSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboSearchActionPerformed(evt);
+            }
+        });
         jPanel3.add(comboSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, -1, 40));
 
         txtOrderId.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -904,6 +914,16 @@ public class End_Job extends javax.swing.JFrame {
       row= tb1.getSelectedRow();
     }//GEN-LAST:event_tb1MouseClicked
 
+    private void comboSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboSearchMouseClicked
+       
+    }//GEN-LAST:event_comboSearchMouseClicked
+
+    private void comboSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboSearchActionPerformed
+      clearCostFeald();
+      clearFeald();
+      txtOrderId.setText(null);
+    }//GEN-LAST:event_comboSearchActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1022,13 +1042,13 @@ public class End_Job extends javax.swing.JFrame {
 
     private void searchDetails() {
 
-        if (comboSearch.getSelectedItem().equals("NIC Number")) {
+//        if (comboSearch.getSelectedItem().equals("NIC Number")) {
             searchNic();
-        } else if (comboSearch.getSelectedItem().equals("Vehicle Number")) {
-            searchVehicleN();
-            loadPayments();
-        }
-        // jScrollPane2.setVisible(false);
+//        } else if (comboSearch.getSelectedItem().equals("Vehicle Number")) {
+//            searchVehicleN();
+//            loadPayments();
+//        }
+       //  jScrollPane2.setVisible(false);
 
     }
 

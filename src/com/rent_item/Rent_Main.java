@@ -468,7 +468,7 @@ public class Rent_Main extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEndJobMouseExited
 
     private void btnEndJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEndJobActionPerformed
-        new End_Job().setVisible(true);
+      new Edite_Order().setVisible(true);
     }//GEN-LAST:event_btnEndJobActionPerformed
 
     private void btnDashboard1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDashboard1MouseEntered
@@ -480,7 +480,7 @@ public class Rent_Main extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDashboard1MouseExited
 
     private void btnDashboard1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboard1ActionPerformed
-      
+      new Register_Rent_Item().setVisible(true);
     }//GEN-LAST:event_btnDashboard1ActionPerformed
 
     private void btnDashboard2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDashboard2MouseEntered
@@ -492,8 +492,7 @@ public class Rent_Main extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDashboard2MouseExited
 
     private void btnDashboard2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboard2ActionPerformed
-      new Driver_Salery().setVisible(true);
-      this.dispose();
+      new Delete_Rent_order().setVisible(true);
     }//GEN-LAST:event_btnDashboard2ActionPerformed
 
     private void btnEndJob1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEndJob1MouseEntered
@@ -505,7 +504,8 @@ public class Rent_Main extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEndJob1MouseExited
 
     private void btnEndJob1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEndJob1ActionPerformed
-        // TODO add your handling code here:
+       new End_Order().setVisible(true);
+       this.dispose();
     }//GEN-LAST:event_btnEndJob1ActionPerformed
 
     private void btnDashboard3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDashboard3MouseEntered
@@ -517,7 +517,7 @@ public class Rent_Main extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDashboard3MouseExited
 
     private void btnDashboard3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboard3ActionPerformed
-        // TODO add your handling code here:
+        new Rent_Paymet().setVisible(true);
     }//GEN-LAST:event_btnDashboard3ActionPerformed
 
     /**

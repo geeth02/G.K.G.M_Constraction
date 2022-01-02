@@ -296,8 +296,8 @@ public class Register_Rent_Item extends javax.swing.JFrame {
 
     private void btnRegister3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegister3ActionPerformed
        if(!txtItemName.getText().equals("")){
-       if(txtModel.getText().equals("")){
-       if(txtCompany.getText().equals("")){
+       if(!txtModel.getText().equals("")){
+       if(!txtCompany.getText().equals("")){
         registerItem();
        }else{
        JOptionPane.showMessageDialog(this, "Enter Company Name", "Error", JOptionPane.ERROR_MESSAGE);

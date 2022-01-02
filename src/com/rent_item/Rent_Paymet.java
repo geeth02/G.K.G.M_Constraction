@@ -776,7 +776,8 @@ public class Rent_Paymet extends javax.swing.JFrame {
                   jScrollPane1.setVisible(false);
                   }
                   }else if(i>1){
-                    new Job_Selection_Payment().setVisible(true);
+                    new Job_Selection_Payment_Rent().setVisible(true);
+                    
                   }
                 } catch (Exception e) {
                     e.printStackTrace();

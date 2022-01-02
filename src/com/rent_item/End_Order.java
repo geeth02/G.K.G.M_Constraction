@@ -8,8 +8,11 @@ package com.rent_item;
 import com.work_order.*;
 import common.CommonM;
 import common.DB;
+import common.SystemData;
 import java.awt.Color;
+import java.math.BigDecimal;
 import java.sql.ResultSet;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Vector;
@@ -35,7 +38,14 @@ public class End_Order extends javax.swing.JFrame {
         txtItemId.setEditable(false);
         txtSearch.grabFocus();
         txtAmount.setEditable(false);
-
+        btnEnd.setEnabled(false);
+        txtNetAmount.setEditable(false);
+        txtTotDiscount.setEditable(false);
+        txtTotalBillAmount.setEditable(false);
+        txtItemId.setEditable(false);
+        txtOrderId.setEditable(false);
+        txtCustomer.setEditable(false);
+        txtCustomerPayment.setEditable(false);
 
     }
     int row;
@@ -71,11 +81,11 @@ public class End_Order extends javax.swing.JFrame {
         txtCustomerPayment = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        txtCustomer2 = new javax.swing.JTextField();
+        txtTotalBillAmount = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        txtCustomer3 = new javax.swing.JTextField();
-        txtCustomer4 = new javax.swing.JTextField();
+        txtTotDiscount = new javax.swing.JTextField();
+        txtNetAmount = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jScrollPane8 = new javax.swing.JScrollPane();
         tb4 = new javax.swing.JTable();
@@ -88,7 +98,8 @@ public class End_Order extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         txtDiscount = new javax.swing.JTextField();
-        btnRegister4 = new javax.swing.JButton();
+        btnGrtItem = new javax.swing.JButton();
+        btnEnd = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1920, 1080));
@@ -211,7 +222,7 @@ public class End_Order extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jList1);
 
-        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 70, 310, 150));
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 70, 310, 100));
 
         comboSearch.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         comboSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NIC Number", "Order Id", "Customer Name" }));
@@ -269,10 +280,16 @@ public class End_Order extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Item Id", "Amount Per Day", "Anount", "Discount", "Net Amount"
+                "Item Id", "Amount Per Day", "Amount", "Discount", "Net Amount"
             }
         ));
         tb3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb3MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tb3MouseEntered(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 tb3MousePressed(evt);
             }
@@ -297,11 +314,11 @@ public class End_Order extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        txtCustomer2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtCustomer2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        txtCustomer2.addActionListener(new java.awt.event.ActionListener() {
+        txtTotalBillAmount.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtTotalBillAmount.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtTotalBillAmount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCustomer2ActionPerformed(evt);
+                txtTotalBillAmountActionPerformed(evt);
             }
         });
 
@@ -311,19 +328,19 @@ public class End_Order extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
         jLabel13.setText("Total Discount");
 
-        txtCustomer3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtCustomer3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        txtCustomer3.addActionListener(new java.awt.event.ActionListener() {
+        txtTotDiscount.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtTotDiscount.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtTotDiscount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCustomer3ActionPerformed(evt);
+                txtTotDiscountActionPerformed(evt);
             }
         });
 
-        txtCustomer4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtCustomer4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        txtCustomer4.addActionListener(new java.awt.event.ActionListener() {
+        txtNetAmount.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtNetAmount.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtNetAmount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCustomer4ActionPerformed(evt);
+                txtNetAmountActionPerformed(evt);
             }
         });
 
@@ -340,15 +357,15 @@ public class End_Order extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(45, 45, 45)
-                        .addComponent(txtCustomer2, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtTotalBillAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(45, 45, 45)
-                        .addComponent(txtCustomer3, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtTotDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(45, 45, 45)
-                        .addComponent(txtCustomer4, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtNetAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -357,15 +374,15 @@ public class End_Order extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCustomer2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTotalBillAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(8, 8, 8)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCustomer3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTotDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(8, 8, 8)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCustomer4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNetAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(56, Short.MAX_VALUE))
         );
 
@@ -376,7 +393,7 @@ public class End_Order extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Item Id", "Model", "Product Number", "Days", "Status"
+                "Item Id", "Model", "Product Number", "Days", "Status", "Payment"
             }
         ));
         tb4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -437,6 +454,11 @@ public class End_Order extends javax.swing.JFrame {
                 txtDiscountActionPerformed(evt);
             }
         });
+        txtDiscount.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtDiscountKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -487,24 +509,43 @@ public class End_Order extends javax.swing.JFrame {
 
         jPanel3.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 180, -1, -1));
 
-        btnRegister4.setBackground(new java.awt.Color(0, 102, 204));
-        btnRegister4.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 30)); // NOI18N
-        btnRegister4.setForeground(new java.awt.Color(255, 255, 255));
-        btnRegister4.setText("End");
-        btnRegister4.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnGrtItem.setBackground(new java.awt.Color(0, 102, 204));
+        btnGrtItem.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 30)); // NOI18N
+        btnGrtItem.setForeground(new java.awt.Color(255, 255, 255));
+        btnGrtItem.setText("Get Item");
+        btnGrtItem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnRegister4MouseEntered(evt);
+                btnGrtItemMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnRegister4MouseExited(evt);
+                btnGrtItemMouseExited(evt);
             }
         });
-        btnRegister4.addActionListener(new java.awt.event.ActionListener() {
+        btnGrtItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegister4ActionPerformed(evt);
+                btnGrtItemActionPerformed(evt);
             }
         });
-        jPanel3.add(btnRegister4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 730, 220, 60));
+        jPanel3.add(btnGrtItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 730, 220, 60));
+
+        btnEnd.setBackground(new java.awt.Color(0, 102, 204));
+        btnEnd.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 30)); // NOI18N
+        btnEnd.setForeground(new java.awt.Color(255, 255, 255));
+        btnEnd.setText("End");
+        btnEnd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEndMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEndMouseExited(evt);
+            }
+        });
+        btnEnd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEndActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnEnd, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 730, 220, 60));
 
         jLayeredPane1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 120, 1540, 920));
 
@@ -557,14 +598,14 @@ public class End_Order extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDashboardActionPerformed
 
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
-     if (evt.getClickCount() == 2) {
-                click();                
-            }
+        if (evt.getClickCount() == 2) {
+            click();
+        }
     }//GEN-LAST:event_jList1MouseClicked
 
     private void jList1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jList1KeyPressed
-        if(evt.getKeyCode()==10){
-        click();
+        if (evt.getKeyCode() == 10) {
+            click();
         }
     }//GEN-LAST:event_jList1KeyPressed
 
@@ -577,6 +618,9 @@ public class End_Order extends javax.swing.JFrame {
         if (evt.getKeyCode() == 40) {
             jList1.setSelectedIndex(0);
             jList1.grabFocus();
+        }
+        if (txtSearch.getText().equals("")) {
+            clearAllFeald();
         }
     }//GEN-LAST:event_txtSearchKeyReleased
 
@@ -600,20 +644,20 @@ public class End_Order extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCustomerPaymentActionPerformed
 
-    private void txtCustomer2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCustomer2ActionPerformed
+    private void txtTotalBillAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalBillAmountActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCustomer2ActionPerformed
+    }//GEN-LAST:event_txtTotalBillAmountActionPerformed
 
-    private void txtCustomer3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCustomer3ActionPerformed
+    private void txtTotDiscountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotDiscountActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCustomer3ActionPerformed
+    }//GEN-LAST:event_txtTotDiscountActionPerformed
 
-    private void txtCustomer4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCustomer4ActionPerformed
+    private void txtNetAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNetAmountActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCustomer4ActionPerformed
+    }//GEN-LAST:event_txtNetAmountActionPerformed
 
     private void tb4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb4MousePressed
-       
+
     }//GEN-LAST:event_tb4MousePressed
 
     private void txtItemIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtItemIdActionPerformed
@@ -629,42 +673,129 @@ public class End_Order extends javax.swing.JFrame {
     }//GEN-LAST:event_txtAmountActionPerformed
 
     private void txtDiscountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDiscountActionPerformed
-       double amount = Double.parseDouble(txtAmount.getText());
-       double discount = Double.parseDouble(txtDiscount.getText());
-         try {
+        double amount = Double.parseDouble(txtAmount.getText());
+        double discount = Double.parseDouble(txtDiscount.getText());
+        try {
             DefaultTableModel dtm1 = (DefaultTableModel) tb3.getModel();
-            dtm1.setRowCount(0);
             Vector v = new Vector();
             v.add(txtItemId.getText().split("-")[0]);
             v.add(String.valueOf(Double.parseDouble(txtAmountPday.getText())));
             v.add(txtAmount.getText());
             v.add(String.valueOf(Double.parseDouble(txtDiscount.getText())));
-            v.add(String.valueOf(amount-discount));
+            v.add(String.valueOf(amount - discount));
             dtm1.addRow(v);
+            payment();
             clearFeald();
         } catch (Exception e) {
             e.printStackTrace();
         }
-       
-       
+
+
     }//GEN-LAST:event_txtDiscountActionPerformed
 
-    private void btnRegister4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegister4MouseEntered
+    private void btnGrtItemMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGrtItemMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnRegister4MouseEntered
+    }//GEN-LAST:event_btnGrtItemMouseEntered
 
-    private void btnRegister4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegister4MouseExited
+    private void btnGrtItemMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGrtItemMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnRegister4MouseExited
+    }//GEN-LAST:event_btnGrtItemMouseExited
 
-    private void btnRegister4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegister4ActionPerformed
-
-    }//GEN-LAST:event_btnRegister4ActionPerformed
+    private void btnGrtItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrtItemActionPerformed
+        itemPayment();
+    }//GEN-LAST:event_btnGrtItemActionPerformed
 
     private void tb4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb4MouseClicked
-         txtItemId.setText(tb4.getValueAt(tb4.getSelectedRow(), 0).toString());
-         txtAmountPday.grabFocus();
+        row = tb4.getSelectedRow();
+        if ((tb4.getValueAt(tb4.getSelectedRow(), 4).toString().equals("Uncomplite"))) {
+            if (!(tb4.getValueAt(tb4.getSelectedRow(), 5).toString().equals("Added"))) {
+                txtItemId.setText(tb4.getValueAt(tb4.getSelectedRow(), 0).toString());
+                txtAmountPday.grabFocus();
+            }
+        }
+
+
     }//GEN-LAST:event_tb4MouseClicked
+
+    private void tb3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb3MouseClicked
+        if (txtItemId.getText().equals("")) {
+            txtItemId.setText(tb3.getValueAt(tb3.getSelectedRow(), 0).toString());
+            txtAmountPday.setText(tb3.getValueAt(tb3.getSelectedRow(), 1).toString());
+            txtAmount.setText(tb3.getValueAt(tb3.getSelectedRow(), 2).toString());
+            txtDiscount.setText(tb3.getValueAt(tb3.getSelectedRow(), 3).toString());
+            DefaultTableModel dtm1 = (DefaultTableModel) tb3.getModel();
+            dtm1.removeRow(tb3.getSelectedRow());
+            txtNetAmount.setText(null);
+            txtTotDiscount.setText(null);
+            txtTotalBillAmount.setText(null);
+            if (tb3.getRowCount() == tb4.getRowCount()) {
+                totalBillAmount();
+                totalDiscount();
+                netAmount();
+            } else {
+                txtTotalBillAmount.setText("Pending......");
+                txtTotDiscount.setText("Pending......");
+                txtNetAmount.setText("Pending......");
+                btnEnd.setEnabled(false);
+                btnGrtItem.setEnabled(true);
+            }
+            txtAmountPday.grabFocus();
+
+        }
+    }//GEN-LAST:event_tb3MouseClicked
+
+    private void txtDiscountKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDiscountKeyReleased
+        if (tb3.getRowCount() == tb4.getRowCount()) {
+            totalBillAmount();
+            totalDiscount();
+            netAmount();
+            btnEnd.setEnabled(true);
+            btnEnd.grabFocus();
+            btnGrtItem.setEnabled(false);
+        } else {
+            txtTotalBillAmount.setText("Pending......");
+            txtTotDiscount.setText("Pending......");
+            txtNetAmount.setText("Pending......");
+            btnEnd.setEnabled(false);
+            btnGrtItem.setEnabled(true);
+        }
+    }//GEN-LAST:event_txtDiscountKeyReleased
+
+    private void btnEndMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEndMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEndMouseEntered
+
+    private void btnEndMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEndMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEndMouseExited
+
+    private void btnEndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEndActionPerformed
+        try {
+              String date = new SimpleDateFormat("yyyy-MM-dd- HH:mm:ss").format(new Date());
+            for (int row = 0; row < tb3.getRowCount(); row++) {
+                String itemId = tb3.getValueAt(row, 0).toString().trim();
+                String orderId = txtOrderId.getText().toUpperCase();
+                String amountPerDay = tb3.getValueAt(row, 1).toString().trim();
+                String amount = tb3.getValueAt(row, 2).toString().trim();
+                String discount = tb3.getValueAt(row, 3).toString().trim();
+                ResultSet search = DB.search("SELECT * FROM rent_item_payment WHERE item_id='" + itemId + "', AND order_id='" + orderId + "'");
+                if (search.next()) {
+                    DB.iud("UPDATE rent_item_paymennt set amount_per_date='"+amountPerDay+"',amount='"+amount+"',discount='"+discount+"' WHERE order_id='"+orderId+"' AND item_id='"+itemId+"'");
+                }else{
+                String invitemSQL2 = "insert into rent_item_payment (item_id,order_id,amount_per_date,amount,discount,data_time,end_by,status) values('" + itemId + "','" + orderId + "','" + amountPerDay + "','" + amount + "','" + discount + "','" + date + "','" + SystemData.getemployee() + "','" + 1 + "')";
+                DB.iud(invitemSQL2);
+                }
+                DB.iud("UPDATE rent_order SET status=0 WHERE order_id='"+orderId+"'");
+               JOptionPane.showMessageDialog(this, "Successful");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnEndActionPerformed
+
+    private void tb3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb3MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tb3MouseEntered
 
     /**
      * @param args the command line arguments
@@ -705,7 +836,8 @@ public class End_Order extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDashboard;
-    private javax.swing.JButton btnRegister4;
+    private javax.swing.JButton btnEnd;
+    private javax.swing.JButton btnGrtItem;
     public static javax.swing.JComboBox<String> comboSearch;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -731,19 +863,19 @@ public class End_Order extends javax.swing.JFrame {
     private javax.swing.JLabel lbFirstName;
     private javax.swing.JLabel lbGKG;
     private javax.swing.JLabel memberTitle;
-    private javax.swing.JTable tb3;
-    private javax.swing.JTable tb4;
+    public static javax.swing.JTable tb3;
+    public static javax.swing.JTable tb4;
     public static javax.swing.JTextField txtAmount;
     public static javax.swing.JTextField txtAmountPday;
     public static javax.swing.JTextField txtCustomer;
-    public static javax.swing.JTextField txtCustomer2;
-    public static javax.swing.JTextField txtCustomer3;
-    public static javax.swing.JTextField txtCustomer4;
     public static javax.swing.JTextField txtCustomerPayment;
     public static javax.swing.JTextField txtDiscount;
     public static javax.swing.JTextField txtItemId;
+    public static javax.swing.JTextField txtNetAmount;
     public static javax.swing.JTextField txtOrderId;
     public static javax.swing.JTextField txtSearch;
+    public static javax.swing.JTextField txtTotDiscount;
+    public static javax.swing.JTextField txtTotalBillAmount;
     // End of variables declaration//GEN-END:variables
 
     private void searchPro() {
@@ -788,37 +920,51 @@ public class End_Order extends javax.swing.JFrame {
 
     private void searchDetails(String orderId) {
         try {
-            ResultSet search = DB.search("SELECT * FROM rent_order WHERE status=1 AND order_id='" + orderId + "'");
-            if (search.next()) {
-                txtOrderId.setText(orderId);
-                ResultSet search1 = DB.search("SELECT * FROM customer WHERE customer_id='" + search.getString("customer_id") + "'");
-                if (search1.next()) {
-                    txtCustomer.setText(search.getString("customer_id") + "-" + search1.getString("first_name") + " " + search1.getString("last_name"));
-                    txtSearch.setText(search1.getString("nic_number"));
-                    comboSearch.setSelectedIndex(0);
-                }
-                
-                ResultSet search2 = DB.search("SELECT * FROM rent_order_item WHERE order_id='"+orderId+"'");
-                 DefaultTableModel dtm =(DefaultTableModel) tb4.getModel();
-                 dtm.setRowCount(0);
-                while(search2.next()){
-               Vector v = new Vector();
-                    ResultSet search3 = DB.search("SELECT * FROM rent_item WHERE item_id='"+search2.getString("item_id")+"'");
-                    if(search3.next()){
-                    v.add(search2.getString("item_id")+"-"+search3.getString("name"));
-                    v.add(search3.getString("model"));
-                    v.add(search3.getString("product_number"));
-                    v.add(dayCalculate(search.getString("data_time")));
-                    if(search3.getString("status").equals("1")){
-                    v.add("Uncomplite");
-                    
-                    }else{
-                    v.add("Complite");
+            String customerId = jList1.getSelectedValue().split("-")[0];
+            ResultSet search4 = DB.search("SELECT * FROM rent_order WHERE status=1 AND customer_id='" + customerId + "'");
+            int i = 0;
+            while (search4.next()) {
+                i++;
+            }
+
+            if (i == 1) {
+                ResultSet search = DB.search("SELECT * FROM rent_order WHERE status=1 AND order_id='" + orderId + "'");
+                if (search.next()) {
+                    txtOrderId.setText(orderId);
+                    ResultSet search1 = DB.search("SELECT * FROM customer WHERE customer_id='" + search.getString("customer_id") + "'");
+                    if (search1.next()) {
+                        txtCustomer.setText(search.getString("customer_id") + "-" + search1.getString("first_name") + " " + search1.getString("last_name"));
+                        txtSearch.setText(search1.getString("nic_number"));
+                        comboSearch.setSelectedIndex(0);
                     }
-                    dtm.addRow(v);
+
+                    ResultSet search2 = DB.search("SELECT * FROM rent_order_item WHERE order_id='" + orderId + "'");
+                    DefaultTableModel dtm = (DefaultTableModel) tb4.getModel();
+                    dtm.setRowCount(0);
+                    while (search2.next()) {
+                        Vector v = new Vector();
+                        ResultSet search3 = DB.search("SELECT * FROM rent_item WHERE item_id='" + search2.getString("item_id") + "'");
+                        if (search3.next()) {
+                            v.add(search2.getString("item_id") + "-" + search3.getString("name"));
+                            v.add(search3.getString("model"));
+                            v.add(search3.getString("product_number"));
+                            v.add(dayCalculate(search.getString("data_time")));
+                            if (search3.getString("status").equals("1")) {
+                                v.add("Uncomplite");
+
+                            } else {
+                                v.add("Complite");
+                            }
+                            v.add(loadPaymentStatus(search2.getString("item_id"), orderId));
+                            dtm.addRow(v);
+                        }
                     }
+                    loadPayment(orderId);
+
                 }
-                
+            } else if (i > 1) {
+                new Job_Selection_End_Rent().setVisible(true);
+
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -826,34 +972,34 @@ public class End_Order extends javax.swing.JFrame {
     }
 
     private String dayCalculate(String orderDate) {
-         String retunVal=null;
+        String retunVal = null;
         try {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");         
-        String curunt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss ").format(new Date());
-           long cd= sdf.parse(curunt).getTime();
-           String orderDate1 =orderDate;
-            long rd= sdf.parse(orderDate1).getTime();
-            long dif =Math.abs(sdf.parse(orderDate1).getTime()-sdf.parse(curunt).getTime());
-            long convert =TimeUnit.MILLISECONDS.convert(dif, TimeUnit.SECONDS);
-            long convert1=TimeUnit.HOURS.convert(dif, TimeUnit.MILLISECONDS);
-           
-            if(convert1>24){
-                retunVal=String.valueOf(convert1/24)+" Days";
-            }else{
-            retunVal="1 Day";
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String curunt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss ").format(new Date());
+            long cd = sdf.parse(curunt).getTime();
+            String orderDate1 = orderDate;
+            long rd = sdf.parse(orderDate1).getTime();
+            long dif = Math.abs(sdf.parse(orderDate1).getTime() - sdf.parse(curunt).getTime());
+            long convert = TimeUnit.MILLISECONDS.convert(dif, TimeUnit.SECONDS);
+            long convert1 = TimeUnit.HOURS.convert(dif, TimeUnit.MILLISECONDS);
+
+            if (convert1 > 24) {
+                retunVal = String.valueOf(convert1 / 24) + " Days";
+            } else {
+                retunVal = "1 Day";
             }
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-    return retunVal;
+        return retunVal;
     }
 
     private void calculateAmount() {
 
-      int days= Integer.parseInt(tb4.getValueAt(tb4.getSelectedRow(), 3).toString().split(" ")[0]);
-      txtAmount.setText(String.valueOf(Double.parseDouble(txtAmountPday.getText())*days));
-      txtDiscount.grabFocus();
+        int days = Integer.parseInt(tb4.getValueAt(tb4.getSelectedRow(), 3).toString().split(" ")[0]);
+        txtAmount.setText(String.valueOf(Double.parseDouble(txtAmountPday.getText()) * days));
+        txtDiscount.grabFocus();
     }
 
     private void clearFeald() {
@@ -865,39 +1011,188 @@ public class End_Order extends javax.swing.JFrame {
 
     private void click() {
         try {
-                            jScrollPane1.setVisible(false);
-                if (comboSearch.getSelectedItem().equals("NIC Number")) {
-                    ResultSet search1 = DB.search("SELECT * FROM rent_order WHERE status= 1 AND customer_id='" + jList1.getSelectedValue().split("-")[0] + "'");
-                    if (search1.next()) {
-                        searchDetails(search1.getString("order_id"));
-                    } else {
-                        JOptionPane.showMessageDialog(this, "This customer have not active job");
-                        txtSearch.setText("");
-                        txtSearch.grabFocus();
-                    }
-                } else if (comboSearch.getSelectedItem().equals("Order Id")) {
-                    ResultSet search1 = DB.search("SELECT * FROM rent_order WHERE status= 1 AND order_id='" + jList1.getSelectedValue().split("-")[0] + "'");
-                    if (search1.next()) {
-                        searchDetails(search1.getString("order_id"));
-                    } else {
-                        JOptionPane.showMessageDialog(this, "This customer have not active job");
-                        txtSearch.setText("");
-                        txtSearch.grabFocus();
-                    }
-
-                } else if (comboSearch.getSelectedItem().equals("Customer Name")) {
-                                        ResultSet search1 = DB.search("SELECT * FROM rent_order WHERE status= 1 AND customer_id='" + jList1.getSelectedValue().split("-")[0] + "'");
-                    if (search1.next()) {
-                        searchDetails(search1.getString("order_id"));
-                    } else {
-                        JOptionPane.showMessageDialog(this, "This customer have not active job");
-                        txtSearch.setText("");
-                        txtSearch.grabFocus();
-                    }
+            jScrollPane1.setVisible(false);
+            if (comboSearch.getSelectedItem().equals("NIC Number")) {
+                ResultSet search1 = DB.search("SELECT * FROM rent_order WHERE status= 1 AND customer_id='" + jList1.getSelectedValue().split("-")[0] + "'");
+                if (search1.next()) {
+                    searchDetails(search1.getString("order_id"));
+                } else {
+                    JOptionPane.showMessageDialog(this, "This customer have not active job");
+                    txtSearch.setText("");
+                    txtSearch.grabFocus();
                 }
+            } else if (comboSearch.getSelectedItem().equals("Order Id")) {
+                ResultSet search1 = DB.search("SELECT * FROM rent_order WHERE status= 1 AND order_id='" + jList1.getSelectedValue().split("-")[0] + "'");
+                if (search1.next()) {
+                    searchDetails(search1.getString("order_id"));
+                } else {
+                    JOptionPane.showMessageDialog(this, "This customer have not active job");
+                    txtSearch.setText("");
+                    txtSearch.grabFocus();
+                }
+
+            } else if (comboSearch.getSelectedItem().equals("Customer Name")) {
+                ResultSet search1 = DB.search("SELECT * FROM rent_order WHERE status= 1 AND customer_id='" + jList1.getSelectedValue().split("-")[0] + "'");
+                if (search1.next()) {
+                    searchDetails(search1.getString("order_id"));
+                } else {
+                    JOptionPane.showMessageDialog(this, "This customer have not active job");
+                    txtSearch.setText("");
+                    txtSearch.grabFocus();
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void loadPayment(String orderId) {
+        try {
+            Double payment = 0.00;
+            ResultSet search = DB.search("SELECT * FROM payment WHERE order_id='" + txtOrderId.getText().toUpperCase() + "'");
+            while (search.next()) {
+                payment = payment + search.getDouble("amount");
+                System.out.println(payment);
+            }
+            String setValue = String.valueOf(payment);
+            BigDecimal bd = new BigDecimal(setValue);
+            DecimalFormat formatterBd = new DecimalFormat("##.00");
+            if (payment == 0.00) {
+                txtCustomerPayment.setText("0.00");
+            } else {
+                txtCustomerPayment.setText(formatterBd.format(bd));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void totalBillAmount() {
+        try {
+            double amount = 0;
+            for (int row = 0; row < tb3.getRowCount(); row++) {
+                String amount1 = tb3.getValueAt(row, 2).toString().trim();
+                double amount2 = Double.parseDouble(amount1);
+                amount = amount + amount2;
+                System.out.println(amount);
+            }
+            String setValue = String.valueOf(amount);
+            BigDecimal bd = new BigDecimal(setValue);
+            DecimalFormat formatterBd = new DecimalFormat("##.00");
+            txtTotalBillAmount.setText(formatterBd.format(bd));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void totalDiscount() {
+        try {
+            double amount = 0;
+            for (int row = 0; row < tb3.getRowCount(); row++) {
+                String amount1 = tb3.getValueAt(row, 3).toString().trim();
+                double amount2 = Double.parseDouble(amount1);
+                amount = amount + amount2;
+                System.out.println(amount);
+            }
+            String setValue = String.valueOf(amount);
+            BigDecimal bd = new BigDecimal(setValue);
+            DecimalFormat formatterBd = new DecimalFormat("##.00");
+            txtTotDiscount.setText(formatterBd.format(bd));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void netAmount() {
+        try {
+            double amount = 0;
+            for (int row = 0; row < tb3.getRowCount(); row++) {
+                String amount1 = tb3.getValueAt(row, 4).toString().trim();
+                double amount2 = Double.parseDouble(amount1);
+                amount = amount + amount2;
+                System.out.println(amount);
+            }
+            String setValue = String.valueOf(amount);
+            BigDecimal bd = new BigDecimal(setValue);
+            DecimalFormat formatterBd = new DecimalFormat("##.00");
+            txtNetAmount.setText(formatterBd.format(bd));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String loadPaymentStatus(String itemId, String orderId) {
+        String result = null;
+        try {
+            ResultSet search = DB.search("SELECT * FROM rent_item_payment WHERE order_id='" + orderId + "' AND item_id='" + itemId + "'");
+            if (search.next()) {
+                DefaultTableModel dtm = (DefaultTableModel) tb3.getModel();
+                dtm.setRowCount(0);
+                Vector v = new Vector();
+                v.add(search.getString("item_id"));
+                v.add(search.getString("amount_per_date"));
+                v.add(search.getString("amount"));
+                v.add(search.getString("Discount"));
+                v.add(String.valueOf(Double.parseDouble(search.getString("amount")) - Double.parseDouble(search.getString("discount"))));
+                dtm.addRow(v);
+                result = "Added";
+            } else {
+                result = "Pending.......";
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    private void itemPayment() {
+        try {
+            String date = new SimpleDateFormat("yyyy-MM-dd- HH:mm:ss").format(new Date());
+            for (int row = 0; row < tb3.getRowCount(); row++) {
+                String itemId = tb3.getValueAt(row, 0).toString().trim();
+                String orderId = txtOrderId.getText().toUpperCase();
+                String amountPerDay = tb3.getValueAt(row, 1).toString().trim();
+                String amount = tb3.getValueAt(row, 2).toString().trim();
+                String discount = tb3.getValueAt(row, 3).toString().trim();
+
+                String invitemSQL2 = "insert into rent_item_payment (item_id,order_id,amount_per_date,amount,discount,data_time,end_by,status) values('" + itemId + "','" + orderId + "','" + amountPerDay + "','" + amount + "','" + discount + "','" + date + "','" + SystemData.getemployee() + "','" + 1 + "')";
+                DB.iud(invitemSQL2);
+
+                JOptionPane.showMessageDialog(this, "Successful");
+                clearAllFeald();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void payment() {
+        if (tb4.getValueAt(tb4.getSelectedRow(), 5).toString().equals("Pending.......")) {
+            DefaultTableModel dtm = (DefaultTableModel) tb4.getModel();
+            dtm.setValueAt("Added", row, 5);
+
+        }
+    }
+
+    private void clearAllFeald() {
+        txtAmount.setText(null);
+        txtAmountPday.setText(null);
+        txtCustomer.setText(null);
+        txtCustomerPayment.setText(null);
+        txtDiscount.setText(null);
+        txtItemId.setText(null);
+        txtNetAmount.setText(null);
+        txtOrderId.setText(null);
+        txtSearch.setText(null);
+        txtTotDiscount.setText(null);
+        txtTotalBillAmount.setText(null);
+        DefaultTableModel dtm = (DefaultTableModel) tb4.getModel();
+        dtm.setRowCount(0);
+
+        DefaultTableModel dtm1 = (DefaultTableModel) tb3.getModel();
+        dtm1.setRowCount(0);
+
     }
 
 }

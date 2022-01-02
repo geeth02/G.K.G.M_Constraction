@@ -766,6 +766,7 @@ public class End_Job extends javax.swing.JFrame {
                 ResultSet search = DB.search("SELECT * FROM work_order WHERE status= 1 AND customer_id='" + jList1.getSelectedValue().split("-")[0] + "' or vehicle_id='" + jList1.getSelectedValue().split("-")[0] + "'");
                 if (search.next()) {
                     searchDetails();
+                   
                     txtEndMeter.grabFocus();
                 } else {
                     if (comboSearch.getSelectedItem().equals("NIC Number")) {
@@ -1088,9 +1089,9 @@ public class End_Job extends javax.swing.JFrame {
                             dtm.addRow(v);
                         }
                     }
+                     loadPayments();
                     jScrollPane1.setVisible(false);
                 }
-                loadPayments();
             } else if (i > 1) {
                 new Job_Selection().setVisible(true);
             }
@@ -1170,6 +1171,7 @@ public class End_Job extends javax.swing.JFrame {
 
     private void loadPayments() {
         try {
+            System.out.println("a");
             Double payment = 0.00;
             ResultSet search = DB.search("SELECT * FROM payment WHERE order_id='" + txtOrderId.getText().toUpperCase() + "'");
             while (search.next()) {

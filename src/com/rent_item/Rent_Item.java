@@ -108,6 +108,11 @@ public class Rent_Item extends javax.swing.JFrame {
                 ItemListMouseEntered(evt);
             }
         });
+        ItemList.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                ItemListKeyPressed(evt);
+            }
+        });
         jScrollPane3.setViewportView(ItemList);
 
         ReForm.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, 450, 130));
@@ -123,12 +128,20 @@ public class Rent_Item extends javax.swing.JFrame {
 
         txtItemId.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtItemId.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtItemId.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                txtItemIdMouseReleased(evt);
+            }
+        });
         txtItemId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtItemIdActionPerformed(evt);
             }
         });
         txtItemId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtItemIdKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtItemIdKeyReleased(evt);
             }
@@ -208,6 +221,11 @@ public class Rent_Item extends javax.swing.JFrame {
         txtDiscription.setColumns(20);
         txtDiscription.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
         txtDiscription.setRows(5);
+        txtDiscription.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                txtDiscriptionMouseReleased(evt);
+            }
+        });
         txtDiscription.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtDiscriptionKeyReleased(evt);
@@ -320,7 +338,7 @@ public class Rent_Item extends javax.swing.JFrame {
     }//GEN-LAST:event_txtItemIdKeyTyped
 
     private void txtOrderIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOrderIdActionPerformed
-        
+
     }//GEN-LAST:event_txtOrderIdActionPerformed
 
     private void txtOrderIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOrderIdKeyTyped
@@ -328,7 +346,7 @@ public class Rent_Item extends javax.swing.JFrame {
     }//GEN-LAST:event_txtOrderIdKeyTyped
 
     private void txtCustomerIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCustomerIdActionPerformed
-           checkNull(txtCustomerId,"Customer Id",txtOrderId);
+        checkNull(txtCustomerId, "Customer Id", txtOrderId);
     }//GEN-LAST:event_txtCustomerIdActionPerformed
 
     private void txtProductNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProductNumberActionPerformed
@@ -386,26 +404,24 @@ public class Rent_Item extends javax.swing.JFrame {
         if (evt.getClickCount() == 2) {
             try {
                 boolean b = true;
-                ResultSet search = DB.search("SELECT * FROM rent_order_item WHERE item_id='"+ItemList.getSelectedValue().split("-")[0].split(":")[0].trim()+"' AND status=1");
-                while(search.next()){
-                 JOptionPane.showMessageDialog(this, "This item alredy rent", "Error", JOptionPane.ERROR_MESSAGE);
-                 txtItemId.setText(null);
-                 txtItemId.grabFocus();
-                 jScrollPane3.setVisible(false); 
-                 b=false;
+                ResultSet search = DB.search("SELECT * FROM rent_order_item WHERE item_id='" + ItemList.getSelectedValue().split("-")[0].split(":")[0].trim() + "' AND status=1");
+                while (search.next()) {
+                    JOptionPane.showMessageDialog(this, "This item alredy rent", "Error", JOptionPane.ERROR_MESSAGE);
+                    txtItemId.setText(null);
+                    txtItemId.grabFocus();
+                    jScrollPane3.setVisible(false);
+                    b = false;
                 }
-                if(b){
-                   txtItemId.setText(ItemList.getSelectedValue().split(":")[0]);
-                   searchDetails();
-                   txtDiscription.grabFocus();
-                    jScrollPane3.setVisible(false);     
-               
-                }else{
-                b=true;
-                }
-                
+                if (b) {
+                    txtItemId.setText(ItemList.getSelectedValue().split(":")[0]);
+                    searchDetails();
+                    txtDiscription.grabFocus();
+                    jScrollPane3.setVisible(false);
 
-                
+                } else {
+                    b = true;
+                }
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -426,7 +442,7 @@ public class Rent_Item extends javax.swing.JFrame {
     }//GEN-LAST:event_txtModelKeyTyped
 
     private void txtDiscriptionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDiscriptionKeyReleased
-        
+
     }//GEN-LAST:event_txtDiscriptionKeyReleased
 
     private void btnAddItemMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddItemMouseEntered
@@ -438,36 +454,94 @@ public class Rent_Item extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddItemMouseExited
 
     private void btnAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddItemActionPerformed
-        if(!txtItemId.getText().equals("")){
-        if(!txtModel.getText().equals("")){
-             addTbData();
-             clearFealds();
+        if (!txtCustomerId.getText().equals("")) {
+            if (!txtItemId.getText().equals("")) {
+                addTbData();
+                clearFealds();
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Please Search Item", "Error", JOptionPane.ERROR_MESSAGE);
+                txtItemId.grabFocus();
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Please Enter Customer Id", "Error", JOptionPane.ERROR_MESSAGE);
+            txtCustomerId.grabFocus();
 
         }
-        }
-        
-       
+
+
     }//GEN-LAST:event_btnAddItemActionPerformed
 
     private void txtCustomerIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCustomerIdKeyPressed
-              if (evt.getKeyCode() == 40) {
-              customerList.grabFocus();
+        if (evt.getKeyCode() == 40) {
+            customerList.grabFocus();
             customerList.setSelectedIndex(0);
         }
     }//GEN-LAST:event_txtCustomerIdKeyPressed
 
     private void customerListKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_customerListKeyReleased
-      
+
     }//GEN-LAST:event_customerListKeyReleased
 
     private void customerListKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_customerListKeyPressed
-         if (evt.getKeyCode() == 10) {
+        if (evt.getKeyCode() == 10) {
             txtCustomerId.setText(customerList.getSelectedValue().split("-")[0]);
             jScrollPane2.setVisible(false);
             txtItemId.grabFocus();
-              }
-                checkNull(txtCustomerId,"Customer Id",txtItemId);
+        }
+        //checkNull(txtCustomerId,"Customer Id",txtItemId);
     }//GEN-LAST:event_customerListKeyPressed
+
+    private void ItemListKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ItemListKeyPressed
+        if (evt.getKeyCode() == 10) {
+            try {
+                boolean b = true;
+                ResultSet search = DB.search("SELECT * FROM rent_order_item WHERE item_id='" + ItemList.getSelectedValue().split("-")[0].split(":")[0].trim() + "' AND status=1");
+                while (search.next()) {
+                    JOptionPane.showMessageDialog(this, "This item alredy rent", "Error", JOptionPane.ERROR_MESSAGE);
+                    txtItemId.setText(null);
+                    txtItemId.grabFocus();
+                    jScrollPane3.setVisible(false);
+                    b = false;
+                }
+                if (b) {
+                    txtItemId.setText(ItemList.getSelectedValue().split(":")[0]);
+                    searchDetails();
+                    txtDiscription.grabFocus();
+                    jScrollPane3.setVisible(false);
+
+                } else {
+                    b = true;
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+    }//GEN-LAST:event_ItemListKeyPressed
+
+    private void txtItemIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtItemIdKeyPressed
+        if (evt.getKeyCode() == 40) {
+            ItemList.grabFocus();
+            ItemList.setSelectedIndex(0);
+        }
+    }//GEN-LAST:event_txtItemIdKeyPressed
+
+    private void txtItemIdMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtItemIdMouseReleased
+        if (txtCustomerId.getText().equals("")) {
+            txtCustomerId.grabFocus();
+        }
+    }//GEN-LAST:event_txtItemIdMouseReleased
+
+    private void txtDiscriptionMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDiscriptionMouseReleased
+        if (txtCustomerId.getText().equals("")) {
+            txtCustomerId.grabFocus();
+        } else if (!txtItemId.getText().equals("")) {
+            txtItemId.grabFocus();
+        }
+
+    }//GEN-LAST:event_txtDiscriptionMouseReleased
 
     /**
      * @param args the command line arguments
@@ -587,9 +661,8 @@ public class Rent_Item extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
-    
-    
-     private void searchItem() {
+
+    private void searchItem() {
         try {
             if (!txtItemId.getText().trim().equals("")) {
                 if (txtItemId.getText().toUpperCase().contains("IT")) {
@@ -602,7 +675,7 @@ public class Rent_Item extends javax.swing.JFrame {
                     }
                     ItemList.setListData(v);
                 } else {
-                     ResultSet rs = DB.search("SELECT * FROM rent_item WHERE status=1 And name LIKE '" + txtItemId.getText().toUpperCase() + "%'");
+                    ResultSet rs = DB.search("SELECT * FROM rent_item WHERE status=1 And name LIKE '" + txtItemId.getText().toUpperCase() + "%'");
                     Vector v = new Vector();
                     jScrollPane3.setVisible(false);
                     while (rs.next()) {
@@ -621,10 +694,10 @@ public class Rent_Item extends javax.swing.JFrame {
 
     private void searchDetails() {
         try {
-            ResultSet search = DB.search("SELECT * FROM rent_item WHERE status=1 AND item_id='"+txtItemId.getText().toUpperCase().split("-")[0]+"'");
-            if(search.next()){
-            txtModel.setText(search.getString("model"));
-            txtProductNumber.setText(search.getString("product_number"));
+            ResultSet search = DB.search("SELECT * FROM rent_item WHERE status=1 AND item_id='" + txtItemId.getText().toUpperCase().split("-")[0] + "'");
+            if (search.next()) {
+                txtModel.setText(search.getString("model"));
+                txtProductNumber.setText(search.getString("product_number"));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -638,55 +711,55 @@ public class Rent_Item extends javax.swing.JFrame {
     }
 
     private void addTbData() {
-            DefaultTableModel dtm1 = (DefaultTableModel) tb3.getModel();
-            Vector v = new Vector();
-            v.add(txtItemId.getText());
-            v.add(txtModel.getText());
-            if(txtProductNumber.getText().equals("")){
+        DefaultTableModel dtm1 = (DefaultTableModel) tb3.getModel();
+        Vector v = new Vector();
+        v.add(txtItemId.getText());
+        v.add(txtModel.getText());
+        if (txtProductNumber.getText().equals("")) {
             v.add("None");
-            }else{
+        } else {
             v.add(txtProductNumber.getText());
-            }
-             if(txtDiscription.getText().equals("")){
+        }
+        if (txtDiscription.getText().equals("")) {
             v.add("None");
-            }else{
+        } else {
             v.add(txtDiscription.getText());
-            }
-            dtm1.addRow(v);
-            btnStart.setEnabled(true);
+        }
+        dtm1.addRow(v);
+        btnStart.setEnabled(true);
     }
 
     private void clearFealds() {
-       txtItemId.setText(null);
-       txtModel.setText(null);
-       txtProductNumber.setText(null);
-       txtDiscription.setText(null);
-       
+        txtItemId.setText(null);
+        txtModel.setText(null);
+        txtProductNumber.setText(null);
+        txtDiscription.setText(null);
+
     }
 
     private void startOrder() {
         try {
-             String dataTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-            DB.iud("INSERT INTO rent_order VALUES('"+txtOrderId.getText().toUpperCase()+"','"+txtCustomerId.getText().toUpperCase()+"','"+txtDiscription.getText()+"','"+dataTime+"','"+SystemData.getemployee()+"','"+1+"')");
-              for (int row = 0; row < tb3.getRowCount(); row++) {
-                            String itemId = tb3.getValueAt(row, 0).toString().trim().split("-")[0];
-                            String invitemSQL2 = "insert into rent_order_item (order_id,item_id,status) values('" +txtOrderId.getText() + "','" + itemId + "','" + 1 + "')";
-                            DB.iud(invitemSQL2);
-                            clearFealds();
-                            claerTable();
-                        }
+            String dataTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+            DB.iud("INSERT INTO rent_order VALUES('" + txtOrderId.getText().toUpperCase() + "','" + txtCustomerId.getText().toUpperCase() + "','" + txtDiscription.getText() + "','" + dataTime + "','" + SystemData.getemployee() + "','" + 1 + "')");
+            for (int row = 0; row < tb3.getRowCount(); row++) {
+                String itemId = tb3.getValueAt(row, 0).toString().trim().split("-")[0];
+                String invitemSQL2 = "insert into rent_order_item (order_id,item_id,status) values('" + txtOrderId.getText() + "','" + itemId + "','" + 1 + "')";
+                DB.iud(invitemSQL2);
+                JOptionPane.showMessageDialog(this, "Successful");
+            }
+            clearFealds();
+            claerTable();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     private void claerTable() {
-          DefaultTableModel dtm1 = (DefaultTableModel) tb3.getModel();
-          dtm1.setRowCount(0);
-          txtCustomerId.setText(null);
-          txtOrderId.setText(null);
-          generateOrId();
+        DefaultTableModel dtm1 = (DefaultTableModel) tb3.getModel();
+        dtm1.setRowCount(0);
+        txtCustomerId.setText(null);
+        txtOrderId.setText(null);
+        generateOrId();
     }
 
-   
 }

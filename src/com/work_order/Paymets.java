@@ -837,7 +837,7 @@ public class Paymets extends javax.swing.JFrame {
                      double customerP= Double.parseDouble(txtCustomerPayment.getText());
                      double avPayment = Double.parseDouble(txtNetAmount.getText());
                  }
-                 JOptionPane.showMessageDialog(this,"Seccessful");
+            JOptionPane.showMessageDialog(this, "Seccessful");
                  clearTextFeald();
                
         } catch (Exception e) {

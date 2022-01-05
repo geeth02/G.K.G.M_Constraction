@@ -54,7 +54,6 @@ public class Rent_Main extends javax.swing.JFrame {
         lbCons = new javax.swing.JLabel();
         btnDashboard = new javax.swing.JButton();
         btnStartJob = new javax.swing.JButton();
-        btnEndJob = new javax.swing.JButton();
         btnDashboard1 = new javax.swing.JButton();
         btnDashboard2 = new javax.swing.JButton();
         btnEndJob1 = new javax.swing.JButton();
@@ -149,7 +148,7 @@ public class Rent_Main extends javax.swing.JFrame {
                 btnDashboardActionPerformed(evt);
             }
         });
-        jPanel1.add(btnDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 570, 320, 71));
+        jPanel1.add(btnDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 500, 320, 71));
 
         btnStartJob.setBackground(new java.awt.Color(0, 102, 204));
         btnStartJob.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 27)); // NOI18N
@@ -171,26 +170,6 @@ public class Rent_Main extends javax.swing.JFrame {
         });
         jPanel1.add(btnStartJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 151, 320, 71));
 
-        btnEndJob.setBackground(new java.awt.Color(0, 102, 204));
-        btnEndJob.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 27)); // NOI18N
-        btnEndJob.setForeground(new java.awt.Color(255, 255, 255));
-        btnEndJob.setText("Edite Order");
-        btnEndJob.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btnEndJob.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnEndJobMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnEndJobMouseExited(evt);
-            }
-        });
-        btnEndJob.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEndJobActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnEndJob, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 320, 71));
-
         btnDashboard1.setBackground(new java.awt.Color(0, 102, 204));
         btnDashboard1.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 27)); // NOI18N
         btnDashboard1.setForeground(new java.awt.Color(255, 255, 255));
@@ -209,7 +188,7 @@ public class Rent_Main extends javax.swing.JFrame {
                 btnDashboard1ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnDashboard1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 500, 320, 71));
+        jPanel1.add(btnDashboard1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, 320, 71));
 
         btnDashboard2.setBackground(new java.awt.Color(0, 102, 204));
         btnDashboard2.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 27)); // NOI18N
@@ -229,7 +208,7 @@ public class Rent_Main extends javax.swing.JFrame {
                 btnDashboard2ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnDashboard2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 360, 320, 71));
+        jPanel1.add(btnDashboard2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 320, 71));
 
         btnEndJob1.setBackground(new java.awt.Color(0, 102, 204));
         btnEndJob1.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 27)); // NOI18N
@@ -269,7 +248,7 @@ public class Rent_Main extends javax.swing.JFrame {
                 btnDashboard3ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnDashboard3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, 320, 71));
+        jPanel1.add(btnDashboard3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 360, 320, 71));
 
         jLayeredPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 1080));
 
@@ -459,18 +438,6 @@ public class Rent_Main extends javax.swing.JFrame {
         new Rent_Item().setVisible(true);
     }//GEN-LAST:event_btnStartJobActionPerformed
 
-    private void btnEndJobMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEndJobMouseEntered
-        CommonM.setBlue(btnEndJob);
-    }//GEN-LAST:event_btnEndJobMouseEntered
-
-    private void btnEndJobMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEndJobMouseExited
-        CommonM.setDefaultColor(btnEndJob);
-    }//GEN-LAST:event_btnEndJobMouseExited
-
-    private void btnEndJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEndJobActionPerformed
-      new Edite_Order().setVisible(true);
-    }//GEN-LAST:event_btnEndJobActionPerformed
-
     private void btnDashboard1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDashboard1MouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_btnDashboard1MouseEntered
@@ -567,7 +534,6 @@ public class Rent_Main extends javax.swing.JFrame {
     private javax.swing.JButton btnDashboard1;
     private javax.swing.JButton btnDashboard2;
     private javax.swing.JButton btnDashboard3;
-    private javax.swing.JButton btnEndJob;
     private javax.swing.JButton btnEndJob1;
     private javax.swing.JButton btnStartJob;
     private javax.swing.JLabel jLabel1;

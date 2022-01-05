@@ -243,7 +243,7 @@ public class Job_Selection_Payment_Rent extends javax.swing.JFrame {
               String search=jComboBox1.getSelectedItem().toString().split("-")[0];
 
                   Rent_Paymet.txtOrderId.setText(search);
-                  ResultSet search4 = DB.search("SELECT * FROM rent_order_item where order_id='"+search+"' AND status=1");
+                  ResultSet search4 = DB.search("SELECT * FROM rent_order_item where order_id='"+search+"'");
                   while(search4.next()){
                       ResultSet search2 = DB.search("SELECT * FROM rent_item WHERE item_id='"+search4.getString("item_id")+"'");
                       if(search2.next()){
@@ -296,13 +296,20 @@ public class Job_Selection_Payment_Rent extends javax.swing.JFrame {
 
    
     private void avPayment() {
-                  try {
-              ResultSet search = DB.search("SELECT * FROM end_job WHERE order_id='"+Rent_Paymet.txtOrderId.getText()+"'");
+           try {
+              ResultSet search = DB.search("SELECT * FROM rent_order WHERE order_id='"+Rent_Paymet.txtOrderId.getText()+"' AND status=0");
               if(search.next()){
-              double fullPayment = search.getDouble("total_amount");
-              double customerPayment = Double.parseDouble(txtCustomerPayment.getText());
-              txtNetAmount.setText(String.valueOf(fullPayment-customerPayment));
-              if(fullPayment==customerPayment){
+                  double amount=0.00;
+                  double value=0.00;
+               ResultSet search1 = DB.search("SELECT * FROM rent_item_payment WHERE order_id='"+Rent_Paymet.txtOrderId.getText()+"'");
+               while(search1.next()){
+                   value=search1.getDouble("amount");
+                   amount=amount+value;
+               }
+         
+                  
+             Rent_Paymet.txtNetAmount.setText(String.valueOf(amount-Double.parseDouble(Rent_Paymet.txtCustomerPayment.getText())));
+              if(amount==Double.parseDouble(Rent_Paymet.txtCustomerPayment.getText())){
                 txtAmount.setEditable(false);
                 txtPayment.setEditable(false);
                 btnClear.setVisible(true);
@@ -313,7 +320,7 @@ public class Job_Selection_Payment_Rent extends javax.swing.JFrame {
                 txtSearch.setEditable(false);
                 JOptionPane.showMessageDialog(this,"All payments are Seccessful. View only Report");  
               }else{
-               JOptionPane.showMessageDialog(this,"Total bill amount is Rs."+fullPayment);
+               JOptionPane.showMessageDialog(this,"Total bill amount is Rs."+amount);
               }
               }else{
               txtNetAmount.setText("Panding Payments...........");

@@ -8,8 +8,16 @@ package com.delivery_item;
 import com.customer_management.Add_Customer_Befor_Start;
 import common.DB;
 import common.CommonM;
+import static common.CommonM.checkNull;
+import common.SystemData;
+import java.math.BigDecimal;
 import java.sql.ResultSet;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Vector;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -51,17 +59,21 @@ public class Get_order extends javax.swing.JFrame {
         txtCustomerId = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txtLocation = new javax.swing.JTextField();
+        txtQty = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         btnRegister3 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        txtLastMeter = new javax.swing.JTextField();
+        txtMaterialName = new javax.swing.JTextField();
         jScrollPane7 = new javax.swing.JScrollPane();
         tb3 = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        txtDileveryDate = new com.toedter.calendar.JDateChooser();
         jLabel6 = new javax.swing.JLabel();
-        txtLocation1 = new javax.swing.JTextField();
+        txtPrice = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        txtDeliveryCharge = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        txtLocation = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -79,9 +91,14 @@ public class Get_order extends javax.swing.JFrame {
                 customerListMouseClicked(evt);
             }
         });
+        customerList.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                customerListKeyPressed(evt);
+            }
+        });
         jScrollPane2.setViewportView(customerList);
 
-        ReForm.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 450, 10));
+        ReForm.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 450, 120));
 
         lbFirstName.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
         lbFirstName.setText("Order Id");
@@ -103,6 +120,11 @@ public class Get_order extends javax.swing.JFrame {
 
         txtCustomerId.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtCustomerId.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtCustomerId.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                txtCustomerIdMouseReleased(evt);
+            }
+        });
         txtCustomerId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCustomerIdActionPerformed(evt);
@@ -130,18 +152,28 @@ public class Get_order extends javax.swing.JFrame {
         jLabel5.setOpaque(true);
         ReForm.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 69));
 
-        txtLocation.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtLocation.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        txtLocation.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtLocationActionPerformed(evt);
+        txtQty.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtQty.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtQty.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                txtQtyMouseReleased(evt);
             }
         });
-        ReForm.add(txtLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, 450, 43));
+        txtQty.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtQtyActionPerformed(evt);
+            }
+        });
+        txtQty.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtQtyKeyTyped(evt);
+            }
+        });
+        ReForm.add(txtQty, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, 450, 43));
 
         jLabel2.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
         jLabel2.setText("Material Name");
-        ReForm.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 190, 43));
+        ReForm.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 190, 43));
 
         btnRegister3.setBackground(new java.awt.Color(0, 102, 204));
         btnRegister3.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 30)); // NOI18N
@@ -160,25 +192,30 @@ public class Get_order extends javax.swing.JFrame {
                 btnRegister3ActionPerformed(evt);
             }
         });
-        ReForm.add(btnRegister3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 750, 210, 60));
+        ReForm.add(btnRegister3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 720, 210, 60));
 
         jLabel3.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
         jLabel3.setText("Quntity");
-        ReForm.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 175, 43));
+        ReForm.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 175, 43));
 
-        txtLastMeter.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtLastMeter.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        txtLastMeter.addActionListener(new java.awt.event.ActionListener() {
+        txtMaterialName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtMaterialName.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtMaterialName.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                txtMaterialNameMouseReleased(evt);
+            }
+        });
+        txtMaterialName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtLastMeterActionPerformed(evt);
+                txtMaterialNameActionPerformed(evt);
             }
         });
-        txtLastMeter.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtMaterialName.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtLastMeterKeyTyped(evt);
+                txtMaterialNameKeyTyped(evt);
             }
         });
-        ReForm.add(txtLastMeter, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 450, 43));
+        ReForm.add(txtMaterialName, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, 450, 43));
 
         tb3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -195,25 +232,82 @@ public class Get_order extends javax.swing.JFrame {
         });
         jScrollPane7.setViewportView(tb3);
 
-        ReForm.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 400, 450, 160));
+        ReForm.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 450, 450, 160));
 
         jLabel4.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
         jLabel4.setText("Delivery Date");
         ReForm.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 190, 43));
-        ReForm.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, 450, 40));
+
+        txtDileveryDate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                txtDileveryDateMouseReleased(evt);
+            }
+        });
+        ReForm.add(txtDileveryDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, 450, 40));
 
         jLabel6.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
         jLabel6.setText("Price");
-        ReForm.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 175, 43));
+        ReForm.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, 175, 43));
 
-        txtLocation1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtLocation1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        txtLocation1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtLocation1ActionPerformed(evt);
+        txtPrice.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtPrice.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtPrice.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                txtPriceMouseReleased(evt);
             }
         });
-        ReForm.add(txtLocation1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, 450, 43));
+        txtPrice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPriceActionPerformed(evt);
+            }
+        });
+        txtPrice.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPriceKeyTyped(evt);
+            }
+        });
+        ReForm.add(txtPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 390, 450, 43));
+
+        jLabel7.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
+        jLabel7.setText("Delivery Charges");
+        ReForm.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 620, 190, 43));
+
+        txtDeliveryCharge.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtDeliveryCharge.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtDeliveryCharge.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                txtDeliveryChargeMouseReleased(evt);
+            }
+        });
+        txtDeliveryCharge.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDeliveryChargeActionPerformed(evt);
+            }
+        });
+        ReForm.add(txtDeliveryCharge, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 620, 450, 43));
+
+        jLabel8.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
+        jLabel8.setText("Location");
+        ReForm.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 190, 43));
+
+        txtLocation.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtLocation.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtLocation.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                txtLocationMouseReleased(evt);
+            }
+        });
+        txtLocation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtLocationActionPerformed(evt);
+            }
+        });
+        txtLocation.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtLocationKeyTyped(evt);
+            }
+        });
+        ReForm.add(txtLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 450, 43));
 
         jLayeredPane2.add(ReForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 750, 840));
 
@@ -237,7 +331,7 @@ public class Get_order extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtOrderIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOrderIdActionPerformed
-       
+
     }//GEN-LAST:event_txtOrderIdActionPerformed
 
     private void txtOrderIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOrderIdKeyTyped
@@ -245,12 +339,12 @@ public class Get_order extends javax.swing.JFrame {
     }//GEN-LAST:event_txtOrderIdKeyTyped
 
     private void txtCustomerIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCustomerIdActionPerformed
-        txtOrderId.grabFocus();
+
     }//GEN-LAST:event_txtCustomerIdActionPerformed
 
-    private void txtLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLocationActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtLocationActionPerformed
+    private void txtQtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQtyActionPerformed
+        checkNull(txtQty, "Location", txtPrice);
+    }//GEN-LAST:event_txtQtyActionPerformed
 
     private void txtCustomerIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCustomerIdKeyReleased
         if (evt.getKeyCode() == 107) {
@@ -275,7 +369,41 @@ public class Get_order extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegister3MouseExited
 
     private void btnRegister3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegister3ActionPerformed
-      
+        try {
+
+            if (!txtCustomerId.getText().equals("")) {
+                ResultSet search = DB.search("SELECT * FROM customer WHERE customer_id='" + txtCustomerId.getText().toUpperCase() + "'");
+                if (search.next()) {
+                    if (!txtDeliveryCharge.getText().equals("")) {
+                        if (!txtLocation.getText().equals("")) {
+                            if (tb3.getRowCount() != 0) {
+                                getOrder();
+                            } else {
+                                JOptionPane.showMessageDialog(this, "Please enter material name", "Error", JOptionPane.ERROR_MESSAGE);
+                                txtMaterialName.grabFocus();
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(this, "Please enter locatione", "Error", JOptionPane.ERROR_MESSAGE);
+                            txtLocation.grabFocus();
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Please enter charges", "Error", JOptionPane.ERROR_MESSAGE);
+                        txtDeliveryCharge.grabFocus();
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Please enter valid customer id", "Error", JOptionPane.ERROR_MESSAGE);
+                    txtCustomerId.setText(null);
+                    txtCustomerId.grabFocus();
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Please enter customer id", "Error", JOptionPane.ERROR_MESSAGE);
+                txtCustomerId.grabFocus();
+            }
+
+        } catch (Exception e) {
+        }
+
+
     }//GEN-LAST:event_btnRegister3ActionPerformed
 
     private void customerListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customerListMouseClicked
@@ -286,23 +414,111 @@ public class Get_order extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_customerListMouseClicked
 
-    private void txtLastMeterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLastMeterActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtLastMeterActionPerformed
+    private void txtMaterialNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaterialNameActionPerformed
+        checkNull(txtMaterialName, "Location", txtQty);
+    }//GEN-LAST:event_txtMaterialNameActionPerformed
 
-    private void txtLastMeterKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLastMeterKeyTyped
-        if (!Character.isDigit(evt.getKeyChar())) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtLastMeterKeyTyped
+    private void txtMaterialNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMaterialNameKeyTyped
+
+    }//GEN-LAST:event_txtMaterialNameKeyTyped
 
     private void tb3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb3MousePressed
 
     }//GEN-LAST:event_tb3MousePressed
 
-    private void txtLocation1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLocation1ActionPerformed
+    private void txtPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPriceActionPerformed
+        checkNull(txtPrice, "Location", txtMaterialName);
+        tbData();
+    }//GEN-LAST:event_txtPriceActionPerformed
+
+    private void txtDeliveryChargeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDeliveryChargeActionPerformed
+
+
+    }//GEN-LAST:event_txtDeliveryChargeActionPerformed
+
+    private void txtLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLocationActionPerformed
+        checkNull(txtLocation, "Location", txtMaterialName);
+    }//GEN-LAST:event_txtLocationActionPerformed
+
+    private void txtLocationKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLocationKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtLocation1ActionPerformed
+    }//GEN-LAST:event_txtLocationKeyTyped
+
+    private void txtQtyKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQtyKeyTyped
+
+    }//GEN-LAST:event_txtQtyKeyTyped
+
+    private void txtPriceKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPriceKeyTyped
+
+    }//GEN-LAST:event_txtPriceKeyTyped
+
+    private void txtCustomerIdMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCustomerIdMouseReleased
+
+    }//GEN-LAST:event_txtCustomerIdMouseReleased
+
+    private void txtDileveryDateMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDileveryDateMouseReleased
+        if (txtCustomerId.equals("")) {
+            txtCustomerId.grabFocus();
+
+        }
+    }//GEN-LAST:event_txtDileveryDateMouseReleased
+
+    private void txtLocationMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtLocationMouseReleased
+        if (txtCustomerId.getText().equals("")) {
+            txtCustomerId.grabFocus();
+        }
+    }//GEN-LAST:event_txtLocationMouseReleased
+
+    private void txtMaterialNameMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtMaterialNameMouseReleased
+        if (txtCustomerId.getText().equals("")) {
+            txtCustomerId.grabFocus();
+        } else if (txtLocation.getText().equals("")) {
+            txtLocation.grabFocus();
+
+        }
+    }//GEN-LAST:event_txtMaterialNameMouseReleased
+
+    private void txtQtyMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtQtyMouseReleased
+        if (txtCustomerId.getText().equals("")) {
+            txtCustomerId.grabFocus();
+        } else if (txtLocation.getText().equals("")) {
+            txtLocation.grabFocus();
+
+        } else if (txtMaterialName.getText().equals("")) {
+            txtMaterialName.grabFocus();
+        }
+    }//GEN-LAST:event_txtQtyMouseReleased
+
+    private void txtPriceMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPriceMouseReleased
+        if (txtCustomerId.getText().equals("")) {
+            txtCustomerId.grabFocus();
+        } else if (txtLocation.getText().equals("")) {
+            txtLocation.grabFocus();
+
+        } else if (txtMaterialName.getText().equals("")) {
+            txtMaterialName.grabFocus();
+        } else if (txtQty.getText().equals("")) {
+            txtQty.grabFocus();
+        }
+    }//GEN-LAST:event_txtPriceMouseReleased
+
+    private void txtDeliveryChargeMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDeliveryChargeMouseReleased
+        if (txtCustomerId.getText().equals("")) {
+            txtCustomerId.grabFocus();
+        } else if (txtLocation.getText().equals("")) {
+            txtLocation.grabFocus();
+        } else if (tb3.getRowCount() == 0) {
+            txtMaterialName.grabFocus();
+        }
+    }//GEN-LAST:event_txtDeliveryChargeMouseReleased
+
+    private void customerListKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_customerListKeyPressed
+        if (evt.getKeyCode() == 10) {
+            txtCustomerId.setText(customerList.getSelectedValue().split("-")[0]);
+            jScrollPane2.setVisible(false);
+
+        }
+    }//GEN-LAST:event_customerListKeyPressed
 
     /**
      * @param args the command line arguments
@@ -346,44 +562,48 @@ public class Get_order extends javax.swing.JFrame {
     private javax.swing.JLayeredPane ReForm;
     private javax.swing.JButton btnRegister3;
     private javax.swing.JList<String> customerList;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JLabel lbFirstName;
     private javax.swing.JTable tb3;
     public static javax.swing.JTextField txtCustomerId;
-    private javax.swing.JTextField txtLastMeter;
+    private javax.swing.JTextField txtDeliveryCharge;
+    public static com.toedter.calendar.JDateChooser txtDileveryDate;
     private javax.swing.JTextField txtLocation;
-    private javax.swing.JTextField txtLocation1;
+    private javax.swing.JTextField txtMaterialName;
     private javax.swing.JTextField txtOrderId;
+    private javax.swing.JTextField txtPrice;
+    private javax.swing.JTextField txtQty;
     // End of variables declaration//GEN-END:variables
  private void generateOrId() {
         try {
             txtOrderId.setEditable(false);
-            ResultSet rs = DB.search("select count(order_id) as x from work_order");
+            ResultSet rs = DB.search("select count(order_id) as x from delivery_order");
             if (rs.next()) {
                 String counts = rs.getString("x");
                 int count = Integer.parseInt(counts);
                 ++count;
                 if (count < 10) {
-                    txtOrderId.setText("IN00000" + count);
+                    txtOrderId.setText("DI00000" + count);
                 } else if (count < 100) {
-                    txtOrderId.setText("IN0000" + count);
+                    txtOrderId.setText("DI0000" + count);
                 } else if (count < 1000) {
-                    txtOrderId.setText("IN000" + count);
+                    txtOrderId.setText("DI000" + count);
                 } else if (count < 10000) {
-                    txtOrderId.setText("IN00" + count);
+                    txtOrderId.setText("DI00" + count);
                 } else if (count < 100000) {
-                    txtOrderId.setText("IN0" + count);
+                    txtOrderId.setText("DI0" + count);
                 } else if (count < 1000000) {
-                    txtOrderId.setText("IN" + count);
+                    txtOrderId.setText("DI" + count);
                 }
             }
         } catch (Exception e) {
@@ -421,9 +641,65 @@ public class Get_order extends javax.swing.JFrame {
         }
     }
 
-    
+    private void getOrder() {
+        try {
+            Date diliDate = txtDileveryDate.getDate();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String dataTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+            DB.iud("INSERT INTO delivery_order VALUES('" + txtOrderId.getText().toUpperCase() + "','" + txtCustomerId.getText().toUpperCase() + "','" + sdf.format(diliDate) + "','" + txtLocation.getText().toUpperCase() + "','" + txtDeliveryCharge.getText() + "','" + SystemData.getemployee() + "','" + dataTime + "','" + 1 + "')");
+            for (int row = 0; row < tb3.getRowCount(); row++) {
+                String matName = tb3.getValueAt(row, 0).toString().trim();
+                String qty = tb3.getValueAt(row, 1).toString().trim();
+                String price = tb3.getValueAt(row, 1).toString().trim();
+                String invitemSQL2 = "insert into delivery_item (order_id,material_name,qty,price,status) values('" + txtOrderId.getText().toUpperCase() + "','" + matName + "','" + qty + "','" + price + "','" + 1 + "')";
+                DB.iud(invitemSQL2);
+            }
+            clearFeald();
+            JOptionPane.showMessageDialog(this, "Seccessful");
+            generateOrId();
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
- 
- 
+    private void clearFeald() {
+        txtCustomerId.setText(null);
+        txtDeliveryCharge.setText(null);
+        txtDileveryDate.setDate(null);
+        txtLocation.setText(null);
+        txtMaterialName.setText(null);
+        txtOrderId.setText(null);
+        txtPrice.setText(null);
+        txtQty.setText(null);
+        DefaultTableModel dtm = (DefaultTableModel) tb3.getModel();
+        dtm.setRowCount(0);
+    }
+
+    private void tbData() {
+        DefaultTableModel dtm = (DefaultTableModel) tb3.getModel();
+        double price = Double.parseDouble(txtPrice.getText());
+        Vector v = new Vector();
+        v.add(txtMaterialName.getText().toUpperCase());
+        v.add(txtQty.getText());
+        v.add(decimal(price));
+        dtm.addRow(v);
+
+        clearMFeald();
+
+    }
+
+    private void clearMFeald() {
+        txtMaterialName.setText(null);
+        txtPrice.setText(null);
+        txtQty.setText(null);
+    }
+
+    private String decimal(double price) {
+        String setValue = String.valueOf(price);
+        BigDecimal bd = new BigDecimal(setValue);
+        DecimalFormat formatterBd = new DecimalFormat("##.00");
+        return formatterBd.format(bd);
+    }
+
 }

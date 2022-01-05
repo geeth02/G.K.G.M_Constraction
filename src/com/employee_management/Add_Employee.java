@@ -22,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author geeth
  */
-public class Add_Employee extends javax.swing.JFrame{
+public class Add_Employee extends javax.swing.JFrame {
 
     /**
      * Creates new form Employee_Management
@@ -35,8 +35,7 @@ public class Add_Employee extends javax.swing.JFrame{
         tbData();
         comboData();
         txtNicNumber.grabFocus();
-    
-       
+
     }
 
     /**
@@ -469,126 +468,130 @@ public class Add_Employee extends javax.swing.JFrame{
         ReForm.setLayout(ReFormLayout);
         ReFormLayout.setHorizontalGroup(
             ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 1490, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(ReFormLayout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addGroup(ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 1490, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(ReFormLayout.createSequentialGroup()
+                        .addGap(39, 39, 39)
                         .addGroup(ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(ReFormLayout.createSequentialGroup()
-                                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(5, 5, 5)
-                                    .addComponent(txtAddress1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(51, 51, 51)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(12, 12, 12)
-                                    .addComponent(txtAddress2, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(ReFormLayout.createSequentialGroup()
-                                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(5, 5, 5)
-                                    .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(51, 51, 51)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(redioMale, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(redioFemale)))
-                            .addComponent(txtBirthDay, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(2, 2, 2))
-                    .addGroup(ReFormLayout.createSequentialGroup()
-                        .addGroup(ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(ReFormLayout.createSequentialGroup()
+                            .addGroup(ReFormLayout.createSequentialGroup()
+                                .addGroup(ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(ReFormLayout.createSequentialGroup()
-                                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(3, 3, 3)
-                                            .addComponent(txtReId, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(5, 5, 5)
+                                            .addComponent(txtAddress1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(51, 51, 51)
+                                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(12, 12, 12)
+                                            .addComponent(txtAddress2, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(ReFormLayout.createSequentialGroup()
-                                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(39, 39, 39)
-                                            .addComponent(comboType, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ReFormLayout.createSequentialGroup()
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(txtFname, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(54, 54, 54)))
+                                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(5, 5, 5)
+                                            .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(51, 51, 51)
+                                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(redioMale, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(redioFemale)))
+                                    .addComponent(txtBirthDay, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(2, 2, 2))
                             .addGroup(ReFormLayout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(3, 3, 3)
-                                .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(52, 52, 52)))
-                        .addGroup(ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(ReFormLayout.createSequentialGroup()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtLname, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(ReFormLayout.createSequentialGroup()
-                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtNicNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(ReFormLayout.createSequentialGroup()
+                                            .addGroup(ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(ReFormLayout.createSequentialGroup()
+                                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(3, 3, 3)
+                                                    .addComponent(txtReId, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGroup(ReFormLayout.createSequentialGroup()
+                                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(39, 39, 39)
+                                                    .addComponent(comboType, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ReFormLayout.createSequentialGroup()
+                                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(txtFname, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(54, 54, 54)))
+                                    .addGroup(ReFormLayout.createSequentialGroup()
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(3, 3, 3)
+                                        .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(52, 52, 52)))
+                                .addGroup(ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(ReFormLayout.createSequentialGroup()
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtLname, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(ReFormLayout.createSequentialGroup()
+                                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtNicNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ReFormLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17)))
+                .addGap(3, 3, 3))
         );
         ReFormLayout.setVerticalGroup(
             ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ReFormLayout.createSequentialGroup()
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addGroup(ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboType, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
                 .addGroup(ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ReFormLayout.createSequentialGroup()
-                        .addGap(350, 350, 350)
-                        .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtReId, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(ReFormLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(ReFormLayout.createSequentialGroup()
+                                .addGap(11, 11, 11)
+                                .addComponent(txtFname, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(ReFormLayout.createSequentialGroup()
-                        .addGap(34, 34, 34)
                         .addGroup(ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboType, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(13, 13, 13)
-                        .addGroup(ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(ReFormLayout.createSequentialGroup()
-                                .addGroup(ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtReId, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(ReFormLayout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(ReFormLayout.createSequentialGroup()
-                                        .addGap(11, 11, 11)
-                                        .addComponent(txtFname, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(ReFormLayout.createSequentialGroup()
-                                .addGroup(ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(ReFormLayout.createSequentialGroup()
-                                        .addGap(1, 1, 1)
-                                        .addComponent(txtNicNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtLname, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-                            .addGroup(ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txtPhoneNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE))
-                            .addComponent(txtBirthDay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtAddress1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtAddress2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(redioFemale)
-                                .addComponent(redioMale, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addGap(1, 1, 1)
+                                .addComponent(txtNicNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtLname, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                    .addGroup(ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtPhoneNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE))
+                    .addComponent(txtBirthDay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtAddress1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtAddress2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(ReFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(redioFemale)
+                        .addComponent(redioMale, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jLayeredPane1.add(ReForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 30, 1490, 500));
@@ -639,11 +642,11 @@ public class Add_Employee extends javax.swing.JFrame{
     }//GEN-LAST:event_btnBackMouseEntered
 
     private void btnBackMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseExited
-      CommonM.setDefaultColor(btnBack);
+        CommonM.setDefaultColor(btnBack);
     }//GEN-LAST:event_btnBackMouseExited
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-      new Employee_Management().setVisible(true);
+        new Employee_Management().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
@@ -658,18 +661,18 @@ public class Add_Employee extends javax.swing.JFrame{
     }//GEN-LAST:event_lbConsMouseEntered
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
-        if(txtNicNumber.getText().length()==9 | txtNicNumber.getText().length()==12){
-            if(txtPhoneNumber.getText().length()==10){
-        saveEmployee();
-        tbData();
-        clearFeald();
-        generateEmId();
-        txtNicNumber.grabFocus();
-            }else{
-                   JOptionPane.showMessageDialog(this, "Invalid Phone Number", "Error",JOptionPane.ERROR_MESSAGE);  
+        if (txtNicNumber.getText().length() == 9 | txtNicNumber.getText().length() == 12) {
+            if (txtPhoneNumber.getText().length() == 10) {
+                saveEmployee();
+                tbData();
+                clearFeald();
+                generateEmId();
+                txtNicNumber.grabFocus();
+            } else {
+                JOptionPane.showMessageDialog(this, "Invalid Phone Number", "Error", JOptionPane.ERROR_MESSAGE);
             }
-        }else{
-        JOptionPane.showMessageDialog(this, "Invalid NIC Number", "Error",JOptionPane.ERROR_MESSAGE);    
+        } else {
+            JOptionPane.showMessageDialog(this, "Invalid NIC Number", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnRegisterActionPerformed
 
@@ -682,33 +685,33 @@ public class Add_Employee extends javax.swing.JFrame{
     }//GEN-LAST:event_txtBirthDayKeyReleased
 
     private void txtNicNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNicNumberActionPerformed
-        checkNull(txtNicNumber,"NIC Number",txtFname);
+        checkNull(txtNicNumber, "NIC Number", txtFname);
     }//GEN-LAST:event_txtNicNumberActionPerformed
 
     private void txtNicNumberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNicNumberKeyTyped
-         if(!Character.isDigit(evt.getKeyChar())){
-         evt.consume();
-      }
+        if (!Character.isDigit(evt.getKeyChar())) {
+            evt.consume();
+        }
     }//GEN-LAST:event_txtNicNumberKeyTyped
 
     private void txtLnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLnameActionPerformed
-        checkNull(txtLname,"Last Name",txtPhoneNumber);
+        checkNull(txtLname, "Last Name", txtPhoneNumber);
     }//GEN-LAST:event_txtLnameActionPerformed
 
     private void txtLnameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLnameKeyTyped
-         if(Character.isDigit(evt.getKeyChar())){
-      evt.consume();
-      }
+        if (Character.isDigit(evt.getKeyChar())) {
+            evt.consume();
+        }
     }//GEN-LAST:event_txtLnameKeyTyped
 
     private void txtFnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFnameActionPerformed
-      checkNull(txtFname,"First Name",txtLname);
+        checkNull(txtFname, "First Name", txtLname);
     }//GEN-LAST:event_txtFnameActionPerformed
 
     private void txtFnameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFnameKeyTyped
-          if(Character.isDigit(evt.getKeyChar())){
-      evt.consume();
-      }
+        if (Character.isDigit(evt.getKeyChar())) {
+            evt.consume();
+        }
     }//GEN-LAST:event_txtFnameKeyTyped
 
     private void txtReIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtReIdActionPerformed
@@ -716,11 +719,11 @@ public class Add_Employee extends javax.swing.JFrame{
     }//GEN-LAST:event_txtReIdActionPerformed
 
     private void txtPhoneNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhoneNumberActionPerformed
-      checkNull(txtPhoneNumber,"Phone Number",txtAddress1);
+        checkNull(txtPhoneNumber, "Phone Number", txtAddress1);
     }//GEN-LAST:event_txtPhoneNumberActionPerformed
 
     private void txtCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCityActionPerformed
-        checkNull(txtCity,"City",txtCity);
+        checkNull(txtCity, "City", txtCity);
     }//GEN-LAST:event_txtCityActionPerformed
 
     private void txtCityKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCityKeyTyped
@@ -728,11 +731,11 @@ public class Add_Employee extends javax.swing.JFrame{
     }//GEN-LAST:event_txtCityKeyTyped
 
     private void txtAddress2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAddress2ActionPerformed
-        checkNull(txtAddress2,"Address Line 02",txtCity);
+        checkNull(txtAddress2, "Address Line 02", txtCity);
     }//GEN-LAST:event_txtAddress2ActionPerformed
 
     private void txtAddress1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAddress1ActionPerformed
-      checkNull(txtAddress1,"Address Line 01",txtAddress2);
+        checkNull(txtAddress1, "Address Line 01", txtAddress2);
     }//GEN-LAST:event_txtAddress1ActionPerformed
 
     private void txtAddress1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAddress1KeyTyped
@@ -744,17 +747,18 @@ public class Add_Employee extends javax.swing.JFrame{
     }//GEN-LAST:event_btnRegisterMouseEntered
 
     private void btnRegisterMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegisterMouseExited
-       CommonM.setDefaultColor(btnRegister);
+        CommonM.setDefaultColor(btnRegister);
     }//GEN-LAST:event_btnRegisterMouseExited
 
     private void tb1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb1MousePressed
-        try{
+        try {
 
-        }catch(Exception e){}
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_tb1MousePressed
 
     private void txtBirthDayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtBirthDayMouseClicked
-      
+
     }//GEN-LAST:event_txtBirthDayMouseClicked
 
     private void comboTypeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboTypeMouseClicked
@@ -766,61 +770,60 @@ public class Add_Employee extends javax.swing.JFrame{
     }//GEN-LAST:event_btnAddDeleteMouseEntered
 
     private void btnAddDeleteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddDeleteMouseExited
-         CommonM.setDefaultColor(btnAddDelete);
+        CommonM.setDefaultColor(btnAddDelete);
     }//GEN-LAST:event_btnAddDeleteMouseExited
 
     private void btnAddDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddDeleteActionPerformed
-      new Add_Delete_Employee().setVisible(true);
+        new Add_Delete_Employee().setVisible(true);
     }//GEN-LAST:event_btnAddDeleteActionPerformed
 
     private void txtPhoneNumberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPhoneNumberKeyTyped
-         if(!Character.isDigit(evt.getKeyChar())){
-         evt.consume();
-      }
-         
+        if (!Character.isDigit(evt.getKeyChar())) {
+            evt.consume();
+        }
+
     }//GEN-LAST:event_txtPhoneNumberKeyTyped
 
     private void txtNicNumberKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNicNumberKeyPressed
-       if(evt.getKeyCode()==8){
-       txtNicNumber.setEditable(true);
-       }
-          
+        if (evt.getKeyCode() == 8) {
+            txtNicNumber.setEditable(true);
+        }
+
     }//GEN-LAST:event_txtNicNumberKeyPressed
 
     private void txtNicNumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNicNumberKeyReleased
 
-        if(txtNicNumber.getText().length()==9){
-              txtNicNumber.setText(txtNicNumber.getText().concat("V"));
-            }else
-              if(txtNicNumber.getText().contains("V")||txtNicNumber.getText().length()!=10){
-             txtNicNumber.setText(txtNicNumber.getText().replace("V", ""));
-          }
-         if(txtNicNumber.getText().length()==12){
-                txtNicNumber.setEditable(false);
-                  }
-        
+        if (txtNicNumber.getText().length() == 9) {
+            txtNicNumber.setText(txtNicNumber.getText().concat("V"));
+        } else if (txtNicNumber.getText().contains("V") || txtNicNumber.getText().length() != 10) {
+            txtNicNumber.setText(txtNicNumber.getText().replace("V", ""));
+        }
+        if (txtNicNumber.getText().length() == 12) {
+            txtNicNumber.setEditable(false);
+        }
+
     }//GEN-LAST:event_txtNicNumberKeyReleased
 
     private void txtNicNumberMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNicNumberMouseClicked
-       txtNicNumber.setEditable(true);
+        txtNicNumber.setEditable(true);
     }//GEN-LAST:event_txtNicNumberMouseClicked
 
     private void txtPhoneNumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPhoneNumberKeyReleased
-       if(txtPhoneNumber.getText().length()>=10){
-         txtPhoneNumber.setEditable(false);
-      }
+        if (txtPhoneNumber.getText().length() >= 10) {
+            txtPhoneNumber.setEditable(false);
+        }
     }//GEN-LAST:event_txtPhoneNumberKeyReleased
 
     private void txtFnameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtFnameMouseClicked
-     
+
     }//GEN-LAST:event_txtFnameMouseClicked
 
     private void txtLnameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtLnameMouseClicked
-     
+
     }//GEN-LAST:event_txtLnameMouseClicked
 
     private void txtPhoneNumberMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPhoneNumberMouseClicked
-  
+
     }//GEN-LAST:event_txtPhoneNumberMouseClicked
 
     private void txtAddress1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtAddress1MouseClicked
@@ -832,79 +835,79 @@ public class Add_Employee extends javax.swing.JFrame{
     }//GEN-LAST:event_txtAddress2MouseClicked
 
     private void txtFnameMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtFnameMouseReleased
-      if(txtNicNumber.getText().equals("")){
-      txtNicNumber.grabFocus();
-      }
+        if (txtNicNumber.getText().equals("")) {
+            txtNicNumber.grabFocus();
+        }
     }//GEN-LAST:event_txtFnameMouseReleased
 
     private void txtLnameMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtLnameMouseReleased
-        if(txtNicNumber.getText().equals("")){
-      txtNicNumber.grabFocus();
-      }else if(txtFname.getText().equals("")){
-      txtFname.grabFocus();
-      }
+        if (txtNicNumber.getText().equals("")) {
+            txtNicNumber.grabFocus();
+        } else if (txtFname.getText().equals("")) {
+            txtFname.grabFocus();
+        }
     }//GEN-LAST:event_txtLnameMouseReleased
 
     private void txtPhoneNumberMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPhoneNumberMouseReleased
-               if(txtNicNumber.getText().equals("")){
-      txtNicNumber.grabFocus();
-      }else if(txtFname.getText().equals("")){
-      txtFname.grabFocus();
-      }else if(txtLname.getText().equals("")){
-      txtLname.grabFocus();
-      }
+        if (txtNicNumber.getText().equals("")) {
+            txtNicNumber.grabFocus();
+        } else if (txtFname.getText().equals("")) {
+            txtFname.grabFocus();
+        } else if (txtLname.getText().equals("")) {
+            txtLname.grabFocus();
+        }
     }//GEN-LAST:event_txtPhoneNumberMouseReleased
 
     private void txtAddress1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtAddress1MouseReleased
-                      if(txtNicNumber.getText().equals("")){
-      txtNicNumber.grabFocus();
-      }else if(txtFname.getText().equals("")){
-      txtFname.grabFocus();
-      }else if(txtLname.getText().equals("")){
-      txtLname.grabFocus();
-      }else if(txtPhoneNumber.getText().equals("")){
-      txtPhoneNumber.grabFocus();
-      }
+        if (txtNicNumber.getText().equals("")) {
+            txtNicNumber.grabFocus();
+        } else if (txtFname.getText().equals("")) {
+            txtFname.grabFocus();
+        } else if (txtLname.getText().equals("")) {
+            txtLname.grabFocus();
+        } else if (txtPhoneNumber.getText().equals("")) {
+            txtPhoneNumber.grabFocus();
+        }
     }//GEN-LAST:event_txtAddress1MouseReleased
 
     private void txtAddress2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtAddress2MouseReleased
-        if(txtNicNumber.getText().equals("")){
-      txtNicNumber.grabFocus();
-      }else if(txtFname.getText().equals("")){
-      txtFname.grabFocus();
-      }else if(txtLname.getText().equals("")){
-      txtLname.grabFocus();
-      }else if(txtPhoneNumber.getText().equals("")){
-      txtPhoneNumber.grabFocus();
-      }else if(txtAddress1.getText().equals("")){
-      txtAddress1.grabFocus();
-      }
+        if (txtNicNumber.getText().equals("")) {
+            txtNicNumber.grabFocus();
+        } else if (txtFname.getText().equals("")) {
+            txtFname.grabFocus();
+        } else if (txtLname.getText().equals("")) {
+            txtLname.grabFocus();
+        } else if (txtPhoneNumber.getText().equals("")) {
+            txtPhoneNumber.grabFocus();
+        } else if (txtAddress1.getText().equals("")) {
+            txtAddress1.grabFocus();
+        }
     }//GEN-LAST:event_txtAddress2MouseReleased
 
     private void txtCityMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCityMouseReleased
-            if(txtNicNumber.getText().equals("")){
-      txtNicNumber.grabFocus();
-      }else if(txtFname.getText().equals("")){
-      txtFname.grabFocus();
-      }else if(txtLname.getText().equals("")){
-      txtLname.grabFocus();
-      }else if(txtPhoneNumber.getText().equals("")){
-      txtPhoneNumber.grabFocus();
-      }else if(txtAddress1.getText().equals("")){
-      txtAddress1.grabFocus();
-      }else if(txtAddress2.getText().equals("")){
-      txtAddress2.grabFocus();
-      }
+        if (txtNicNumber.getText().equals("")) {
+            txtNicNumber.grabFocus();
+        } else if (txtFname.getText().equals("")) {
+            txtFname.grabFocus();
+        } else if (txtLname.getText().equals("")) {
+            txtLname.grabFocus();
+        } else if (txtPhoneNumber.getText().equals("")) {
+            txtPhoneNumber.grabFocus();
+        } else if (txtAddress1.getText().equals("")) {
+            txtAddress1.grabFocus();
+        } else if (txtAddress2.getText().equals("")) {
+            txtAddress2.grabFocus();
+        }
     }//GEN-LAST:event_txtCityMouseReleased
 
     private void txtPhoneNumberKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPhoneNumberKeyPressed
-             if(evt.getKeyCode()==8){
-       txtPhoneNumber.setEditable(true);
-       }
+        if (evt.getKeyCode() == 8) {
+            txtPhoneNumber.setEditable(true);
+        }
     }//GEN-LAST:event_txtPhoneNumberKeyPressed
 
     private void txtPhoneNumberMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPhoneNumberMouseEntered
-         txtPhoneNumber.setEditable(true);
+        txtPhoneNumber.setEditable(true);
     }//GEN-LAST:event_txtPhoneNumberMouseEntered
 
     /**
@@ -983,27 +986,27 @@ public class Add_Employee extends javax.swing.JFrame{
     // End of variables declaration//GEN-END:variables
 
     private void generateEmId() {
-              try {
+        try {
             ResultSet rs = DB.search("select count(employee_id) as x from employee");
-            if(rs.next()){
+            if (rs.next()) {
                 String counts = rs.getString("x");
                 int count = Integer.parseInt(counts);
-               ++count;
-                if(count<10){
-                txtReId.setText("E0000"+count);
-                txtReId.setEditable(false);
-                }else if(count<100){
-                 txtReId.setText("E000"+count);
-                txtReId.setEditable(false);
-                }else if(count<1000){
-                txtReId.setText("E00"+count);
-                txtReId.setEditable(false);
-                }else if(count<10000){
-                txtReId.setText("E0"+count);
-                txtReId.setEditable(false);
-                }else if(count<100000){
-                txtReId.setText("E"+count);
-                txtReId.setEditable(false);
+                ++count;
+                if (count < 10) {
+                    txtReId.setText("E0000" + count);
+                    txtReId.setEditable(false);
+                } else if (count < 100) {
+                    txtReId.setText("E000" + count);
+                    txtReId.setEditable(false);
+                } else if (count < 1000) {
+                    txtReId.setText("E00" + count);
+                    txtReId.setEditable(false);
+                } else if (count < 10000) {
+                    txtReId.setText("E0" + count);
+                    txtReId.setEditable(false);
+                } else if (count < 100000) {
+                    txtReId.setText("E" + count);
+                    txtReId.setEditable(false);
                 }
             }
         } catch (Exception e) {
@@ -1012,60 +1015,59 @@ public class Add_Employee extends javax.swing.JFrame{
     }
 
     private void saveEmployee() {
-            try {
-                String gender;
-                if(redioMale.isSelected()){
-                    gender="Male";
-                }else{
-                    gender="Female";
-                }
-                Date dob= txtBirthDay.getDate();
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                String dataTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-                String emType=comboType.getSelectedItem().toString();
-                ResultSet search = DB.search("SELECT * from employee_type WHERE type='"+emType+"'");
-                if(search.next()){
-                  emType=search.getString("type_code");
-                }
-                DB.iud("INSERT INTO employee VALUES('"+txtReId.getText()+"','"+txtFname.getText().toUpperCase()+"','"+txtLname.getText().toUpperCase()+"',"
-                        + "'"+txtNicNumber.getText()+"','"+txtPhoneNumber.getText()+"','"+sdf.format(dob)+"','"+txtAddress1.getText().toUpperCase()+"','"+txtAddress2.getText().toUpperCase()+"','"+txtCity.getText().toUpperCase()+"',"
-                                + "'"+gender.toUpperCase()+"','"+emType+"','"+1+"','"+dataTime+"')");
-                JOptionPane.showMessageDialog(this," successfull");
-            }catch (Exception e){
-                e.printStackTrace();
-              JOptionPane.showMessageDialog(this," Cheack Your Details");
+        try {
+            String gender;
+            if (redioMale.isSelected()) {
+                gender = "Male";
+            } else {
+                gender = "Female";
             }
+            Date dob = txtBirthDay.getDate();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String dataTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+            String emType = comboType.getSelectedItem().toString();
+            ResultSet search = DB.search("SELECT * from employee_type WHERE type='" + emType + "'");
+            if (search.next()) {
+                emType = search.getString("type_code");
+            }
+            DB.iud("INSERT INTO employee VALUES('" + txtReId.getText() + "','" + txtFname.getText().toUpperCase() + "','" + txtLname.getText().toUpperCase() + "',"
+                    + "'" + txtNicNumber.getText() + "','" + txtPhoneNumber.getText() + "','" + sdf.format(dob) + "','" + txtAddress1.getText().toUpperCase() + "','" + txtAddress2.getText().toUpperCase() + "','" + txtCity.getText().toUpperCase() + "',"
+                    + "'" + gender.toUpperCase() + "','" + emType + "','" + 1 + "','" + dataTime + "')");
+            JOptionPane.showMessageDialog(this, " successfull");
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, " Cheack Your Details");
+        }
     }
-
 
     private void tbData() {
         try {
-            DefaultTableModel dtm =(DefaultTableModel) tb1.getModel();
-           ResultSet search = DB.search("SELECT * FROM employee WHERE status=1");
-           dtm.setRowCount(0);
-           while(search.next()){
-               Vector v = new Vector();
-               v.add(search.getString("employee_id"));
-               v.add(search.getString("first_name")+" "+search.getString("last_name"));
-                ResultSet search1 = DB.search("SELECT * FROM employee_type WHERE type_code='"+search.getString("type_code")+"'");
-               if(search1.next()){
-               v.add(search1.getString("type"));
-               }
-               v.add(search.getString("nic_number"));
-               v.add(search.getString("phone_number"));
-               v.add(search.getString("birthday"));
-                v.add(search.getString("address_line_01")+","+search.getString("address_line_02")+","+search.getString("city"));
-                 v.add(search.getString("gender"));
-                 v.add(search.getString("data_time"));
-               dtm.addRow(v);
-               
+            DefaultTableModel dtm = (DefaultTableModel) tb1.getModel();
+            ResultSet search = DB.search("SELECT * FROM employee WHERE status=1");
+            dtm.setRowCount(0);
+            while (search.next()) {
+                Vector v = new Vector();
+                v.add(search.getString("employee_id"));
+                v.add(search.getString("first_name") + " " + search.getString("last_name"));
+                ResultSet search1 = DB.search("SELECT * FROM employee_type WHERE type_code='" + search.getString("type_code") + "'");
+                if (search1.next()) {
+                    v.add(search1.getString("type"));
+                }
+                v.add(search.getString("nic_number"));
+                v.add(search.getString("phone_number"));
+                v.add(search.getString("birthday"));
+                v.add(search.getString("address_line_01") + "," + search.getString("address_line_02") + "," + search.getString("city"));
+                v.add(search.getString("gender"));
+                v.add(search.getString("data_time"));
+                dtm.addRow(v);
+
 //                 String s1= search.getString("address_line_01")+","+search.getString("address_line_02")+","+search.getString("city");
 //                 
 //                 System.out.println(s1.split(",")[0]);
 //                 System.out.println(s1.split(",")[1]);
 //                 System.out.println(s1.split(",")[2]);
-               }
-            
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1083,15 +1085,14 @@ public class Add_Employee extends javax.swing.JFrame{
         comboType.setSelectedIndex(0);
     }
 
- private void comboData() {
-       try {
+    private void comboData() {
+        try {
             ResultSet search = DB.search("SELECT * FROM employee_type WHERE status=1");
-            while(search.next()){
-            comboType.addItem(search.getString("type"));
+            while (search.next()) {
+                comboType.addItem(search.getString("type"));
             }
         } catch (Exception e) {
         }
     }
 
-  
 }

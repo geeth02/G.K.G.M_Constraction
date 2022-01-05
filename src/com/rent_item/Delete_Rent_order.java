@@ -5,15 +5,9 @@
  */
 package com.rent_item;
 
-import static com.work_order.End_Job.tb1;
-import static com.work_order.End_Job.txtOrderId;
-import static com.work_order.End_Job.txtWpoint;
 import common.DB;
 import common.CommonM;
-import common.SystemData;
 import java.sql.ResultSet;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -29,11 +23,11 @@ public class Delete_Rent_order extends javax.swing.JFrame {
      */
     public Delete_Rent_order() {
         initComponents();
-        txtCustomerId.grabFocus();
+      jScrollPane2.setVisible(false);
+      txtSearch.grabFocus();
+      
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         CommonM.tableSettings(tb3);
-        generateOrId();
-
         textFealds();
 
     }
@@ -51,25 +45,18 @@ public class Delete_Rent_order extends javax.swing.JFrame {
         ReForm = new javax.swing.JLayeredPane();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
-        jLabel9 = new javax.swing.JLabel();
-        txtItemId = new javax.swing.JTextField();
         lbFirstName = new javax.swing.JLabel();
-        txtOrderId = new javax.swing.JTextField();
+        txtSearch = new javax.swing.JTextField();
         txtCustomerId = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txtProductNumber = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtDiscription = new javax.swing.JTextArea();
-        btnStart = new javax.swing.JButton();
         jScrollPane7 = new javax.swing.JScrollPane();
         tb3 = new javax.swing.JTable();
-        jLabel3 = new javax.swing.JLabel();
-        txtModel = new javax.swing.JTextField();
-        btnAddItem = new javax.swing.JButton();
         comboSearch = new javax.swing.JComboBox<>();
+        btnStart1 = new javax.swing.JButton();
+        txtOrderId = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        btnStart2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -81,53 +68,41 @@ public class Delete_Rent_order extends javax.swing.JFrame {
         ReForm.setOpaque(true);
         ReForm.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jList1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList1MouseClicked(evt);
+            }
+        });
+        jList1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jList1KeyPressed(evt);
+            }
+        });
         jScrollPane2.setViewportView(jList1);
 
         ReForm.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 130, 280, -1));
-
-        jLabel9.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
-        jLabel9.setText("Item Id");
-        jLabel9.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jLabel9KeyPressed(evt);
-            }
-        });
-        ReForm.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 175, 42));
-
-        txtItemId.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtItemId.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        txtItemId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtItemIdActionPerformed(evt);
-            }
-        });
-        txtItemId.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtItemIdKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtItemIdKeyTyped(evt);
-            }
-        });
-        ReForm.add(txtItemId, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, 450, 43));
 
         lbFirstName.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
         lbFirstName.setText("Search By");
         ReForm.add(lbFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 175, 42));
 
-        txtOrderId.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtOrderId.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        txtOrderId.addActionListener(new java.awt.event.ActionListener() {
+        txtSearch.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtSearch.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtOrderIdActionPerformed(evt);
+                txtSearchActionPerformed(evt);
             }
         });
-        txtOrderId.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearchKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtOrderIdKeyTyped(evt);
+                txtSearchKeyTyped(evt);
             }
         });
-        ReForm.add(txtOrderId, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 90, 280, 43));
+        ReForm.add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 90, 280, 43));
 
         txtCustomerId.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtCustomerId.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -144,67 +119,19 @@ public class Delete_Rent_order extends javax.swing.JFrame {
                 txtCustomerIdKeyTyped(evt);
             }
         });
-        ReForm.add(txtCustomerId, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 450, 43));
+        ReForm.add(txtCustomerId, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, 450, 43));
 
         jLabel1.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
         jLabel1.setText("Customer Id/Name");
-        ReForm.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 200, 43));
+        ReForm.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 200, 43));
 
         jLabel5.setBackground(new java.awt.Color(204, 0, 51));
         jLabel5.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 48)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Edite Rent Order");
+        jLabel5.setText("Delete Rent Order");
         jLabel5.setOpaque(true);
         ReForm.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 69));
-
-        txtProductNumber.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtProductNumber.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        txtProductNumber.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtProductNumberActionPerformed(evt);
-            }
-        });
-        ReForm.add(txtProductNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, 450, 43));
-
-        jLabel2.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
-        jLabel2.setText("Model");
-        ReForm.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 190, 43));
-
-        jLabel10.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
-        jLabel10.setText("discreption");
-        ReForm.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 175, 42));
-
-        txtDiscription.setColumns(20);
-        txtDiscription.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
-        txtDiscription.setRows(5);
-        txtDiscription.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtDiscriptionKeyReleased(evt);
-            }
-        });
-        jScrollPane1.setViewportView(txtDiscription);
-
-        ReForm.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, 450, 150));
-
-        btnStart.setBackground(new java.awt.Color(0, 102, 204));
-        btnStart.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 30)); // NOI18N
-        btnStart.setForeground(new java.awt.Color(255, 255, 255));
-        btnStart.setText("Start");
-        btnStart.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnStartMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnStartMouseExited(evt);
-            }
-        });
-        btnStart.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnStartActionPerformed(evt);
-            }
-        });
-        ReForm.add(btnStart, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 730, 210, 60));
 
         tb3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -221,48 +148,70 @@ public class Delete_Rent_order extends javax.swing.JFrame {
         });
         jScrollPane7.setViewportView(tb3);
 
-        ReForm.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 560, 660, 150));
-
-        jLabel3.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
-        jLabel3.setText("Product Number");
-        ReForm.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 175, 43));
-
-        txtModel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtModel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        txtModel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtModelActionPerformed(evt);
-            }
-        });
-        txtModel.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtModelKeyTyped(evt);
-            }
-        });
-        ReForm.add(txtModel, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 450, 43));
-
-        btnAddItem.setBackground(new java.awt.Color(0, 102, 204));
-        btnAddItem.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 30)); // NOI18N
-        btnAddItem.setForeground(new java.awt.Color(255, 255, 255));
-        btnAddItem.setText("Add Item");
-        btnAddItem.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnAddItemMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnAddItemMouseExited(evt);
-            }
-        });
-        btnAddItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddItemActionPerformed(evt);
-            }
-        });
-        ReForm.add(btnAddItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 500, 160, -1));
+        ReForm.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 660, 390));
 
         comboSearch.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         comboSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NIC Number", "Customer Name", "Order Id" }));
         ReForm.add(comboSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, -1, 40));
+
+        btnStart1.setBackground(new java.awt.Color(0, 102, 204));
+        btnStart1.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 30)); // NOI18N
+        btnStart1.setForeground(new java.awt.Color(255, 255, 255));
+        btnStart1.setText("Delete");
+        btnStart1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnStart1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnStart1MouseExited(evt);
+            }
+        });
+        btnStart1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStart1ActionPerformed(evt);
+            }
+        });
+        ReForm.add(btnStart1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 700, 210, 60));
+
+        txtOrderId.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtOrderId.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtOrderId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtOrderIdActionPerformed(evt);
+            }
+        });
+        txtOrderId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtOrderIdKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtOrderIdKeyTyped(evt);
+            }
+        });
+        ReForm.add(txtOrderId, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 450, 43));
+
+        jLabel2.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 24)); // NOI18N
+        jLabel2.setText("Order Id");
+        ReForm.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 200, 43));
+
+        btnStart2.setBackground(new java.awt.Color(0, 102, 204));
+        btnStart2.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 30)); // NOI18N
+        btnStart2.setForeground(new java.awt.Color(255, 255, 255));
+        btnStart2.setText("Clear");
+        btnStart2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnStart2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnStart2MouseExited(evt);
+            }
+        });
+        btnStart2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStart2ActionPerformed(evt);
+            }
+        });
+        ReForm.add(btnStart2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 700, 210, 60));
 
         jLayeredPane2.add(ReForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 750, 840));
 
@@ -285,37 +234,20 @@ public class Delete_Rent_order extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtItemIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtItemIdActionPerformed
-
-    }//GEN-LAST:event_txtItemIdActionPerformed
-
-    private void txtItemIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtItemIdKeyTyped
-
-    }//GEN-LAST:event_txtItemIdKeyTyped
-
-    private void txtOrderIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOrderIdActionPerformed
+    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
         
-    }//GEN-LAST:event_txtOrderIdActionPerformed
+    }//GEN-LAST:event_txtSearchActionPerformed
 
-    private void txtOrderIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOrderIdKeyTyped
+    private void txtSearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyTyped
 
-    }//GEN-LAST:event_txtOrderIdKeyTyped
+    }//GEN-LAST:event_txtSearchKeyTyped
 
     private void txtCustomerIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCustomerIdActionPerformed
-        txtOrderId.grabFocus();
+        txtSearch.grabFocus();
     }//GEN-LAST:event_txtCustomerIdActionPerformed
 
-    private void txtProductNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProductNumberActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtProductNumberActionPerformed
-
     private void txtCustomerIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCustomerIdKeyReleased
-        if (evt.getKeyCode() == 107) {
-            txtCustomerId.setText("");
-            new Add_Customer_Rent_Item().setVisible(true);
-            this.dispose();
-
-        }
+    
 
     }//GEN-LAST:event_txtCustomerIdKeyReleased
 
@@ -327,58 +259,64 @@ public class Delete_Rent_order extends javax.swing.JFrame {
 
     }//GEN-LAST:event_tb3MousePressed
 
-    private void btnStartMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnStartMouseEntered
+    private void btnStart1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnStart1MouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnStartMouseEntered
+    }//GEN-LAST:event_btnStart1MouseEntered
 
-    private void btnStartMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnStartMouseExited
+    private void btnStart1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnStart1MouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnStartMouseExited
+    }//GEN-LAST:event_btnStart1MouseExited
 
-    private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
+    private void btnStart1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStart1ActionPerformed
+      deleteOrder();
+    }//GEN-LAST:event_btnStart1ActionPerformed
 
-        startOrder();
-    }//GEN-LAST:event_btnStartActionPerformed
-
-    private void jLabel9KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabel9KeyPressed
-
-    }//GEN-LAST:event_jLabel9KeyPressed
-
-    private void txtItemIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtItemIdKeyReleased
-
-    }//GEN-LAST:event_txtItemIdKeyReleased
-
-    private void txtModelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtModelActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtModelActionPerformed
-
-    private void txtModelKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtModelKeyTyped
-
-    }//GEN-LAST:event_txtModelKeyTyped
-
-    private void txtDiscriptionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDiscriptionKeyReleased
-        
-    }//GEN-LAST:event_txtDiscriptionKeyReleased
-
-    private void btnAddItemMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddItemMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAddItemMouseEntered
-
-    private void btnAddItemMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddItemMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAddItemMouseExited
-
-    private void btnAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddItemActionPerformed
-        if(!txtItemId.getText().equals("")){
-        if(!txtModel.getText().equals("")){
-             addTbData();
-             clearFealds();
-
+    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
+           if (evt.getClickCount() == 2) {
+            click();
         }
+    }//GEN-LAST:event_jList1MouseClicked
+
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+          searchPro();
+        if (evt.getKeyCode() == 40) {
+            jList1.setSelectedIndex(0);
+            jList1.grabFocus();
         }
-        
-       
-    }//GEN-LAST:event_btnAddItemActionPerformed
+        if (txtSearch.getText().equals("")) {
+            clearFeald();
+        }
+    }//GEN-LAST:event_txtSearchKeyReleased
+
+    private void jList1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jList1KeyPressed
+        if (evt.getKeyCode() == 10) {
+            click();
+        }
+    }//GEN-LAST:event_jList1KeyPressed
+
+    private void txtOrderIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOrderIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtOrderIdActionPerformed
+
+    private void txtOrderIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOrderIdKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtOrderIdKeyReleased
+
+    private void txtOrderIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOrderIdKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtOrderIdKeyTyped
+
+    private void btnStart2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnStart2MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnStart2MouseEntered
+
+    private void btnStart2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnStart2MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnStart2MouseExited
+
+    private void btnStart2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStart2ActionPerformed
+       clearFeald();
+    }//GEN-LAST:event_btnStart2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -424,127 +362,185 @@ public class Delete_Rent_order extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLayeredPane ReForm;
-    private javax.swing.JButton btnAddItem;
-    private javax.swing.JButton btnStart;
+    private javax.swing.JButton btnStart1;
+    private javax.swing.JButton btnStart2;
     public static javax.swing.JComboBox<String> comboSearch;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPane2;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JScrollPane jScrollPane1;
+    public static javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JLabel lbFirstName;
-    private javax.swing.JTable tb3;
+    public static javax.swing.JTable tb3;
     public static javax.swing.JTextField txtCustomerId;
-    private javax.swing.JTextArea txtDiscription;
-    public static javax.swing.JTextField txtItemId;
-    private javax.swing.JTextField txtModel;
     public static javax.swing.JTextField txtOrderId;
-    private javax.swing.JTextField txtProductNumber;
+    public static javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
- private void generateOrId() {
-        try {
-            txtOrderId.setEditable(false);
-            ResultSet rs = DB.search("select count(order_id) as x from work_order");
-            if (rs.next()) {
-                String counts = rs.getString("x");
-                int count = Integer.parseInt(counts);
-                ++count;
-                if (count < 10) {
-                    txtOrderId.setText("IN00000" + count);
-                } else if (count < 100) {
-                    txtOrderId.setText("IN0000" + count);
-                } else if (count < 1000) {
-                    txtOrderId.setText("IN000" + count);
-                } else if (count < 10000) {
-                    txtOrderId.setText("IN00" + count);
-                } else if (count < 100000) {
-                    txtOrderId.setText("IN0" + count);
-                } else if (count < 1000000) {
-                    txtOrderId.setText("IN" + count);
-                }
-            }
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
 
 
-    
- 
-
-    private void searchDetails() {
-        try {
-            ResultSet search = DB.search("SELECT * FROM rent_item WHERE status=1 AND item_id='"+txtItemId.getText().toUpperCase().split("-")[0]+"'");
-            if(search.next()){
-            txtModel.setText(search.getString("model"));
-            txtProductNumber.setText(search.getString("product_number"));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     private void textFealds() {
-        txtModel.setEditable(false);
-        txtProductNumber.setEditable(false);
-        btnStart.setEnabled(false);
+        txtCustomerId.setEditable(false);
+        txtOrderId.setEditable(false);
+        tb3.setEnabled(false);
+        
     }
-
-    private void addTbData() {
-            DefaultTableModel dtm1 = (DefaultTableModel) tb3.getModel();
-            Vector v = new Vector();
-            v.add(txtItemId.getText());
-            v.add(txtModel.getText());
-            if(txtProductNumber.getText().equals("")){
-            v.add("None");
-            }else{
-            v.add(txtProductNumber.getText());
-            }
-             if(txtDiscription.getText().equals("")){
-            v.add("None");
-            }else{
-            v.add(txtDiscription.getText());
-            }
-            dtm1.addRow(v);
-            btnStart.setEnabled(true);
-    }
-
-    private void clearFealds() {
-       txtItemId.setText(null);
-       txtModel.setText(null);
-       txtProductNumber.setText(null);
-       txtDiscription.setText(null);
-       
-    }
-
-    private void startOrder() {
-        try {
-             String dataTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-            DB.iud("INSERT INTO rent_order VALUES('"+txtOrderId.getText().toUpperCase()+"','"+txtCustomerId.getText().toUpperCase()+"','"+txtDiscription.getText()+"','"+dataTime+"','"+SystemData.getemployee()+"','"+1+"')");
-              for (int row = 0; row < tb3.getRowCount(); row++) {
-                            String itemId = tb3.getValueAt(row, 0).toString().trim();
-                            String invitemSQL2 = "insert into rent_order_item (order_id,item_id,status) values('" +txtOrderId.getText() + "','" + itemId + "','" + 1 + "')";
-                            DB.iud(invitemSQL2);
-                            clearFealds();
-                            claerTable();
-                        }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     private void claerTable() {
           DefaultTableModel dtm1 = (DefaultTableModel) tb3.getModel();
           dtm1.setRowCount(0);
           txtCustomerId.setText(null);
-          txtOrderId.setText(null);
-          generateOrId();
+          txtSearch.setText(null);
+         
+    }
+
+    
+        private void click() {
+        try {
+            jScrollPane2.setVisible(false);
+            if (comboSearch.getSelectedItem().equals("NIC Number")) {
+                ResultSet search1 = DB.search("SELECT * FROM rent_order WHERE status= 1 AND customer_id='" + jList1.getSelectedValue().split("-")[0] + "'");
+                if (search1.next()) {
+                    searchDetails(search1.getString("order_id"));
+                } else {
+                    JOptionPane.showMessageDialog(this, "This customer have not active job");
+                    txtSearch.setText("");
+                    txtSearch.grabFocus();
+                }
+            } else if (comboSearch.getSelectedItem().equals("Order Id")) {
+                     String OrderId=jList1.getSelectedValue();
+                    searchDetails(OrderId);
+//                } else {
+//                    JOptionPane.showMessageDialog(this, "This customer have not active job");
+//                    txtSearch.setText("");
+//                    txtSearch.grabFocus();
+//                }
+
+            } else if (comboSearch.getSelectedItem().equals("Customer Name")) {
+                ResultSet search1 = DB.search("SELECT * FROM rent_order WHERE status= 1 AND customer_id='" + jList1.getSelectedValue().split("-")[0] + "'");
+                if (search1.next()) {
+                    searchDetails(search1.getString("order_id"));
+                } else {
+                    JOptionPane.showMessageDialog(this, "This customer have not active job");
+                    txtSearch.setText("");
+                    txtSearch.grabFocus();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+        
+         private void searchPro() {
+        try {
+            if (!txtSearch.getText().trim().equals("")) {
+                if (comboSearch.getSelectedItem().equals("NIC Number")) {
+                    ResultSet rs = DB.search("SELECT * FROM customer WHERE status=1 AND nic_number LIKE '" + txtSearch.getText().toUpperCase() + "%'");
+                    Vector v = new Vector();
+                    jScrollPane2.setVisible(false);
+                    while (rs.next()) {
+                        jScrollPane2.setVisible(true);
+                        v.add(rs.getString("customer_id") + "-" + rs.getString("first_name") + " " + rs.getString("last_name"));
+                        jList1.setListData(v);
+                    }
+                } else if (comboSearch.getSelectedItem().equals(("Order Id"))) {
+                    ResultSet rs = DB.search("SELECT * FROM rent_order WHERE status=1 AND order_id LIKE '" + txtSearch.getText().toUpperCase() + "%'");
+                    Vector v = new Vector();
+                    jScrollPane2.setVisible(false);
+                    while (rs.next()) {
+                        jScrollPane2.setVisible(true);
+                        v.add(rs.getString("order_id"));
+                    }
+                    jList1.setListData(v);
+                } else if (comboSearch.getSelectedItem().equals("Customer Name")) {
+                    ResultSet rs = DB.search("SELECT * FROM customer WHERE status=1 AND first_name LIKE '" + txtSearch.getText().toUpperCase() + "%'");
+                    Vector v = new Vector();
+                    jScrollPane2.setVisible(false);
+                    while (rs.next()) {
+                        jScrollPane2.setVisible(true);
+                        v.add(rs.getString("customer_id") + "-" + rs.getString("first_name") + " " + rs.getString("last_name"));
+                    }
+                    jList1.setListData(v);
+
+                }
+            } else {
+                jScrollPane2.setVisible(false);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+         
+         
+           private void searchDetails(String orderId) {
+        try {
+            String customerId = jList1.getSelectedValue().split("-")[0];
+            ResultSet search4 = DB.search("SELECT * FROM rent_order WHERE status=1 AND customer_id='" + customerId + "'");
+            int i = 0;
+            while (search4.next()) {
+                i++;
+            }
+            if (i == 1) {
+                ResultSet search = DB.search("SELECT * FROM rent_order WHERE status=1 AND order_id='" + orderId + "'");
+                if (search.next()) {
+                    ResultSet search1 = DB.search("SELECT * FROM customer WHERE customer_id='" + search.getString("customer_id") + "'");
+                    if (search1.next()) {
+                        txtCustomerId.setText(search.getString("customer_id") + "-" + search1.getString("first_name") + " " + search1.getString("last_name"));
+                        txtSearch.setText(search1.getString("nic_number"));
+                        txtOrderId.setText(orderId);
+                        comboSearch.setSelectedIndex(0);
+                    }
+
+                    ResultSet search2 = DB.search("SELECT * FROM rent_order_item WHERE order_id='" + orderId + "'");
+                    DefaultTableModel dtm = (DefaultTableModel) tb3.getModel();
+                    dtm.setRowCount(0);
+                    while (search2.next()) {
+                        Vector v = new Vector();
+                        ResultSet search3 = DB.search("SELECT * FROM rent_item WHERE item_id='" + search2.getString("item_id") + "'");
+                        if (search3.next()) {
+                            v.add(search2.getString("item_id") + "-" + search3.getString("name"));
+                            v.add(search3.getString("model"));
+                            v.add(search3.getString("product_number"));
+                            
+                            v.add(search.getString("discription"));
+                            dtm.addRow(v);
+                        }
+                    }
+                }
+            } else if (i > 1) {
+                new Job_Selection_Delete_Order().setVisible(true);
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void deleteOrder() {
+        try {
+            
+            if(!txtOrderId.getText().equals("")){
+            int input = JOptionPane.showConfirmDialog(null, "Do you want to delete this order?");
+            if(input==0){
+            DB.iud("UPDATE rent_order SET status='"+2+"' WHERE order_id='"+txtOrderId.getText()+"'");
+            DB.iud("UPDATE rent_order_item SET status='"+2+"' WHERE order_id='"+txtOrderId.getText()+"'");
+            clearFeald();
+            }
+            }else{
+            JOptionPane.showMessageDialog(this, "Please search details", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+                   
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void clearFeald() {
+       txtCustomerId.setText(null);
+       txtOrderId.setText(null);
+       txtSearch.setText(null);
+       claerTable();
     }
 
    

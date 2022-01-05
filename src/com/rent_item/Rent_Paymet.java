@@ -744,7 +744,7 @@ public class Rent_Paymet extends javax.swing.JFrame {
                     ResultSet search3 = DB.search("SELECT * FROM rent_order where customer_id='"+search+"'");
                   if(search3.next()){
                   txtOrderId.setText(search3.getString("order_id"));
-                  ResultSet search4 = DB.search("SELECT * FROM rent_order_item where order_id='"+search3.getString("order_id")+"' AND status=1");
+                  ResultSet search4 = DB.search("SELECT * FROM rent_order_item where order_id='"+search3.getString("order_id")+"'");
                   while(search4.next()){
                       ResultSet search2 = DB.search("SELECT * FROM rent_item WHERE item_id='"+search4.getString("item_id")+"'");
                       if(search2.next()){
@@ -852,13 +852,20 @@ public class Rent_Paymet extends javax.swing.JFrame {
     }
 
     private void avPayment() {
-                  try {
-              ResultSet search = DB.search("SELECT * FROM end_job WHERE order_id='"+txtOrderId.getText()+"'");
+                       try {
+              ResultSet search = DB.search("SELECT * FROM rent_order WHERE order_id='"+txtOrderId.getText()+"' AND status=0");
               if(search.next()){
-              double fullPayment = search.getDouble("total_amount");
-              double customerPayment = Double.parseDouble(txtCustomerPayment.getText());
-              txtNetAmount.setText(String.valueOf(fullPayment-customerPayment));
-              if(fullPayment==customerPayment){
+                  double amount=0.00;
+                  double value=0.00;
+               ResultSet search1 = DB.search("SELECT * FROM rent_item_payment WHERE order_id='"+txtOrderId.getText()+"'");
+               while(search1.next()){
+                   value=search1.getDouble("amount");
+                   amount=amount+value;
+               }
+         
+                  
+              txtNetAmount.setText(String.valueOf(amount-Double.parseDouble(txtCustomerPayment.getText())));
+              if(amount==Double.parseDouble(txtCustomerPayment.getText())){
                 txtAmount.setEditable(false);
                 txtPayment.setEditable(false);
                 btnClear.setVisible(true);
@@ -869,7 +876,7 @@ public class Rent_Paymet extends javax.swing.JFrame {
                 txtSearch.setEditable(false);
                 JOptionPane.showMessageDialog(this,"All payments are Seccessful. View only Report");  
               }else{
-               JOptionPane.showMessageDialog(this,"Total bill amount is Rs."+fullPayment);
+               JOptionPane.showMessageDialog(this,"Total bill amount is Rs."+amount);
               }
               }else{
               txtNetAmount.setText("Panding Payments...........");

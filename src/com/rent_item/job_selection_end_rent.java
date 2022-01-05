@@ -6,6 +6,7 @@
 package com.rent_item;
 
 
+import com.rent_item.End_Order;
 import static com.rent_item.End_Order.comboSearch;
 import static com.rent_item.End_Order.txtCustomer;
 import static com.rent_item.End_Order.txtCustomerPayment;
@@ -210,7 +211,7 @@ public class Job_Selection_End_Rent extends javax.swing.JFrame {
       //  if (Paymets.comboSearch.getSelectedItem().equals("NIC Number")) {
             try {
                 String search = End_Order.jList1.getSelectedValue().split("-")[0];
-                ResultSet search1 = DB.search("SELECT * FROM rent_order WHERE customer_id='" + search + "'");
+                ResultSet search1 = DB.search("SELECT * FROM rent_order WHERE status=1 AND customer_id='" + search + "'");
                 while (search1.next()) {
                         String date = search1.getString("data_time").split("-")[0] + "-" + search1.getString("data_time").split("-")[1] + "-" + search1.getString("data_time").split("-")[2] + ")";
                         jComboBox1.addItem(search1.getString("order_id") + "-" + "(Date:" + date);

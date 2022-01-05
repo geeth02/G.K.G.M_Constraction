@@ -31,6 +31,7 @@ public class End_Order extends javax.swing.JFrame {
      */
     public End_Order() {
         initComponents();
+         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         CommonM.setFullScreen(this);
         CommonM.tableSettings(tb3);
         CommonM.tableSettings(tb4);
@@ -46,6 +47,7 @@ public class End_Order extends javax.swing.JFrame {
         txtOrderId.setEditable(false);
         txtCustomer.setEditable(false);
         txtCustomerPayment.setEditable(false);
+       
 
     }
     int row;
@@ -104,6 +106,11 @@ public class End_Order extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1920, 1080));
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jLayeredPane1.setMinimumSize(new java.awt.Dimension(1920, 1080));
         jLayeredPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -778,7 +785,7 @@ public class End_Order extends javax.swing.JFrame {
                 String amountPerDay = tb3.getValueAt(row, 1).toString().trim();
                 String amount = tb3.getValueAt(row, 2).toString().trim();
                 String discount = tb3.getValueAt(row, 3).toString().trim();
-                ResultSet search = DB.search("SELECT * FROM rent_item_payment WHERE item_id='" + itemId + "', AND order_id='" + orderId + "'");
+                ResultSet search = DB.search("SELECT * FROM rent_item_payment WHERE item_id='" + itemId + "' AND order_id='" + orderId + "'");
                 if (search.next()) {
                     DB.iud("UPDATE rent_item_paymennt set amount_per_date='"+amountPerDay+"',amount='"+amount+"',discount='"+discount+"' WHERE order_id='"+orderId+"' AND item_id='"+itemId+"'");
                 }else{
@@ -786,7 +793,19 @@ public class End_Order extends javax.swing.JFrame {
                 DB.iud(invitemSQL2);
                 }
                 DB.iud("UPDATE rent_order SET status=0 WHERE order_id='"+orderId+"'");
-               JOptionPane.showMessageDialog(this, "Successful");
+                DB.iud("UPDATE rent_order_item SET status=0 WHERE order_id='"+orderId+"'");
+                double netAmount=Double.parseDouble(txtNetAmount.getText());
+                double cusPayment = Double.parseDouble(txtCustomerPayment.getText());
+                double amount1 = netAmount-cusPayment;
+                if(netAmount==cusPayment){
+                   JOptionPane.showMessageDialog(this, "Successful End Order");
+                   clearFeald();
+                }else if(netAmount>cusPayment){
+                JOptionPane.showMessageDialog(this, "Successful "+amount1+"Amount get Payment");
+                clearFeald();
+                }
+                
+            
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -796,6 +815,10 @@ public class End_Order extends javax.swing.JFrame {
     private void tb3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb3MouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_tb3MouseEntered
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+       new Rent_Main().setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments
@@ -949,7 +972,7 @@ public class End_Order extends javax.swing.JFrame {
                             v.add(search3.getString("model"));
                             v.add(search3.getString("product_number"));
                             v.add(dayCalculate(search.getString("data_time")));
-                            if (search3.getString("status").equals("1")) {
+                            if (search2.getString("status").equals("1")) {
                                 v.add("Uncomplite");
 
                             } else {
@@ -1022,14 +1045,13 @@ public class End_Order extends javax.swing.JFrame {
                     txtSearch.grabFocus();
                 }
             } else if (comboSearch.getSelectedItem().equals("Order Id")) {
-                ResultSet search1 = DB.search("SELECT * FROM rent_order WHERE status= 1 AND order_id='" + jList1.getSelectedValue().split("-")[0] + "'");
-                if (search1.next()) {
-                    searchDetails(search1.getString("order_id"));
-                } else {
-                    JOptionPane.showMessageDialog(this, "This customer have not active job");
-                    txtSearch.setText("");
-                    txtSearch.grabFocus();
-                }
+                     String OrderId=jList1.getSelectedValue();
+                    searchDetailsId(OrderId);
+//                } else {
+//                    JOptionPane.showMessageDialog(this, "This customer have not active job");
+//                    txtSearch.setText("");
+//                    txtSearch.grabFocus();
+//                }
 
             } else if (comboSearch.getSelectedItem().equals("Customer Name")) {
                 ResultSet search1 = DB.search("SELECT * FROM rent_order WHERE status= 1 AND customer_id='" + jList1.getSelectedValue().split("-")[0] + "'");
@@ -1195,4 +1217,50 @@ public class End_Order extends javax.swing.JFrame {
 
     }
 
-}
+    private void searchDetailsId(String orderId) {
+        try {
+              ResultSet search = DB.search("SELECT * FROM rent_order WHERE status=1 AND order_id='" + orderId + "'");
+                if (search.next()) {
+                    txtOrderId.setText(orderId);
+                    ResultSet search1 = DB.search("SELECT * FROM customer WHERE customer_id='" + search.getString("customer_id") + "'");
+                    if (search1.next()) {
+                        txtCustomer.setText(search.getString("customer_id") + "-" + search1.getString("first_name") + " " + search1.getString("last_name"));
+                        txtSearch.setText(search1.getString("nic_number"));
+                        comboSearch.setSelectedIndex(0);
+                    }
+
+                    ResultSet search2 = DB.search("SELECT * FROM rent_order_item WHERE order_id='" + orderId + "'");
+                    DefaultTableModel dtm = (DefaultTableModel) tb4.getModel();
+                    dtm.setRowCount(0);
+                    while (search2.next()) {
+                        Vector v = new Vector();
+                        ResultSet search3 = DB.search("SELECT * FROM rent_item WHERE item_id='" + search2.getString("item_id") + "'");
+                        if (search3.next()) {
+                            v.add(search2.getString("item_id") + "-" + search3.getString("name"));
+                            v.add(search3.getString("model"));
+                            v.add(search3.getString("product_number"));
+                            v.add(dayCalculate(search.getString("data_time")));
+                            if (search2.getString("status").equals("1")) {
+                                v.add("Uncomplite");
+
+                            } else {
+                                v.add("Complite");
+                            }
+                            v.add(loadPaymentStatus(search2.getString("item_id"), orderId));
+                            dtm.addRow(v);
+                        }
+                    }
+                }
+                    loadPayment(orderId);
+        } catch (Exception e) {
+                e.printStackTrace();
+        }
+    }
+    
+
+                
+    
+
+    }
+
+

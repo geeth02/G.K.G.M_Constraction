@@ -5,7 +5,6 @@
  */
 package com.delivery_item;
 
-import com.work_order.*;
 import common.DB;
 import com.main.Main_Menu;
 import common.CommonM;
@@ -434,7 +433,7 @@ public class Delivery_Main extends javax.swing.JFrame {
     }//GEN-LAST:event_btnStartJobMouseExited
 
     private void btnStartJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartJobActionPerformed
-       
+       new Get_order().setVisible(true);
     }//GEN-LAST:event_btnStartJobActionPerformed
 
     private void btnEndJobMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEndJobMouseEntered
@@ -458,7 +457,7 @@ public class Delivery_Main extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDashboard1MouseExited
 
     private void btnDashboard1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboard1ActionPerformed
-
+       new Delivery_Payment().setVisible(true);
     }//GEN-LAST:event_btnDashboard1ActionPerformed
 
     private void btnDashboard2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDashboard2MouseEntered
@@ -470,7 +469,7 @@ public class Delivery_Main extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDashboard2MouseExited
 
     private void btnDashboard2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboard2ActionPerformed
-
+       new Delete_order().setVisible(true);
     }//GEN-LAST:event_btnDashboard2ActionPerformed
 
     private void btnEndJob1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEndJob1MouseEntered

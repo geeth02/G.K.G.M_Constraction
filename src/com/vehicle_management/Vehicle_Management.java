@@ -27,6 +27,8 @@ public class Vehicle_Management extends javax.swing.JFrame {
         CommonM.setFullScreen(this);
         tbData();
         CommonM.tableSettings(tb1);
+        jScrollPane1.setVisible(false);
+        txtSearch.grabFocus();
         
     }
 
@@ -40,7 +42,10 @@ public class Vehicle_Management extends javax.swing.JFrame {
     private void initComponents() {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
-        jPanel1 = new javax.swing.JPanel();
+        txtSearch = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        list1 = new javax.swing.JList<>();
+        dashPanal = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         lbGKG = new javax.swing.JLabel();
         lbCons = new javax.swing.JLabel();
@@ -52,11 +57,8 @@ public class Vehicle_Management extends javax.swing.JFrame {
         btnStartJob6 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tb1 = new javax.swing.JTable();
-        memberTitle = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        txtSearch = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        list1 = new javax.swing.JList<>();
+        title = new javax.swing.JLabel();
+        lbSearch = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -64,7 +66,43 @@ public class Vehicle_Management extends javax.swing.JFrame {
         jLayeredPane1.setPreferredSize(new java.awt.Dimension(1920, 1080));
         jLayeredPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(0, 102, 204));
+        txtSearch.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtSearch.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtSearchMouseClicked(evt);
+            }
+        });
+        txtSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSearchActionPerformed(evt);
+            }
+        });
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSearchKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearchKeyReleased(evt);
+            }
+        });
+        jLayeredPane1.add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(1630, 140, 260, 40));
+
+        list1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        list1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { " " };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        list1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                list1MouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(list1);
+
+        jLayeredPane1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1630, 180, 260, 140));
+
+        dashPanal.setBackground(new java.awt.Color(0, 102, 204));
 
         jPanel2.setBackground(new java.awt.Color(204, 0, 51));
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -230,10 +268,10 @@ public class Vehicle_Management extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout dashPanalLayout = new javax.swing.GroupLayout(dashPanal);
+        dashPanal.setLayout(dashPanalLayout);
+        dashPanalLayout.setHorizontalGroup(
+            dashPanalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnStartJob, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnStartJob1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -242,9 +280,9 @@ public class Vehicle_Management extends javax.swing.JFrame {
             .addComponent(btnStartJob6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnStartJob2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        dashPanalLayout.setVerticalGroup(
+            dashPanalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dashPanalLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
@@ -259,10 +297,10 @@ public class Vehicle_Management extends javax.swing.JFrame {
                 .addComponent(btnStartJob3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnStartJob, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(449, Short.MAX_VALUE))
+                .addContainerGap(457, Short.MAX_VALUE))
         );
 
-        jLayeredPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 1080));
+        jLayeredPane1.add(dashPanal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 1080));
 
         tb1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -273,6 +311,9 @@ public class Vehicle_Management extends javax.swing.JFrame {
             }
         ));
         tb1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb1MouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 tb1MousePressed(evt);
             }
@@ -281,59 +322,23 @@ public class Vehicle_Management extends javax.swing.JFrame {
 
         jLayeredPane1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 190, 1560, 790));
 
-        memberTitle.setBackground(new java.awt.Color(0, 102, 204));
-        memberTitle.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 60)); // NOI18N
-        memberTitle.setForeground(new java.awt.Color(255, 255, 255));
-        memberTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        memberTitle.setText("Vehicle Data");
-        memberTitle.setOpaque(true);
-        jLayeredPane1.add(memberTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(321, 0, 1660, 120));
+        title.setBackground(new java.awt.Color(0, 102, 204));
+        title.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 60)); // NOI18N
+        title.setForeground(new java.awt.Color(255, 255, 255));
+        title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        title.setText("Vehicle Data");
+        title.setOpaque(true);
+        jLayeredPane1.add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(311, 0, 1620, 120));
 
-        jLabel1.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
-        jLabel1.setText("Search");
-        jLayeredPane1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1520, 140, -1, -1));
-
-        txtSearch.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        txtSearch.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtSearchMouseClicked(evt);
-            }
-        });
-        txtSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSearchActionPerformed(evt);
-            }
-        });
-        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtSearchKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtSearchKeyReleased(evt);
-            }
-        });
-        jLayeredPane1.add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(1600, 140, 230, 40));
-
-        list1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        list1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { " " };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        list1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                list1MouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(list1);
-
-        jLayeredPane1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1600, 180, 230, 90));
+        lbSearch.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
+        lbSearch.setText("Search");
+        jLayeredPane1.add(lbSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(1540, 140, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -453,7 +458,7 @@ public class Vehicle_Management extends javax.swing.JFrame {
     }//GEN-LAST:event_btnStartJob5MouseExited
 
     private void btnStartJob5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartJob5ActionPerformed
-        // TODO add your handling code here:
+       new Vehicle_Service().setVisible(true);
     }//GEN-LAST:event_btnStartJob5ActionPerformed
 
     private void btnStartJob6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnStartJob6MouseEntered
@@ -465,8 +470,14 @@ public class Vehicle_Management extends javax.swing.JFrame {
     }//GEN-LAST:event_btnStartJob6MouseExited
 
     private void btnStartJob6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartJob6ActionPerformed
-        // TODO add your handling code here:
+      new Delete_Vehicle().setVisible(true);
     }//GEN-LAST:event_btnStartJob6ActionPerformed
+
+    private void tb1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb1MouseClicked
+    new Details(tb1.getValueAt(tb1.getSelectedRow(), 0).toString()).setVisible(true);
+    this.dispose();
+        System.out.println(tb1.getValueAt(tb1.getSelectedRow(), 0).toString());
+    }//GEN-LAST:event_tb1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -510,17 +521,17 @@ public class Vehicle_Management extends javax.swing.JFrame {
     private javax.swing.JButton btnStartJob3;
     private javax.swing.JButton btnStartJob5;
     private javax.swing.JButton btnStartJob6;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel dashPanal;
     private javax.swing.JLayeredPane jLayeredPane1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lbCons;
     private javax.swing.JLabel lbGKG;
+    private javax.swing.JLabel lbSearch;
     private javax.swing.JList<String> list1;
-    private javax.swing.JLabel memberTitle;
     private javax.swing.JTable tb1;
+    private javax.swing.JLabel title;
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 

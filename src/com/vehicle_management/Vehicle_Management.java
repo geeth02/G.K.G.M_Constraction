@@ -474,9 +474,11 @@ public class Vehicle_Management extends javax.swing.JFrame {
     }//GEN-LAST:event_btnStartJob6ActionPerformed
 
     private void tb1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb1MouseClicked
+
     new Details(tb1.getValueAt(tb1.getSelectedRow(), 0).toString()).setVisible(true);
     this.dispose();
-        System.out.println(tb1.getValueAt(tb1.getSelectedRow(), 0).toString());
+
+
     }//GEN-LAST:event_tb1MouseClicked
 
     /**

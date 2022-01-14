@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
@@ -22,6 +23,7 @@ public class Login extends javax.swing.JFrame {
         }).start();
         txtUserName.grabFocus();
         jProgressBar1.setVisible(false);
+        image();
     }
 
     void load() {
@@ -44,6 +46,7 @@ public class Login extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLayeredPane2 = new javax.swing.JLayeredPane();
         msg = new javax.swing.JLabel();
+        logo = new javax.swing.JLabel();
         txtUserName = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         btnExit = new javax.swing.JButton();
@@ -70,6 +73,7 @@ public class Login extends javax.swing.JFrame {
         msg.setFont(new java.awt.Font("Calisto MT", 0, 14)); // NOI18N
         msg.setForeground(new java.awt.Color(255, 255, 255));
         jLayeredPane2.add(msg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 460, 240, 20));
+        jLayeredPane2.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 240, 190));
 
         jLayeredPane1.add(jLayeredPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 480));
 
@@ -221,6 +225,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JLabel logo;
     private javax.swing.JLabel msg;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUserName;
@@ -292,6 +297,16 @@ public class Login extends javax.swing.JFrame {
             }
         });
         t.start();
+    }
+
+    private void image() {
+        try {
+            ImageIcon iconLogo = new ImageIcon("Logo.png");
+        logo.setIcon(iconLogo);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
     }
 
 }

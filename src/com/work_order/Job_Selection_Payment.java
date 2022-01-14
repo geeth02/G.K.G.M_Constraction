@@ -7,6 +7,7 @@ package com.work_order;
 
 import static com.work_order.Paymets.txtOrderId;
 import common.CommonM;
+import static common.CommonM.frameIcan;
 import common.DB;
 import java.awt.Color;
 import java.math.BigDecimal;
@@ -29,6 +30,7 @@ public class Job_Selection_Payment extends javax.swing.JFrame {
         initComponents();
         addJob();
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+         frameIcan(this);
     }
 
     /**

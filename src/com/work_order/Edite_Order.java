@@ -9,6 +9,7 @@ import com.customer_management.Add_Customer_Befor_Start;
 import common.DB;
 import common.CommonM;
 import static common.CommonM.checkNull;
+import static common.CommonM.frameIcan;
 import common.SystemData;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
@@ -50,6 +51,7 @@ public class Edite_Order extends javax.swing.JFrame {
         jScrollPane4.setVisible(false);
         tableSize();
         txtLastMeter.setEditable(false);
+         frameIcan(this);
     }
     int row;
 

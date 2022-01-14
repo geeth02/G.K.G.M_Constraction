@@ -8,6 +8,8 @@ package common;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -88,4 +90,14 @@ public class CommonM {
             tb1.getColumnModel().getColumn(x).setCellRenderer(centerRenderer);
         }
     }
+     public static void frameIcan(JFrame frame) {
+         try {
+            Image icone =Toolkit.getDefaultToolkit().getImage("sd.jpg");
+            frame.setIconImage(icone);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    
 }

@@ -14,6 +14,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.sql.ResultSet;
 import java.util.Vector;
+import javax.swing.ImageIcon;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -34,8 +35,10 @@ public class Work_Order extends javax.swing.JFrame {
         CommonM.tableSettings(tb1);
         tbData();
         jScrollPane1.setVisible(false);
+        image();
 
     }
+ 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -59,7 +62,9 @@ public class Work_Order extends javax.swing.JFrame {
         btnDashboard1 = new javax.swing.JButton();
         btnDashboard2 = new javax.swing.JButton();
         BtnEditeJobDetails = new javax.swing.JButton();
+        btnEndJob3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         txtSearch = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         list1 = new javax.swing.JList<>();
@@ -150,7 +155,7 @@ public class Work_Order extends javax.swing.JFrame {
                 btnDashboardActionPerformed(evt);
             }
         });
-        jPanel1.add(btnDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 570, 320, 71));
+        jPanel1.add(btnDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 640, 320, 71));
 
         btnStartJob.setBackground(new java.awt.Color(0, 102, 204));
         btnStartJob.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 27)); // NOI18N
@@ -195,7 +200,7 @@ public class Work_Order extends javax.swing.JFrame {
         btnEndJob2.setBackground(new java.awt.Color(0, 102, 204));
         btnEndJob2.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 27)); // NOI18N
         btnEndJob2.setForeground(new java.awt.Color(255, 255, 255));
-        btnEndJob2.setText("Remove Job");
+        btnEndJob2.setText("List Order Details");
         btnEndJob2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnEndJob2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -210,7 +215,7 @@ public class Work_Order extends javax.swing.JFrame {
                 btnEndJob2ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEndJob2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 500, 320, 71));
+        jPanel1.add(btnEndJob2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 570, 320, 71));
 
         btnDashboard1.setBackground(new java.awt.Color(0, 102, 204));
         btnDashboard1.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 27)); // NOI18N
@@ -272,11 +277,32 @@ public class Work_Order extends javax.swing.JFrame {
         });
         jPanel1.add(BtnEditeJobDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 320, 71));
 
+        btnEndJob3.setBackground(new java.awt.Color(0, 102, 204));
+        btnEndJob3.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 27)); // NOI18N
+        btnEndJob3.setForeground(new java.awt.Color(255, 255, 255));
+        btnEndJob3.setText("Remove Job");
+        btnEndJob3.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btnEndJob3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEndJob3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEndJob3MouseExited(evt);
+            }
+        });
+        btnEndJob3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEndJob3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnEndJob3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 500, 320, 71));
+
         jLayeredPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 1080));
 
         jLabel1.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         jLabel1.setText("Search By");
         jLayeredPane1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1340, 140, -1, -1));
+        jLayeredPane1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1770, 0, 150, 120));
 
         txtSearch.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtSearch.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -386,7 +412,9 @@ public class Work_Order extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 2240, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -395,26 +423,6 @@ public class Work_Order extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void lbGKGMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbGKGMouseEntered
-        lbGKG.setForeground(Color.YELLOW);
-        lbCons.setForeground(Color.YELLOW);
-    }//GEN-LAST:event_lbGKGMouseEntered
-
-    private void lbGKGMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbGKGMouseExited
-        lbGKG.setForeground(Color.WHITE);
-        lbCons.setForeground(Color.WHITE);
-    }//GEN-LAST:event_lbGKGMouseExited
-
-    private void lbConsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbConsMouseEntered
-        lbGKG.setForeground(Color.YELLOW);
-        lbCons.setForeground(Color.YELLOW);
-    }//GEN-LAST:event_lbConsMouseEntered
-
-    private void lbConsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbConsMouseExited
-        lbGKG.setForeground(Color.WHITE);
-        lbCons.setForeground(Color.WHITE);
-    }//GEN-LAST:event_lbConsMouseExited
 
     private void btnDashboardMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDashboardMouseEntered
         CommonM.setBlue(btnDashboard);
@@ -508,7 +516,7 @@ public class Work_Order extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEndJob2MouseExited
 
     private void btnEndJob2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEndJob2ActionPerformed
-        new Delete_Order().setVisible(true);
+       new Select_List_Edite().setVisible(true);
     }//GEN-LAST:event_btnEndJob2ActionPerformed
 
     private void btnDashboard1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDashboard1MouseEntered
@@ -532,8 +540,7 @@ public class Work_Order extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDashboard2MouseExited
 
     private void btnDashboard2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboard2ActionPerformed
-        new Driver_Salery().setVisible(true);
-        this.dispose();
+        new List_Order().setVisible(true);
     }//GEN-LAST:event_btnDashboard2ActionPerformed
 
     private void BtnEditeJobDetailsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnEditeJobDetailsMouseEntered
@@ -588,6 +595,38 @@ public class Work_Order extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_list1KeyPressed
 
+    private void btnEndJob3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEndJob3MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEndJob3MouseEntered
+
+    private void btnEndJob3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEndJob3MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEndJob3MouseExited
+
+    private void btnEndJob3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEndJob3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEndJob3ActionPerformed
+
+    private void lbGKGMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbGKGMouseExited
+        lbGKG.setForeground(Color.WHITE);
+        lbCons.setForeground(Color.WHITE);
+    }//GEN-LAST:event_lbGKGMouseExited
+
+    private void lbGKGMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbGKGMouseEntered
+        lbGKG.setForeground(Color.YELLOW);
+        lbCons.setForeground(Color.YELLOW);
+    }//GEN-LAST:event_lbGKGMouseEntered
+
+    private void lbConsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbConsMouseExited
+        lbGKG.setForeground(Color.WHITE);
+        lbCons.setForeground(Color.WHITE);
+    }//GEN-LAST:event_lbConsMouseExited
+
+    private void lbConsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbConsMouseEntered
+        lbGKG.setForeground(Color.YELLOW);
+        lbCons.setForeground(Color.YELLOW);
+    }//GEN-LAST:event_lbConsMouseEntered
+
     /**
      * @param args the command line arguments
      */
@@ -631,11 +670,13 @@ public class Work_Order extends javax.swing.JFrame {
     private javax.swing.JButton btnDashboard2;
     private javax.swing.JButton btnEndJob;
     private javax.swing.JButton btnEndJob2;
+    private javax.swing.JButton btnEndJob3;
     private javax.swing.JButton btnStartJob;
     private javax.swing.ButtonGroup buttonGroup1;
     public static javax.swing.JComboBox<String> comboSearch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -1006,6 +1047,16 @@ public class Work_Order extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }
+    
+        private void image() {
+        try {
+            ImageIcon iconLogo = new ImageIcon("LogoSm.png");
+        jLabel2.setIcon(iconLogo);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+    }
 }
 
 class MyRenderer extends DefaultTableCellRenderer {
@@ -1025,4 +1076,7 @@ class MyRenderer extends DefaultTableCellRenderer {
         cell.setForeground(fg);
         return cell;
     }
+    
+    
+  
 }

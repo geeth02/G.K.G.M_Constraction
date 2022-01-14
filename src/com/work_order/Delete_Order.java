@@ -6,6 +6,7 @@
 package com.work_order;
 
 import common.CommonM;
+import static common.CommonM.frameIcan;
 import common.DB;
 import java.sql.ResultSet;
 import java.util.Vector;
@@ -27,6 +28,8 @@ public class Delete_Order extends javax.swing.JFrame {
         txtOrderId.grabFocus();
         CommonM.tableSettings(tb3);
         tb3.setEnabled(false);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+         frameIcan(this);
 
     }
 

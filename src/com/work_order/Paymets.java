@@ -6,6 +6,7 @@
 package com.work_order;
 
 import common.CommonM;
+import static common.CommonM.frameIcan;
 import common.DB;
 import common.SystemData;
 import java.awt.Color;
@@ -42,6 +43,7 @@ public class Paymets extends javax.swing.JFrame {
         txtNetAmount.setEditable(false);
         txtNetAmount.setText("0.00");
         btnClear.setVisible(false);
+         frameIcan(this);
 
         
     }

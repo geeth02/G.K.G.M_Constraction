@@ -7,6 +7,7 @@ package com.work_order;
 
 import static com.work_order.Work_Order.tb1;
 import common.CommonM;
+import static common.CommonM.frameIcan;
 import common.DB;
 import java.sql.ResultSet;
 import java.util.Vector;
@@ -24,11 +25,13 @@ public class Order_Details extends javax.swing.JFrame {
     public Order_Details() {
         initComponents();
         frameSettings();
+         frameIcan(this);
     }
     public Order_Details(String orderId){
         initComponents();
         frameSettings();
         searchOrder(orderId);
+         frameIcan(this);
     
     }
 

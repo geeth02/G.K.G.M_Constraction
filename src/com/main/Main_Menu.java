@@ -12,9 +12,12 @@ import com.customer_management.Customer_Management;
 import com.delivery_item.Delivery_Main;
 import com.rent_item.Rent_Main;
 import common.CommonM;
+import static common.CommonM.frameIcan;
 import common.DB;
 import common.SystemData;
 import java.awt.Color;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
@@ -43,6 +46,10 @@ public class Main_Menu extends javax.swing.JFrame {
         clock();
         CommonM.tableSettings(jTable1);
         tbData();
+        
+        frameIcan(this);
+        
+        
     }
     int hours = 0, minutes = 0, seconds = 0;
     String timeString = "";
@@ -754,5 +761,14 @@ t.start();
         } catch (Exception e) {
             e.printStackTrace();
         }
-    } 
+    }
+   
+   
+      
+   
+   
+ 
+
+  
+
 }

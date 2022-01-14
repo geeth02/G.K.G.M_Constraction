@@ -9,6 +9,7 @@ import com.customer_management.Add_Customer_Befor_Start;
 import common.DB;
 import common.CommonM;
 import static common.CommonM.checkNull;
+import static common.CommonM.frameIcan;
 import common.SystemData;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
@@ -47,8 +48,9 @@ public class Start_Job extends javax.swing.JFrame {
         jScrollPane5.setVisible(false);
         tableSize();
         txtLastMeter.setEditable(false);
+         frameIcan(this);
     }
-
+   public static String listId;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -85,6 +87,7 @@ public class Start_Job extends javax.swing.JFrame {
         tb3 = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         txtLastMeter = new javax.swing.JTextField();
+        btnRegister4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -254,7 +257,7 @@ public class Start_Job extends javax.swing.JFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Start work order");
         jLabel5.setOpaque(true);
-        ReForm.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 69));
+        ReForm.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 69));
 
         txtLocation.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtLocation.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -316,7 +319,7 @@ public class Start_Job extends javax.swing.JFrame {
                 btnRegister3ActionPerformed(evt);
             }
         });
-        ReForm.add(btnRegister3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 740, 210, 60));
+        ReForm.add(btnRegister3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 750, 210, 60));
 
         tb3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -357,6 +360,25 @@ public class Start_Job extends javax.swing.JFrame {
             }
         });
         ReForm.add(txtLastMeter, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 450, 43));
+
+        btnRegister4.setBackground(new java.awt.Color(0, 102, 204));
+        btnRegister4.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 30)); // NOI18N
+        btnRegister4.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegister4.setText("Order List");
+        btnRegister4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnRegister4MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnRegister4MouseExited(evt);
+            }
+        });
+        btnRegister4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegister4ActionPerformed(evt);
+            }
+        });
+        ReForm.add(btnRegister4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 750, 210, 60));
 
         jLayeredPane2.add(ReForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 750, 840));
 
@@ -735,6 +757,19 @@ public class Start_Job extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jList1KeyReleased
 
+    private void btnRegister4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegister4MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRegister4MouseEntered
+
+    private void btnRegister4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegister4MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRegister4MouseExited
+
+    private void btnRegister4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegister4ActionPerformed
+       new Select_List().setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_btnRegister4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -773,6 +808,7 @@ public class Start_Job extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLayeredPane ReForm;
     private javax.swing.JButton btnRegister3;
+    private javax.swing.JButton btnRegister4;
     private javax.swing.JList<String> customerList;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -792,9 +828,9 @@ public class Start_Job extends javax.swing.JFrame {
     private javax.swing.JTable tb3;
     public static javax.swing.JTextField txtCustomerId;
     private javax.swing.JTextField txtDirvers;
-    private javax.swing.JTextArea txtDiscription;
-    private javax.swing.JTextField txtLastMeter;
-    private javax.swing.JTextField txtLocation;
+    public static javax.swing.JTextArea txtDiscription;
+    public static javax.swing.JTextField txtLastMeter;
+    public static javax.swing.JTextField txtLocation;
     private javax.swing.JTextField txtOrderId;
     public static javax.swing.JTextField txtVehicleNumber;
     private javax.swing.JList<String> vehicleList;

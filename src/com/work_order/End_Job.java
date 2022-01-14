@@ -7,6 +7,7 @@ package com.work_order;
 
 import com.main.Main_Menu;
 import common.CommonM;
+import static common.CommonM.frameIcan;
 import common.DB;
 import common.SystemData;
 import java.awt.Color;
@@ -34,6 +35,7 @@ public class End_Job extends javax.swing.JFrame {
         initComponents();
         frameSetting();
         CommonM.setFullScreen(this);
+         frameIcan(this);
         
        
 

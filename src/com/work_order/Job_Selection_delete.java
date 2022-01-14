@@ -13,8 +13,8 @@ import java.sql.ResultSet;
 import java.text.DecimalFormat;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
-import static com.work_order.Driver_Salery.txtOrderId;
 import static com.work_order.Start_Job.txtCustomerId;
+import static common.CommonM.frameIcan;
 
 /**
  *
@@ -28,11 +28,13 @@ public class Job_Selection_delete extends javax.swing.JFrame {
     public Job_Selection_delete() {
         initComponents();
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+         frameIcan(this);
     }
      public Job_Selection_delete(String customerId) {
         initComponents();
         searchJob(customerId);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+         frameIcan(this);
     }
 
     /**

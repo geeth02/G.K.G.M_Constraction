@@ -24,6 +24,7 @@ public class Details extends javax.swing.JFrame {
      */
     public Details() {
         initComponents();
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         CommonM.setFullScreen(this);
         txtVehicleId.setEditable(false);
         txtOilCapa.setEditable(false);
@@ -38,6 +39,7 @@ public class Details extends javax.swing.JFrame {
 
     Details(String vehicleId) {
        initComponents();
+          this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
                CommonM.setFullScreen(this);
         txtVehicleId.setEditable(false);
         txtOilCapa.setEditable(false);
@@ -48,7 +50,7 @@ public class Details extends javax.swing.JFrame {
             CommonM.tableSettings(tb2);
        loadData(vehicleId);
     }
-
+       String vehicleId1;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -80,6 +82,14 @@ public class Details extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLayeredPane1.setPreferredSize(new java.awt.Dimension(1920, 1080));
         jLayeredPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -130,6 +140,11 @@ public class Details extends javax.swing.JFrame {
                 "Service Date", "Meter", "Service Charges", "Discription", "Data Time"
             }
         ));
+        tb1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tb1);
 
         ReForm1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 920, 810));
@@ -445,6 +460,20 @@ public class Details extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel16KeyPressed
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+         new Vehicle_Management().setVisible(true);
+        
+    }//GEN-LAST:event_formWindowClosing
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+    
+    }//GEN-LAST:event_formWindowClosed
+
+    private void tb1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb1MouseClicked
+          String meter =tb1.getValueAt(tb1.getSelectedRow(), 1).toString();
+        new Service_Details(vehicleId1,meter).setVisible(true);
+    }//GEN-LAST:event_tb1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -505,6 +534,7 @@ public class Details extends javax.swing.JFrame {
 
     private void loadData(String vehicleId) {
         try {
+            vehicleId1=vehicleId;
             vehicleData(vehicleId);
             serviceData(vehicleId);
            repairData(vehicleId);
@@ -534,6 +564,8 @@ public class Details extends javax.swing.JFrame {
                DefaultTableModel dtm =(DefaultTableModel) tb1.getModel();
            ResultSet search = DB.search("SELECT * FROM vehicle_service WHERE status=1 AND vehicle_id='"+vehicleId+"'");
            dtm.setRowCount(0);
+           double lastMeter=0.0;
+           double next=0.0;
            while(search.next()){
                Vector v = new Vector();
                v.add(search.getString("service_date"));
@@ -541,9 +573,11 @@ public class Details extends javax.swing.JFrame {
                v.add(search.getString("service_charges"));
                v.add(search.getString("discription"));
                  v.add(search.getString("data_time"));
+                 lastMeter=Double.parseDouble(search.getString("last_meter"));
+                 next=Double.parseDouble(search.getString("next_service"));
                dtm.addRow(v);
                }
-            
+           txtNextService.setText(String.valueOf(lastMeter+next));
             
             
         } catch (Exception e) {
@@ -569,6 +603,8 @@ public class Details extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
+
+   
 
     
 }

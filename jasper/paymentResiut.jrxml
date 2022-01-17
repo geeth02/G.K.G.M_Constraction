@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="paymentResiut" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="aaaa6ec5-23a0-492d-9f55-1f6c636d623b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="paymentId" class="java.lang.String"/>
+	<parameter name="payment" class="java.lang.String"/>
+	<parameter name="balence" class="java.lang.String"/>
+	<parameter name="amount" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     payment.`payment_id` AS payment_payment_id,
+     payment.`order_id` AS payment_order_id,
+     payment.`amount` AS payment_amount,
+     payment.`data_time` AS payment_data_time,
+     payment.`employee_id` AS payment_employee_id,
+     work_order.`order_id` AS work_order_order_id,
+     work_order.`customer_id` AS work_order_customer_id,
+     work_order.`vehicle_id` AS work_order_vehicle_id,
+     work_order.`location` AS work_order_location,
+     customer.`customer_id` AS customer_customer_id,
+     customer.`nic_number` AS customer_nic_number,
+     customer.`first_name` AS customer_first_name,
+     customer.`last_name` AS customer_last_name,
+     customer.`phone_number` AS customer_phone_number,
+     customer.`gender` AS customer_gender,
+     customer.`address` AS customer_address,
+     customer.`employee_id` AS customer_employee_id,
+     customer.`data_time` AS customer_data_time,
+     customer.`status` AS customer_status,
+     vehicle.`vehicle_id` AS vehicle_vehicle_id,
+     vehicle.`model` AS vehicle_model
+FROM
+     `work_order` work_order INNER JOIN `payment` payment ON work_order.`order_id` = payment.`order_id`
+     INNER JOIN `customer` customer ON work_order.`customer_id` = customer.`customer_id`
+     INNER JOIN `vehicle` vehicle ON work_order.`vehicle_id` = vehicle.`vehicle_id`
+WHERE
+     payment.`payment_id` = $P{paymentId}]]>
+	</queryString>
+	<field name="payment_payment_id" class="java.lang.String"/>
+	<field name="payment_order_id" class="java.lang.String"/>
+	<field name="payment_amount" class="java.lang.Double"/>
+	<field name="payment_data_time" class="java.lang.String"/>
+	<field name="payment_employee_id" class="java.lang.String"/>
+	<field name="work_order_order_id" class="java.lang.String"/>
+	<field name="work_order_customer_id" class="java.lang.String"/>
+	<field name="work_order_vehicle_id" class="java.lang.String"/>
+	<field name="work_order_location" class="java.lang.String"/>
+	<field name="customer_customer_id" class="java.lang.String"/>
+	<field name="customer_nic_number" class="java.lang.String"/>
+	<field name="customer_first_name" class="java.lang.String"/>
+	<field name="customer_last_name" class="java.lang.String"/>
+	<field name="customer_phone_number" class="java.lang.String"/>
+	<field name="customer_gender" class="java.lang.String"/>
+	<field name="customer_address" class="java.lang.String"/>
+	<field name="customer_employee_id" class="java.lang.String"/>
+	<field name="customer_data_time" class="java.lang.String"/>
+	<field name="customer_status" class="java.lang.Integer"/>
+	<field name="vehicle_vehicle_id" class="java.lang.String"/>
+	<field name="vehicle_model" class="java.lang.String"/>
+	<variable name="customerName" class="java.lang.String">
+		<variableExpression><![CDATA[$F{customer_first_name}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="155" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="105" y="10" width="379" height="45" forecolor="#000000" backcolor="#99FFFF" uuid="20f0a82c-4578-49fc-a473-f1f16db258a8"/>
+				<textElement textAlignment="Center">
+					<font size="32" isBold="true"/>
+				</textElement>
+				<text><![CDATA[G.K.G.M Contruction]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="124" y="55" width="332" height="20" uuid="e710e6a7-186e-466c-87bd-4a8f96ed4adc"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Location: Paragoda, Diuldeniya, Kotadeniyawa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="124" y="75" width="332" height="20" uuid="8ce433ca-1ebf-4a77-b453-4e68f30c42cd"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[E-Mail: madushankagayan25@gmail.com]]></text>
+			</staticText>
+			<image>
+				<reportElement x="10" y="10" width="97" height="83" uuid="90a629c4-242e-4799-93f8-f98234ccab15"/>
+				<imageExpression><![CDATA["C:\\Users\\geeth\\Downloads\\geeth 2 (1).png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="124" y="95" width="332" height="20" uuid="a95f6109-8095-4fb4-987d-cd8de9b806fa"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Mobile: 0777-136201 / 077-4455762]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="377" y="133" width="76" height="20" uuid="7aee103b-6f0d-4ea0-be8d-8bf900bccd67"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Payment Id:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="152" width="553" height="1" uuid="9ecf5e49-0aba-49e0-b5f8-2907e333316f"/>
+			</line>
+			<textField>
+				<reportElement x="456" y="133" width="100" height="20" uuid="5b0384ae-2e15-4958-8595-a8ce37f94b3d"/>
+				<box topPadding="2"/>
+				<textFieldExpression><![CDATA[$F{payment_payment_id}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="132" width="76" height="20" uuid="857c0a0d-b715-41ed-b68e-45d9f9ad82bf"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date / Time:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="85" y="132" width="100" height="20" uuid="31ef8453-67b0-41d9-b17c-1bf15071371f"/>
+				<box topPadding="2"/>
+				<textFieldExpression><![CDATA[$F{payment_data_time}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="322" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="17" width="141" height="20" uuid="8985567f-a7d2-483e-9542-d8f89542ee4e"/>
+				<textElement>
+					<font size="14" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Customer Details]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="24" y="74" width="100" height="20" uuid="55ad6d11-95b3-41f9-b837-a5dfc33db90d"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Customer Name:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="24" y="47" width="81" height="20" uuid="704e69ad-9ea5-45fc-a328-4b4866ab5c51"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NIC Number:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="107" y="47" width="141" height="20" uuid="02d78e41-21c8-4319-9ba0-3f9541a4500e"/>
+				<box topPadding="2"/>
+				<textFieldExpression><![CDATA[$F{customer_nic_number}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="346" y="17" width="116" height="20" uuid="1912ff74-a349-4a57-b993-fc03b3dceed8"/>
+				<textElement>
+					<font size="14" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Order Details]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="124" y="74" width="100" height="20" uuid="b417f378-2c18-4558-883e-00f361a4a75b"/>
+				<box topPadding="2"/>
+				<textFieldExpression><![CDATA[$F{customer_first_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="173" y="74" width="100" height="20" uuid="9d31de0d-6c8c-4932-a046-586607e0cec3"/>
+				<box topPadding="2"/>
+				<textFieldExpression><![CDATA[$F{customer_last_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="373" y="47" width="52" height="20" uuid="71f629f0-a24a-49ae-81da-6a738dc651b4"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Order Id:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="431" y="47" width="98" height="20" uuid="790e2ec7-ed56-4cab-babf-4cb9d3c88c01"/>
+				<box topPadding="2"/>
+				<textFieldExpression><![CDATA[$F{work_order_order_id}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="373" y="74" width="88" height="20" uuid="b2421d50-857e-4010-b8dd-8504565273f2"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Vehicle Model:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="462" y="74" width="67" height="20" uuid="2c18ce48-e925-4257-8354-5ccbd1033aa2"/>
+				<box topPadding="2"/>
+				<textFieldExpression><![CDATA[$F{vehicle_model}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="344" y="138" width="75" height="20" uuid="e407bdd4-9dca-432a-a3fa-205aa1a10efe"/>
+				<textElement textAlignment="Justified">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Amount:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="124" y="144" width="100" height="20" uuid="c907a6ab-76d8-4712-82ba-de4138a8b780"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="124" y="164" width="100" height="20" uuid="54f39fbd-3e19-4e8b-a332-9d00d76bd247"/>
+				<textFieldExpression><![CDATA[$F{payment_employee_id}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="5" y="119" width="548" height="1" uuid="10aabd61-ba7a-40c9-8b5e-7817b3eb2caa"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="344" y="164" width="75" height="20" uuid="3d64a585-7a2c-4b99-94a8-9de32c359e85"/>
+				<textElement textAlignment="Justified">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Paid:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="429" y="164" width="100" height="20" uuid="b6345d61-d235-4194-a466-dff89a9c9cbd"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$P{payment}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="344" y="188" width="75" height="20" uuid="d0a0274b-e75b-4e0c-907f-fe43f0364137"/>
+				<textElement textAlignment="Justified">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Balance:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="429" y="190" width="100" height="20" uuid="9a7965f8-6ce7-4e21-8a91-7c0b5c6addf5"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$P{balence}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="444" y="184" width="89" height="1" uuid="fcdd7e97-2ea5-403c-a14b-0e6e89d521ab"/>
+			</line>
+			<line>
+				<reportElement x="444" y="210" width="89" height="1" uuid="0dbdb542-d5dd-498b-91ee-95824fb5a2af"/>
+			</line>
+			<line>
+				<reportElement x="444" y="216" width="89" height="1" uuid="623ddd60-bfa2-41ce-b0f3-c9168596fd6c"/>
+			</line>
+			<textField>
+				<reportElement x="431" y="138" width="100" height="20" uuid="ca8539f2-e0e1-45c6-a041-f4652f0a1071"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$P{amount}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="5" y="235" width="548" height="1" uuid="aaff7eda-7efb-492a-8d93-dd64bdf3b317"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="197" y="247" width="149" height="20" uuid="3f3029fe-96fc-4056-9dcf-1c2cfa5a2193"/>
+				<textElement textAlignment="Justified">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Thank You! Come Again.]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

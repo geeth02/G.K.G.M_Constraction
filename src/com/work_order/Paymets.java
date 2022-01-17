@@ -10,14 +10,27 @@ import static common.CommonM.frameIcan;
 import common.DB;
 import common.SystemData;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Vector;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperPrintManager;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -43,10 +56,12 @@ public class Paymets extends javax.swing.JFrame {
         txtNetAmount.setEditable(false);
         txtNetAmount.setText("0.00");
         btnClear.setVisible(false);
-         frameIcan(this);
+        frameIcan(this);
+        pop();
 
-        
     }
+    final JPopupMenu pop = new JPopupMenu("JPopupMenu");
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -98,6 +113,11 @@ public class Paymets extends javax.swing.JFrame {
 
         ReForm.setBackground(new java.awt.Color(255, 255, 255));
         ReForm.setOpaque(true);
+        ReForm.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ReFormMouseClicked(evt);
+            }
+        });
         ReForm.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jList1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
@@ -381,20 +401,17 @@ public class Paymets extends javax.swing.JFrame {
                         .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(41, 41, 41)
                         .addComponent(btnPay, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(43, 43, 43)
-                            .addComponent(txtbalance, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(43, 43, 43)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(43, Short.MAX_VALUE))
+                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(27, 27, 27)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtbalance, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -472,53 +489,51 @@ public class Paymets extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPayMouseExited
 
     private void btnPayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPayActionPerformed
-       if(!txtOrderId.getText().equals("")){ 
-           if(!txtAmount.getText().equals("")){
-               if(!txtPayment.getText().equals("")){
-                pay();
-               }else{
-                JOptionPane.showMessageDialog(this, "Please Enter Payment", "Error",JOptionPane.ERROR_MESSAGE); 
-                txtPayment.grabFocus();
-               }
-           }else{
-            JOptionPane.showMessageDialog(this, "Please Enter Amount", "Error",JOptionPane.ERROR_MESSAGE); 
-            txtAmount.grabFocus();
-           }
-       }else{
-       JOptionPane.showMessageDialog(this, "Please search job", "Error",JOptionPane.ERROR_MESSAGE); 
-       txtSearch.grabFocus();
-       }
+        if (!txtOrderId.getText().equals("")) {
+            if (!txtAmount.getText().equals("")) {
+                if (!txtPayment.getText().equals("")) {
+                    pay();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Please Enter Payment", "Error", JOptionPane.ERROR_MESSAGE);
+                    txtPayment.grabFocus();
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Please Enter Amount", "Error", JOptionPane.ERROR_MESSAGE);
+                txtAmount.grabFocus();
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Please search job", "Error", JOptionPane.ERROR_MESSAGE);
+            txtSearch.grabFocus();
+        }
 
     }//GEN-LAST:event_btnPayActionPerformed
 
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
         searchOrder();
         System.out.println(evt.getKeyCode());
-        if(evt.getKeyCode()==40){
-        jList1.setSelectedIndex(0);
-        jList1.grabFocus();
+        if (evt.getKeyCode() == 40) {
+            jList1.setSelectedIndex(0);
+            jList1.grabFocus();
         }
-        
-        if(txtSearch.getText().equals("")){
-        clearTextFeald();
+
+        if (txtSearch.getText().equals("")) {
+            clearTextFeald();
         }
-      
+
     }//GEN-LAST:event_txtSearchKeyReleased
 
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
-        if(evt.getClickCount()==2){
+        if (evt.getClickCount() == 2) {
             jScrollPane1.setVisible(false);
             searchDetails();
-          
 
-            
-        }  
+        }
     }//GEN-LAST:event_jList1MouseClicked
 
     private void jList1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jList1KeyPressed
-        if(evt.getKeyCode()==10){
-          jScrollPane1.setVisible(false);    
-        searchDetails();
+        if (evt.getKeyCode() == 10) {
+            jScrollPane1.setVisible(false);
+            searchDetails();
         }
     }//GEN-LAST:event_jList1KeyPressed
 
@@ -551,24 +566,24 @@ public class Paymets extends javax.swing.JFrame {
     }//GEN-LAST:event_txtOrderIdActionPerformed
 
     private void txtAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAmountActionPerformed
-      if(!txtNetAmount.getText().equals("Panding Payments...........")){
-         double amount = Double.parseDouble(txtAmount.getText());
-          System.out.println(amount);
-          double netAmount=Double.parseDouble(txtNetAmount.getText());
-          System.out.println(netAmount);
-         
-      if(amount<=netAmount){
-         txtPayment.grabFocus();
-      
-      }else{
-        JOptionPane.showMessageDialog(this, "Please Enter Corect Amount", "Error", JOptionPane.ERROR_MESSAGE);
-        txtAmount.setText("");
-        txtAmount.grabFocus();
-      }
-      }else{
-      txtPayment.grabFocus();
-      }
-     
+        if (!txtNetAmount.getText().equals("Panding Payments...........")) {
+            double amount = Double.parseDouble(txtAmount.getText());
+            System.out.println(amount);
+            double netAmount = Double.parseDouble(txtNetAmount.getText());
+            System.out.println(netAmount);
+
+            if (amount <= netAmount) {
+                txtPayment.grabFocus();
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Please Enter Corect Amount", "Error", JOptionPane.ERROR_MESSAGE);
+                txtAmount.setText("");
+                txtAmount.grabFocus();
+            }
+        } else {
+            txtPayment.grabFocus();
+        }
+
     }//GEN-LAST:event_txtAmountActionPerformed
 
     private void txtAmountKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAmountKeyTyped
@@ -576,18 +591,18 @@ public class Paymets extends javax.swing.JFrame {
     }//GEN-LAST:event_txtAmountKeyTyped
 
     private void txtPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPaymentActionPerformed
-            double paidAmount= Double.parseDouble(txtAmount.getText());
-            double payment=Double.parseDouble(txtPayment.getText());
-            double balance= payment-paidAmount;
-             String setValue=String.valueOf(balance);
-            BigDecimal bd = new BigDecimal( setValue ) ;
-            DecimalFormat formatterBd = new DecimalFormat( "##.00" );
-            if(!formatterBd.format( bd ).equals("")){
-            txtbalance.setText(formatterBd.format( bd ) );
-            }else{
+        double paidAmount = Double.parseDouble(txtAmount.getText());
+        double payment = Double.parseDouble(txtPayment.getText());
+        double balance = payment - paidAmount;
+        String setValue = String.valueOf(balance);
+        BigDecimal bd = new BigDecimal(setValue);
+        DecimalFormat formatterBd = new DecimalFormat("##.00");
+        if (!formatterBd.format(bd).equals("")) {
+            txtbalance.setText(formatterBd.format(bd));
+        } else {
             txtbalance.setText("0.00");
-            }
-            
+        }
+
     }//GEN-LAST:event_txtPaymentActionPerformed
 
     private void txtPaymentKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPaymentKeyTyped
@@ -611,8 +626,14 @@ public class Paymets extends javax.swing.JFrame {
     }//GEN-LAST:event_btnClearMouseExited
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
-      clearViewOnly();
+        clearViewOnly();
     }//GEN-LAST:event_btnClearActionPerformed
+
+    private void ReFormMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ReFormMouseClicked
+        if (evt.getButton() == MouseEvent.BUTTON3) {
+            pop.show(ReForm, evt.getX(), evt.getY());
+        }
+    }//GEN-LAST:event_ReFormMouseClicked
 
     /**
      * @param args the command line arguments
@@ -649,7 +670,7 @@ public class Paymets extends javax.swing.JFrame {
             }
         });
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLayeredPane ReForm;
@@ -688,29 +709,35 @@ public class Paymets extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void searchOrder() {
-         try {
-            if(!txtSearch.getText().trim().equals("")){
-            if(comboSearch.getSelectedItem().equals("NIC Number")){
-                ResultSet rs=  DB.search("SELECT * FROM customer WHERE status=1 AND nic_number LIKE '"+txtSearch.getText().toUpperCase()+"%'");
-                Vector v = new Vector();
-                       jScrollPane1.setVisible(false);
-                while(rs.next()){
-                     jScrollPane1.setVisible(true);
-                        v.add(rs.getString("customer_id")+"-"+rs.getString("first_name")+" "+rs.getString("last_name"));
-                          jList1.setListData(v);   
+        try {
+            if (!txtSearch.getText().trim().equals("")) {
+                if (comboSearch.getSelectedItem().equals("NIC Number")) {
+                    ResultSet rs = DB.search("SELECT * FROM customer WHERE status=1 AND nic_number LIKE '" + txtSearch.getText().toUpperCase() + "%'");
+                    Vector v = new Vector();
+                    jScrollPane1.setVisible(false);
+                    while (rs.next()) {
+                        ResultSet search = DB.search("SELECT * FROM work_order WHERE customer_id='" + rs.getString("customer_id") + "'");
+                        if(search.next()){
+                        jScrollPane1.setVisible(true);
+                        v.add(rs.getString("customer_id") + "-" + rs.getString("first_name") + " " + rs.getString("last_name"));
+                        jList1.setListData(v);
+                    }
+                    }
+                } else if (comboSearch.getSelectedItem().equals(("Customer Name"))) {
+                    ResultSet rs = DB.search("SELECT * FROM customer WHERE status=1 AND first_name LIKE '" + txtSearch.getText().toUpperCase() + "%'");
+                    Vector v = new Vector();
+                    jScrollPane1.setVisible(false);
+                    while (rs.next()) {
+                         ResultSet search = DB.search("SELECT * FROM work_order WHERE customer_id='" + rs.getString("customer_id") + "'");
+                        if(search.next()){
+                        jScrollPane1.setVisible(true);
+                        v.add(rs.getString("customer_id") + "-" + rs.getString("first_name") + " " + rs.getString("last_name"));
+                        }
+                    }
+                    jList1.setListData(v);
                 }
-            }else if(comboSearch.getSelectedItem().equals(("Customer Name"))){
-                ResultSet rs=  DB.search("SELECT * FROM customer WHERE status=1 AND first_name LIKE '"+txtSearch.getText().toUpperCase()+"%'");
-                Vector v = new Vector();
-                 jScrollPane1.setVisible(false);
-                while(rs.next()){
-                    jScrollPane1.setVisible(true);
-                        v.add(rs.getString("customer_id")+"-"+rs.getString("first_name")+" "+rs.getString("last_name"));
-                }
-                jList1.setListData(v);
-            }
-            }else{
-             jScrollPane1.setVisible(false);
+            } else {
+                jScrollPane1.setVisible(false);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -718,33 +745,34 @@ public class Paymets extends javax.swing.JFrame {
     }
 
     private void searchDetails() {
-    searchNic();
-        }            
-        private void generatePId() {
-              try {
+        searchNic();
+    }
+
+    private void generatePId() {
+        try {
             ResultSet rs = DB.search("select count(payment_id) as x from payment");
-            if(rs.next()){
+            if (rs.next()) {
                 String counts = rs.getString("x");
                 int count = Integer.parseInt(counts);
-               ++count;
-                if(count<10){
-                txtPaymentId.setText("MN00000"+count);
-                txtPaymentId.setEditable(false);
-                }else if(count<100){
-                 txtPaymentId.setText("MN0000"+count);
-                txtPaymentId.setEditable(false);
-                }else if(count<1000){
-                txtPaymentId.setText("MN000"+count);
-                txtPaymentId.setEditable(false);
-                }else if(count<10000){
-                txtPaymentId.setText("MN00"+count);
-                txtPaymentId.setEditable(false);
-                }else if(count<100000){
-                txtPaymentId.setText("MN0"+count);
-                txtPaymentId.setEditable(false);
-                }else if(count<1000000){
-                txtPaymentId.setText("MN"+count);
-                txtPaymentId.setEditable(false);
+                ++count;
+                if (count < 10) {
+                    txtPaymentId.setText("MN00000" + count);
+                    txtPaymentId.setEditable(false);
+                } else if (count < 100) {
+                    txtPaymentId.setText("MN0000" + count);
+                    txtPaymentId.setEditable(false);
+                } else if (count < 1000) {
+                    txtPaymentId.setText("MN000" + count);
+                    txtPaymentId.setEditable(false);
+                } else if (count < 10000) {
+                    txtPaymentId.setText("MN00" + count);
+                    txtPaymentId.setEditable(false);
+                } else if (count < 100000) {
+                    txtPaymentId.setText("MN0" + count);
+                    txtPaymentId.setEditable(false);
+                } else if (count < 1000000) {
+                    txtPaymentId.setText("MN" + count);
+                    txtPaymentId.setEditable(false);
                 }
             }
             txtSearch.grabFocus();
@@ -752,161 +780,313 @@ public class Paymets extends javax.swing.JFrame {
             System.out.println(e);
         }
     }
-    
-     private void searchNic() {      
-         try {
-                    String search=jList1.getSelectedValue().split("-")[0];
-                    int i=0;
-                    ResultSet search1 = DB.search("SELECT * FROM work_order where customer_id='"+search+"'");
-                  while(search1.next()){ 
-                  i++;
-                  }
-                  if(i==1){
-                    ResultSet search3 = DB.search("SELECT * FROM work_order where customer_id='"+search+"'");
-                  if(search3.next()){
-                  txtOrderId.setText(search3.getString("order_id"));
-                  ResultSet search4 = DB.search("SELECT * FROM vehicle where vehicle_id='"+search3.getString("vehicle_id")+"' AND status=1");
-                  if(search4.next()){
-                  txtVehicleNumber.setText(search4.getString("province")+" "+search4.getString("registration_number"));
-                  }
-                       ResultSet search7 = DB.search("SELECT * FROM customer where customer_id='"+search3.getString("customer_id")+"' AND status=1");
-                       if(search7.next()){
-                        txtSearch.setText(search7.getString("nic_number"));
-                       txtCustomer.setText(search7.getString("customer_id")+"-"+search7.getString("first_name")+" "+search7.getString("last_name"));
-                       }
-                     ResultSet search5 = DB.search("SELECT * FROM payment where order_id='"+search3.getString("order_id")+"' AND status=1");
-                    DefaultTableModel dtm =(DefaultTableModel) tb1.getModel();
-                    dtm.setRowCount(0);
-                    while(search5.next()){
-                    Vector v = new Vector();
-                    v.add(search5.getString("payment_id"));
-                    v.add(search5.getString("amount"));
-                    v.add(search5.getString("data_time"));
-                    dtm.addRow(v);
+
+    private void searchNic() {
+        try {
+            String search = jList1.getSelectedValue().split("-")[0];
+               ResultSet search12 = DB.search("SELECT * FROM work_order where customer_id='" + search + "'");
+               if(search12.next()){
+            
+            int i = 0;
+            ResultSet search1 = DB.search("SELECT * FROM work_order where customer_id='" + search + "'");
+            while (search1.next()) {
+                i++;
+            }
+            if (i == 1) {
+                ResultSet search3 = DB.search("SELECT * FROM work_order where customer_id='" + search + "'");
+                if (search3.next()) {
+                    txtOrderId.setText(search3.getString("order_id"));
+                    ResultSet search4 = DB.search("SELECT * FROM vehicle where vehicle_id='" + search3.getString("vehicle_id") + "' AND status=1");
+                    if (search4.next()) {
+                        txtVehicleNumber.setText(search4.getString("province") + " " + search4.getString("registration_number"));
                     }
-                       calculate();
-                       avPayment();
-                     txtAmount.grabFocus();    
-                  jScrollPane1.setVisible(false);
-                  }
-                  }else if(i>1){
-                    new Job_Selection_Payment().setVisible(true);
-                  }
-                } catch (Exception e) {
-                    e.printStackTrace();
+                    ResultSet search7 = DB.search("SELECT * FROM customer where customer_id='" + search3.getString("customer_id") + "' AND status=1");
+                    if (search7.next()) {
+                        txtSearch.setText(search7.getString("nic_number"));
+                        txtCustomer.setText(search7.getString("customer_id") + "-" + search7.getString("first_name") + " " + search7.getString("last_name"));
+                    }
+                    ResultSet search5 = DB.search("SELECT * FROM payment where order_id='" + search3.getString("order_id") + "' AND status=1");
+                    DefaultTableModel dtm = (DefaultTableModel) tb1.getModel();
+                    dtm.setRowCount(0);
+                    while (search5.next()) {
+                        Vector v = new Vector();
+                        v.add(search5.getString("payment_id"));
+                        v.add(search5.getString("amount"));
+                        v.add(search5.getString("data_time"));
+                        dtm.addRow(v);
+                    }
+                    calculate();
+                    avPayment();
+                    txtAmount.grabFocus();
+                    jScrollPane1.setVisible(false);
                 }
-    }
-     
-      private  void calculate() {
-        double pAmount=0;
-        if(tb1.getRowCount()!=0){
-        for(int row =0; row < tb1.getRowCount();row++){
-            String pAmount1=tb1.getValueAt(row, 1).toString().trim();
-            double pAmount2=Double.parseDouble(pAmount1);
-            pAmount=pAmount+pAmount2;
-            System.out.println(pAmount);
-           }
-             String setValue=String.valueOf(pAmount);
-            BigDecimal bd = new BigDecimal( setValue ) ;
-            DecimalFormat formatterBd = new DecimalFormat( "##.00" );
-            txtCustomerPayment.setText(formatterBd.format( bd ) );
-        }else{
-        txtCustomerPayment.setText("0.00");
+            } else if (i > 1) {
+                new Job_Selection_Payment().setVisible(true);
+            }
+               }else{
+                JOptionPane.showMessageDialog(new Paymets(), "This customer have not job", "Error", JOptionPane.ERROR_MESSAGE);
+                txtSearch.setText(null);
+                txtSearch.grabFocus();
+                
+               }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-   }
+    }
+
+    private void calculate() {
+        double pAmount = 0;
+        if (tb1.getRowCount() != 0) {
+            for (int row = 0; row < tb1.getRowCount(); row++) {
+                String pAmount1 = tb1.getValueAt(row, 1).toString().trim();
+                double pAmount2 = Double.parseDouble(pAmount1);
+                pAmount = pAmount + pAmount2;
+                System.out.println(pAmount);
+            }
+            String setValue = String.valueOf(pAmount);
+            BigDecimal bd = new BigDecimal(setValue);
+            DecimalFormat formatterBd = new DecimalFormat("##.00");
+            txtCustomerPayment.setText(formatterBd.format(bd));
+        } else {
+            txtCustomerPayment.setText("0.00");
+        }
+    }
 
     private void pay() {
         try {
             String dataTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-            DB.iud("INSERT INTO payment VALUES('"+txtPaymentId.getText()+"','"+txtOrderId.getText()+"','"+txtAmount.getText()+"','"+dataTime+"','"+SystemData.getemployee()+"','"+1+"')");
-              ResultSet search5 = DB.search("SELECT * FROM payment where order_id='"+txtOrderId.getText()+"' AND status=1");
-                    DefaultTableModel dtm =(DefaultTableModel) tb1.getModel();
-                    dtm.setRowCount(0);
-                    while(search5.next()){
-                    Vector v = new Vector();
-                    v.add(search5.getString("payment_id"));
-                    v.add(search5.getString("amount"));
-                    v.add(search5.getString("data_time"));
-                    dtm.addRow(v);
-                    }
-                    calculate();
-                  if(txtNetAmount.getText().equals("Panding Payments...........")){
-                  txtNetAmount.setText("0.00");
-                  }  
-                 if(Double.parseDouble(txtCustomerPayment.getText())==Double.parseDouble(txtNetAmount.getText())){
-                  JOptionPane.showMessageDialog(this,"Complite all payments.");                 
-                 }else if(Double.parseDouble(txtCustomerPayment.getText())<Double.parseDouble(txtNetAmount.getText())){
-                     double customerP= Double.parseDouble(txtCustomerPayment.getText());
-                     double avPayment = Double.parseDouble(txtNetAmount.getText());
-                 }
+            DB.iud("INSERT INTO payment VALUES('" + txtPaymentId.getText() + "','" + txtOrderId.getText() + "','" + txtAmount.getText() + "','" + dataTime + "','" + SystemData.getemployee() + "','" + 1 + "')");
+            ResultSet search5 = DB.search("SELECT * FROM payment where order_id='" + txtOrderId.getText() + "' AND status=1");
+            DefaultTableModel dtm = (DefaultTableModel) tb1.getModel();
+            dtm.setRowCount(0);
+            while (search5.next()) {
+                Vector v = new Vector();
+                v.add(search5.getString("payment_id"));
+                v.add(search5.getString("amount"));
+                v.add(search5.getString("data_time"));
+                dtm.addRow(v);
+            }
+            calculate();
+            if (txtNetAmount.getText().equals("Panding Payments...........")) {
+                txtNetAmount.setText("0.00");
+            }
+            if (Double.parseDouble(txtCustomerPayment.getText()) == Double.parseDouble(txtNetAmount.getText())) {
+                JOptionPane.showMessageDialog(this, "Complite all payments.");
+            } else if (Double.parseDouble(txtCustomerPayment.getText()) < Double.parseDouble(txtNetAmount.getText())) {
+                double customerP = Double.parseDouble(txtCustomerPayment.getText());
+                double avPayment = Double.parseDouble(txtNetAmount.getText());
+            }
             JOptionPane.showMessageDialog(this, "Seccessful");
-                 clearTextFeald();
-               
+            printDetails();
+            clearTextFeald();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     private void clearTextFeald() {
-      txtSearch.grabFocus();
-      txtCustomerPayment.setText("0.00");
-      txtNetAmount.setText("0.00");
-      txtPaymentId.setText(null);
-      txtOrderId.setText(null);
-      txtVehicleNumber.setText(null);
-      txtCustomer.setText(null);
-      txtAmount.setText(null);
-      txtbalance.setText(null);
-      txtPayment.setText(null);
-      txtSearch.setText(null);
-      DefaultTableModel dtm1 =(DefaultTableModel) tb1.getModel();
-      dtm1.setRowCount(0);
-      generatePId();
+        txtSearch.grabFocus();
+        txtCustomerPayment.setText("0.00");
+        txtNetAmount.setText("0.00");
+        txtPaymentId.setText(null);
+        txtOrderId.setText(null);
+        txtVehicleNumber.setText(null);
+        txtCustomer.setText(null);
+        txtAmount.setText(null);
+        txtbalance.setText(null);
+        txtPayment.setText(null);
+        txtSearch.setText(null);
+        DefaultTableModel dtm1 = (DefaultTableModel) tb1.getModel();
+        dtm1.setRowCount(0);
+        generatePId();
 
-        
-        
-        
     }
 
     private void avPayment() {
-                  try {
-              ResultSet search = DB.search("SELECT * FROM end_job WHERE order_id='"+txtOrderId.getText()+"'");
-              if(search.next()){
-              double fullPayment = search.getDouble("total_amount");
-              double customerPayment = Double.parseDouble(txtCustomerPayment.getText());
-              txtNetAmount.setText(String.valueOf(fullPayment-customerPayment));
-              if(fullPayment==customerPayment){
-                txtAmount.setEditable(false);
-                txtPayment.setEditable(false);
-                btnClear.setVisible(true);
-                btnPay.setEnabled(false);
-                txtPaymentId.setText("Complete Payment");
-                txtPaymentId.setForeground(Color.red);
-                txtbalance.setEditable(false);
-                txtSearch.setEditable(false);
-                JOptionPane.showMessageDialog(this,"All payments are Seccessful. View only Report");  
-              }else{
-               JOptionPane.showMessageDialog(this,"Total bill amount is Rs."+fullPayment);
-              }
-              }else{
-              txtNetAmount.setText("Panding Payments...........");
-              }
+        try {
+            ResultSet search = DB.search("SELECT * FROM end_job WHERE order_id='" + txtOrderId.getText() + "'");
+            if (search.next()) {
+                double fullPayment = search.getDouble("total_amount");
+                double customerPayment = Double.parseDouble(txtCustomerPayment.getText());
+                txtNetAmount.setText(String.valueOf(fullPayment - customerPayment));
+                if (fullPayment == customerPayment) {
+                    txtAmount.setEditable(false);
+                    txtPayment.setEditable(false);
+                    btnClear.setVisible(true);
+                    btnPay.setEnabled(false);
+                    txtPaymentId.setText("Complete Payment");
+                    txtPaymentId.setForeground(Color.red);
+                    txtbalance.setEditable(false);
+                    txtSearch.setEditable(false);
+                    JOptionPane.showMessageDialog(this, "All payments are Seccessful. View only Report");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Total bill amount is Rs." + fullPayment);
+                }
+            } else {
+                txtNetAmount.setText("Panding Payments...........");
+            }
 
-          } catch (Exception e) {
-              e.printStackTrace();
-          }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void clearViewOnly() {
-     clearTextFeald();
-      txtPaymentId.setForeground(Color.BLACK);
-             txtAmount.setEditable(true);
-                txtPayment.setEditable(true);
-                btnClear.setVisible(false);
-                btnPay.setEnabled(true);
-                txtbalance.setEditable(true);
-                txtSearch.setEditable(true);
+        clearTextFeald();
+        txtPaymentId.setForeground(Color.BLACK);
+        txtAmount.setEditable(true);
+        txtPayment.setEditable(true);
+        btnClear.setVisible(false);
+        btnPay.setEnabled(true);
+        txtbalance.setEditable(true);
+        txtSearch.setEditable(true);
     }
 
+    void pop() {
+
+        JMenuItem print = new JMenuItem("Print Report");
+        JMenuItem viewReport = new JMenuItem("View Report");
+
+        pop.add(print);
+        pop.add(viewReport);
+
+        print.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+           if(!txtOrderId.getText().equals("")){
+                if(tb1.getRowCount()!=0){
+                       try {
+                    ResultSet search = DB.search("SELECT * FROM end_job WHERE order_id='" + txtOrderId.getText() + "'");
+                    if (search.next()) {
+                        double fullPayment =search.getDouble("total_amount");
+                        //  String path="E:\\jsReport\\report1.jrxml";
+                        //  JasperReport compileReport = JasperCompileManager.compileReport(path);
+
+                        Map<String, Object> params = new HashMap<>();
+                        params.put("orderId", txtOrderId.getText());
+                        params.put("customerId", txtCustomer.getText().split("-")[0]);
+                        params.put("totalAmount", decimal(fullPayment));
+                        params.put("totalPayment", decimal(Double.parseDouble(txtCustomerPayment.getText())));
+                        params.put("avPayment",decimal(Double.parseDouble(txtNetAmount.getText())));
+
+                        InputStream is = new FileInputStream("jasper\\report1.jasper");
+                        JasperPrint fileReport = JasperFillManager.fillReport(is, params, DB.getNewConnection());
+                      //  JasperViewer.viewReport(fileReport, false);
+                         JasperPrintManager.printReport(fileReport, false);
+
+                        // JasperPrint fillReport = JasperFillManager.fillReport(compileReport,params, DB.getNewConnection());
+                        // JasperViewer.viewReport(fillReport,false);
+                    } else {
+                        Map<String, Object> params = new HashMap<>();
+                        params.put("orderId", txtOrderId.getText());
+                        params.put("customerId", txtCustomer.getText().split("-")[0]);
+                        params.put("totalAmount", "Pending");
+                        params.put("totalPayment",decimal(Double.parseDouble(txtCustomerPayment.getText())));
+                        params.put("avPayment", "Pending");
+
+                        InputStream is = new FileInputStream("jasper\\report1.jasper");
+                        JasperPrint fileReport = JasperFillManager.fillReport(is, params, DB.getNewConnection());
+                       // JasperViewer.viewReport(fileReport, false);
+                         JasperPrintManager.printReport(fileReport, false);
+                    }
+
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+                    
+                }else{
+                  JOptionPane.showMessageDialog(new Paymets(), "No Payments", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                }else{
+                 JOptionPane.showMessageDialog(new Paymets(), "Please search job", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+
+        viewReport.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(!txtOrderId.getText().equals("")){
+                if(tb1.getRowCount()!=0){
+                       try {
+                    ResultSet search = DB.search("SELECT * FROM end_job WHERE order_id='" + txtOrderId.getText() + "'");
+                    if (search.next()) {
+                        double fullPayment =search.getDouble("total_amount");
+                        //  String path="E:\\jsReport\\report1.jrxml";
+                        //  JasperReport compileReport = JasperCompileManager.compileReport(path);
+
+                        Map<String, Object> params = new HashMap<>();
+                        params.put("orderId", txtOrderId.getText());
+                        params.put("customerId", txtCustomer.getText().split("-")[0]);
+                        params.put("totalAmount", "Rs."+decimal(fullPayment));
+                        params.put("totalPayment", "Rs."+decimal(Double.parseDouble(txtCustomerPayment.getText())));
+                        params.put("avPayment","Rs."+decimal(Double.parseDouble(txtNetAmount.getText())));
+
+                        InputStream is = new FileInputStream("jasper\\report1.jasper");
+                        JasperPrint fileReport = JasperFillManager.fillReport(is, params, DB.getNewConnection());
+                        JasperViewer.viewReport(fileReport, false);
+                        // JasperPrintManager.printReport(fileReport, false);
+
+                        // JasperPrint fillReport = JasperFillManager.fillReport(compileReport,params, DB.getNewConnection());
+                        // JasperViewer.viewReport(fillReport,false);
+                    } else {
+                        Map<String, Object> params = new HashMap<>();
+                        params.put("orderId", txtOrderId.getText());
+                        params.put("customerId", txtCustomer.getText().split("-")[0]);
+                        params.put("totalAmount", "Pending");
+                        params.put("totalPayment","Rs."+decimal(Double.parseDouble(txtCustomerPayment.getText())));
+                        params.put("avPayment", "Pending");
+                        InputStream is = new FileInputStream("jasper\\report1.jasper");
+                        JasperPrint fileReport = JasperFillManager.fillReport(is, params, DB.getNewConnection());
+                        JasperViewer.viewReport(fileReport, false);
+                        // JasperPrintManager.printReport(fileReport, false);
+                    }
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }   
+                }else{
+                  JOptionPane.showMessageDialog(new Paymets(), "No Payments", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                }else{
+                 JOptionPane.showMessageDialog(new Paymets(), "Please search job", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+    }
+
+    private String decimal(Double amount) {
+        String returnVal=null;
+        String setValue = String.valueOf(amount);
+        BigDecimal bd = new BigDecimal(setValue);
+        DecimalFormat formatterBd = new DecimalFormat("##.00");
+        if(formatterBd.format(bd).equals(".00")){
+        returnVal="0.00";
+        }else{
+        returnVal=formatterBd.format(bd);
+        }
+        return returnVal;
+    }
+
+    private void printDetails() {
+        try {
+            
+             Map<String, Object> params = new HashMap<>();
+                        params.put("paymentId", txtPaymentId.getText());
+                        params.put("payment","Rs."+decimal(Double.parseDouble(txtPayment.getText())) );
+                        params.put("balence", "Rs."+decimal(Double.parseDouble(txtbalance.getText())) );
+                        params.put("amount", "Rs."+decimal(Double.parseDouble(txtAmount.getText())));
+
+                        InputStream is = new FileInputStream("jasper\\paymentResiut.jasper");
+                        JasperPrint fileReport = JasperFillManager.fillReport(is, params, DB.getNewConnection());
+                      //  JasperViewer.viewReport(fileReport, false);
+                       JasperPrintManager.printReport(fileReport, false);
+
+            
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }
